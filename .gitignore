@@ -1,0 +1,28 @@
+# VS Code Local History shadow repos
+.history/
+
+# OS cruft
+.DS_Store
+
+# KiCad backups / autosave / lock / cache files
+*.bak
+_autosave-*
+*-backups/
+fp-info-cache
+~*.lck
+
+# Per-user editor state (window layout, last-opened sheet, zoom).
+# Uncomment if these churn in diffs; kept tracked for now so a fresh clone
+# opens with sane defaults.
+# *.kicad_prl
+
+# Everything `dcs build` writes, which is exactly what `dcs clean` removes:
+# the asset directory a document reads from, and the document itself.  The
+# build stamp lives in the asset directory, so tracking any of this would
+# dirty the tree on every commit, which is what the stamp claims is not
+# happening.
+doc-*/assets/
+doc-*/*.pdf
+
+# Fabrication outputs, replotted from the board when an order is placed.
+fabrication/
