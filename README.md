@@ -1,7 +1,13 @@
 # e003-adc-board
 
-Analog acquisition board for the ASRP vehicle stack. Not yet designed: the
-design summary is being written first, and the KiCad project will follow it.
+Analog data acquisition board for the ASRP ECU stack. Eight general-purpose
+channels, sampled simultaneously and configurable for load cells, 4-20 mA and
+voltage transmitters, and seven thermocouple channels, isolated from the stack.
+It takes 5 V and 3.3 V from `e001-power-board` and is read by the ECU MCU
+board, which logs the data. 60 x 60 mm.
+
+Not yet designed: the design summary is being written first, and the KiCad
+project will follow it.
 
 ## Documentation
 
@@ -25,7 +31,7 @@ it names that commit, build mid-edit and it says so.
 
 ## Repository
 
-Part of the ASRP vehicle stack. Each board is its own repo, sitting side by
+Part of the ASRP ECU stack. Each board is its own repo, sitting side by
 side under `ecad/projects/`: `e001-power-board`, `e002-mcu-board`,
 `e003-adc-board`, `bus-interface`, `ecu-stack` and `servo-board`. They are
 separate because they are drawn, revised, fabricated and released one at a
