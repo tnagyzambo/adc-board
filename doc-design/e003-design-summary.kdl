@@ -1,0 +1,30 @@
+// Editor, build and viewer for the ADC board design summary.
+//
+//     cd doc-design && dcs open
+//
+// Opened through dcs rather than `zellij --layout` so that closing the
+// terminal ends the session instead of leaving `dcs watch` running detached.
+//
+// The build pane runs `dcs watch`, which keeps the schematic plot and the
+// revision stamp current and runs a compiler per format as a child, so they
+// all stop together.  The viewer waits for the first compile of both formats
+// rather than racing it, so the layout also works on a clean checkout.
+
+layout {
+    pane {
+        size "80%"
+        edit "e003-design-summary.typ"
+    }
+    pane {
+        size "20%"
+        name "build"
+        command "dcs"
+        args "watch"
+        close_on_exit false
+    }
+    pane {
+        command "sh"
+        args "-c" "until [ -s e003-design-summary-a4.pdf ] && [ -s e003-design-summary-b5.pdf ]; do sleep 0.5; done; open -a 'PDF Expert' e003-design-summary-a4.pdf e003-design-summary-b5.pdf"
+        close_on_exit true
+    }
+}

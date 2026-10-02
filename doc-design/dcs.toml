@@ -1,0 +1,32 @@
+# Everything the build needs to know about this document.
+#
+#   dcs build     refresh what the document reads, then compile each format
+#   dcs watch     keep it current until interrupted
+#   dcs clean     remove everything generated
+
+[document]
+name = "e003-design-summary"
+# Generated files, all of them. `dcs clean` empties this, so nothing
+# hand-written belongs here, and it carries the build stamp in .gitignore:
+# building has to leave the tree clean or the stamp stops being true.
+assets = "assets"
+# Paper formats, each compiled to e003-design-summary-<format>.pdf: "a4" is
+# single sided for loose-leaf printing, "b5" duplex for a binder.
+formats = ["a4", "b5"]
+
+# There is no KiCad project yet. Uncomment these once the board is drawn, and
+# restore the schematic appendix, layer plots and BOM in the report.
+# [schematic]
+# root = "../e003-adc-board.kicad_sch"
+# # colour = true   # plot in the schematic colour theme
+
+# [pcb]
+# root = "../e003-adc-board.kicad_pcb"
+# # layers = ["F.Cu", "B.Cu"]   # default: all copper, then silkscreen and fab
+# # colour = true   # plot in the board colour theme
+# # Figures in grey rather than full black; the PDF keeps full ink.
+# opacity = 0.5
+
+# [bom]
+# # Counted from the [schematic] root and priced from the plm parts library.
+# boards = 1   # boards the build is priced for; picks the price break
