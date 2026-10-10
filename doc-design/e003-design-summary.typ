@@ -279,7 +279,7 @@ The ADC boards do not use #ident("ASRP-PCB-INTERCONNECT-1"). #ident("ASRP-PCB-IN
     ident("3V3"), [2], [From MCU], [All], [3.3~V rail from #ident("E001-POWER-BOARD"). Supplies the stack side of the barriers.],
     ident("GND"), [7], [—], [All], [Power return and signal reference.],
     ident("ADC_CLK"), [1], [From MCU], [All], [Converter clock, 8.192~MHz.],
-    ident("ADC_START"), [1], [From MCU], [All], [Starts conversion on every board on one edge.],
+    ident("ADC_START"), [1], [From MCU], [All], [Idles high. A short low pulse starts conversion on every board (INT-7).],
     ident("SHUNT_CAL"), [1], [From MCU], [All], [Switches in the shunt-calibration resistors.],
     ident("GP_SCLK"), [1], [From MCU], [All], [SPI clock, 5~MHz.],
     ident("GP_SDI"), [1], [From MCU], [All], [SPI data into the converter chain of the selected board.],
@@ -330,6 +330,12 @@ Each clock line faces a ground across the rows, and the power pins sit at one en
   "INT-6",
   [The ECU MCU board shall drive #ident("ADC_CLK") at 8.192~MHz, ±50~ppm or better, from a dedicated oscillator.],
   note: [A MEMS oscillator such as the #ident("SIT8918"), rated −40 to 125~°C, meets this. Every ADC board depends on this one clock.],
+)
+
+#requirement(
+  "INT-7",
+  [#ident("ADC_START") shall idle high. The ECU MCU board shall start or resynchronize conversion with a low pulse shorter than 2048 #ident("ADC_CLK") cycles, 250~µs.],
+  note: [#ident("ADC_START") drives the #ident("ADS131M06") SYNC/RESET input, which resets the converter when held low for longer. The #ident("ADS127L11") restarts on the rising edge in its synchronized control mode (FW-5).],
 )
 
 The sensors connect through a single Harwin Datamate #ident("M80-5002842"), which carries all eight channels and their shields (@tab-sensor-pinout). The general-purpose channels take four contacts each and the thermocouples two. The connector is rated 800~V working between adjacent contacts, far above any voltage in the engine harness, so the two isolated banks sit side by side. Their shield contacts meet at the boundary, so a strand, bent contact or debris bridging the banks can only join one shield to another, never a signal to the other bank.
@@ -400,6 +406,12 @@ These requirements apply to the firmware on the ECU MCU board that reads this bo
 #requirement(
   "FW-4",
   [Firmware shall compute each bank's cold-junction temperature from the ratio of its RTD and reference-resistor readings in the same conversion, and shall compensate that bank's thermocouples with it.],
+)
+
+#requirement(
+  "FW-5",
+  [Firmware shall configure each #ident("ADS127L11") for data-output-only SDO, START in synchronized control mode, the wideband filter at an oversampling ratio of 512, the input precharge buffers on and the REFP precharge buffer off.],
+  note: [The daisy chain needs data-output-only SDO. The REFP precharge buffer accepts REFP only up to AVDD1 − 0.7~V, 1.8~V here, below the 2.048~V excitation.],
 )
 
 == Key Parameters
@@ -530,8 +542,11 @@ Every configuration keeps the signal within ±2.0~V of the bank common, inside t
 - #ident("REF5020") sets a ±2.048~V excitation. One half of an #ident("OPA2189") follows it and the other inverts it, each driving the excitation bus through a #ident("BUF634A"). The precision amplifier sets the voltage and the buffer supplies up to 250~mA. Load cells see the excitation and are measured ratiometrically against it (REQ-9).
 - 20~Ω in each excitation leg limits a cable short to about 100~mA, which the drivers carry without disturbing the other channels. The resistors lower the bridge excitation by about 10~%, a fixed gain term removed by shunt calibration.
 - Transmitters are powered from a 24~V sensor supply, boosted from the +5~V rail by a #ident("TPS61170"). Each channel takes it through an #ident("LT3092") set to 30~mA, so a shorted transmitter or cable loses only its own channel. A different feedback resistor sets 15~V where the transmitters allow it, which saves power.
-- Shunt calibration is switched by #ident("SHUNT_CAL") from the ECU MCU board, so it doubles as a built-in test of each load-cell channel (REQ-10).
-- An #ident("SN6505B") drives a Würth #ident("750315371") transformer. A bridge rectifier on its centre-tapped secondary gives ±5~V rails, from which regulators derive ±2.5~V and 3.3~V. Two #ident("ISO7741") carry SCLK, SDI and CS in and data out, and the clock, START and calibration lines in and data-ready out.
+- Shunt calibration places a resistor chosen for the load cell across its SIG+ to EXC− arm, through an SPST analog switch driven by #ident("SHUNT_CAL") from the ECU MCU board. It doubles as a built-in test of each load-cell channel (REQ-10).
+- An #ident("SN6505B") drives a Würth #ident("750315371") transformer. A bridge rectifier on its centre-tapped secondary gives unregulated ±5~V rails. A #ident("TPS7A39") derives the converters' ±2.5~V from them, its two outputs rising together, and a #ident("TLV704") derives 3.3~V for the converters' I/O and the bank side of the isolators. Two #ident("ISO7741") carry SCLK, SDI and CS in and data out, and the clock, START and calibration lines in and data-ready out.
+- Each input carries 10~kΩ of series protection, 0805 for the 78~mW of a 28~V fault, with low-leakage clamps to the ±5~V rails and 110~pF across the pair. In the voltage configuration the SIG+ resistor becomes the 40.2~kΩ top of the 5:1 divider.
+- The buffers and the excitation run from the ±5~V rails and are up before the ±2.5~V. 237~Ω at each converter input and reference pin holds the current into its clamps below their 10~mA rating meanwhile, and in a fault. With 3.3~nF across the inputs it is also the converter's input filter.
+- The REFP precharge buffer stays off, since REFP is above its 1.8~V limit (FW-5). Unbuffered, the reference draws about 0.25~mA at the 8.192~MHz clock, which through the two 237~Ω resistors lowers it by about 3~%. That is a fixed gain term, removed by calibration (FW-3).
 
 == Thermocouple Channels <sec-tc>
 
@@ -574,13 +589,13 @@ The thermocouple channels deliver a 200~Hz bandwidth (REQ-11) that is free of al
 
 - #ident("ADS131M06") converts six channels simultaneously and continuously: the four thermocouples, the cold-junction RTD and a reference resistor in series with it (REQ-11, REQ-12).
 - The RTD and the reference resistor carry the same current and are sampled together, so the cold junction is measured as their ratio (FW-4). Neither the excitation nor the converter reference enters the result.
-- Each leg carries 1~kΩ of series protection, with clamps to the rails of the bank. The two resistors add 0.08~µV~rms of thermal noise in 200~Hz.
+- Each leg carries 1~kΩ of series protection, a 0.1~% 1206 part rated 1~W that carries a 28~V fault, with clamps to the rails of the bank (OI-2). The two resistors add 0.08~µV~rms of thermal noise in 200~Hz.
 - The series resistors and 47~nF across the inputs set a differential pole at 1.6~kHz, 0.07~dB down at 200~Hz. Common-mode capacitors of 4.7~nF put the common-mode pole an order of magnitude higher, so their mismatch converts little common-mode interference into a differential error.
 - The converter runs at 4~kSPS from the 8.192~MHz stack clock, with a gain of 16 (±75~mV, covering types K, J, N and T over their ranges). Interference reaches the band only from within 200~Hz of a multiple of 4~kSPS. There the converter's sinc3 filter and the RC filter together reject it by at least 85~dB.
 - The firmware filter passes 0–200~Hz, rejects 500~Hz and above by at least 80~dB and decimates to 1~kSPS (FW-1). It lowers the noise from 1.82~µV~rms to 0.8~µV~rms, about 0.02~°C~rms for type K.
 - The converter draws 1~µA per volt of input. Through the protection resistors that is a 0.2~% gain error, removed by calibration together with the converter's own gain error of ±0.3~% (FW-3).
-- Its negative charge pump lets the inputs swing below ground, so the thermocouples are referenced directly to the bank's 0~V, which is also the tie to the engine. A jumper per channel biases an ungrounded junction to it. A grounded junction is left unbiased and takes its reference from the engine.
-- An #ident("ISOW7741") supplies the bank at 3.3~V and carries SCLK, SDI and CS in and data out. An #ident("ISO7742") carries the clock and START in and data-ready out.
+- The converter's integrated negative charge pump lets its inputs swing to 1.3~V below ground, so the thermocouples are referenced directly to the bank's 0~V, which is also the tie to the engine. A jumper per channel biases an ungrounded junction to it. A grounded junction is left unbiased and takes its reference from the engine.
+- An #ident("ISOW7741") supplies the bank at 3.3~V through a ferrite and carries SCLK, SDI and CS in and data out. Its EN/FLT pin is held high through 10~kΩ, so a fault indication cannot short the stack 3.3~V. An #ident("ISO7742") carries the clock and START in and data-ready out.
 
 #figure(
   caption: [Thermocouple Interference and Mitigation],
@@ -618,10 +633,10 @@ The 200~Hz bandwidth is that of the electronics. A junction responds at 200~Hz o
 
 Boards stack on #ident("ASRP-PCB-INTERCONNECT-2") and share two SPI buses to the ECU MCU board, one for the general-purpose banks and one for the thermocouple banks (@tab-interconnect-signals).
 
-- Each bus has one chip select and one data-ready line per board slot. A jumper block on each board picks its slot for all four lines at once, so every board is built the same.
-- A board drives the shared data lines only while it is selected, through #ident("SN74LVC2G125") 3-state buffers. It drives its own data-ready lines all the time, through the same buffers. Their partial-power-down protection keeps an unpowered board off every line.
+- Each bus has one chip select and one data-ready line per board slot. A 2 × 12 header on each board picks its slot with four shunts, one per line, so every board is built the same. A 10~kΩ pull-up holds the chip selects of an unjumpered board inactive.
+- A board drives the shared data lines only while it is selected, through #ident("SN74LVC2G125") 3-state buffers with 62~Ω series termination (INT-4). It drives its own data-ready lines all the time, through the same buffers. Their partial-power-down protection keeps an unpowered board off every line.
 - The ECU MCU board supplies the 8.192~MHz converter clock and START to every board, so all boards sample in step (REQ-6, INT-6). Every board already depends on the ECU MCU board, so this adds no new single point of failure.
-- Each board takes #ident("ADC_CLK") through a 1~kΩ series resistor at its input. A board whose clock input fails short then loads the line with only 3.3~mA, and the other boards keep their clock. With the input capacitance the resistor adds about 5~ns to the edges, against a 122~ns clock period.
+- Each board takes every line into its isolators through 1~kΩ. A board whose input fails short, or whose 3.3~V input switch has opened, then loads the line with 3.3~mA at most, and the other boards keep their clock and data. On #ident("ADC_CLK") the resistor adds about 5~ns to the edges, against a 122~ns clock period.
 - Every data-ready line is visible to the ECU MCU board at all times, so any board can trigger a read. All boards signal together and are read in one burst.
 - Data-ready falls a fixed number of #ident("ADC_CLK") cycles after START. Firmware can therefore schedule reads from a timer counting #ident("ADC_CLK") and use the data-ready lines to confirm that every board kept pace (FW-2).
 - The isolators add at most 17~ns each way and the bus buffers 4.3~ns, so data returns within about 70~ns of the clock edge. Both buses run at 5~MHz.
@@ -648,7 +663,7 @@ Boards stack on #ident("ASRP-PCB-INTERCONNECT-2") and share two SPI buses to the
       [Zero-drift, 5.2~nV/√Hz, input bias 300~pA maximum, offset drift 0.006~µV/°C typical.],
       [Thermocouple converter],
       ident("ADS131M06"),
-      [Six simultaneous channels: four thermocouples, the cold-junction RTD and its reference resistor. Gain to 128. 1.82~µV~rms at 4~kSPS, gain 16. Sinc3 filter. SPI with CRC and data-ready. 4.9~mW. 4 × 4~mm WQFN.],
+      [Six simultaneous channels: four thermocouples, the cold-junction RTD and its reference resistor. Gain to 128. Integrated negative charge pump: inputs to 1.3~V below ground. 1.82~µV~rms at 4~kSPS, gain 16. Sinc3 filter. SPI with CRC and data-ready. 4.9~mW. 4 × 4~mm WQFN.],
       [Excitation reference],
       ident("REF5020"),
       [2.048~V, 3~ppm/°C maximum (high grade).],
@@ -660,10 +675,13 @@ Boards stack on #ident("ASRP-PCB-INTERCONNECT-2") and share two SPI buses to the
       [One per excitation leg. 1206 or larger for 0.2~W in a short.],
       [General-purpose isolated supply],
       [#ident("SN6505B"), #ident("750315371")],
-      [1~A push-pull driver at 420~kHz. Würth 1:1.1 centre-tapped transformer, 2500~V~rms, 1~A rated at 5~V. Bridge rectifier for ±5~V.],
+      [1~A push-pull driver at 420~kHz. Würth 1:1.1 centre-tapped transformer, 2500~V~rms, 1~A rated at 5~V. Four 30~V 1~A Schottky diodes (TBD) as the bridge for ±5~V.],
+      [General-purpose regulators],
+      [#ident("TPS7A39"), #ident("TLV704")],
+      [Dual positive and negative LDO for ±2.5~V: 150~mA each, ±3.3 to ±33~V in, outputs track at start-up, 21~µV~rms. 150~mA LDO for 3.3~V, 2.5 to 24~V in. Both tolerate the rectified rails at light load. Loads about 22 and 37~mA on ±2.5~V, 25~mA on 3.3~V.],
       [Sensor supply],
       [#ident("TPS61170")],
-      [Boost from +5~V to 24~V. 1.2~A switch, 38~V output maximum, 1.2~MHz, 2 × 2~mm QFN.],
+      [Boost from +5~V to 24~V. 1.2~A switch, 38~V output maximum, 1.2~MHz, 2 × 2~mm QFN. 10~µH inductor and 40~V Schottky (TBD).],
       [Sensor supply current limit],
       [4 × #ident("LT3092")],
       [2-terminal current source set to 30~mA. 0.5 to 200~mA, 1.2 to 40~V, thermal limit. 3 × 3~mm DFN.],
@@ -677,14 +695,23 @@ Boards stack on #ident("ASRP-PCB-INTERCONNECT-2") and share two SPI buses to the
       ident("ISO7742"),
       [Two forward and two reverse channels. 4.9 × 6~mm QSOP.],
       [Cold-junction sensor],
-      [Thin-film RTD],
-      [In series with a reference resistor, both on #ident("ADS131M06") channels.],
+      [Pt1000 (TBD), 1~kΩ 0.1~%],
+      [Thin-film RTD, class A, in series with the reference resistor and 4.7~kΩ from 3.3~V: 0.49~mA. Both on #ident("ADS131M06") channels.],
+      [Input clamps],
+      [BAV199 class (TBD)],
+      [Low-leakage series pair to the bank rails, one per input.],
+      [Shunt-calibration switch],
+      [TBD],
+      [SPST, ±5~V supply, 3.3~V logic, on-resistance under 100~Ω, leakage under 1~nA. One per channel.],
       [Bus buffers],
       [2 × #ident("SN74LVC2G125")],
       [Dual 3-state buffer, 4.3~ns maximum at 3.3~V, partial-power-down protection.],
-      [Clock input resistor],
+      [Input resistors],
       [1~kΩ],
-      [In series with #ident("ADC_CLK") at the board input.],
+      [In series with every line into the isolators, #ident("ADC_CLK") included.],
+      [Slot select],
+      [2 × 12 header (TBD)],
+      [2~mm pitch, Harwin M22 family. Four shunts pick the slot.],
       [Sensor connector],
       ident("M80-5002842"),
       [Harwin Datamate J-Tek, 28-way, 2~mm pitch, vertical through-hole, M2 jackscrews, −55 to 125~°C. 800~V working between contacts. 38 × 6~mm.],
@@ -701,7 +728,7 @@ Boards stack on #ident("ASRP-PCB-INTERCONNECT-2") and share two SPI buses to the
 
 = Physical Implementation <sec-physical>
 
-No board has been drawn. These estimates set the budget for REV A.
+The schematic is drawn (Appendix A). No board has been, so these estimates set the budget for REV A.
 
 #params(
   cols: 4,
@@ -735,6 +762,18 @@ Issues known at this revision and not resolved in it.
     ident("OI-1"),
     [5~V current of a full stack exceeds the #ident("E001-POWER-BOARD") rail],
     [Three boards draw 0.7~A at 5~V without transmitters and 2.3~A with a transmitter on every general-purpose channel (INT-2), against 2~A for the whole ECU stack. Not resolved in this revision. The number of transmitter channels in a stack is held to what the rail can spare.],
+
+    ident("OI-2"),
+    [A thermocouple fault can raise the 3.3~V of its bank],
+    [A 28~V fault on a thermocouple input drives about 25~mA through its 1~kΩ and clamp into 3V3_TC, more than the bank draws, so the rail can rise past the #ident("ADS131M06") 3.9~V maximum. To be resolved before layout: a clamp on the rail, or more series resistance at a cost in noise.],
+
+    ident("OI-3"),
+    [Parts without a library record],
+    [The schematic carries placeholders, marked \*, for the sensor and stack connectors, the transformer, the bridge and boost diodes, the boost inductor, the input clamps, the shunt-calibration switch, the RTD, the slot header and the precision and odd-value resistors. Each names its required value and rating. Every IC footprint is TODO in the library.],
+
+    ident("OI-4"),
+    [Engine-tie resistance],
+    [Each bank ties to the engine through a resistor behind its shield jumper. The value depends on the engine grounding scheme and is TBD.],
   ),
 ) <tab-open-issues>
 
@@ -746,7 +785,16 @@ Issues known at this revision and not resolved in it.
 //  changes.  Compiling this file never invokes KiCad or plm; it only reads
 //  what the build left behind.
 //
-//  There is no KiCad project yet.  The Bill of Materials and Schematics
-//  appendices go here, as in e001-power-board, once the [schematic] and [bom]
-//  tables in dcs.toml are enabled.
+//  There is no board yet, so no Bill of Materials: its appendix goes before
+//  the Schematics, as in e001-power-board, once the [bom] table in dcs.toml
+//  is enabled.
 // =============================================================================
+
+#let schematics = json("assets/manifest.json")
+
+#pdf-appendix(
+  read(schematics.pdf, encoding: none),
+  sheets: schematics.sheets,
+  title: [Schematics],
+  index-caption: [Schematic Sheet Index],
+)

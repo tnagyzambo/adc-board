@@ -14,11 +14,12 @@ assets = "assets"
 # single sided for loose-leaf printing, "b5" duplex for a binder.
 formats = ["a4", "b5"]
 
-# There is no KiCad project yet. Uncomment these once the board is drawn, and
-# restore the schematic appendix, layer plots and BOM in the report.
-# [schematic]
-# root = "../e003-adc-board.kicad_sch"
-# # colour = true   # plot in the schematic colour theme
+[schematic]
+root = "../e003-adc-board.kicad_sch"
+# colour = true   # plot in the schematic colour theme
+
+# There is no board yet. Uncomment these once it is drawn, and restore the
+# layer plots and BOM in the report.
 
 # [pcb]
 # root = "../e003-adc-board.kicad_pcb"
