@@ -9,6 +9,174 @@
 		(rev "-")
 	)
 	(lib_symbols
+		(symbol "capacitor:Capacitor"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "C"
+				(at 2.54 -4.064 0)
+				(show_name no)
+				(do_not_autoplace yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Value" "C"
+				(at 2.54 -4.826 0)
+				(show_name no)
+				(do_not_autoplace yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" ""
+				(at 2.54 -4.318 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 2.54 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Manufacturer" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Capacitor_1_0"
+				(polyline
+					(pts
+						(xy 0 -3.81) (xy 0 -2.4766)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -6.35) (xy 0 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.905 -3.81) (xy -1.905 -3.81)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.905 -5.08) (xy -1.905 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at 0 -8.89 90)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 0 270)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "e003:BAV199"
 			(pin_names
 				(offset 0)
@@ -309,222 +477,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "e003:SW-SPST-ANALOG"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "U"
-				(at 5.08 -13.462 0)
-				(show_name no)
-				(do_not_autoplace yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-				)
-			)
-			(property "Value" "SW-SPST-ANALOG"
-				(at 5.08 -15.494 0)
-				(show_name no)
-				(do_not_autoplace yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "SPST analog switch, dual supply"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Placeholder" "Part TBD: SPST analog switch, +/-5 V supply, 3.3 V logic, Ron < 100 R, leakage < 1 nA; pin numbers to the selected part"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "SW-SPST-ANALOG_1_0"
-				(rectangle
-					(start 5.08 2.54)
-					(end 22.86 -12.7)
-					(stroke
-						(width 0.0254)
-						(type solid)
-						(color 128 0 0 1)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
-			(symbol "SW-SPST-ANALOG_1_1"
-				(pin power_in line
-					(at 0 0 0)
-					(length 5.08)
-					(name "V+"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 0 -5.08 0)
-					(length 5.08)
-					(name "IN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 0 -7.62 0)
-					(length 5.08)
-					(name "VL"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 0 -10.16 0)
-					(length 5.08)
-					(name "V-"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 27.94 0 180)
-					(length 5.08)
-					(name "S"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 27.94 -5.08 180)
-					(length 5.08)
-					(name "D"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 27.94 -10.16 180)
-					(length 5.08)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "general:GND"
 			(power global)
 			(pin_numbers
@@ -735,6 +687,306 @@
 						)
 					)
 					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "plm:ADG1402BCPZ-REEL7"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at 5.08 -16.256 0)
+				(show_name no)
+				(do_not_autoplace yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Value" "ADG1402BCPZ-REEL7"
+				(at 5.08 -18.288 0)
+				(show_name no)
+				(do_not_autoplace yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" "TODO"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "${ECAD_LIB}/parts/ics/datasheets/adg1401_1402.pdf"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "SPST Analog Switch, 1 Ω On Resistance, Closed With Logic Low"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "DigiKey_Part" "ADG1402BCPZ-REEL7CT-ND"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MPN" "ADG1402BCPZ-REEL7"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "Analog Devices Inc."
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Mouser_Part" "584-ADG1402BCPZ-R7"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Package" "8-LFCSP-WD (2x3)"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "plm_unused_last_field" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "TODO"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "ADG1402BCPZ-REEL7_1_0"
+				(rectangle
+					(start 5.08 2.54)
+					(end 17.78 -15.24)
+					(stroke
+						(width 0.0254)
+						(type solid)
+						(color 128 0 0 1)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "ADG1402BCPZ-REEL7_1_1"
+				(pin passive line
+					(at 22.86 0 180)
+					(length 5.08)
+					(name "S"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 22.86 -10.16 180)
+					(length 5.08)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 0 0)
+					(length 5.08)
+					(name "VDD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 0 -5.08 0)
+					(length 5.08)
+					(name "IN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -10.16 0)
+					(length 5.08)
+					(name "VSS"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 22.86 -5.08 180)
+					(length 5.08)
+					(name "D"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -12.7 0)
+					(length 5.08)
+					(name "PAD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 22.86 -12.7 180)
+					(length 5.08)
+					(name "NC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "[2,5]"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1885,7 +2137,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "plm:CRCW0402237RFKTD"
+		(symbol "plm:TNPW0402237RBEED"
 			(pin_numbers
 				(hide yes)
 			)
@@ -1930,7 +2182,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "https://www.vishay.com/docs/20008/dcrcw.pdf"
+			(property "Datasheet" "https://www.vishay.com/docs/28758/tnpw_e3.pdf"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1941,7 +2193,7 @@
 					)
 				)
 			)
-			(property "Description" "Resistor, Thick Film"
+			(property "Description" "Resistor, Thin Film"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1964,7 +2216,7 @@
 					(justify left bottom)
 				)
 			)
-			(property "DigiKey_Part" "CRCW0402237RFKTD-ND"
+			(property "DigiKey_Part" "TNPW0402237RBEED-ND"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1975,7 +2227,7 @@
 					)
 				)
 			)
-			(property "MPN" "CRCW0402237RFKTD"
+			(property "MPN" "TNPW0402237RBEED"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1986,7 +2238,7 @@
 					)
 				)
 			)
-			(property "Mouser_Part" "71-CRCW0402-237"
+			(property "Mouser_Part" "71-TNPW0402237RBEED"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2008,7 +2260,7 @@
 					)
 				)
 			)
-			(property "Power" "0.063W"
+			(property "Power" "0.13W"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2019,7 +2271,7 @@
 					)
 				)
 			)
-			(property "Tolerance" "1%"
+			(property "Tolerance" "0.1%"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2052,7 +2304,7 @@
 					)
 				)
 			)
-			(symbol "CRCW0402237RFKTD_1_0"
+			(symbol "TNPW0402237RBEED_1_0"
 				(polyline
 					(pts
 						(xy -0.5 -3.306) (xy 0.5 -3.806)
@@ -3566,7 +3818,7 @@
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "U"
-				(at 5.08 -18.796 0)
+				(at 5.08 -12.446 0)
 				(show_name no)
 				(do_not_autoplace yes)
 				(effects
@@ -3577,7 +3829,7 @@
 				)
 			)
 			(property "Value" "LT3092EDD#PBF"
-				(at 5.08 -20.828 0)
+				(at 5.08 -14.478 0)
 				(show_name no)
 				(do_not_autoplace yes)
 				(effects
@@ -3700,7 +3952,7 @@
 			(symbol "LT3092EDD#PBF_1_0"
 				(rectangle
 					(start 5.08 2.54)
-					(end 17.78 -17.78)
+					(end 17.78 -11.43)
 					(stroke
 						(width 0.0254)
 						(type solid)
@@ -3713,7 +3965,7 @@
 			)
 			(symbol "LT3092EDD#PBF_1_1"
 				(pin passive line
-					(at 0 -7.62 0)
+					(at 22.86 -8.89 180)
 					(length 5.08)
 					(name "SET"
 						(effects
@@ -3731,7 +3983,7 @@
 					)
 				)
 				(pin passive line
-					(at 0 -15.24 0)
+					(at 22.86 -2.54 180)
 					(length 5.08)
 					(name "PAD"
 						(effects
@@ -3767,7 +4019,7 @@
 					)
 				)
 				(pin passive line
-					(at 22.86 -15.24 180)
+					(at 0 -8.89 0)
 					(length 5.08)
 					(name "NC"
 						(effects
@@ -4667,174 +4919,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "capacitor:Capacitor"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "C"
-				(at 2.54 -4.064 0)
-				(show_name no)
-				(do_not_autoplace yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Value" "C"
-				(at 2.54 -4.826 0)
-				(show_name no)
-				(do_not_autoplace yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-				)
-			)
-			(property "Footprint" ""
-				(at 2.54 -4.318 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" ""
-				(at 2.54 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Manufacturer" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "Capacitor_1_0"
-				(polyline
-					(pts
-						(xy 0 -3.81) (xy 0 -2.4766)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -6.35) (xy 0 -5.08)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.905 -3.81) (xy -1.905 -3.81)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.905 -5.08) (xy -1.905 -5.08)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at 0 -8.89 90)
-					(length 2.54)
-					(name "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 0 270)
-					(length 2.54)
-					(name "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 	)
 	(text "SWITCH"
 		(exclude_from_sim no)
@@ -4869,7 +4953,7 @@
 		)
 		(uuid "6be54504-5ea8-464e-b986-a96351792749")
 	)
-	(text "CONFIGURATION BY PLACEMENT, AS DRAWN: LOAD CELL\nLOAD CELL: 20R EXCITATION RESISTORS, 10k SERIES RESISTORS AND\n  SHUNT-CAL RESISTOR FITTED. LOOP LINK, SHUNT, LINKS TO COMMON\n  AND DIVIDER NOT FITTED.\n4-20 mA: LOOP LINK, 100R SHUNT AND SIG- LINK FITTED.\n  20R EXCITATION RESISTORS, SHUNT-CAL RESISTOR AND DIVIDER NOT FITTED.\nVOLTAGE (+/-10 V): LOOP LINK, SIG- AND EXC- LINKS FITTED,\n  40.2k 0.1% SERIES (SIG+) AND 10k 0.1% DIVIDER.\n  20R EXCITATION RESISTORS, SHUNT AND SHUNT-CAL RESISTOR NOT FITTED."
+	(text "CONFIGURATION BY PLACEMENT, AS DRAWN: LOAD CELL\nLOAD CELL: 20R EXCITATION RESISTORS, 10k SERIES RESISTORS AND\n  SHUNT-CAL RESISTOR FITTED. LOOP LINK, SHUNT, LINKS TO COMMON\n  AND DIVIDER NOT FITTED.\n4-20 mA: LOOP LINK, 100R SHUNT AND SIG- LINK FITTED.\n  20R EXCITATION RESISTORS, SHUNT-CAL RESISTOR AND DIVIDER NOT FITTED.\nVOLTAGE (+/-10 V): LOOP LINK AND EXC- LINK FITTED, 40.2k 0.05% SERIES (SIG+)\n  AND 10k 0.05% DIVIDER TO SIG-. SIG- LINK FITTED ONLY FOR A TRANSMITTER\n  WITH AN ISOLATED OUTPUT.\n  20R EXCITATION RESISTORS, SHUNT AND SHUNT-CAL RESISTOR NOT FITTED."
 		(exclude_from_sim no)
 		(at 185.42 144.78 0)
 		(effects
@@ -4924,7 +5008,7 @@
 		)
 		(uuid "d112d80a-0628-47a7-9851-0d40591c0e86")
 	)
-	(text "TRANSMITTER SUPPLY\n30.1 mA = 10 uA x 30.1k / 10R"
+	(text "TRANSMITTER SUPPLY\n30.11 mA = 10 uA x 30.1k / 10R + 10uA"
 		(exclude_from_sim no)
 		(at 99.06 27.94 0)
 		(effects
@@ -4945,6 +5029,18 @@
 			(justify left)
 		)
 		(uuid "ee2d7513-76db-4e7b-94ab-2cf00878a9c0")
+	)
+	(junction
+		(at 80.01 31.75)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "044919b6-168f-472c-a944-7b2e88571b72")
+	)
+	(junction
+		(at 80.01 45.72)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0b36ee1b-6e1f-4988-bc34-cae6d151e156")
 	)
 	(junction
 		(at 167.64 86.36)
@@ -4969,6 +5065,18 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "31df5264-8a76-4bf3-a0c7-a7333b0db318")
+	)
+	(junction
+		(at 177.8 69.85)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "486cec06-38dc-4916-895a-b339d1429562")
+	)
+	(junction
+		(at 177.8 60.96)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "552ec1e4-a114-429d-9e60-c27d22a2b3fc")
 	)
 	(junction
 		(at 63.5 58.42)
@@ -5019,16 +5127,22 @@
 		(uuid "b21c6f4d-34ed-46c1-ae80-8383aa67cde5")
 	)
 	(junction
+		(at 50.8 119.38)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ba2f012e-c015-49e6-86a8-d0d29a6d2758")
+	)
+	(junction
 		(at 33.02 67.31)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "bc973f91-29ef-4ca9-b1b6-ad437ded8871")
 	)
 	(junction
-		(at 71.12 45.72)
+		(at 66.04 22.86)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "bd06db73-6ec5-4c5c-8752-38e00bbefcfa")
+		(uuid "be81a5a8-2704-4a37-8584-637aa7657247")
 	)
 	(junction
 		(at 172.72 60.96)
@@ -5055,68 +5169,30 @@
 		(uuid "ef5d0cf0-de11-4645-9cb6-ccd571cbe2f2")
 	)
 	(no_connect
+		(at 73.66 121.92)
+		(uuid "5c63779e-a9c8-43ca-aca2-d16208c87f12")
+	)
+	(no_connect
 		(at 180.34 113.03)
 		(uuid "c314e0af-24eb-4e14-8a18-30ac32eb4c71")
 	)
 	(no_connect
-		(at 63.5 38.1)
+		(at 40.64 31.75)
 		(uuid "e395e9b2-2964-48e4-bcb5-561b630f5a9a")
 	)
 	(wire
 		(pts
-			(xy 172.72 60.96) (xy 177.8 60.96)
+			(xy 63.5 67.31) (xy 63.5 69.85)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "b89171b8-734c-4e9e-8a92-621f65d25f72")
+		(uuid "e22236d3-9d75-4270-bc2f-b63991ecc250")
 	)
 	(wire
 		(pts
-			(xy 177.8 60.96) (xy 180.34 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "46084658-46f8-4678-9a94-a40728626909")
-	)
-	(wire
-		(pts
-			(xy 172.72 69.85) (xy 177.8 69.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e97f73c6-00ce-4025-8c85-e1d28e46aae8")
-	)
-	(wire
-		(pts
-			(xy 177.8 69.85) (xy 180.34 69.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1cf54e82-2891-4559-8783-91b5682abce6")
-	)
-	(junction
-		(at 177.8 60.96)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "552ec1e4-a114-429d-9e60-c27d22a2b3fc")
-	)
-	(junction
-		(at 177.8 69.85)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "486cec06-38dc-4916-895a-b339d1429562")
-	)
-	(wire
-		(pts
-			(xy 25.4 45.72) (xy 71.12 45.72)
+			(xy 25.4 45.72) (xy 80.01 45.72)
 		)
 		(stroke
 			(width 0)
@@ -5126,7 +5202,7 @@
 	)
 	(wire
 		(pts
-			(xy 78.74 119.38) (xy 81.28 119.38)
+			(xy 73.66 119.38) (xy 81.28 119.38)
 		)
 		(stroke
 			(width 0)
@@ -5186,6 +5262,16 @@
 	)
 	(wire
 		(pts
+			(xy 80.01 45.72) (xy 91.44 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0a466e88-99d3-4dbc-8634-0090f18d7d0f")
+	)
+	(wire
+		(pts
 			(xy 167.64 86.36) (xy 172.72 86.36)
 		)
 		(stroke
@@ -5203,6 +5289,16 @@
 			(type default)
 		)
 		(uuid "0b1e1388-e1b7-43c4-b9cb-dedd3ed8ce8e")
+	)
+	(wire
+		(pts
+			(xy 63.5 31.75) (xy 68.58 31.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0c82842b-f5c3-4b71-94a3-3af76ed5647a")
 	)
 	(wire
 		(pts
@@ -5226,6 +5322,26 @@
 	)
 	(wire
 		(pts
+			(xy 66.04 25.4) (xy 66.04 22.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "17fcc7d3-292b-4091-8951-ae7a5fcb16ae")
+	)
+	(wire
+		(pts
+			(xy 50.8 121.92) (xy 50.8 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "18c60238-dc23-4ad5-86ee-3967d7347cff")
+	)
+	(wire
+		(pts
 			(xy 93.98 58.42) (xy 106.68 58.42)
 		)
 		(stroke
@@ -5233,6 +5349,16 @@
 			(type default)
 		)
 		(uuid "19687650-e99b-4904-9c7c-dc36dffc3cb5")
+	)
+	(wire
+		(pts
+			(xy 177.8 69.85) (xy 180.34 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1cf54e82-2891-4559-8783-91b5682abce6")
 	)
 	(wire
 		(pts
@@ -5316,16 +5442,6 @@
 	)
 	(wire
 		(pts
-			(xy 63.5 22.86) (xy 71.12 22.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "43a8d560-4467-4696-865c-e439c940f098")
-	)
-	(wire
-		(pts
 			(xy 93.98 81.28) (xy 106.68 81.28)
 		)
 		(stroke
@@ -5343,6 +5459,16 @@
 			(type default)
 		)
 		(uuid "44a745ee-a4bb-408a-aa26-84de16da838b")
+	)
+	(wire
+		(pts
+			(xy 177.8 60.96) (xy 180.34 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "46084658-46f8-4678-9a94-a40728626909")
 	)
 	(wire
 		(pts
@@ -5386,13 +5512,23 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 40.64) (xy 71.12 45.72)
+			(xy 80.01 43.18) (xy 80.01 45.72)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "56412a7e-3c9d-4bfc-80ee-469e08d67dfa")
+	)
+	(wire
+		(pts
+			(xy 66.04 22.86) (xy 68.58 22.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5a7686e6-c90f-4250-8aa7-a26a9293bcc8")
 	)
 	(wire
 		(pts
@@ -5406,16 +5542,6 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 31.75) (xy 71.12 31.75)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5f4d76a0-b2cf-4e09-92d4-0892386ea341")
-	)
-	(wire
-		(pts
 			(xy 222.25 60.96) (xy 226.06 60.96)
 		)
 		(stroke
@@ -5423,16 +5549,6 @@
 			(type default)
 		)
 		(uuid "6063d1c2-0905-46f7-bee2-a480fcd1b7b5")
-	)
-	(wire
-		(pts
-			(xy 71.12 45.72) (xy 91.44 45.72)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "669afe05-51c5-430a-aa6e-348766ae50fd")
 	)
 	(wire
 		(pts
@@ -5463,6 +5579,16 @@
 			(type default)
 		)
 		(uuid "716581d3-ce0e-40cb-b878-bb6f840c0c79")
+	)
+	(wire
+		(pts
+			(xy 80.01 31.75) (xy 77.47 31.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7e84a1db-e5cb-45fa-8316-0bf2b9cf66b4")
 	)
 	(wire
 		(pts
@@ -5576,13 +5702,13 @@
 	)
 	(wire
 		(pts
-			(xy 50.8 116.84) (xy 38.1 116.84)
+			(xy 80.01 31.75) (xy 80.01 22.86)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "9a1ecbf2-1892-45e9-a4ce-c7659c32e651")
+		(uuid "9e5341ac-c532-4448-a797-df1b3be17d6a")
 	)
 	(wire
 		(pts
@@ -5626,6 +5752,16 @@
 	)
 	(wire
 		(pts
+			(xy 63.5 25.4) (xy 66.04 25.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a446b978-5ed9-42f6-aefe-1084967f9228")
+	)
+	(wire
+		(pts
 			(xy 54.61 67.31) (xy 57.15 67.31)
 		)
 		(stroke
@@ -5643,6 +5779,16 @@
 			(type default)
 		)
 		(uuid "aec8e432-4339-47c9-b7f4-97e1742eeaf3")
+	)
+	(wire
+		(pts
+			(xy 172.72 60.96) (xy 177.8 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b89171b8-734c-4e9e-8a92-621f65d25f72")
 	)
 	(wire
 		(pts
@@ -5693,6 +5839,16 @@
 			(type default)
 		)
 		(uuid "cf20228f-436b-4f8f-b8cf-fb6a313ef871")
+	)
+	(wire
+		(pts
+			(xy 80.01 31.75) (xy 80.01 34.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d01554c2-ae2a-4a99-b166-35a10131e320")
 	)
 	(wire
 		(pts
@@ -5816,6 +5972,16 @@
 	)
 	(wire
 		(pts
+			(xy 172.72 69.85) (xy 177.8 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e97f73c6-00ce-4025-8c85-e1d28e46aae8")
+	)
+	(wire
+		(pts
 			(xy 81.28 81.28) (xy 93.98 81.28)
 		)
 		(stroke
@@ -5826,7 +5992,7 @@
 	)
 	(wire
 		(pts
-			(xy 78.74 114.3) (xy 86.36 114.3)
+			(xy 73.66 114.3) (xy 86.36 114.3)
 		)
 		(stroke
 			(width 0)
@@ -5836,13 +6002,23 @@
 	)
 	(wire
 		(pts
-			(xy 78.74 109.22) (xy 81.28 109.22)
+			(xy 73.66 109.22) (xy 81.28 109.22)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "efbee790-381f-49ce-87e5-369ee2d6cc21")
+	)
+	(wire
+		(pts
+			(xy 63.5 22.86) (xy 66.04 22.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f3325bfc-3100-4132-a89e-da7b0fa40d16")
 	)
 	(wire
 		(pts
@@ -5863,6 +6039,16 @@
 			(type default)
 		)
 		(uuid "f738e685-59aa-4e89-bc20-176a7e9804c5")
+	)
+	(wire
+		(pts
+			(xy 80.01 22.86) (xy 77.47 22.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "faf339bd-fd5f-4606-829a-c27a47bb6f9c")
 	)
 	(wire
 		(pts
@@ -5894,6 +6080,16 @@
 		)
 		(uuid "0bb7eb1f-c55c-458f-b6c7-4c5327794bbb")
 	)
+	(label "SIG-"
+		(at 63.5 69.85 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "bcae222f-6b5a-411f-8afa-17067b1a5e50")
+	)
 	(label "SIG+"
 		(at 30.48 58.42 0)
 		(effects
@@ -5914,26 +6110,6 @@
 		)
 		(uuid "447fc000-f69b-4b94-8a14-5bc701e304e4")
 	)
-	(label "ISET"
-		(at 40.64 30.48 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "4aa2aaa1-0ca4-498c-8c7c-a38e684f8a43")
-	)
-	(label "ISET"
-		(at 86.36 22.86 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "5b0b4d45-6bc0-4164-98ba-30bc936589a5")
-	)
 	(label "EXC_P"
 		(at 30.48 50.8 0)
 		(effects
@@ -5943,16 +6119,6 @@
 			(justify left bottom)
 		)
 		(uuid "609309f5-aaae-43be-a97e-f119096e7ec4")
-	)
-	(label "ISRC"
-		(at 40.64 38.1 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "7089014b-01c1-4f5c-9d59-e848d1d53569")
 	)
 	(label "EXC-"
 		(at 55.88 132.08 0)
@@ -6013,16 +6179,6 @@
 			(justify right bottom)
 		)
 		(uuid "f356880a-8f6e-4dbd-afee-fb219dee4474")
-	)
-	(label "ISRC"
-		(at 66.04 22.86 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "f5a6d260-4f44-40ab-8c55-4dd15a319681")
 	)
 	(hierarchical_label "CLK"
 		(shape input)
@@ -6484,198 +6640,6 @@
 		)
 	)
 	(symbol
-		(lib_id "plm:GRM155R71H104KE14J")
-		(at 147.32 160.02 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "0106a423-a353-4513-925c-3543939d1e44")
-		(property "Reference" "C717"
-			(at 149.098 163.449 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "0.1uF"
-			(at 149.098 165.481 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "capacitor:MURATA-0402"
-			(at 147.32 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 147.32 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Capacitor, MLCC"
-			(at 147.32 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "GRM155R71H104KE14J"
-			(at 147.32 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Murata"
-			(at 147.32 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Tolerance" "10%"
-			(at 147.32 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Dielectric" "X7R"
-			(at 147.32 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Voltage_Rating" "50 VDC"
-			(at 147.32 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Package" "0402"
-			(at 147.32 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Mouser_Part" "81-GRM155R71H104KE4J"
-			(at 147.32 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "DigiKey_Part" "490-13342-2-ND"
-			(at 147.32 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "plm_unused_last_field" ""
-			(at 147.32 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "f1148093-9bf3-4bfe-b0da-b6509f9109e8")
-		)
-		(pin "2"
-			(uuid "7a3007a4-6400-4f1b-b870-7635cb8ee7c1")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
-					(reference "C717")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
-					(reference "C717")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
-					(reference "C717")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
-					(reference "C717")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "general:GND")
 		(at 83.82 168.91 0)
 		(unit 1)
@@ -6951,95 +6915,6 @@
 				)
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
 					(reference "C701")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "general:GND")
-		(at 63.5 67.31 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "084a77b4-6882-40b8-90ed-ec18ca7c7bd4")
-		(property "Reference" "#PWR0124"
-			(at 63.5 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND_GP"
-			(at 63.5 72.644 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 63.5 67.31 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 63.5 67.31 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 63.5 67.31 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin ""
-			(uuid "01ec8b88-264c-4e41-ae85-1c0cd462b042")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
-					(reference "#PWR0124")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
-					(reference "#PWR0124")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
-					(reference "#PWR0124")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
-					(reference "#PWR0124")
 					(unit 1)
 				)
 			)
@@ -7633,7 +7508,7 @@
 	)
 	(symbol
 		(lib_id "plm:CRCW040230K1FKED")
-		(at 86.36 22.86 0)
+		(at 77.47 31.75 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7643,7 +7518,7 @@
 		(dnp no)
 		(uuid "16397a45-659b-4806-a248-487feb6f3773")
 		(property "Reference" "R704"
-			(at 88.138 26.289 0)
+			(at 70.612 27.686 90)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -7654,7 +7529,7 @@
 			)
 		)
 		(property "Value" "30.1k"
-			(at 88.138 28.321 0)
+			(at 70.612 29.718 90)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -7665,7 +7540,7 @@
 			)
 		)
 		(property "Footprint" "resistor:VISHAY-0402"
-			(at 86.36 22.86 0)
+			(at 77.47 31.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7676,7 +7551,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.vishay.com/docs/20035/dcrcwe3.pdf"
-			(at 86.36 22.86 0)
+			(at 77.47 31.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7687,7 +7562,7 @@
 			)
 		)
 		(property "Description" "Resistor, Thick Film"
-			(at 86.36 22.86 0)
+			(at 77.47 31.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7698,7 +7573,7 @@
 			)
 		)
 		(property "MPN" "CRCW040230K1FKED"
-			(at 86.36 22.86 0)
+			(at 77.47 31.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7709,7 +7584,7 @@
 			)
 		)
 		(property "Manufacturer" "Vishay"
-			(at 86.36 22.86 0)
+			(at 77.47 31.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7720,7 +7595,7 @@
 			)
 		)
 		(property "Tolerance" "1%"
-			(at 86.36 22.86 0)
+			(at 77.47 31.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7731,7 +7606,7 @@
 			)
 		)
 		(property "Power" "0.1W"
-			(at 86.36 22.86 0)
+			(at 77.47 31.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7742,7 +7617,7 @@
 			)
 		)
 		(property "Package" "0402"
-			(at 86.36 22.86 0)
+			(at 77.47 31.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7753,7 +7628,7 @@
 			)
 		)
 		(property "Mouser_Part" "71-CRCW0402-30.1K-E3"
-			(at 86.36 22.86 0)
+			(at 77.47 31.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7764,7 +7639,7 @@
 			)
 		)
 		(property "DigiKey_Part" "541-30.1KLCT-ND"
-			(at 86.36 22.86 0)
+			(at 77.47 31.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7775,7 +7650,7 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 86.36 22.86 0)
+			(at 77.47 31.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8074,95 +7949,6 @@
 				)
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
 					(reference "#PWR0144")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "general:VCC")
-		(at 38.1 116.84 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "1a2938b4-8447-4f17-82f6-9ddf72fdeb6c")
-		(property "Reference" "#PWR0141"
-			(at 38.1 113.03 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "3V3_GP"
-			(at 38.1 113.03 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 38.1 116.84 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 38.1 116.84 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 38.1 116.84 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin ""
-			(uuid "ccfb6a8b-82de-4a3d-ae5a-16de3d0f1047")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
-					(reference "#PWR0141")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
-					(reference "#PWR0141")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
-					(reference "#PWR0141")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
-					(reference "#PWR0141")
 					(unit 1)
 				)
 			)
@@ -8869,7 +8655,7 @@
 				)
 			)
 		)
-		(property "Placeholder" "20R 1% 1206, 0.25 W: limits an excitation short to 100 mA"
+		(property "Placeholder" "20R 0.1% 25 ppm thin film 1206, 0.25 W, e.g. Vishay TNPW120620R0BEEN: limits an excitation short to 100 mA"
 			(at 91.44 132.08 0)
 			(hide yes)
 			(show_name no)
@@ -9443,6 +9229,95 @@
 		)
 	)
 	(symbol
+		(lib_id "general:VCC")
+		(at 177.8 78.74 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "3bc481e3-871b-41a3-b256-6b059d4aa502")
+		(property "Reference" "#PWR0267"
+			(at 177.8 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "-2V5_GP"
+			(at 177.8 82.55 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 177.8 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 177.8 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 177.8 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin ""
+			(uuid "3369ff6b-7dc4-4cc4-9e54-8b2de4a5eee7")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
+					(reference "#PWR0267")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
+					(reference "#PWR0267")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
+					(reference "#PWR0267")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
+					(reference "#PWR0267")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "general:GND")
 		(at 20.32 168.91 0)
 		(unit 1)
@@ -9543,7 +9418,7 @@
 		(dnp no)
 		(uuid "3f857af6-ea3d-4cc5-a0fa-f1e45a0da2d3")
 		(property "Reference" "R710"
-			(at 50.165 63.5 90)
+			(at 50.165 69.85 90)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -9553,7 +9428,7 @@
 			)
 		)
 		(property "Value" "10k 0805*"
-			(at 50.165 65.532 90)
+			(at 50.165 71.882 90)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -10391,7 +10266,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100R 0.1%*"
+		(property "Value" "100R 0.05%*"
 			(at 34.798 63.881 0)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10446,7 +10321,7 @@
 				)
 			)
 		)
-		(property "Placeholder" "100R 0.1% 25 ppm 0603: 4-20 mA shunt, 0.4-2.0 V"
+		(property "Placeholder" "100R 0.05% 5 ppm 0805, e.g. Vishay TNPU0805100RAZEN00: 4-20 mA shunt, 0.4-2.0 V, 40 mW at 20 mA"
 			(at 33.02 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -10958,7 +10833,7 @@
 		(dnp no)
 		(uuid "70cfe8ea-4a5d-4d8a-a080-8bcd6f1112da")
 		(property "Reference" "U702"
-			(at 45.72 41.656 0)
+			(at 45.72 35.306 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -10969,7 +10844,7 @@
 			)
 		)
 		(property "Value" "LT3092EDD#PBF"
-			(at 45.72 43.688 0)
+			(at 45.72 37.338 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -11503,6 +11378,121 @@
 		)
 	)
 	(symbol
+		(lib_id "capacitor:Capacitor")
+		(at 177.8 52.07 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "7c898236-db37-4705-a53f-62ec85cb91c9")
+		(property "Reference" "C718"
+			(at 176.022 55.499 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "330pF C0G*"
+			(at 176.022 57.531 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 177.8 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 177.8 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Capacitor, MLCC"
+			(at 177.8 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" ""
+			(at 177.8 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Placeholder" "330pF 5% C0G 50V 0402: AINx common-mode capacitor to AVSS, 1/10 of C702 (datasheet 9.3)"
+			(at 177.8 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e8d9a1be-d4e9-426d-9be2-39ec6cceb1dd")
+		)
+		(pin "2"
+			(uuid "ace4714c-13e1-46fa-8a94-b66c13cc8fb4")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
+					(reference "C718")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
+					(reference "C718")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
+					(reference "C718")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
+					(reference "C718")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "general:VCC")
 		(at 33.02 160.02 180)
 		(unit 1)
@@ -11706,7 +11696,7 @@
 	)
 	(symbol
 		(lib_id "plm:PATT0402E10R0BGT1")
-		(at 71.12 22.86 0)
+		(at 68.58 22.86 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11716,29 +11706,29 @@
 		(dnp no)
 		(uuid "865f29dc-f4d5-40b4-9615-8b608fa85435")
 		(property "Reference" "R703"
-			(at 72.898 26.289 0)
+			(at 71.374 18.796 90)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Value" "10R 0.1%"
-			(at 72.898 28.321 0)
+			(at 71.374 20.828 90)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Footprint" "resistor:VISHAY-0402"
-			(at 71.12 22.86 0)
+			(at 68.58 22.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11749,7 +11739,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 71.12 22.86 0)
+			(at 68.58 22.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11760,7 +11750,7 @@
 			)
 		)
 		(property "Description" "Resistor, Thin Film"
-			(at 71.12 22.86 0)
+			(at 68.58 22.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11771,7 +11761,7 @@
 			)
 		)
 		(property "MPN" "PATT0402E10R0BGT1"
-			(at 71.12 22.86 0)
+			(at 68.58 22.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11782,7 +11772,7 @@
 			)
 		)
 		(property "Manufacturer" "Vishay"
-			(at 71.12 22.86 0)
+			(at 68.58 22.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11793,7 +11783,7 @@
 			)
 		)
 		(property "Tolerance" "0.1%"
-			(at 71.12 22.86 0)
+			(at 68.58 22.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11804,7 +11794,7 @@
 			)
 		)
 		(property "Power" "0.05W"
-			(at 71.12 22.86 0)
+			(at 68.58 22.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11815,7 +11805,7 @@
 			)
 		)
 		(property "Package" "0402"
-			(at 71.12 22.86 0)
+			(at 68.58 22.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11826,7 +11816,7 @@
 			)
 		)
 		(property "Mouser_Part" "71-PATT0402E10R0BGT1"
-			(at 71.12 22.86 0)
+			(at 68.58 22.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11837,7 +11827,7 @@
 			)
 		)
 		(property "DigiKey_Part" "764-1164-1-ND"
-			(at 71.12 22.86 0)
+			(at 68.58 22.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11848,7 +11838,7 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 71.12 22.86 0)
+			(at 68.58 22.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12348,7 +12338,7 @@
 		)
 	)
 	(symbol
-		(lib_id "plm:CRCW0402237RFKTD")
+		(lib_id "plm:TNPW0402237RBEED")
 		(at 147.32 69.85 90)
 		(unit 1)
 		(body_style 1)
@@ -12389,7 +12379,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.vishay.com/docs/20008/dcrcw.pdf"
+		(property "Datasheet" "https://www.vishay.com/docs/28758/tnpw_e3.pdf"
 			(at 147.32 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -12400,7 +12390,7 @@
 				)
 			)
 		)
-		(property "Description" "Resistor, Thick Film"
+		(property "Description" "Resistor, Thin Film"
 			(at 147.32 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -12411,7 +12401,7 @@
 				)
 			)
 		)
-		(property "MPN" "CRCW0402237RFKTD"
+		(property "MPN" "TNPW0402237RBEED"
 			(at 147.32 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -12433,7 +12423,7 @@
 				)
 			)
 		)
-		(property "Tolerance" "1%"
+		(property "Tolerance" "0.1%"
 			(at 147.32 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -12444,7 +12434,7 @@
 				)
 			)
 		)
-		(property "Power" "0.063W"
+		(property "Power" "0.13W"
 			(at 147.32 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -12466,7 +12456,7 @@
 				)
 			)
 		)
-		(property "Mouser_Part" "71-CRCW0402-237"
+		(property "Mouser_Part" "71-TNPW0402237RBEED"
 			(at 147.32 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -12477,7 +12467,7 @@
 				)
 			)
 		)
-		(property "DigiKey_Part" "CRCW0402237RFKTD-ND"
+		(property "DigiKey_Part" "TNPW0402237RBEED-ND"
 			(at 147.32 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -12601,7 +12591,7 @@
 				)
 			)
 		)
-		(property "Placeholder" "10k 1% 0805: input protection, 78 mW at a 28 V fault. Voltage configuration: 40.2k 0.1%"
+		(property "Placeholder" "10k 1% 0805: input protection, 78 mW at a 28 V fault. Voltage configuration: 40.2k 0.05% 5 ppm 0805, top of the 5:1 divider, e.g. Vishay TNPU080540K2AZEN00"
 			(at 45.72 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -12640,6 +12630,121 @@
 		)
 	)
 	(symbol
+		(lib_id "capacitor:Capacitor")
+		(at 177.8 69.85 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "a8ec4f29-f07a-43c7-896c-c4ce5a895b76")
+		(property "Reference" "C719"
+			(at 176.022 73.279 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "330pF C0G*"
+			(at 176.022 75.311 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 177.8 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 177.8 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Capacitor, MLCC"
+			(at 177.8 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" ""
+			(at 177.8 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Placeholder" "330pF 5% C0G 50V 0402: AINx common-mode capacitor to AVSS, 1/10 of C702 (datasheet 9.3)"
+			(at 177.8 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "1399d6ac-c73e-4ea9-910d-092bb011c239")
+		)
+		(pin "2"
+			(uuid "543d028e-2149-4dd0-a4c3-5a96baac1aec")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
+					(reference "C719")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
+					(reference "C719")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
+					(reference "C719")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
+					(reference "C719")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "resistor:Resistor")
 		(at 63.5 58.42 0)
 		(unit 1)
@@ -12651,7 +12756,7 @@
 		(dnp yes)
 		(uuid "aeb16e84-0e0c-446e-93b9-e39975af1825")
 		(property "Reference" "R711"
-			(at 65.278 61.849 0)
+			(at 64.516 64.897 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -12661,8 +12766,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10k 0.1%*"
-			(at 65.278 63.881 0)
+		(property "Value" "10k 0.05%*"
+			(at 64.516 66.929 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -12716,7 +12821,7 @@
 				)
 			)
 		)
-		(property "Placeholder" "10k 0.1% 25 ppm 0603: bottom of the 5:1 divider, voltage configuration"
+		(property "Placeholder" "10k 0.05% 5 ppm 0805, e.g. Vishay TNPU080510K0AZEN00: bottom of the 5:1 divider, returned to SIG-, voltage configuration. 50 mW at a 28 V fault on SIG-"
 			(at 63.5 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -12933,184 +13038,6 @@
 		)
 	)
 	(symbol
-		(lib_id "general:GND")
-		(at 147.32 168.91 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "b105ff4b-253b-4284-9957-f0fb4ae103ee")
-		(property "Reference" "#PWR0166"
-			(at 147.32 172.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND_GP"
-			(at 147.32 174.244 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 147.32 168.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 147.32 168.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 147.32 168.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin ""
-			(uuid "9fd5a45a-a54f-43f2-b1b6-87181ff5d105")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
-					(reference "#PWR0166")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
-					(reference "#PWR0166")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
-					(reference "#PWR0166")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
-					(reference "#PWR0166")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "general:VCC")
-		(at 147.32 160.02 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "b4d222e9-944a-43a4-8efa-b2525b375f26")
-		(property "Reference" "#PWR0165"
-			(at 147.32 156.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "3V3_GP"
-			(at 147.32 156.21 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 147.32 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 147.32 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 147.32 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin ""
-			(uuid "cacf26f4-71d9-41f2-88be-00b309011692")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
-					(reference "#PWR0165")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
-					(reference "#PWR0165")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
-					(reference "#PWR0165")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
-					(reference "#PWR0165")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "general:VCC")
 		(at 20.32 160.02 180)
 		(unit 1)
@@ -13283,6 +13210,95 @@
 				)
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
 					(reference "#PWR0137")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "general:VCC")
+		(at 177.8 52.07 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "b607b0e5-43a1-4a6e-b9e9-696a810bad3c")
+		(property "Reference" "#PWR0266"
+			(at 177.8 48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "-2V5_GP"
+			(at 177.8 48.26 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 177.8 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 177.8 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 177.8 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin ""
+			(uuid "eb43e2f6-3fb3-40dc-9482-d4a2dfe2003f")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
+					(reference "#PWR0266")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
+					(reference "#PWR0266")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
+					(reference "#PWR0266")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
+					(reference "#PWR0266")
 					(unit 1)
 				)
 			)
@@ -13482,7 +13498,7 @@
 	)
 	(symbol
 		(lib_id "plm:CRCW04020000Z0EEHP")
-		(at 71.12 31.75 0)
+		(at 80.01 34.29 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -13492,7 +13508,7 @@
 		(dnp yes)
 		(uuid "ba24626a-a8bc-4a10-8df6-c98cb61a7b3a")
 		(property "Reference" "R705"
-			(at 72.898 35.179 0)
+			(at 81.788 37.719 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -13503,7 +13519,7 @@
 			)
 		)
 		(property "Value" "0R"
-			(at 72.898 37.211 0)
+			(at 81.788 39.751 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -13514,7 +13530,7 @@
 			)
 		)
 		(property "Footprint" "resistor:VISHAY-0402"
-			(at 71.12 31.75 0)
+			(at 80.01 34.29 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13525,7 +13541,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.vishay.com/docs/20043/crcwhpe3.pdf"
-			(at 71.12 31.75 0)
+			(at 80.01 34.29 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13536,7 +13552,7 @@
 			)
 		)
 		(property "Description" "Resistor, Thick Film"
-			(at 71.12 31.75 0)
+			(at 80.01 34.29 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13547,7 +13563,7 @@
 			)
 		)
 		(property "MPN" "CRCW04020000Z0EEHP"
-			(at 71.12 31.75 0)
+			(at 80.01 34.29 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13558,7 +13574,7 @@
 			)
 		)
 		(property "Manufacturer" "Vishay"
-			(at 71.12 31.75 0)
+			(at 80.01 34.29 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13569,7 +13585,7 @@
 			)
 		)
 		(property "Tolerance" "1%"
-			(at 71.12 31.75 0)
+			(at 80.01 34.29 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13580,7 +13596,7 @@
 			)
 		)
 		(property "Power" "0.063W"
-			(at 71.12 31.75 0)
+			(at 80.01 34.29 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13591,7 +13607,7 @@
 			)
 		)
 		(property "Package" "0402"
-			(at 71.12 31.75 0)
+			(at 80.01 34.29 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13602,7 +13618,7 @@
 			)
 		)
 		(property "Mouser_Part" "71-CRCW04020000Z0EEH"
-			(at 71.12 31.75 0)
+			(at 80.01 34.29 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13613,7 +13629,7 @@
 			)
 		)
 		(property "DigiKey_Part" "541-CRCW04020000Z0EEHPCT-ND"
-			(at 71.12 31.75 0)
+			(at 80.01 34.29 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13624,7 +13640,7 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 71.12 31.75 0)
+			(at 80.01 34.29 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13662,7 +13678,7 @@
 		)
 	)
 	(symbol
-		(lib_id "plm:CRCW0402237RFKTD")
+		(lib_id "plm:TNPW0402237RBEED")
 		(at 147.32 60.96 90)
 		(unit 1)
 		(body_style 1)
@@ -13703,7 +13719,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.vishay.com/docs/20008/dcrcw.pdf"
+		(property "Datasheet" "https://www.vishay.com/docs/28758/tnpw_e3.pdf"
 			(at 147.32 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -13714,7 +13730,7 @@
 				)
 			)
 		)
-		(property "Description" "Resistor, Thick Film"
+		(property "Description" "Resistor, Thin Film"
 			(at 147.32 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -13725,7 +13741,7 @@
 				)
 			)
 		)
-		(property "MPN" "CRCW0402237RFKTD"
+		(property "MPN" "TNPW0402237RBEED"
 			(at 147.32 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -13747,7 +13763,7 @@
 				)
 			)
 		)
-		(property "Tolerance" "1%"
+		(property "Tolerance" "0.1%"
 			(at 147.32 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -13758,7 +13774,7 @@
 				)
 			)
 		)
-		(property "Power" "0.063W"
+		(property "Power" "0.13W"
 			(at 147.32 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -13780,7 +13796,7 @@
 				)
 			)
 		)
-		(property "Mouser_Part" "71-CRCW0402-237"
+		(property "Mouser_Part" "71-TNPW0402237RBEED"
 			(at 147.32 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -13791,7 +13807,7 @@
 				)
 			)
 		)
-		(property "DigiKey_Part" "CRCW0402237RFKTD-ND"
+		(property "DigiKey_Part" "TNPW0402237RBEED-ND"
 			(at 147.32 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -14640,7 +14656,7 @@
 				)
 			)
 		)
-		(property "Placeholder" "20R 1% 1206, 0.25 W: limits an excitation short to 100 mA"
+		(property "Placeholder" "20R 0.1% 25 ppm thin film 1206, 0.25 W, e.g. Vishay TNPW120620R0BEEN: limits an excitation short to 100 mA"
 			(at 91.44 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -14679,7 +14695,7 @@
 		)
 	)
 	(symbol
-		(lib_id "plm:CRCW0402237RFKTD")
+		(lib_id "plm:TNPW0402237RBEED")
 		(at 147.32 86.36 90)
 		(unit 1)
 		(body_style 1)
@@ -14720,7 +14736,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.vishay.com/docs/20008/dcrcw.pdf"
+		(property "Datasheet" "https://www.vishay.com/docs/28758/tnpw_e3.pdf"
 			(at 147.32 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -14731,7 +14747,7 @@
 				)
 			)
 		)
-		(property "Description" "Resistor, Thick Film"
+		(property "Description" "Resistor, Thin Film"
 			(at 147.32 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -14742,7 +14758,7 @@
 				)
 			)
 		)
-		(property "MPN" "CRCW0402237RFKTD"
+		(property "MPN" "TNPW0402237RBEED"
 			(at 147.32 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -14764,7 +14780,7 @@
 				)
 			)
 		)
-		(property "Tolerance" "1%"
+		(property "Tolerance" "0.1%"
 			(at 147.32 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -14775,7 +14791,7 @@
 				)
 			)
 		)
-		(property "Power" "0.063W"
+		(property "Power" "0.13W"
 			(at 147.32 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -14797,7 +14813,7 @@
 				)
 			)
 		)
-		(property "Mouser_Part" "71-CRCW0402-237"
+		(property "Mouser_Part" "71-TNPW0402237RBEED"
 			(at 147.32 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -14808,7 +14824,7 @@
 				)
 			)
 		)
-		(property "DigiKey_Part" "CRCW0402237RFKTD-ND"
+		(property "DigiKey_Part" "TNPW0402237RBEED-ND"
 			(at 147.32 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -16843,7 +16859,7 @@
 		)
 	)
 	(symbol
-		(lib_id "e003:SW-SPST-ANALOG")
+		(lib_id "plm:ADG1402BCPZ-REEL7")
 		(at 50.8 109.22 0)
 		(unit 1)
 		(body_style 1)
@@ -16854,7 +16870,7 @@
 		(dnp no)
 		(uuid "f2bca7dd-07f8-429b-8186-f6fac60b838f")
 		(property "Reference" "U704"
-			(at 55.88 122.682 0)
+			(at 55.88 125.476 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -16864,8 +16880,8 @@
 				(justify left top)
 			)
 		)
-		(property "Value" "SW-SPST-ANALOG"
-			(at 55.88 124.714 0)
+		(property "Value" "ADG1402BCPZ-REEL7"
+			(at 55.88 127.508 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -16875,7 +16891,7 @@
 				(justify left top)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TODO"
 			(at 50.8 109.22 0)
 			(hide yes)
 			(show_name no)
@@ -16886,7 +16902,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "${ECAD_LIB}/parts/ics/datasheets/adg1401_1402.pdf"
 			(at 50.8 109.22 0)
 			(hide yes)
 			(show_name no)
@@ -16897,7 +16913,7 @@
 				)
 			)
 		)
-		(property "Description" "SPST analog switch, dual supply"
+		(property "Description" "SPST Analog Switch, 1 Ω On Resistance, Closed With Logic Low"
 			(at 50.8 109.22 0)
 			(hide yes)
 			(show_name no)
@@ -16908,7 +16924,62 @@
 				)
 			)
 		)
-		(property "Placeholder" "Part TBD: SPST analog switch, +/-5 V supply, 3.3 V logic, Ron < 100 R, leakage < 1 nA; pin numbers to the selected part"
+		(property "MPN" "ADG1402BCPZ-REEL7"
+			(at 50.8 109.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Analog Devices Inc."
+			(at 50.8 109.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" "8-LFCSP-WD (2x3)"
+			(at 50.8 109.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_Part" "584-ADG1402BCPZ-R7"
+			(at 50.8 109.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part" "ADG1402BCPZ-REEL7CT-ND"
+			(at 50.8 109.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "plm_unused_last_field" ""
 			(at 50.8 109.22 0)
 			(hide yes)
 			(show_name no)
@@ -16920,25 +16991,28 @@
 			)
 		)
 		(pin "1"
-			(uuid "52947ef9-cb32-4a48-aefb-28bca75bb9dd")
+			(uuid "5bd7d864-7bff-48a0-93df-fb14d17f0257")
 		)
-		(pin "2"
-			(uuid "a2c0b718-f46c-4687-9cc4-d6cad05add79")
+		(pin "[2,5]"
+			(uuid "843ac4a1-e3be-4ba9-81dd-e0e123822423")
 		)
 		(pin "3"
-			(uuid "410c9a19-6611-401d-a48f-a8c69308ca2a")
+			(uuid "00b336ae-e9cb-453b-bb3b-810a4a8011a1")
 		)
 		(pin "4"
-			(uuid "24702007-b6ae-4e4b-9cbe-d6b8bab16adf")
-		)
-		(pin "5"
-			(uuid "2d54a94e-31b5-41de-9ff2-cc5473c01376")
+			(uuid "5912bdc9-1361-45c4-90c5-8e734254bcf0")
 		)
 		(pin "6"
-			(uuid "d4a23cdd-e997-4709-9842-4ec4e1d9ef8a")
+			(uuid "d44f317d-61e0-4e18-971e-20681d115749")
 		)
 		(pin "7"
-			(uuid "2c29450f-babe-4a16-bd01-5013927228f9")
+			(uuid "682769de-5c81-4500-8497-ef1df1bb4f68")
+		)
+		(pin "8"
+			(uuid "f1f3af4e-1399-49bc-baa8-b5a5a727349f")
+		)
+		(pin "9"
+			(uuid "eb82a6db-d164-4616-a0d2-6e0b00e5f01d")
 		)
 		(instances
 			(project "e003-adc-board"
@@ -17140,7 +17214,7 @@
 		)
 	)
 	(symbol
-		(lib_id "plm:CRCW0402237RFKTD")
+		(lib_id "plm:TNPW0402237RBEED")
 		(at 147.32 95.25 90)
 		(unit 1)
 		(body_style 1)
@@ -17181,7 +17255,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.vishay.com/docs/20008/dcrcw.pdf"
+		(property "Datasheet" "https://www.vishay.com/docs/28758/tnpw_e3.pdf"
 			(at 147.32 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -17192,7 +17266,7 @@
 				)
 			)
 		)
-		(property "Description" "Resistor, Thick Film"
+		(property "Description" "Resistor, Thin Film"
 			(at 147.32 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -17203,7 +17277,7 @@
 				)
 			)
 		)
-		(property "MPN" "CRCW0402237RFKTD"
+		(property "MPN" "TNPW0402237RBEED"
 			(at 147.32 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -17225,7 +17299,7 @@
 				)
 			)
 		)
-		(property "Tolerance" "1%"
+		(property "Tolerance" "0.1%"
 			(at 147.32 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -17236,7 +17310,7 @@
 				)
 			)
 		)
-		(property "Power" "0.063W"
+		(property "Power" "0.13W"
 			(at 147.32 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -17258,7 +17332,7 @@
 				)
 			)
 		)
-		(property "Mouser_Part" "71-CRCW0402-237"
+		(property "Mouser_Part" "71-TNPW0402237RBEED"
 			(at 147.32 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -17269,7 +17343,7 @@
 				)
 			)
 		)
-		(property "DigiKey_Part" "CRCW0402237RFKTD-ND"
+		(property "DigiKey_Part" "TNPW0402237RBEED-ND"
 			(at 147.32 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -17491,414 +17565,6 @@
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
 					(reference "U703")
 					(unit 2)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "capacitor:Capacitor")
-		(at 177.8 52.07 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "7c898236-db37-4705-a53f-62ec85cb91c9")
-		(property "Reference" "C718"
-			(at 176.022 55.499 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "330pF C0G*"
-			(at 176.022 57.531 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 177.8 52.07 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 177.8 52.07 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Capacitor, MLCC"
-			(at 177.8 52.07 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" ""
-			(at 177.8 52.07 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Placeholder" "330pF 5% C0G 50V 0402: AINx common-mode capacitor to AVSS, 1/10 of C702 (datasheet 9.3)"
-			(at 177.8 52.07 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "e8d9a1be-d4e9-426d-9be2-39ec6cceb1dd")
-		)
-		(pin "2"
-			(uuid "ace4714c-13e1-46fa-8a94-b66c13cc8fb4")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
-					(reference "C718")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
-					(reference "C718")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
-					(reference "C718")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
-					(reference "C718")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "general:VCC")
-		(at 177.8 52.07 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "b607b0e5-43a1-4a6e-b9e9-696a810bad3c")
-		(property "Reference" "#PWR0266"
-			(at 177.8 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "-2V5_GP"
-			(at 177.8 48.26 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 177.8 52.07 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 177.8 52.07 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 177.8 52.07 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin ""
-			(uuid "eb43e2f6-3fb3-40dc-9482-d4a2dfe2003f")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
-					(reference "#PWR0266")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
-					(reference "#PWR0266")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
-					(reference "#PWR0266")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
-					(reference "#PWR0266")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "capacitor:Capacitor")
-		(at 177.8 69.85 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "a8ec4f29-f07a-43c7-896c-c4ce5a895b76")
-		(property "Reference" "C719"
-			(at 176.022 73.279 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "330pF C0G*"
-			(at 176.022 75.311 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 177.8 69.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 177.8 69.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Capacitor, MLCC"
-			(at 177.8 69.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" ""
-			(at 177.8 69.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Placeholder" "330pF 5% C0G 50V 0402: AINx common-mode capacitor to AVSS, 1/10 of C702 (datasheet 9.3)"
-			(at 177.8 69.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "1399d6ac-c73e-4ea9-910d-092bb011c239")
-		)
-		(pin "2"
-			(uuid "543d028e-2149-4dd0-a4c3-5a96baac1aec")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
-					(reference "C719")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
-					(reference "C719")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
-					(reference "C719")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
-					(reference "C719")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "general:VCC")
-		(at 177.8 78.74 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "3bc481e3-871b-41a3-b256-6b059d4aa502")
-		(property "Reference" "#PWR0267"
-			(at 177.8 82.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "-2V5_GP"
-			(at 177.8 82.55 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 177.8 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 177.8 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 177.8 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin ""
-			(uuid "3369ff6b-7dc4-4cc4-9e54-8b2de4a5eee7")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
-					(reference "#PWR0267")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
-					(reference "#PWR0267")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
-					(reference "#PWR0267")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
-					(reference "#PWR0267")
-					(unit 1)
 				)
 			)
 		)

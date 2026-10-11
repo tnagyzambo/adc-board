@@ -7530,7 +7530,7 @@
 				)
 			)
 		)
-		(property "Value" "10k 0.1%*"
+		(property "Value" "10k 0.05%*"
 			(at 88.265 103.378 90)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7584,7 +7584,7 @@
 				)
 			)
 		)
-		(property "Placeholder" "10k 0.1% 10 ppm, matched with the feedback resistor (pair)"
+		(property "Placeholder" "10k 0.05% 5 ppm 0805, e.g. Vishay TNPU080510K0AZEN00: inverter input resistor"
 			(at 83.82 99.06 0)
 			(hide yes)
 			(show_name no)
@@ -8068,7 +8068,7 @@
 				)
 			)
 		)
-		(property "Value" "10k 0.1%*"
+		(property "Value" "10k 0.05%*"
 			(at 126.365 115.062 90)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8122,7 +8122,7 @@
 				)
 			)
 		)
-		(property "Placeholder" "10k 0.1% 10 ppm, matched with the input resistor (pair)"
+		(property "Placeholder" "10k 0.05% 5 ppm 0805, e.g. Vishay TNPU080510K0AZEN00: inverter feedback resistor"
 			(at 121.92 116.84 0)
 			(hide yes)
 			(show_name no)
