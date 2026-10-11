@@ -280,7 +280,7 @@ The ADC boards do not use #ident("ASRP-PCB-INTERCONNECT-1"). #ident("ASRP-PCB-IN
     ident("GND"), [7], [—], [All], [Power return and signal reference.],
     ident("ADC_CLK"), [1], [From MCU], [All], [Converter clock, 8.192~MHz.],
     ident("ADC_START"), [1], [From MCU], [All], [Idles high. A short low pulse starts conversion on every board (INT-7).],
-    ident("SHUNT_CAL"), [1], [From MCU], [All], [Switches in the shunt-calibration resistors.],
+    ident("SHUNT_CAL"), [1], [From MCU], [All], [Idles high. Held low, it switches in the shunt-calibration resistors (FW-6).],
     ident("GP_SCLK"), [1], [From MCU], [All], [SPI clock, 5~MHz.],
     ident("GP_SDI"), [1], [From MCU], [All], [SPI data into the converter chain of the selected board.],
     ident("GP_SDO"), [1], [To MCU], [Selected], [SPI data out of the converter chain.],
@@ -414,6 +414,12 @@ These requirements apply to the firmware on the ECU MCU board that reads this bo
   note: [The daisy chain needs data-output-only SDO. The REFP precharge buffer accepts REFP only up to AVDD1 − 0.7~V, 1.8~V here, below the 2.048~V excitation.],
 )
 
+#requirement(
+  "FW-6",
+  [Firmware shall hold #ident("SHUNT_CAL") high, and drive it low only to apply shunt calibration.],
+  note: [Each board's isolator drives its side of the line high when #ident("SHUNT_CAL") is open or the stack side is unpowered, and the #ident("ADG1402") switches are open while it is high. A line left floating, as during a reset of the ECU MCU board, therefore never applies shunt calibration.],
+)
+
 == Key Parameters
 
 #figure(
@@ -542,10 +548,10 @@ Every configuration keeps the signal within ±2.0~V of the bank common, inside t
 - #ident("REF5020") sets a ±2.048~V excitation. One half of an #ident("OPA2189") follows it and the other inverts it, each driving the excitation bus through a #ident("BUF634A"). The precision amplifier sets the voltage and the buffer supplies up to 250~mA. Load cells see the excitation and are measured ratiometrically against it (REQ-9).
 - 20~Ω in each excitation leg limits a cable short to about 100~mA, which the drivers carry without disturbing the other channels. The resistors lower the bridge excitation by about 10~%, a fixed gain term removed by shunt calibration.
 - Transmitters are powered from a 24~V sensor supply, boosted from the +5~V rail by a #ident("TPS61170"). Each channel takes it through an #ident("LT3092") set to 30~mA, so a shorted transmitter or cable loses only its own channel. A different feedback resistor sets 15~V where the transmitters allow it, which saves power.
-- Shunt calibration places a resistor chosen for the load cell across its SIG+ to EXC− arm, through an SPST analog switch driven by #ident("SHUNT_CAL") from the ECU MCU board. It doubles as a built-in test of each load-cell channel (REQ-10).
-- An #ident("SN6505B") drives a Würth #ident("750315371") transformer. A bridge rectifier on its centre-tapped secondary gives unregulated ±5~V rails. A #ident("TPS7A39") derives the converters' ±2.5~V from them, its two outputs rising together, and a #ident("TLV704") derives 3.3~V for the converters' I/O and the bank side of the isolators. Two #ident("ISO7741") carry SCLK, SDI and CS in and data out, and the clock, START and calibration lines in and data-ready out.
+- Shunt calibration places a resistor chosen for the load cell across its SIG+ to EXC− arm, through an #ident("ADG1402") switch driven by #ident("SHUNT_CAL") from the ECU MCU board. It doubles as a built-in test of each load-cell channel (REQ-10). The switch closes only while the line is low, so the default-high output of its isolator leaves it open (FW-6).
+- An #ident("SN6505B") drives a Würth #ident("750315371") transformer. A bridge rectifier on its centre-tapped secondary gives unregulated ±5~V rails. A #ident("TPS7A39") derives the converters' ±2.5~V from them, its two outputs rising together, and a #ident("TLV704") derives 3.3~V for the converters' I/O and the bank side of the isolators. Each converter's AVDD2 is tied to the bank common, the lowest level the #ident("ADS127L11") allows on ±2.5~V supplies. That halves the modulator's supply power and keeps its current off the +2.5~V rail. Two #ident("ISO7741") carry SCLK, SDI and CS in and data out, and the clock, START and calibration lines in and data-ready out.
 - Each input carries 10~kΩ of series protection, 0805 for the 78~mW of a 28~V fault, with low-leakage clamps to the ±5~V rails and 110~pF across the pair. In the voltage configuration the SIG+ resistor becomes the 40.2~kΩ top of the 5:1 divider.
-- The buffers and the excitation run from the ±5~V rails and are up before the ±2.5~V. 237~Ω at each converter input and reference pin holds the current into its clamps below their 10~mA rating meanwhile, and in a fault. With 3.3~nF across the inputs it is also the converter's input filter.
+- The buffers and the excitation run from the ±5~V rails and are up before the ±2.5~V. 237~Ω at each converter input and reference pin holds the current into its clamps below their 10~mA rating meanwhile, and in a fault. With 3.3~nF across the inputs and 330~pF from each to AVSS it is also the converter's input filter, with a differential pole at 97~kHz. The common-mode capacitors, a tenth of the differential one as the converter datasheet recommends, supply the common-mode part of each sample's charge and return it to AVSS, which powers the converter's sampling switches.
 - The REFP precharge buffer stays off, since REFP is above its 1.8~V limit (FW-5). Unbuffered, the reference draws about 0.25~mA at the 8.192~MHz clock, which through the two 237~Ω resistors lowers it by about 3~%. That is a fixed gain term, removed by calibration (FW-3).
 
 == Thermocouple Channels <sec-tc>
@@ -701,8 +707,8 @@ Boards stack on #ident("ASRP-PCB-INTERCONNECT-2") and share two SPI buses to the
       [BAV199 class (TBD)],
       [Low-leakage series pair to the bank rails, one per input.],
       [Shunt-calibration switch],
-      [TBD],
-      [SPST, ±5~V supply, 3.3~V logic, on-resistance under 100~Ω, leakage under 1~nA. One per channel.],
+      [4 × #ident("ADG1402")],
+      [SPST, closed while its input is low. ±4.5 to ±16.5~V supply, 3.3~V logic without a logic supply. At ±5~V, on-resistance 3.3~Ω and off leakage 3~nA maximum to 85~°C; the leakage gives 0.5~µV at the bridge. 3 × 2~mm LFCSP.],
       [Bus buffers],
       [2 × #ident("SN74LVC2G125")],
       [Dual 3-state buffer, 4.3~ns maximum at 3.3~V, partial-power-down protection.],
@@ -769,7 +775,7 @@ Issues known at this revision and not resolved in it.
 
     ident("OI-3"),
     [Parts without a library record],
-    [The schematic carries placeholders, marked \*, for the sensor and stack connectors, the transformer, the bridge and boost diodes, the boost inductor, the input clamps, the shunt-calibration switch, the RTD, the slot header and the precision and odd-value resistors. Each names its required value and rating. Every IC footprint is TODO in the library.],
+    [The schematic carries placeholders, marked \*, for the sensor and stack connectors, the transformer, the bridge and boost diodes, the boost inductor, the input clamps, the shunt-calibration switch, the converters' 330~pF common-mode capacitors, the RTD, the slot header and the precision and odd-value resistors. Each names its required value and rating. Every IC footprint is TODO in the library.],
 
     ident("OI-4"),
     [Engine-tie resistance],

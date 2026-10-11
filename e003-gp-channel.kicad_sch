@@ -4667,6 +4667,174 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "capacitor:Capacitor"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "C"
+				(at 2.54 -4.064 0)
+				(show_name no)
+				(do_not_autoplace yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Value" "C"
+				(at 2.54 -4.826 0)
+				(show_name no)
+				(do_not_autoplace yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" ""
+				(at 2.54 -4.318 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 2.54 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Manufacturer" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Capacitor_1_0"
+				(polyline
+					(pts
+						(xy 0 -3.81) (xy 0 -2.4766)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -6.35) (xy 0 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.905 -3.81) (xy -1.905 -3.81)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.905 -5.08) (xy -1.905 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at 0 -8.89 90)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 0 270)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 	)
 	(text "SWITCH"
 		(exclude_from_sim no)
@@ -4896,6 +5064,58 @@
 	)
 	(wire
 		(pts
+			(xy 172.72 60.96) (xy 177.8 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b89171b8-734c-4e9e-8a92-621f65d25f72")
+	)
+	(wire
+		(pts
+			(xy 177.8 60.96) (xy 180.34 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "46084658-46f8-4678-9a94-a40728626909")
+	)
+	(wire
+		(pts
+			(xy 172.72 69.85) (xy 177.8 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e97f73c6-00ce-4025-8c85-e1d28e46aae8")
+	)
+	(wire
+		(pts
+			(xy 177.8 69.85) (xy 180.34 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1cf54e82-2891-4559-8783-91b5682abce6")
+	)
+	(junction
+		(at 177.8 60.96)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "552ec1e4-a114-429d-9e60-c27d22a2b3fc")
+	)
+	(junction
+		(at 177.8 69.85)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "486cec06-38dc-4916-895a-b339d1429562")
+	)
+	(wire
+		(pts
 			(xy 25.4 45.72) (xy 71.12 45.72)
 		)
 		(stroke
@@ -5003,16 +5223,6 @@
 			(type default)
 		)
 		(uuid "17bd3ab5-407e-417f-a13c-d3610a1232e9")
-	)
-	(wire
-		(pts
-			(xy 172.72 69.85) (xy 180.34 69.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1967993b-3e9a-454f-9a49-cb6d114ed1dc")
 	)
 	(wire
 		(pts
@@ -5143,16 +5353,6 @@
 			(type default)
 		)
 		(uuid "4626cc62-7de0-4e65-91b5-abd5afcc5633")
-	)
-	(wire
-		(pts
-			(xy 172.72 60.96) (xy 180.34 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4627397a-75a5-4d09-9aa7-d263e71177ae")
 	)
 	(wire
 		(pts
@@ -17291,6 +17491,414 @@
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
 					(reference "U703")
 					(unit 2)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "capacitor:Capacitor")
+		(at 177.8 52.07 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "7c898236-db37-4705-a53f-62ec85cb91c9")
+		(property "Reference" "C718"
+			(at 176.022 55.499 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "330pF C0G*"
+			(at 176.022 57.531 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 177.8 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 177.8 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Capacitor, MLCC"
+			(at 177.8 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" ""
+			(at 177.8 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Placeholder" "330pF 5% C0G 50V 0402: AINx common-mode capacitor to AVSS, 1/10 of C702 (datasheet 9.3)"
+			(at 177.8 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e8d9a1be-d4e9-426d-9be2-39ec6cceb1dd")
+		)
+		(pin "2"
+			(uuid "ace4714c-13e1-46fa-8a94-b66c13cc8fb4")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
+					(reference "C718")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
+					(reference "C718")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
+					(reference "C718")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
+					(reference "C718")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "general:VCC")
+		(at 177.8 52.07 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "b607b0e5-43a1-4a6e-b9e9-696a810bad3c")
+		(property "Reference" "#PWR0266"
+			(at 177.8 48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "-2V5_GP"
+			(at 177.8 48.26 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 177.8 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 177.8 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 177.8 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin ""
+			(uuid "eb43e2f6-3fb3-40dc-9482-d4a2dfe2003f")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
+					(reference "#PWR0266")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
+					(reference "#PWR0266")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
+					(reference "#PWR0266")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
+					(reference "#PWR0266")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "capacitor:Capacitor")
+		(at 177.8 69.85 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "a8ec4f29-f07a-43c7-896c-c4ce5a895b76")
+		(property "Reference" "C719"
+			(at 176.022 73.279 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "330pF C0G*"
+			(at 176.022 75.311 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 177.8 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 177.8 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Capacitor, MLCC"
+			(at 177.8 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" ""
+			(at 177.8 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Placeholder" "330pF 5% C0G 50V 0402: AINx common-mode capacitor to AVSS, 1/10 of C702 (datasheet 9.3)"
+			(at 177.8 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "1399d6ac-c73e-4ea9-910d-092bb011c239")
+		)
+		(pin "2"
+			(uuid "543d028e-2149-4dd0-a4c3-5a96baac1aec")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
+					(reference "C719")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
+					(reference "C719")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
+					(reference "C719")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
+					(reference "C719")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "general:VCC")
+		(at 177.8 78.74 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "3bc481e3-871b-41a3-b256-6b059d4aa502")
+		(property "Reference" "#PWR0267"
+			(at 177.8 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "-2V5_GP"
+			(at 177.8 82.55 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 177.8 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 177.8 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 177.8 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin ""
+			(uuid "3369ff6b-7dc4-4cc4-9e54-8b2de4a5eee7")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
+					(reference "#PWR0267")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
+					(reference "#PWR0267")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
+					(reference "#PWR0267")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
+					(reference "#PWR0267")
+					(unit 1)
 				)
 			)
 		)
