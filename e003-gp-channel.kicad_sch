@@ -4401,309 +4401,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "plm:PATT0402E10R0BGT1"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "R"
-				(at 1.016 -4.064 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Value" "10R"
-				(at 1.016 -4.572 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-				)
-			)
-			(property "Footprint" "resistor:VISHAY-0402"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Resistor, Thin Film"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Manufacturer" "Vishay"
-				(at -0.762 8.508 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "DigiKey_Part" "764-1164-1-ND"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "MPN" "PATT0402E10R0BGT1"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Mouser_Part" "71-PATT0402E10R0BGT1"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Package" "0402"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Power" "0.05W"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Tolerance" "0.1%"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "plm_unused_last_field" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "resistor:VISHAY-0402"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "PATT0402E10R0BGT1_1_0"
-				(polyline
-					(pts
-						(xy -0.5 -3.306) (xy 0.5 -3.806)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.5 -4.314) (xy 0.5 -3.814)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.5 -4.322) (xy 0.5 -4.822)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.5 -5.33) (xy 0.5 -4.83)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -3.048) (xy -0.508 -3.302)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -3.048) (xy 0 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -5.588) (xy -0.508 -5.334)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -6.35) (xy 0 -5.632)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at 0 -8.89 90)
-					(length 2.54)
-					(name "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 0 270)
-					(length 2.54)
-					(name "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "resistor:Resistor"
 			(pin_numbers
 				(hide yes)
@@ -4942,7 +4639,7 @@
 		)
 		(uuid "550c6290-e7b1-424b-8628-27867bd1493c")
 	)
-	(text "REFP PRECHARGE BUFFER OFF:\nREFP 2.048 V > AVDD1 - 0.7 V"
+	(text "REFP PRECHARGE BUFFER ON FOR A\nBRIDGE. OFF FROM EXC_P, WHERE\nREFP EXCEEDS AVDD1 - 0.7 V."
 		(exclude_from_sim no)
 		(at 142.24 104.14 0)
 		(effects
@@ -4953,9 +4650,9 @@
 		)
 		(uuid "6be54504-5ea8-464e-b986-a96351792749")
 	)
-	(text "CONFIGURATION BY PLACEMENT, AS DRAWN: LOAD CELL\nLOAD CELL: 20R EXCITATION RESISTORS, 10k SERIES RESISTORS AND\n  SHUNT-CAL RESISTOR FITTED. LOOP LINK, SHUNT, LINKS TO COMMON\n  AND DIVIDER NOT FITTED.\n4-20 mA: LOOP LINK, 100R SHUNT AND SIG- LINK FITTED.\n  20R EXCITATION RESISTORS, SHUNT-CAL RESISTOR AND DIVIDER NOT FITTED.\nVOLTAGE (+/-10 V): LOOP LINK AND EXC- LINK FITTED, 40.2k 0.05% SERIES (SIG+)\n  AND 10k 0.05% DIVIDER TO SIG-. SIG- LINK FITTED ONLY FOR A TRANSMITTER\n  WITH AN ISOLATED OUTPUT.\n  20R EXCITATION RESISTORS, SHUNT AND SHUNT-CAL RESISTOR NOT FITTED."
+	(text "CONFIGURATION BY PLACEMENT, AS DRAWN: LOAD CELL\nALL: LOOP LINK FITTED. R703 SETS THE SENSOR CURRENT. ONE OF R714, R721\n  AND R722 TAKES REFP FROM EXC_P, EXC+ OR EXC-.\nLOAD CELL: R703 33R2, R720 0R, R721, 10k SERIES RESISTORS AND SHUNT-CAL\n  RESISTOR FITTED. SHUNT, LINKS TO COMMON AND DIVIDER NOT FITTED.\nPIEZORESISTIVE BRIDGE: AS LOAD CELL, WITH R703 301R, R720 1k00 0.05%\n  5 ppm AND R722 IN PLACE OF R721.\n4-20 mA: R703 10R, R714, 100R SHUNT AND SIG- LINK FITTED. R720,\n  SHUNT-CAL RESISTOR AND DIVIDER NOT FITTED.\nVOLTAGE (0-10 V): R703 10R, R714 AND EXC- LINK FITTED, 40.2k 0.05%\n  SERIES (SIG+) AND 10k 0.05% DIVIDER TO SIG-. SIG- LINK FITTED ONLY FOR\n  A TRANSMITTER WITH AN ISOLATED OUTPUT. R720, SHUNT AND SHUNT-CAL\n  RESISTOR NOT FITTED."
 		(exclude_from_sim no)
-		(at 185.42 144.78 0)
+		(at 185.42 147.32 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5008,7 +4705,7 @@
 		)
 		(uuid "d112d80a-0628-47a7-9851-0d40591c0e86")
 	)
-	(text "TRANSMITTER SUPPLY\n30.11 mA = 10 uA x 30.1k / 10R + 10uA"
+	(text "SENSOR CURRENT = 10 uA x 30.1k / R703 + 10 uA\nR703 33R2: 9.08 mA, LOAD CELL\nR703 301R: 1.01 mA, PIEZORESISTIVE BRIDGE\nR703 10R: 30.1 mA LIMIT, TRANSMITTERS"
 		(exclude_from_sim no)
 		(at 99.06 27.94 0)
 		(effects
@@ -5029,6 +4726,12 @@
 			(justify left)
 		)
 		(uuid "ee2d7513-76db-4e7b-94ab-2cf00878a9c0")
+	)
+	(junction
+		(at 86.36 132.08)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "2ac32e8e-722b-4f28-92a6-3181f5161406")
 	)
 	(junction
 		(at 80.01 31.75)
@@ -5179,6 +4882,76 @@
 	(no_connect
 		(at 40.64 31.75)
 		(uuid "e395e9b2-2964-48e4-bcb5-561b630f5a9a")
+	)
+	(wire
+		(pts
+			(xy 38.1 132.08) (xy 86.36 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a5e9a7c0-caed-4012-a058-3c712744bebd")
+	)
+	(wire
+		(pts
+			(xy 86.36 132.08) (xy 91.44 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7a06cfc1-02d3-4d95-9576-a01c1d21ee31")
+	)
+	(wire
+		(pts
+			(xy 86.36 132.08) (xy 86.36 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dab4411b-219c-449a-a55d-7e0c89bcde22")
+	)
+	(wire
+		(pts
+			(xy 86.36 139.7) (xy 91.44 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "11ba6911-cabe-45a1-b96d-7395661bca28")
+	)
+	(wire
+		(pts
+			(xy 100.33 139.7) (xy 104.14 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ba09f719-a871-41cf-a703-f62cb77b1f38")
+	)
+	(wire
+		(pts
+			(xy 156.21 86.36) (xy 160.02 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "55ea53b9-3b86-43d2-ae34-8998ad410b4c")
+	)
+	(wire
+		(pts
+			(xy 160.02 86.36) (xy 167.64 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5790a6ac-10a0-4f18-ba08-89cb8ae9ac18")
 	)
 	(wire
 		(pts
@@ -5492,16 +5265,6 @@
 	)
 	(wire
 		(pts
-			(xy 38.1 132.08) (xy 91.44 132.08)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "509c6a0b-a2d5-47c2-b4eb-d9e68d72625b")
-	)
-	(wire
-		(pts
 			(xy 180.34 115.57) (xy 162.56 115.57)
 		)
 		(stroke
@@ -5609,16 +5372,6 @@
 			(type default)
 		)
 		(uuid "813ede81-1096-4511-b2fe-9fb616e454ac")
-	)
-	(wire
-		(pts
-			(xy 156.21 86.36) (xy 167.64 86.36)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "817cd8ae-47d7-4c23-8517-9454cd51c1d3")
 	)
 	(wire
 		(pts
@@ -6070,6 +5823,26 @@
 		)
 		(uuid "ffa1781e-609c-47b1-bf0b-d8f6388bc140")
 	)
+	(label "REFP"
+		(at 104.14 139.7 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a0fd0a51-ce22-4680-9cd1-fed39415dd74")
+	)
+	(label "REFP"
+		(at 160.02 86.36 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "7d8f05c8-3318-4adf-ad0c-796c35eb0346")
+	)
 	(label "EXC-"
 		(at 86.36 114.3 0)
 		(effects
@@ -6150,7 +5923,7 @@
 		)
 		(uuid "8fdfe4e1-5538-473c-be86-d563c4281cbc")
 	)
-	(label "EXC_P"
+	(label "REFP"
 		(at 104.14 45.72 0)
 		(effects
 			(font
@@ -6333,6 +6106,477 @@
 			(justify right)
 		)
 		(uuid "f998848d-e17a-4c57-94ba-3cc18e1ea8c9")
+	)
+	(symbol
+		(lib_id "plm:CRCW040210K0FKEDC")
+		(at 91.44 45.72 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "c2c9ce81-f9e7-4b90-af8c-3d7d205305d2")
+		(property "Reference" "R721"
+			(at 95.885 41.91 90)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10k"
+			(at 95.885 43.942 90)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "resistor:VISHAY-0402"
+			(at 91.44 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/28773/crcwce3.pdf"
+			(at 91.44 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor, Thick Film"
+			(at 91.44 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CRCW040210K0FKEDC"
+			(at 91.44 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Vishay"
+			(at 91.44 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Tolerance" "1%"
+			(at 91.44 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Power" "0.063W"
+			(at 91.44 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" "0402"
+			(at 91.44 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_Part" "71-CRCW040210K0FKEDC"
+			(at 91.44 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part" "541-3959-1-ND"
+			(at 91.44 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "plm_unused_last_field" ""
+			(at 91.44 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "8d156d8d-7f44-40ee-822f-5ef2837bfe14")
+		)
+		(pin "2"
+			(uuid "6454dec8-96ec-400c-a92d-cec93d923b7d")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
+					(reference "R721")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
+					(reference "R721")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
+					(reference "R721")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
+					(reference "R721")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "plm:TNPW0402237RBEED")
+		(at 91.44 139.7 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp yes)
+		(uuid "40ddcf68-9a4f-46d2-b5c2-062ea60845dd")
+		(property "Reference" "R722"
+			(at 95.885 135.89 90)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "237R"
+			(at 95.885 137.922 90)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "resistor:VISHAY-0402"
+			(at 91.44 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/28758/tnpw_e3.pdf"
+			(at 91.44 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor, Thin Film"
+			(at 91.44 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "TNPW0402237RBEED"
+			(at 91.44 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Vishay"
+			(at 91.44 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Tolerance" "0.1%"
+			(at 91.44 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Power" "0.13W"
+			(at 91.44 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" "0402"
+			(at 91.44 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_Part" "71-TNPW0402237RBEED"
+			(at 91.44 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part" "TNPW0402237RBEED-ND"
+			(at 91.44 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "plm_unused_last_field" ""
+			(at 91.44 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "00db9588-1732-45db-8401-e35f0debe4ce")
+		)
+		(pin "2"
+			(uuid "f44f80f1-5db3-45a7-919b-110ffb61e6ec")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
+					(reference "R722")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
+					(reference "R722")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
+					(reference "R722")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
+					(reference "R722")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "resistor:Resistor")
+		(at 68.58 22.86 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "daffc1f4-e659-47d8-98b1-fbd0a86acc68")
+		(property "Reference" "R703"
+			(at 73.025 19.05 90)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "33R2*"
+			(at 73.025 21.082 90)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 68.58 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 68.58 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 68.58 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" ""
+			(at 68.58 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Placeholder" "33.2R 1% 0402: LT3092 output resistor, 9.08 mA into a load cell. 301R for 1.01 mA into a piezoresistive bridge; 10R for the 30 mA limit of a transmitter supply"
+			(at 68.58 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "fc9855f9-231a-4808-8646-75c1c73a6c59")
+		)
+		(pin "2"
+			(uuid "1212530a-721c-42fd-a890-ab7f482085c4")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
+					(reference "R703")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
+					(reference "R703")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
+					(reference "R703")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
+					(reference "R703")
+					(unit 1)
+				)
+			)
+		)
 	)
 	(symbol
 		(lib_id "resistor:Resistor")
@@ -8601,7 +8845,7 @@
 				)
 			)
 		)
-		(property "Value" "20R 1206*"
+		(property "Value" "0R*"
 			(at 95.885 130.302 90)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8655,7 +8899,7 @@
 				)
 			)
 		)
-		(property "Placeholder" "20R 0.1% 25 ppm thin film 1206, 0.25 W, e.g. Vishay TNPW120620R0BEEN: limits an excitation short to 100 mA"
+		(property "Placeholder" "0R link for a load cell. Piezoresistive bridge: 1.00k 0.05% 5 ppm 1206, the current-sense reference, e.g. Vishay TNPU12061K00AZEN00"
 			(at 91.44 132.08 0)
 			(hide yes)
 			(show_name no)
@@ -11695,187 +11939,6 @@
 		)
 	)
 	(symbol
-		(lib_id "plm:PATT0402E10R0BGT1")
-		(at 68.58 22.86 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "865f29dc-f4d5-40b4-9615-8b608fa85435")
-		(property "Reference" "R703"
-			(at 71.374 18.796 90)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "10R 0.1%"
-			(at 71.374 20.828 90)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "resistor:VISHAY-0402"
-			(at 68.58 22.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 68.58 22.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor, Thin Film"
-			(at 68.58 22.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "PATT0402E10R0BGT1"
-			(at 68.58 22.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Vishay"
-			(at 68.58 22.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Tolerance" "0.1%"
-			(at 68.58 22.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Power" "0.05W"
-			(at 68.58 22.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Package" "0402"
-			(at 68.58 22.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Mouser_Part" "71-PATT0402E10R0BGT1"
-			(at 68.58 22.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "DigiKey_Part" "764-1164-1-ND"
-			(at 68.58 22.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "plm_unused_last_field" ""
-			(at 68.58 22.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "91642ea5-26f8-42df-afa9-74ce1e5aa21d")
-		)
-		(pin "2"
-			(uuid "6c380250-73fd-4d26-a57a-b71fcfa4837c")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
-					(reference "R703")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
-					(reference "R703")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
-					(reference "R703")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
-					(reference "R703")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "plm:CRCW04020000Z0EEHP")
 		(at 38.1 67.31 0)
 		(unit 1)
@@ -13505,7 +13568,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp yes)
+		(dnp no)
 		(uuid "ba24626a-a8bc-4a10-8df6-c98cb61a7b3a")
 		(property "Reference" "R705"
 			(at 81.788 37.719 0)
@@ -14582,119 +14645,6 @@
 		)
 	)
 	(symbol
-		(lib_id "resistor:Resistor")
-		(at 91.44 45.72 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "c8ec12fe-fef2-4ae1-aafb-7e59d7cdebf5")
-		(property "Reference" "R706"
-			(at 95.885 41.91 90)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "20R 1206*"
-			(at 95.885 43.942 90)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 91.44 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 91.44 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 91.44 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" ""
-			(at 91.44 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Placeholder" "20R 0.1% 25 ppm thin film 1206, 0.25 W, e.g. Vishay TNPW120620R0BEEN: limits an excitation short to 100 mA"
-			(at 91.44 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "5fba6426-ac7b-4ad3-8776-07e83600b3bb")
-		)
-		(pin "2"
-			(uuid "68add924-d512-49e7-8222-17e3e52f9312")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/07aaaa90-2eef-5a94-9785-8e36f9a15748"
-					(reference "R706")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/754d3f59-b158-53cd-93c2-6636701a4880"
-					(reference "R706")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/95a7257f-c510-5dc1-afd8-5496400f7d9b"
-					(reference "R706")
-					(unit 1)
-				)
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/1ff66cef-5283-5bdd-b270-f66ac7e5753d/e4c5ff13-5bcc-5515-b1bd-fb7763a85b52"
-					(reference "R706")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "plm:TNPW0402237RBEED")
 		(at 147.32 86.36 90)
 		(unit 1)
@@ -14703,7 +14653,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "cbd01725-315e-4e7f-abdc-e71548ac2e69")
 		(property "Reference" "R714"
 			(at 151.765 82.55 90)

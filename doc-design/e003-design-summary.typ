@@ -1,5 +1,5 @@
 #import "@local/eng-report:0.6.0": *
-#import "gp-channel.typ": gp-channel
+#import "gp-channel.typ": gp-channel, gp-monitor
 
 // Written by `dcs` from the last commit that touched this file.  It is not
 // tracked, so building never dirties the tree and a clean stamp stays true.
@@ -41,7 +41,7 @@
   authors: (("T. Nagy Zambo", "Design and review"),),
   source-revision: source-revision,
   summary: [
-    The ADC board is the analog data acquisition board of the ASRP ECU stack. Each board provides four general-purpose channels with a 2~kHz bandwidth, sampled simultaneously and configurable for load cells, #box[4–20~mA] transmitters and voltage transmitters, and four thermocouple channels with a 200~Hz bandwidth and their own cold-junction sensor. Each channel bank is isolated from the stack. Boards stack to scale the channel count. They connect to the ECU MCU board over a dedicated stacking interconnect, which brings them power from the power board and carries their data for logging. This draft sets out the requirements and architecture for REV A of the ADC board.
+    The ADC board is the analog data acquisition board of the ASRP ECU stack. Each board provides four general-purpose channels with a 2~kHz bandwidth, sampled simultaneously and configurable for load cells, piezoresistive pressure transducers, #box[4–20~mA] transmitters and voltage transmitters, and four thermocouple channels with a 200~Hz bandwidth and their own cold-junction sensor. Each channel bank is isolated from the stack. Boards stack to scale the channel count. They connect to the ECU MCU board over a dedicated stacking interconnect, which brings them power from the power board and carries their data for logging. This draft sets out the requirements and architecture for REV A of the ADC board.
   ],
 )
 
@@ -76,7 +76,7 @@
 
 == Purpose
 
-The #ident("E003-ADC-BOARD") is the analog data acquisition board of the ECU stack for the Advanced Small Rocket Project (ASRP). Each board carries four general-purpose channels, configurable for load cells, #box[4–20~mA] transmitters or voltage transmitters, and four thermocouple channels with their cold-junction compensation (CJC) sensor. Boards stack to reach the channel count a vehicle needs. The measurements are flight-critical, so the design confines the effect of any fault to as few channels as possible.
+The #ident("E003-ADC-BOARD") is the analog data acquisition board of the ECU stack for the Advanced Small Rocket Project (ASRP). Each board carries four general-purpose channels, configurable for load cells, piezoresistive pressure transducers, #box[4–20~mA] transmitters or voltage transmitters, and four thermocouple channels with their cold-junction compensation (CJC) sensor. Boards stack to reach the channel count a vehicle needs. The measurements are flight-critical, so the design confines the effect of any fault to as few channels as possible.
 
 The boards connect to the ECU MCU board over #ident("ASRP-PCB-INTERCONNECT-2"), a stacking interconnect defined in this document (@sec-interfaces). It carries their data and the 5~V and 3.3~V rails of the #ident("E001-POWER-BOARD"), passed on by the ECU MCU board. The ECU MCU board configures and reads the converters and logs the data to eMMC.
 
@@ -112,13 +112,13 @@ Requirements stated with "must" are mandatory. Those stated with "should" are de
     [Device must provide each general-purpose channel with a measurement bandwidth of 2~kHz],
     [Local],
     [REQ-8],
-    [Device must allow each general-purpose channel to be configured by component placement and jumpers for a full-bridge load cell, a #box[4–20~mA] transmitter or a voltage transmitter],
+    [Device must allow each general-purpose channel to be configured by component placement and jumpers for a full-bridge load cell, a piezoresistive pressure transducer, a #box[4–20~mA] transmitter or a voltage transmitter],
     [Local],
     [REQ-9],
-    [Device must excite the load cells and measure them ratiometrically],
+    [Device must excite bridge sensors and measure them ratiometrically],
     [Local],
     [REQ-10],
-    [Device should provide shunt calibration on each load-cell channel],
+    [Device should provide shunt calibration on each bridge-sensor channel],
     [Local],
     [REQ-11],
     [Device must provide four thermocouple channels, each with a measurement bandwidth of 200~Hz],
@@ -180,7 +180,7 @@ Each board carries four general-purpose channels and four thermocouple channels 
       top: 1.4em,
       diagram(
         ..lattice(w, row-gap: 30pt),
-        blk((0, 0), [Load cells,\ transmitters ×4], <gp-sens>, shape: shape.io),
+        blk((0, 0), [Bridge sensors,\ transmitters ×4], <gp-sens>, shape: shape.io),
         blk((1, 0), [Thermocouples ×4], <tc-sens>, shape: shape.io),
         blk((0, 1), [General-purpose\ bank, 4 channels], <gp>),
         blk((1, 1), [Thermocouple bank,\ 4 channels, CJC], <tc>),
@@ -369,10 +369,10 @@ The sensors connect through a single Harwin Datamate #ident("M80-5002842"), whic
   datatable(
     columns: (auto, 1fr, 1fr, 1fr),
     align: (left, left, left, left),
-    header: ("Contact", "Load cell", "4–20 mA transmitter", "Voltage transmitter"),
-    ident("EXC+"), [Excitation +, through 20~Ω], [Loop supply, 24~V, 30~mA limit], [Transmitter supply, 24~V, 30~mA limit],
-    ident("EXC−"), [Excitation −, through 20~Ω], [Not used], [Supply return, tied to the bank common],
-    ident("SIG+"), [Signal +], [Loop current in, to the 100~Ω shunt], [Signal, ±10~V],
+    header: ("Contact", "Bridge sensor", "4–20 mA transmitter", "Voltage transmitter"),
+    ident("EXC+"), [Excitation current in, 9.1~mA or 1~mA], [Loop supply, 24~V, 30~mA limit], [Transmitter supply, 24~V, 30~mA limit],
+    ident("EXC−"), [Excitation current out], [Not used], [Supply return, tied to the bank common],
+    ident("SIG+"), [Signal +], [Loop current in, to the 100~Ω shunt], [Signal, 0–10~V],
     ident("SIG−"), [Signal −], [Bank common, at the low side of the shunt], [Signal return, measured at the contact],
   ),
 ) <tab-sensor-config>
@@ -411,8 +411,8 @@ These requirements apply to the firmware on the ECU MCU board that reads this bo
 
 #requirement(
   "FW-5",
-  [Firmware shall configure each #ident("ADS127L11") for data-output-only SDO, START in synchronized control mode, the wideband filter at an oversampling ratio of 512, the input precharge buffers on and the REFP precharge buffer off.],
-  note: [The daisy chain needs data-output-only SDO. The REFP precharge buffer accepts REFP only up to AVDD1 − 0.7~V, 1.8~V here, below the 2.048~V excitation.],
+  [Firmware shall configure each #ident("ADS127L11") for data-output-only SDO, START in synchronized control mode, the wideband filter at an oversampling ratio of 512 and the input precharge buffers on. It shall turn the REFP precharge buffer on for a channel set up for a bridge sensor and off for a transmitter, and shall set the low-reference range for a piezoresistive transducer and the high-reference range for every other channel.],
+  note: [The daisy chain needs data-output-only SDO. The REFP precharge buffer accepts REFP only up to AVDD1 − 0.7~V, 1.8~V here. A transmitter channel's REFP is the 2.048~V bus, above that limit. A load cell's reaches 1.67~V for a 410~Ω cell at 9.1~mA, and a piezoresistive transducer's sits near −1.05~V under its 1.0~V reference.],
 )
 
 #requirement(
@@ -442,16 +442,19 @@ These requirements apply to the firmware on the ECU MCU board that reads this bo
     [2~kHz. 8~kSPS, simultaneous across the stack, flat to 3.2~kHz],
     [#ident("ADS127L11") wideband filter],
     [General-purpose range],
-    [Within ±2.0~V at the converter: load cell ±7.4~mV at 2~mV/V, #box[4–20~mA] as 0.4–2.0~V, ±10~V through 5:1],
+    [Within ±2.0~V at the converter: load cell ±6.4~mV at 2~mV/V, piezoresistive transducer 160~mV typical, #box[4–20~mA] as 0.4–2.0~V, 0–10~V through 5:1],
     [@tab-channel-config],
     [General-purpose noise],
     [2.84~µV~rms at 8~kSPS, of which the converter 2.58~µV~rms],
     [@sec-gp-budget],
     [General-purpose drift],
-    [After calibration, per 10~°C: 0.14~% of full scale for a load cell, 0.008~% for #box[4–20~mA], 0.010~% for ±10~V (root sum square)],
+    [After calibration, per 10~°C: 0.16~% of full scale for a load cell, 0.009~% for a piezoresistive transducer, 0.008~% for #box[4–20~mA], 0.010~% for 0–10~V (root sum square)],
     [@tab-gp-budget],
-    [Excitation],
-    [4.096~V (±2.048~V) per bank, up to 50~mA, also the converter reference],
+    [Bridge excitation],
+    [Constant current per channel: 9.1~mA for a load cell, 1~mA for a piezoresistive transducer],
+    [#ident("LT3092")],
+    [Excitation bus],
+    [±2.048~V per bank: the converter reference for transmitters, the return for bridge excitation],
     [#ident("REF5020")],
     [Thermocouple bandwidth],
     [200~Hz, logged at 1~kSPS],
@@ -469,7 +472,7 @@ These requirements apply to the firmware on the ECU MCU board that reads this bo
     [Up to three boards on two SPI buses at 5~MHz],
     [@sec-stacking],
     [Sensor supply],
-    [24~V for transmitters, 30~mA limit per channel, 15~V by placement],
+    [24~V, or 15~V by placement, through a current source per channel: a 30~mA limit for a transmitter, the excitation of a bridge],
     [#ident("TPS61170"), #ident("LT3092")],
     [Input power],
     [About 1.2~W per board, plus about 0.7~W per transmitter channel],
@@ -481,7 +484,7 @@ These requirements apply to the firmware on the ECU MCU board that reads this bo
 
 == General-Purpose Channels <sec-gp>
 
-Each general-purpose channel has its own converter behind a precision buffer. The four channels of a bank share one excitation, which is also their converter reference, and one isolated supply. A channel is set up for its sensor by component placement and jumpers (@tab-channel-config). Every configuration keeps the signal within ±2.0~V of the bank common, inside the input ranges of both the buffer and the converter.
+Each general-purpose channel has its own converter behind a precision buffer, and its own current source, which excites a bridge sensor or limits a transmitter's supply. The four channels of a bank share one isolated supply and a ±2.048~V excitation bus, which is the converter reference of a transmitter channel and the return for a bridge's excitation current. A channel is set up for its sensor by component placement and jumpers (@tab-channel-config). Every configuration keeps the signal within ±2.0~V of the bank common, inside the input ranges of both the buffer and the converter. A ninth converter, shared by the four channels, monitors their excitation (@sec-gp-monitor).
 
 #figure(
   caption: [General-Purpose Channel Configurations],
@@ -490,40 +493,53 @@ Each general-purpose channel has its own converter behind a precision buffer. Th
     align: (left, left, left),
     header: ("Configuration", "Fitted", "At the converter"),
     [Load cell],
-    [4-wire full bridge, 350~Ω typical. Excitation to the connector, shunt-calibration resistor and switch.],
-    [±7.4~mV at 2~mV/V, ratiometric],
+    [4-wire full bridge, 350~Ω typical, excited at 9.1~mA. Shunt-calibration resistor and switch.],
+    [±6.4~mV at 2~mV/V, ratiometric to the bridge voltage],
+    [Piezoresistive transducer],
+    [Bridge such as the Keller 7L, 3.5~kΩ typical, excited at 1~mA through a 1.00~kΩ current-sense resistor. Shunt-calibration resistor and switch.],
+    [160~mV typical at full scale, ratiometric to the current],
     [#box[4–20~mA] transmitter],
     [100~Ω precision shunt and loop protection. 24~V loop supply through a 30~mA current limit.],
     [0.4–2.0~V],
     [Voltage transmitter],
-    [5:1 precision divider for ±10~V. 24~V transmitter supply through a 30~mA current limit.],
-    [±2.0~V],
+    [5:1 precision divider for 0–10~V. 24~V transmitter supply through a 30~mA current limit.],
+    [0–2.0~V],
   ),
 ) <tab-channel-config>
 
-The signal chain from the series protection to the converter is the same in every configuration (@sec-gp-chain). @fig-gp-load-cell, @fig-gp-current and @fig-gp-voltage draw it with each sensor: the parts that set the converter's accuracy as components, the excitation, sensor supply and isolation as blocks. Decoupling is left out.
+The signal chain from the series protection to the converter, and the sensor supply, are the same in every configuration (@sec-gp-chain). @fig-gp-load-cell, @fig-gp-piezo, @fig-gp-current and @fig-gp-voltage draw the channel with each sensor: the parts that set the converter's accuracy as components, and the excitation bus, sensor supply and isolation as blocks. Decoupling is left out.
 
-=== Signal Chain <sec-gp-chain>
+=== Signal Chain and Sensor Supply <sec-gp-chain>
 
 - Each channel has its own #ident("ADS127L11"). The four share one clock and one START, so they sample simultaneously (REQ-6), and are daisy-chained on one SPI line.
-- They run in high-speed mode from the 8.192~MHz stack clock. The wideband filter at an oversampling ratio of 512 gives 8~kSPS, flat to 3.2~kHz with 106~dB of rejection from 4~kHz, which covers the 2~kHz bandwidth (REQ-7). The converter's noise is 2.58~µV~rms, and the channel's 2.84~µV~rms with the buffers and protection, 0.039~% of full scale for a 2~mV/V load cell (@sec-gp-budget).
+- They run in high-speed mode from the 8.192~MHz stack clock. The wideband filter at an oversampling ratio of 512 gives 8~kSPS, flat to 3.2~kHz with 106~dB of rejection from 4~kHz, which covers the 2~kHz bandwidth (REQ-7). The converter's noise is 2.58~µV~rms, and the channel's 2.84~µV~rms with the buffers and protection, 0.045~% of full scale for a 2~mV/V load cell (@sec-gp-budget).
 - An #ident("OPA2189") buffers the two inputs of each channel. The converter's precharge buffers draw up to ±3~µA, which through a 350~Ω bridge and the protection would give errors of a millivolt or more. The #ident("OPA2189") draws under 300~pA. Its input range ends 2.5~V below its positive rail, so it runs from the ±5~V rails while the converters run from ±2.5~V.
 - Each input carries 10~kΩ of series protection, 0805 for the 78~mW of a 28~V fault, with low-leakage clamps to the ±5~V rails and 110~pF across the pair.
-- #ident("REF5020") sets a ±2.048~V excitation. One half of an #ident("OPA2189") follows it and the other inverts it, each driving the excitation bus through a #ident("BUF634A"). The precision amplifier sets the voltage and the buffer supplies up to 250~mA. The bus is the reference of every converter in the bank, and the excitation of its load cells.
-- The buffers and the excitation run from the ±5~V rails and are up before the ±2.5~V. 237~Ω at each converter input and reference pin holds the current into its clamps below their 10~mA rating meanwhile, and in a fault. With 3.3~nF across the inputs and 330~pF from each to AVSS it is also the converter's input filter, with a differential pole at 97~kHz. The common-mode capacitors, a tenth of the differential one as the converter datasheet recommends, supply the common-mode part of each sample's charge and return it to AVSS, which powers the converter's sampling switches.
-- The REFP precharge buffer stays off, since REFP is above its 1.8~V limit (FW-5). Unbuffered, the reference draws about 0.25~mA at the 8.192~MHz clock, which through the two 237~Ω resistors lowers it by about 3~%. That is a fixed gain term, removed by calibration (FW-3).
+- #ident("REF5020") sets a ±2.048~V excitation bus. One half of an #ident("OPA2189") follows it and the other inverts it, each driving one side of the bus through a #ident("BUF634A"). The precision amplifier sets the voltage and the buffer supplies up to 250~mA. The bus is the converter reference of a transmitter channel, and its negative side takes the excitation current of a bridge.
+- The buffers and the excitation run from the ±5~V rails and are up before the ±2.5~V. 237~Ω at each converter input and reference pin, or 10~kΩ at a load cell's REFP, holds the current into its clamps below their 10~mA rating meanwhile, and in a fault. With 3.3~nF across the inputs and 330~pF from each to AVSS it is also the converter's input filter, with a differential pole at 97~kHz. The common-mode capacitors, a tenth of the differential one as the converter datasheet recommends, supply the common-mode part of each sample's charge and return it to AVSS, which powers the converter's sampling switches.
+- Each converter takes REFN from the negative side of the bus, and REFP, by placement, from one of three points: the positive side of the bus for a transmitter, the top of a load cell, or the top of a piezoresistive bridge's current-sense resistor. The bus lies above the 1.8~V limit of the converter's REFP precharge buffer, so a transmitter channel leaves the buffer off, while a bridge channel turns it on (FW-5). With the buffer on, a load cell's REFP comes through 10~kΩ instead of 237~Ω, so that a cell unplugged from its running current source drives no more than 2~mA into the converter's clamp. Unbuffered, a reference pin draws about 61~µA per volt at the 8.192~MHz clock, which through 237~Ω lowers the reference by about 1.4~%; buffered, REFP draws at most ±2~µA. Both are fixed gain terms, removed by calibration (FW-3).
+- The sensors draw on a 24~V supply, boosted from the +5~V rail by a #ident("TPS61170"), through an #ident("LT3092") in each channel. The #ident("LT3092") is a two-terminal current source whose output resistor sets its current: 30~mA as the limit on a transmitter's supply, 9.1~mA to excite a load cell, and 1~mA to excite a piezoresistive transducer. A shorted sensor or cable therefore draws no more than its channel's setting, and loses only that channel. A different feedback resistor sets the supply to 15~V where the sensors allow it, which saves power.
 - An #ident("SN6505B") drives a Würth #ident("750315371") transformer. A bridge rectifier on its centre-tapped secondary gives unregulated ±5~V rails. A #ident("TPS7A39") derives the converters' ±2.5~V from them, its two outputs rising together, and a #ident("TLV704") derives 3.3~V for the converters' I/O and the bank side of the isolators. Each converter's AVDD2 is tied to the bank common, the lowest level the #ident("ADS127L11") allows on ±2.5~V supplies. That halves the modulator's supply power and keeps its current off the +2.5~V rail. Two #ident("ISO7741") carry SCLK, SDI and CS in and data out, and the clock, START and calibration lines in and data-ready out.
 
-=== Load Cell
+=== Bridge Sensors
+
+A bridge sensor is excited by its channel's current source. The current enters the bridge at #ident("EXC+"), leaves at #ident("EXC−") and returns into the negative side of the excitation bus. Returning it to −2.048~V rather than the bank common centres the bridge on the bank common, so that its outputs lie within the input ranges of the buffers and the converter, and its top within the range of the converter's reference input. What the converter takes as its reference depends on how the sensor is specified.
 
 #figure(
   caption: [General-Purpose Channel, Load Cell],
   gp-channel("load-cell"),
 ) <fig-gp-load-cell>
 
-- The bridge is driven from the excitation bus, and its converter measures it against the same bus, so the measurement is ratiometric (REQ-9) and the excitation's own drift cancels.
-- 20~Ω in each excitation leg limits a cable short to about 100~mA, which the drivers carry without disturbing the other channels. The resistors lower the bridge excitation by about 10~%, a fixed gain term removed by shunt calibration.
-- Shunt calibration places a resistor chosen for the load cell across its SIG+ to EXC− arm, through an #ident("ADG1402") switch driven by #ident("SHUNT_CAL") from the ECU MCU board. It doubles as a built-in test of each load-cell channel (REQ-10). The switch closes only while the line is low, so the default-high output of its isolator leaves it open (FW-6).
+A load cell is specified in millivolts per volt: its output is a fixed fraction of the voltage across it. Its span compensation, resistors inside the cell in series with the excitation, holds that fraction constant over temperature. The converter's reference is therefore taken across the bridge, with REFP from #ident("EXC+") through 10~kΩ and REFN, through a 0~Ω link, from #ident("EXC−"), so that the converter reads the cell's ratio directly (REQ-9). The ratio is a property of the bridge network, the same whether the voltage across the bridge is set by a voltage or by a current. The current's value and drift cancel, and the cell's compensation works as designed. The current is set to 9.1~mA so that REFP stays within the precharge buffer's limit for cells of up to 410~Ω. A 350~Ω cell then has 3.2~V across it and gives ±6.4~mV at 2~mV/V.
+
+#figure(
+  caption: [General-Purpose Channel, Piezoresistive Transducer],
+  gp-channel("piezo"),
+) <fig-gp-piezo>
+
+A piezoresistive transducer such as the Keller 7L is characterised and compensated for a constant current of 1~mA. Its bridge resistance rises by 1800–3000~ppm/°C. Under constant current that rise lifts the bridge voltage and cancels most of the fall in its piezoresistive sensitivity; at a fixed voltage the span would drift by −0.12 to −0.36~% per °C. The excitation returns through a 1.00~kΩ, 5~ppm/°C current-sense resistor, and the converter's reference is taken across it, with REFP from its top. The converter then reads the output as a fraction of the current, whose tolerance and drift cancel. At 100~bar a 7L gives typically 160~mV against a 1.0~V reference, and the channel's noise of 2.9~µV~rms is about 1.8~mbar. Keller's compensation resistors for the transducer's zero, and the join of its two lower bridge pins, belong at the sensor end.
+
+Shunt calibration places a resistor chosen for the sensor across its SIG+ to EXC− arm, through an #ident("ADG1402") switch driven by #ident("SHUNT_CAL") from the ECU MCU board. It doubles as a built-in test of each bridge channel (REQ-10). The switch closes only while the line is low, so the default-high output of its isolator leaves it open (FW-6).
 
 === #box[4–20~mA] Transmitter
 
@@ -532,7 +548,7 @@ The signal chain from the series protection to the converter is the same in ever
   gp-channel("current"),
 ) <fig-gp-current>
 
-- Transmitters are powered from a 24~V sensor supply, boosted from the +5~V rail by a #ident("TPS61170"). Each channel takes it through an #ident("LT3092") set to 30~mA, so a shorted transmitter or cable loses only its own channel. A different feedback resistor sets 15~V where the transmitters allow it, which saves power.
+- The channel's current source is set to 30~mA. Below that it does not regulate, so the transmitter sets its own loop current, but it limits what a shorted transmitter or cable can draw.
 - A two-wire transmitter takes its loop supply from #ident("EXC+") and returns the loop current on #ident("SIG+"). The 100~Ω precision shunt between #ident("SIG+") and #ident("SIG−") turns 4–20~mA into 0.4–2.0~V, and #ident("SIG−") is tied to the bank common, so the loop closes on the board.
 
 === Voltage Transmitter
@@ -543,49 +559,97 @@ The signal chain from the series protection to the converter is the same in ever
 ) <fig-gp-voltage>
 
 - The transmitter is supplied as in the #box[4–20~mA] configuration and returns its supply current on #ident("EXC−"), which is tied to the bank common.
-- The SIG+ series resistor becomes the 40.2~kΩ top of a 5:1 divider for ±10~V. Its 10~kΩ bottom returns to #ident("SIG−") at the connector, which the SIG− buffer reads through its own 10~kΩ, so the divider measures between the two signal contacts. A three-wire transmitter's supply current in #ident("EXC−") therefore stays out of the reading. The bottom resistor is 0805 for the 50~mW of a 28~V fault on #ident("SIG−").
+- The SIG+ series resistor becomes the 40.2~kΩ top of a 5:1 divider for 0–10~V. Its 10~kΩ bottom returns to #ident("SIG−") at the connector, which the SIG− buffer reads through its own 10~kΩ, so the divider measures between the two signal contacts. A three-wire transmitter's supply current in #ident("EXC−") therefore stays out of the reading. The bottom resistor is 0805 for the 50~mW of a 28~V fault on #ident("SIG−").
 - #ident("SIG−") is tied to the bank common only for a transmitter with an isolated output, which would otherwise float.
+- The output is unipolar. A reading below zero by more than the channel's offset therefore marks a transmitter wired in reverse.
 
 == General-Purpose Error Budget <sec-gp-budget>
 
-The budget runs from the sensor contacts to the converter output at 8~kSPS, for each configuration of @tab-channel-config. The sensor and its cable are outside it. Full scale is 7.35~mV for a 2~mV/V load cell on a 350~Ω bridge, 20~mA for a #box[4–20~mA] transmitter and 10~V for a voltage transmitter. Each term is a datasheet maximum, except those marked typical, for which the datasheets give no maximum.
+The budget runs from the sensor contacts to the converter output at 8~kSPS, for each configuration of @tab-channel-config. The sensor and its cable are outside it. Full scale is 6.35~mV for a 2~mV/V load cell on a 350~Ω bridge excited at 9.1~mA, 160~mV for a 100~bar Keller 7L at 1~mA, 20~mA for a #box[4–20~mA] transmitter and 10~V for a voltage transmitter. Each term is a datasheet maximum, except those marked typical, for which the datasheets give no maximum.
 
 Calibration at test (FW-3) and shunt calibration (REQ-10) remove the offset and gain present at the calibration temperature. What remains is noise, nonlinearity and drift (@tab-gp-budget). The board's temperature range is not yet set, so drift is given per 10~°C away from the calibration temperature.
 
 #figure(
   caption: [General-Purpose Error Budget after Calibration, % of Full Scale],
   datatable(
-    columns: (1fr, auto, auto, auto),
-    align: (left, right, right, right),
-    header: ("Source", "Load cell", "4–20 mA", "Voltage"),
-    table.cell(colspan: 4, caps([At the calibration temperature], size: size.tiny, tracking: track.label)),
-    [Noise, rms: converter 2.58~µV, buffers and protection 1.19~µV], [0.039], [\<~0.001], [\<~0.001],
-    [Converter nonlinearity, 4~ppm of its range], [\<~0.001], [0.002], [0.002],
+    columns: (1fr, auto, auto, auto, auto),
+    align: (left, right, right, right, right),
+    header: ("Source", "Load cell", "Piezoresistive", "4–20 mA", "Voltage"),
+    table.cell(colspan: 5, caps([At the calibration temperature], size: size.tiny, tracking: track.label)),
+    [Noise, rms: converter 2.58~µV, buffers, protection and bridge 1.2~µV], [0.045], [0.002], [\<~0.001], [\<~0.001],
+    [Converter nonlinearity, 4~ppm of its range], [\<~0.001], [\<~0.001], [0.002], [0.002],
     table.hline(stroke: (paint: ink.rule, thickness: rule.hair)),
-    table.cell(colspan: 4, caps([Drift per 10~°C], size: size.tiny, tracking: track.label)),
-    [Converter offset, 0.2~µV/°C], [0.027], [\<~0.001], [\<~0.001],
-    [Converter input current through 2 × 237~Ω, 0.76~µV/°C typical], [0.103], [\<~0.001], [\<~0.001],
-    [Buffer offset, 2 × 0.015~µV/°C], [0.004], [\<~0.001], [\<~0.001],
-    [Buffer bias current through 2 × 10~kΩ, 0.61~µV/°C], [0.083], [\<~0.001], [\<~0.001],
-    [Converter gain, 1.9~ppm/°C], [0.002], [0.002], [0.002],
-    [Reference resistors 2 × 237~Ω at 25~ppm/°C, reference current], [0.001], [0.001], [0.001],
-    [Excitation legs 2 × 20~Ω at 25~ppm/°C], [0.003], [—], [—],
-    [#ident("REF5020"), 3~ppm/°C], [—], [0.003], [0.003],
-    [Excitation inverter resistors, 2 × 5~ppm/°C], [—], [0.005], [0.005],
-    [Shunt, 5~ppm/°C], [—], [0.005], [—],
-    [Divider, 2 × 5~ppm/°C], [—], [—], [0.008],
+    table.cell(colspan: 5, caps([Drift per 10~°C], size: size.tiny, tracking: track.label)),
+    [Converter offset, 0.2~µV/°C], [0.031], [0.001], [\<~0.001], [\<~0.001],
+    [Converter input current through 2 × 237~Ω, 0.76~µV/°C typical], [0.119], [0.005], [\<~0.001], [\<~0.001],
+    [Buffer offset, 2 × 0.015~µV/°C], [0.005], [\<~0.001], [\<~0.001], [\<~0.001],
+    [Buffer bias current through 2 × 10~kΩ and the bridge, 0.61~µV/°C], [0.096], [0.004], [\<~0.001], [\<~0.001],
+    [Converter gain, 1.9~ppm/°C], [0.002], [0.002], [0.002], [0.002],
+    [Reference resistors and reference current], [0.010], [0.004], [0.001], [0.001],
+    [Current-sense resistor, 5~ppm/°C], [—], [0.005], [—], [—],
+    [#ident("REF5020"), 3~ppm/°C], [—], [—], [0.003], [0.003],
+    [Excitation inverter resistors, 2 × 5~ppm/°C], [—], [—], [0.005], [0.005],
+    [Shunt, 5~ppm/°C], [—], [—], [0.005], [—],
+    [Divider, 2 × 5~ppm/°C], [—], [—], [—], [0.008],
     table.hline(stroke: (paint: ink.rule, thickness: rule.hair)),
-    [Drift, root sum square], [0.14], [0.008], [0.010],
-    [Drift, worst-case sum], [0.22], [0.017], [0.020],
+    [Drift, root sum square], [0.16], [0.009], [0.008], [0.010],
+    [Drift, worst-case sum], [0.26], [0.022], [0.016], [0.020],
   ),
 ) <tab-gp-budget>
 
 - The buffers and protection add 20~nV/√Hz to the converter's noise, mostly the thermal noise of the two 10~kΩ resistors. In the wideband filter's noise bandwidth of about 3.5~kHz that is 1.19~µV~rms, which raises the channel noise from 2.58 to 2.84~µV~rms.
-- Offset drift sets the load-cell result, and a gain calibration cannot remove it. A tare before each test resets it (FW-7). Two terms make up most of it. The first is the converter's input current through the 237~Ω pair. The datasheet gives that current and its drift only as typical values, ±3~µA and 5~nA/°C at the 12.8~MHz modulator rate, scaled here to 4.096~MHz. The second is the buffers' bias current through the 10~kΩ protection: the change allowed by its 0.3~nA maximum at 25~°C and 1.5~nA at 85~°C, spread over that span. The typical bias current is 70~pA at 25~°C.
-- The 20~Ω excitation legs take 10~% of the bridge drive, so their drift enters the load-cell gain at a tenth of their 25~ppm/°C. The legs also make the reading depend on the bridge and cable resistance: 0.1~% of reading for each 1~% change. 1~Ω of copper in each leg moves the reading by 0.02~% per 10~°C. Shunt calibration removes both at the time it is applied.
+- Offset drift sets the load-cell result, and a gain calibration cannot remove it. A tare before each test resets it (FW-7). Two terms make up most of it. The first is the converter's input current through the 237~Ω pair. The datasheet gives that current and its drift only as typical values, ±3~µA and 5~nA/°C at the 12.8~MHz modulator rate, scaled here to 4.096~MHz. The second is the buffers' bias current through the 10~kΩ protection: the change allowed by its 0.3~nA maximum at 25~°C and 1.5~nA at 85~°C, spread over that span. The typical bias current is 70~pA at 25~°C. For a piezoresistive transducer, whose signal is more than twenty times larger, the same terms come to about 0.01~%.
+- A bridge's reference is taken at the connector. For a load cell the excitation wires therefore sit inside it: 1~Ω in each lowers a 350~Ω cell's reading by 0.57~%, and copper's 0.39~%/°C turns that into 0.02~% per 10~°C. Shunt calibration removes both at the time it is applied. A piezoresistive transducer is referenced to the current through it, which its wires cannot change, so its reading does not depend on them.
+- The excitation monitor (@sec-gp-monitor) adds no term. What its dividers draw from #ident("EXC+") leaves before the sensor, and at a piezoresistive channel's #ident("EXC−") its buffer's bias current and the 10~MΩ hold move the current-sense resistor's share of the current by under 0.04~ppm/°C.
+- A bridge's REFP precharge buffer draws up to ±2~µA, and its drift of about 3~nA/°C at this clock sets that column's reference term. Through a load cell's 10~kΩ it is 10~ppm/°C of the 3.2~V reference; from a piezoresistive transducer's current-sense resistor it is 3~ppm/°C of the 1~mA.
 - Transmitters are measured against the excitation, not ratiometrically, so their drift is that of the shunt or divider and of the excitation. The shunt, the divider and the inverter pair are 5~ppm/°C thin film, so no term exceeds 0.008~% per 10~°C. The #ident("REF5020") adds up to 70~ppm of thermal hysteresis after a temperature cycle and 22~ppm over its first 1000~hours, both removed by recalibration.
 - At 20~mA the shunt dissipates 40~mW. Each 10~°C it rises above the board adds 0.005~% at 20~mA and less at lower currents, so self-heating bends the transfer curve, and a gain and offset correction does not remove it.
-- Before calibration the load-cell offset can reach 0.72~mV, 10~% of full scale: the converter's ±250~µV and its input current through the 237~Ω pair, ±455~µV typical. The load-cell gain is 7.6~% low by design, from the 20~Ω legs and the reference drop, with up to ±0.2~% of converter gain error on top.
+- Before calibration the load-cell offset can reach 0.72~mV, 11~% of full scale: the converter's ±250~µV and its input current through the 237~Ω pair, ±455~µV typical. The bridge gains are about 2~% high by design, from the reference currents through the resistors in the reference path, with up to ±0.2~% of converter gain error on top.
+
+== Excitation Monitor <sec-gp-monitor>
+
+Each channel's converter reads its sensor against a reference taken from the excitation, so the excitation drops out of its result. That is what makes the channels ratiometric, but it also hides the excitation from them. An #ident("ADS131M08") shared by the four channels measures it directly. Each channel has two of its eight inputs, both read against the negative side of the bus: an excitation input from #ident("EXC+") and a return input from #ident("EXC−") (@tab-gp-monitor, @fig-gp-monitor).
+
+#figure(
+  caption: [Excitation Monitor Inputs],
+  datatable(
+    columns: (auto, 1fr, 1fr, 1fr, 1fr),
+    align: (left, left, left, left, left),
+    header: ("Input", "Load cell", "Piezoresistive", "4–20 mA", "Voltage"),
+    [Excitation, from #ident("EXC+"), ÷25],
+    [Bridge voltage, 3.2~V],
+    [Bridge and current-sense voltages, 4.5~V],
+    [Loop supply + 2.048~V],
+    [Supply + 2.048~V],
+    [Return, from #ident("EXC−"), ÷2],
+    [Zero: #ident("EXC−") is on the bus],
+    [Sense voltage, 1.0~V],
+    [Zero: #ident("EXC−") is held to the bus],
+    [Bus, 2.048~V: #ident("EXC−") is on the bank common],
+  ),
+) <tab-gp-monitor>
+
+#figure(
+  caption: [Excitation Monitor],
+  gp-monitor(),
+) <fig-gp-monitor>
+
+The readings serve three purposes.
+
+- The temperature of a piezoresistive transducer. Its excitation reading less its return reading is the bridge voltage, and the ratio of that to the return reading is the ratio of the bridge resistance to the 1.00~kΩ current-sense resistor. The bridge resistance rises with temperature by 1800–3000~ppm/°C, so the ratio gives the transducer's temperature. Keller specifies the 7L's span to within 0.06~%/°C and its compensated zero to within 0.025~% of full scale per °C. The measured temperature lets firmware correct what remains, given the transducer's characterisation. Known to a third of a degree, it holds that correction's own error near 0.02~% of full scale, which requires the ratio to stay within about 600~ppm for each 10~°C of board temperature.
+- The supply of a transmitter. The excitation reading gives it against the bus, which shows a supply sagging under load or a loop held at its 30~mA limit.
+- Faults in every configuration. An open or unplugged bridge lets its current source drive #ident("EXC+") up to the sensor supply, and a shorted bridge or cable collapses the bridge voltage. A damaged cable shows as a change of a few per cent in the bridge voltage. These need only about 1~%.
+
+The converter and its inputs:
+
+- It samples its eight inputs at the same instant against one reference, so the ratio of a channel's two readings does not depend on that reference. The reference is the positive side of the bus, divided to 1.25~V, so every reading is also a ratio to the bus.
+- It runs from #ident("ADC_CLK") and is resynchronised by #ident("ADC_START"), as the thermocouple converter is (INT-7). At an oversampling ratio of 16384 it gives 250~SPS with 1.9~µV~rms of noise. It is the eight-channel member of the #ident("ADS131M06") family, with the same commands, registers and frame format, so one firmware driver serves both banks. It draws 7.2~mA from the bank's 3.3~V.
+- Dividers to the bank common bring every node into its input range, from 1.3~V below the bank common to 3.3~V, with ±1.2~V full scale. They divide by 25 on the excitation inputs, which see 26~V when an open sensor lets its current source rise to the supply, and by 2 on the return inputs. The negative side of the bus feeds one shared divider for each kind of input. 10~nF across each pair, with the dividers' source resistance, filters the converter's input. What the excitation dividers draw from #ident("EXC+") leaves before the sensor, so a bridge's reading, a ratio to the voltage across it or the current through it, is unchanged.
+- A piezoresistive transducer's #ident("EXC−") lies between its bridge and its current-sense resistor. Current drawn there would pass through one and not the other, a gain error in the channel's own reading. Each #ident("EXC−") is therefore buffered by one section of an #ident("OPA4189") before its divider, through 10~kΩ that limits a fault's current into the amplifier's input. Its input bias current, at most 2~nA to 85~°C, is 2~ppm of the excitation current. Through the 10~kΩ it adds at most 20~µV, and with the amplifier's 5~µV of offset that is 25~ppm of the current-sense voltage. An unused #ident("EXC−"), as in the #box[4–20~mA] configuration, is held to the negative bus by 10~MΩ. Across a current-sense resistor that is a fixed 100~ppm.
+- The converter's own errors are small beside its readings: offset drift 215~nV/°C, nonlinearity 7.5~ppm of its range, and gain drift 5~ppm/°C typical. Calibration at test removes its offset, and no zeroing is needed in use.
+- The dividers set the stability. For a piezoresistive channel they are 5~ppm/°C thin film. With the converter's gain drift they move the resistance ratio by about 250~ppm per 10~°C root sum square, or 450~ppm worst case, within the 600~ppm. The return dividers contribute most, because the 1.0~V they measure sits 1 to 2~V below the bank common. Where the monitor only diagnoses, 0.1~%, 25~ppm/°C parts suffice.
+- Its data output, like that of the #ident("ADS127L11") chain, is high-impedance while its chip select is high. The two therefore share the bank's data-return channel, as well as SCLK and SDI. Its data-ready is not carried: it converts at a fixed rate from the stack clock, so its reads can be scheduled. Each frame is ten 24-bit words every 4~ms, 60~kbit/s per board.
+- It needs its own chip select. The two #ident("ISO7741") have no free channel for it, and #ident("ASRP-PCB-INTERCONNECT-2") has no free contact. How the chip select reaches it is not yet settled.
 
 == Thermocouple Channels <sec-tc>
 
@@ -700,6 +764,12 @@ Boards stack on #ident("ASRP-PCB-INTERCONNECT-2") and share two SPI buses to the
       [Input buffers],
       [4 × #ident("OPA2189")],
       [Zero-drift, 5.2~nV/√Hz, input bias 300~pA maximum, offset drift 0.006~µV/°C typical.],
+      [Excitation monitor],
+      ident("ADS131M08"),
+      [Eight simultaneous channels, two per general-purpose channel. External reference 1.1–1.3~V. Inputs to 1.3~V below ground, 330~kΩ at unity gain. Nonlinearity 7.5~ppm of range, offset drift 215~nV/°C, gain drift 5~ppm/°C typical. 1.9~µV~rms at 250~SPS. Same commands and frame as the #ident("ADS131M06"). 21.5~mW.],
+      [Monitor buffers],
+      ident("OPA4189"),
+      [Quad of the input buffers' family. 4.5 to 36~V supply, so it runs from the unregulated ±5~V rails. Inputs to 0.1~V below its negative rail, offset 5~µV, input bias 2~nA maximum to 85~°C. 1.3~mA per amplifier, about 55~mW for the four. 5 × 4.4~mm TSSOP.],
       [Thermocouple converter],
       ident("ADS131M06"),
       [Six simultaneous channels: four thermocouples, the cold-junction RTD and its reference resistor. Gain to 128. Integrated negative charge pump: inputs to 1.3~V below ground. 1.82~µV~rms at 4~kSPS, gain 16. Sinc3 filter. SPI with CRC and data-ready. 4.9~mW. 4 × 4~mm WQFN.],
@@ -709,24 +779,21 @@ Boards stack on #ident("ASRP-PCB-INTERCONNECT-2") and share two SPI buses to the
       [Excitation drivers],
       [#ident("OPA2189"), 2 × #ident("BUF634A")],
       [Precision amplifier with a 250~mA buffer in its loop, one per polarity. ±2.25 to ±18~V supply, internal current limit, thermal shutdown.],
-      [Excitation current limit],
-      [8 × 20~Ω],
-      [One per excitation leg. Thin film, 25~ppm/°C, 1206 for 0.2~W in a short.],
       [Precision resistors],
       [Vishay TNPU e3],
-      [Thin film, 0.05~%, 5~ppm/°C, 0805: the #box[4–20~mA] shunt, the 5:1 divider and the excitation inverter pair.],
+      [Thin film, 0.05~%, 5~ppm/°C: the #box[4–20~mA] shunt, the 5:1 divider and the excitation inverter pair in 0805, and the 1.00~kΩ current-sense resistor of a piezoresistive channel in 1206. Also the excitation monitor's reference and bus dividers, and its dividers for a piezoresistive channel.],
       [General-purpose isolated supply],
       [#ident("SN6505B"), #ident("750315371")],
       [1~A push-pull driver at 420~kHz. Würth 1:1.1 centre-tapped transformer, 2500~V~rms, 1~A rated at 5~V. Four 30~V 1~A Schottky diodes (TBD) as the bridge for ±5~V.],
       [General-purpose regulators],
       [#ident("TPS7A39"), #ident("TLV704")],
-      [Dual positive and negative LDO for ±2.5~V: 150~mA each, ±3.3 to ±33~V in, outputs track at start-up, 21~µV~rms. 150~mA LDO for 3.3~V, 2.5 to 24~V in. Both tolerate the rectified rails at light load. Loads about 22 and 37~mA on ±2.5~V, 25~mA on 3.3~V.],
+      [Dual positive and negative LDO for ±2.5~V: 150~mA each, ±3.3 to ±33~V in, outputs track at start-up, 21~µV~rms. 150~mA LDO for 3.3~V, 2.5 to 24~V in. Both tolerate the rectified rails at light load. Loads about 22 and 37~mA on ±2.5~V, 32~mA on 3.3~V.],
       [Sensor supply],
       [#ident("TPS61170")],
       [Boost from +5~V to 24~V. 1.2~A switch, 38~V output maximum, 1.2~MHz, 2 × 2~mm QFN. 10~µH inductor and 40~V Schottky (TBD).],
-      [Sensor supply current limit],
+      [Sensor current sources],
       [4 × #ident("LT3092")],
-      [2-terminal current source set to 30~mA. 0.5 to 200~mA, 1.2 to 40~V, thermal limit. 3 × 3~mm DFN.],
+      [2-terminal current source, 0.5 to 200~mA, 1.2 to 40~V, thermal limit, set by its output resistor: 30~mA for a transmitter, 9.1~mA for a load cell, 1~mA for a piezoresistive transducer. 3 × 3~mm DFN.],
       [General-purpose isolation],
       [2 × #ident("ISO7741")],
       [Three forward and one reverse channel each, 17~ns maximum delay. 4.9 × 6~mm QSOP.],
@@ -803,7 +870,7 @@ Issues known at this revision and not resolved in it.
     header: ("Item", "Issue", "Disposition"),
     ident("OI-1"),
     [5~V current of a full stack exceeds the #ident("E001-POWER-BOARD") rail],
-    [Three boards draw 0.7~A at 5~V without transmitters and 2.3~A with a transmitter on every general-purpose channel (INT-2), against 2~A for the whole ECU stack. Not resolved in this revision. The number of transmitter channels in a stack is held to what the rail can spare.],
+    [Three boards draw 0.7~A at 5~V without transmitters and 2.3~A with a transmitter on every general-purpose channel (INT-2), against 2~A for the whole ECU stack. Not resolved in this revision. The number of transmitter channels in a stack is held to what the rail can spare. Bridge sensors now take their excitation from the sensor supply instead of the ±5~V rails: about 0.31~W per load-cell channel from the 5~V input with the supply at 24~V, or 0.22~W at 15~V, against 0.13~W before. INT-2 and the input-power estimate are to be revised with the power budget.],
 
     ident("OI-2"),
     [A thermocouple fault can raise the 3.3~V of its bank],
