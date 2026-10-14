@@ -1,9 +1,10 @@
 # e003-adc-board
 
 Analog data acquisition board for the ASRP ECU stack. Four general-purpose
-channels, sampled simultaneously and configurable for load cells, 4-20 mA and
-voltage transmitters, and four thermocouple channels with their cold-junction
-sensor, each bank isolated from the stack. Boards stack to add channels on
+channels, sampled simultaneously, configured by firmware for load cells,
+piezoresistive pressure transducers, 4-20 mA and voltage transmitters, and
+isolated from the stack. The thermocouple channels, once a second bank of this
+board, are now `e004-tc-board`. Boards stack to add channels on
 ASRP-PCB-INTERCONNECT-2, defined in the design summary, which brings them power
 from `e001-power-board` through the ECU MCU board and carries their data to it.
 The ECU MCU board logs the data. 60 x 60 mm.
@@ -35,9 +36,10 @@ it names that commit, build mid-edit and it says so.
 
 Part of the ASRP ECU stack. Each board is its own repo, sitting side by
 side under `ecad/projects/`: `e001-power-board`, `e002-mcu-board`,
-`e003-adc-board`, `bus-interface`, `ecu-stack` and `servo-board`. They are
-separate because they are drawn, revised, fabricated and released one at a
-time. Nothing in the KiCad files crosses a board boundary.
+`e003-adc-board`, `e004-tc-board`, `bus-interface`, `ecu-stack` and
+`servo-board`. They are separate because they are drawn, revised, fabricated
+and released one at a time. Nothing in the KiCad files crosses a board
+boundary.
 
 ## Branches
 

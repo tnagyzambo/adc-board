@@ -711,17 +711,6 @@
         "CLK",
         "START",
         "CAL"
-      ],
-      "TC": [
-        "TC1+",
-        "TC1-",
-        "TC2+",
-        "TC2-",
-        "TC3+",
-        "TC3-",
-        "TC4+",
-        "TC4-",
-        "SHLD"
       ]
     },
     "connection_grid_size": 50.0,
@@ -803,14 +792,6 @@
     [
       "e4c5ff13-5bcc-5515-b1bd-fb7763a85b52",
       "gp-ch4"
-    ],
-    [
-      "39c7f6da-01b5-5e49-a023-b6b9737c01f9",
-      "tc"
-    ],
-    [
-      "dd2f21ae-f1f1-584f-b1a3-538dbef8e495",
-      "tc-inputs"
     ],
     [
       "0a4c1a9b-e819-56b3-b8cb-eb5cec2dbe0b",
