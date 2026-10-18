@@ -658,6 +658,17 @@
       "sort_field": "Reference"
     },
     "bus_aliases": {
+      "CH": [
+        "START",
+        "SCLK",
+        "SDI",
+        "CS",
+        "SDO",
+        "DOUT",
+        "FSYNC",
+        "EN",
+        "FLT"
+      ],
       "GP": [
         "EXC1+",
         "EXC1-",
@@ -753,7 +764,7 @@
         "uuid": "ae736b08-f60a-4f90-a6d8-09d85e53d559"
       }
     ],
-    "used_designators": "J1,J5,#PWR80,#PWR104-120,D7,C6,C8-12,C23,C26,C32-33,C42-44,C50-59,C62,C67-70,C73-80,U13,F1,Z3-9,R14,R34-35,R42,R48,R54,R56-63,1",
+    "used_designators": "1,R14,R34-35,R42,R48,R54,R56-63,Z3-9,F1,U13,C6,C8-12,C23,C26,C32-33,C42-44,C50-59,C62,C67-70,C73-80,D7,#PWR80,#PWR104-120,J1,J5",
     "variants": []
   },
   "sheets": [
@@ -766,32 +777,32 @@
       "gp"
     ],
     [
-      "97d9e594-efab-5b37-98fb-135789ddac42",
-      "gp-isolation"
-    ],
-    [
-      "a71da7c2-d5bd-54a0-b3d9-6ecdc790cefd",
-      "gp-excitation"
-    ],
-    [
-      "335188c9-7246-59a7-941e-16d85eb02b0b",
-      "gp-power"
-    ],
-    [
       "95a7257f-c510-5dc1-afd8-5496400f7d9b",
       "gp-ch1"
     ],
     [
-      "754d3f59-b158-53cd-93c2-6636701a4880",
-      "gp-ch3"
+      "ae406c26-2307-52dc-bb9a-02e757866909",
+      "front"
     ],
     [
-      "07aaaa90-2eef-5a94-9785-8e36f9a15748",
-      "gp-ch2"
+      "50249aa1-92a2-57d9-8c75-404a846c62ac",
+      "switches"
     ],
     [
-      "e4c5ff13-5bcc-5515-b1bd-fb7763a85b52",
-      "gp-ch4"
+      "bb98f072-df51-5685-bc70-fd4417879b73",
+      "excitation"
+    ],
+    [
+      "fa933c75-70aa-5432-ba1e-30bfcc445b30",
+      "converter"
+    ],
+    [
+      "f206a555-a690-56f8-bd2c-975c2daee59c",
+      "power"
+    ],
+    [
+      "f9538ae5-07b9-5550-aad4-152ed1fb81da",
+      "isolation"
     ],
     [
       "0a4c1a9b-e819-56b3-b8cb-eb5cec2dbe0b",

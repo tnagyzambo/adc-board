@@ -2,7 +2,7 @@
 	(version 20260306)
 	(generator "eeschema")
 	(generator_version "10.0")
-	(uuid "65cf9dcb-c5ec-5aa6-a56c-4557021fc9bd")
+	(uuid "ae736b08-f60a-4f90-a6d8-09d85e53d559")
 	(paper "A4")
 	(title_block
 		(title "ASRP ADC BOARD")
@@ -703,7 +703,7 @@
 					(justify left top)
 				)
 			)
-			(property "Footprint" ""
+			(property "Footprint" "connector:HARWIN-M80-5001842"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1711,7 +1711,7 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "ASRP ADC BOARD: 4 GENERAL-PURPOSE CHANNELS\nISOLATED FROM THE STACK; BOARDS STACK UP TO THREE ON THE GENERAL-PURPOSE BUS\nTHE THERMOCOUPLE BUS PASSES THROUGH UNUSED (E004-TC-BOARD)"
+	(text "ASRP ADC BOARD: 4 GENERAL-PURPOSE CHANNELS, EACH\nISOLATED FROM THE STACK AND FROM THE OTHERS.\nTHE STACK SHEET AND THE INTERCONNECT PREDATE THE\nFPGA AND ARE TO BE REDRAWN; THE GP SHEET'S CH1..CH4,\nSYNC_CLK AND PCLK PINS AWAIT THE FPGA"
 		(exclude_from_sim no)
 		(at 190.5 104.14 0)
 		(effects
@@ -1743,6 +1743,42 @@
 			(justify left)
 		)
 		(uuid "fd6264b9-3c25-43bb-8ba7-e11c5357d9d2")
+	)
+	(no_connect
+		(at 63.5 180.34)
+		(uuid "22cfbaf3-7eb6-42f3-99f0-98fe8cba4cb0")
+	)
+	(no_connect
+		(at 63.5 177.8)
+		(uuid "403df6af-6c00-447b-ae60-0402ad136e58")
+	)
+	(no_connect
+		(at 63.5 185.42)
+		(uuid "96e33106-81a9-4bea-921b-1826328943e8")
+	)
+	(no_connect
+		(at 63.5 167.64)
+		(uuid "b9dca9c7-fbd0-4c23-ab05-d4590efe49e8")
+	)
+	(no_connect
+		(at 63.5 175.26)
+		(uuid "bac76769-04f5-497c-b18e-ea939dc1fda3")
+	)
+	(no_connect
+		(at 63.5 170.18)
+		(uuid "c2bb65cc-a8bb-4ce2-afa8-363a219aa301")
+	)
+	(no_connect
+		(at 63.5 162.56)
+		(uuid "c5e9f8a4-dc99-4f3d-a9cd-ba50e4e05770")
+	)
+	(no_connect
+		(at 63.5 172.72)
+		(uuid "e491a3db-17cb-465e-89a4-2a3b33f14174")
+	)
+	(no_connect
+		(at 63.5 182.88)
+		(uuid "ee374402-383a-4210-b2ff-cee200fa64de")
 	)
 	(bus_entry
 		(at 83.82 60.96)
@@ -2084,16 +2120,6 @@
 		)
 		(uuid "3aed3b33-bc60-444e-9a43-320efd8faec3")
 	)
-	(bus
-		(pts
-			(xy 165.1 40.64) (xy 190.5 40.64)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "413aadb1-917f-4612-9fc1-b7ccc776833b")
-	)
 	(wire
 		(pts
 			(xy 63.5 50.8) (xy 83.82 50.8)
@@ -2183,16 +2209,6 @@
 			(type default)
 		)
 		(uuid "6201421b-18da-4e06-8c7a-872e960a16db")
-	)
-	(bus
-		(pts
-			(xy 165.1 35.56) (xy 213.36 35.56)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7606f844-76b5-4075-876e-379bfd01a660")
 	)
 	(wire
 		(pts
@@ -2353,16 +2369,6 @@
 			(type default)
 		)
 		(uuid "d5b64a36-1ac4-4f41-851c-bc32959932e2")
-	)
-	(bus
-		(pts
-			(xy 190.5 40.64) (xy 213.36 40.64)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e0f60b95-516e-47a9-a095-f8465fa9ea28")
 	)
 	(wire
 		(pts
@@ -2802,116 +2808,6 @@
 		)
 	)
 	(symbol
-		(lib_id "plm:PCB-TEST-POINT")
-		(at 130.81 139.7 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "07d34e25-0579-460c-8e5d-145220551126")
-		(property "Reference" "TP4"
-			(at 130.81 139.7 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PCB-TEST-POINT"
-			(at 130.81 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "pcb:PCB-PROBEPOINT"
-			(at 130.81 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 130.81 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Test Point, 1.5 mm SMD Pad"
-			(at 130.81 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "N/A"
-			(at 130.81 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "N/A"
-			(at 130.81 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "plm_unused_last_field" ""
-			(at 130.81 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "4ba0761b-ce1c-478f-a652-97b7f054da31")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559"
-					(reference "TP4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "general:GND")
 		(at 124.46 152.4 0)
 		(unit 1)
@@ -3060,226 +2956,6 @@
 			(project "e003-adc-board"
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559"
 					(reference "#PWR0254")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "plm:PCB-TEST-POINT")
-		(at 157.48 139.7 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "1a7ee5c2-de06-48f5-9050-7680b81b03aa")
-		(property "Reference" "TP7"
-			(at 157.48 139.7 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PCB-TEST-POINT"
-			(at 157.48 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "pcb:PCB-PROBEPOINT"
-			(at 157.48 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 157.48 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Test Point, 1.5 mm SMD Pad"
-			(at 157.48 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "N/A"
-			(at 157.48 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "N/A"
-			(at 157.48 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "plm_unused_last_field" ""
-			(at 157.48 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "cac28d45-c5c6-4358-8ade-661fa3fbc9b0")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559"
-					(reference "TP7")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "plm:PCB-TEST-POINT")
-		(at 121.92 139.7 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "1b496502-66b1-4135-aa96-273e4bfdd700")
-		(property "Reference" "TP3"
-			(at 121.92 139.7 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PCB-TEST-POINT"
-			(at 121.92 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "pcb:PCB-PROBEPOINT"
-			(at 121.92 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 121.92 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Test Point, 1.5 mm SMD Pad"
-			(at 121.92 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "N/A"
-			(at 121.92 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "N/A"
-			(at 121.92 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "plm_unused_last_field" ""
-			(at 121.92 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0f94dce7-c21d-41a4-83ae-d5f85ebc29ad")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559"
-					(reference "TP3")
 					(unit 1)
 				)
 			)
@@ -3545,160 +3221,6 @@
 			(project "e003-adc-board"
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559"
 					(reference "Z1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "general:VCC")
-		(at 121.92 139.7 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "2e8133d5-1e06-42e9-8473-aef7c9c4ae95")
-		(property "Reference" "#PWR0255"
-			(at 121.92 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V_GP"
-			(at 121.92 135.89 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 121.92 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 121.92 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 121.92 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin ""
-			(uuid "2b68bdbe-6bd0-4b74-935d-84905be46c72")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559"
-					(reference "#PWR0255")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "general:VCC")
-		(at 148.59 139.7 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "36dd5572-93b1-4eb1-9fa8-1f01daef89b0")
-		(property "Reference" "#PWR0258"
-			(at 148.59 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "-2V5_GP"
-			(at 148.59 135.89 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 148.59 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 148.59 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 148.59 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin ""
-			(uuid "9436be68-c55c-4629-9453-cf3a1af257c0")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559"
-					(reference "#PWR0258")
 					(unit 1)
 				)
 			)
@@ -4432,116 +3954,6 @@
 		)
 	)
 	(symbol
-		(lib_id "plm:PCB-TEST-POINT")
-		(at 139.7 139.7 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "9f25e504-eb60-4559-a9c7-9ddd2c726526")
-		(property "Reference" "TP5"
-			(at 139.7 139.7 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PCB-TEST-POINT"
-			(at 139.7 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "pcb:PCB-PROBEPOINT"
-			(at 139.7 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 139.7 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Test Point, 1.5 mm SMD Pad"
-			(at 139.7 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "N/A"
-			(at 139.7 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "N/A"
-			(at 139.7 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "plm_unused_last_field" ""
-			(at 139.7 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "17923508-3c04-41e8-bcb2-ae56bf3309a0")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559"
-					(reference "TP5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "general:GND")
 		(at 63.5 187.96 90)
 		(unit 1)
@@ -4613,83 +4025,6 @@
 			(project "e003-adc-board"
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559"
 					(reference "#PWR0248")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "general:VCC")
-		(at 166.37 139.7 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "a88780d1-6a56-418e-ade4-156168616a4c")
-		(property "Reference" "#PWR0260"
-			(at 166.37 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "24V_GP"
-			(at 166.37 135.89 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 166.37 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 166.37 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 166.37 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin ""
-			(uuid "6c907580-0036-42a2-a030-e3db25149e74")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559"
-					(reference "#PWR0260")
 					(unit 1)
 				)
 			)
@@ -5064,7 +4399,7 @@
 				(justify left top)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "connector:HARWIN-M80-5001842"
 			(at 30.48 33.02 0)
 			(hide yes)
 			(show_name no)
@@ -5321,457 +4656,6 @@
 			(project "e003-adc-board"
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559"
 					(reference "#PWR0247")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "general:VCC")
-		(at 139.7 139.7 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "cb95a76f-fc97-4aca-bbf6-c233132caa52")
-		(property "Reference" "#PWR0257"
-			(at 139.7 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+2V5_GP"
-			(at 139.7 135.89 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 139.7 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 139.7 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 139.7 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin ""
-			(uuid "90339c0d-d64c-4a25-a73f-4d3d3d6fa660")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559"
-					(reference "#PWR0257")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "general:VCC")
-		(at 130.81 139.7 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "cda83056-d4ee-4290-9102-8115cb6f22b0")
-		(property "Reference" "#PWR0256"
-			(at 130.81 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "-5V_GP"
-			(at 130.81 135.89 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 130.81 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 130.81 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 130.81 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin ""
-			(uuid "06baec64-326d-454a-8eb3-552d684fca40")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559"
-					(reference "#PWR0256")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "general:GND")
-		(at 152.4 160.02 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "d0434c3f-1f3f-4e0e-8e0e-485d91eb2fea")
-		(property "Reference" "#PWR0263"
-			(at 152.4 163.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND_GP"
-			(at 152.4 165.354 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 152.4 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 152.4 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 152.4 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin ""
-			(uuid "5cbc6734-fb4d-407e-8658-1b91f9f4b9b7")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559"
-					(reference "#PWR0263")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "plm:PCB-TEST-POINT")
-		(at 152.4 160.02 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "d086bff7-27d4-4d43-b46d-6851c44de014")
-		(property "Reference" "TP11"
-			(at 152.4 160.02 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PCB-TEST-POINT"
-			(at 152.4 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "pcb:PCB-PROBEPOINT"
-			(at 152.4 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 152.4 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Test Point, 1.5 mm SMD Pad"
-			(at 152.4 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "N/A"
-			(at 152.4 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "N/A"
-			(at 152.4 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "plm_unused_last_field" ""
-			(at 152.4 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "375a9fbf-8593-4ce6-9b08-1235956fec6f")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559"
-					(reference "TP11")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "plm:PCB-TEST-POINT")
-		(at 166.37 139.7 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "d130f034-b77a-49b5-aa64-95e9394c0b01")
-		(property "Reference" "TP8"
-			(at 166.37 139.7 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PCB-TEST-POINT"
-			(at 166.37 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "pcb:PCB-PROBEPOINT"
-			(at 166.37 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 166.37 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Test Point, 1.5 mm SMD Pad"
-			(at 166.37 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "N/A"
-			(at 166.37 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "N/A"
-			(at 166.37 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "plm_unused_last_field" ""
-			(at 166.37 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "a6fe3bdd-5304-4b3c-a97c-fdf73a04f3d0")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559"
-					(reference "TP8")
 					(unit 1)
 				)
 			)
@@ -6036,193 +4920,6 @@
 			(project "e003-adc-board"
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559"
 					(reference "TP10")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "general:VCC")
-		(at 157.48 139.7 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "ecd3057d-18d8-4ed5-9f39-7adca071aeb6")
-		(property "Reference" "#PWR0259"
-			(at 157.48 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "3V3_GP"
-			(at 157.48 135.89 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 157.48 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 157.48 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 157.48 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin ""
-			(uuid "7556443f-1ea1-4b81-b26d-49329f0a4747")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559"
-					(reference "#PWR0259")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "plm:PCB-TEST-POINT")
-		(at 148.59 139.7 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "eea569e0-774f-4e64-b2bf-df6cf11670f8")
-		(property "Reference" "TP6"
-			(at 148.59 139.7 0)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PCB-TEST-POINT"
-			(at 148.59 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "pcb:PCB-PROBEPOINT"
-			(at 148.59 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 148.59 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Test Point, 1.5 mm SMD Pad"
-			(at 148.59 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "N/A"
-			(at 148.59 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "N/A"
-			(at 148.59 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "plm_unused_last_field" ""
-			(at 148.59 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "84d1467d-0538-4356-8d3a-4a9a308ff902")
-		)
-		(instances
-			(project "e003-adc-board"
-				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559"
-					(reference "TP6")
 					(unit 1)
 				)
 			)
@@ -6494,7 +5191,7 @@
 	)
 	(sheet
 		(at 127 30.48)
-		(size 38.1 15.24)
+		(size 38.1 17.78)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -6520,7 +5217,7 @@
 			)
 		)
 		(property "Sheetfile" "e003-gp.kicad_sch"
-			(at 127 46.3046 0)
+			(at 127 48.8446 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6540,9 +5237,9 @@
 				(justify left)
 			)
 		)
-		(pin "GPS{ISO}" bidirectional
-			(at 165.1 35.56 0)
-			(uuid "b8d84725-e2a9-4b1b-9541-1c90af3b7ab1")
+		(pin "CH1{CH}" bidirectional
+			(at 165.1 33.02 0)
+			(uuid "f7931bb9-01f0-56bc-b52b-15ff4ba89c63")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6550,9 +5247,49 @@
 				(justify right)
 			)
 		)
-		(pin "SYNC{SYNC}" input
+		(pin "CH2{CH}" bidirectional
+			(at 165.1 35.56 0)
+			(uuid "8d24f572-2cc4-52b8-8632-c93946c1001e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "CH3{CH}" bidirectional
+			(at 165.1 38.1 0)
+			(uuid "edfc7bfc-2921-5c7a-8c70-62b974a9c185")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "CH4{CH}" bidirectional
 			(at 165.1 40.64 0)
-			(uuid "2587a083-1156-4774-81d1-46686f7f0d12")
+			(uuid "e7663ffb-60f5-5fa4-b0e4-4de470bdf919")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "SYNC_CLK" input
+			(at 165.1 43.18 0)
+			(uuid "7e2f727b-cf24-5e10-a199-60f9ab7b68cd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "PCLK" input
+			(at 165.1 45.72 0)
+			(uuid "fd62cf58-5ad9-5c03-ba88-93ffbb535d28")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6708,41 +5445,5 @@
 			)
 			(checksum "F0549316B6A0DBF004861540D32AB202")
 		)
-	)
-	(no_connect
-		(at 63.5 162.56)
-		(uuid "c5e9f8a4-dc99-4f3d-a9cd-ba50e4e05770")
-	)
-	(no_connect
-		(at 63.5 167.64)
-		(uuid "b9dca9c7-fbd0-4c23-ab05-d4590efe49e8")
-	)
-	(no_connect
-		(at 63.5 170.18)
-		(uuid "c2bb65cc-a8bb-4ce2-afa8-363a219aa301")
-	)
-	(no_connect
-		(at 63.5 172.72)
-		(uuid "e491a3db-17cb-465e-89a4-2a3b33f14174")
-	)
-	(no_connect
-		(at 63.5 175.26)
-		(uuid "bac76769-04f5-497c-b18e-ea939dc1fda3")
-	)
-	(no_connect
-		(at 63.5 177.8)
-		(uuid "403df6af-6c00-447b-ae60-0402ad136e58")
-	)
-	(no_connect
-		(at 63.5 180.34)
-		(uuid "22cfbaf3-7eb6-42f3-99f0-98fe8cba4cb0")
-	)
-	(no_connect
-		(at 63.5 182.88)
-		(uuid "ee374402-383a-4210-b2ff-cee200fa64de")
-	)
-	(no_connect
-		(at 63.5 185.42)
-		(uuid "96e33106-81a9-4bea-921b-1826328943e8")
 	)
 )

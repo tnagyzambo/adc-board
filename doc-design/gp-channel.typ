@@ -1,7 +1,7 @@
 // =============================================================================
 //  GENERAL-PURPOSE CHANNEL  --  simplified functional schematics.
 //
-//  One circuit, configured by firmware through switches S1 to S10.  Each
+//  One circuit, configured by the FPGA through switches S1 to S10.  Each
 //  drawing shows the same channel set up for one sensor: closed switches and
 //  the parts and paths in use are drawn in black, open switches and the parts
 //  they leave idle in grey.  The parts that set the converter's accuracy are
@@ -244,7 +244,7 @@
     import cetz.draw: line, content
 
     domain((-2, 9), (20, 60), [Engine])
-    domain((xc, -28), (166, 75), [General-purpose bank, isolated])
+    domain((xc, -28), (166, 75), [General-purpose channel, isolated])
 
     // -- Sensor -----------------------------------------------------------
     if bridge {
@@ -364,7 +364,7 @@
     cap((x702, y.inp), (x702, y.inn), label: [3.3~nF], side: "w")
 
     // -- Reference: REFP from EXC+ (S5), EXC− (S6) or the bus (S7) --------
-    blk((30, -24), (56, -10), [Excitation ±2.048~V\ REF5020, OPA2189,\ 2 × BUF634A])
+    blk((30, -24), (56, -10), [Excitation ±2.048~V\ REF5020, OPA2189])
     for (row, net, r, s, name) in (
       (y.r1, [EXC+], [10~kΩ], on.s5, [S5]),
       (y.r2, [EXC−], [237~Ω], on.s6, [S6]),
@@ -396,8 +396,8 @@
 
     // -- Converter ----------------------------------------------------------
     cetz.draw.rect((xa, -24), (xa + 16, 44), stroke: _s, fill: white)
-    content((xa + 8, (y.inp + y.inn) / 2), [ADS127L11])
-    for (row, name) in ((y.inp, [AINP]), (y.inn, [AINN]), (y.r2, [REFP]), (y.rn, [REFN])) {
+    content((xa + 8, (y.inp + y.inn) / 2), [ADS127L14])
+    for (row, name) in ((y.inp, [AINP0]), (y.inn, [AINN0]), (y.r2, [REFP]), (y.rn, [REFN])) {
       content((xa + 1, row), name, anchor: "west")
     }
   }))
@@ -405,24 +405,27 @@
 
 // -- EXCITATION MONITOR ------------------------------------------------------
 
-// One channel's connection to the excitation monitor.  The dividers on the
-// negative bus and the reference divider are shared by the four channels.
+// One channel's excitation monitor: the three other converters of its
+// ADS127L14, each reading one node against the channel common.
 #let gp-monitor() = {
-  // Rows: EXC+ and the excitation input's positive side, its negative side,
-  // EXC− at the buffer, the return input's two sides, and REFIN.
-  let (ye, yen, yb, ybp, ybn, yr) = (52, 38, 22.5, 20, 6, -10)
-  // Columns: the contacts, the buffer, the dividers' series resistors, their
-  // shunts on the positive and negative sides, the input capacitors and the
-  // converter.
-  let (xc, xop, xo) = (26, 60, 76)
-  let (d0, d1, xp, xn, xk, xa) = (78, 90, 94, 104, 112, 118)
+  // Rows: EXC+ and EXC− at the contacts; the three inputs' positive sides,
+  // each with its negative side, on the channel common, below it.
+  let (ye, yb) = (52, 22.5)
+  let (y1, y2, y3) = (ye - 2.5, yb - 2.5, -14)
+  // Columns: the contacts, the divider on EXC+, the buffers and their
+  // outputs, the dividers after them, and the converter.
+  let xc = 26
+  let (d0, d1, xp) = (44, 58, 62)
+  let (xop, xo) = (70, 88)
+  let (e0, e1, xq) = (92, 104, 108)
+  let xa = 132
 
   set text(font: fonts.display, size: size.tiny, tracking: track.label)
   _fit(cetz.canvas(length: 1mm, {
     import cetz.draw: line, content
 
     domain((-2, 17), (20, 58), [Engine])
-    domain((xc, -28), (149, 68), [General-purpose bank, isolated])
+    domain((xc, -28), (158, 68), [General-purpose channel, isolated])
 
     // -- Sensor -----------------------------------------------------------
     res((9, ye), (9, yb), label: [Bridge\ 3.5~kΩ], side: "e")
@@ -433,7 +436,6 @@
     blk((30, 57), (44, 64), [LT3092\ 1~mA])
     blk((49, 57), (65, 64), [Sensor supply\ 24~V])
     wire((44, 60.5), (49, 60.5))
-    wire((xc, ye), (37, ye))
     wire((37, 57), (37, ye))
     dot((37, ye))
 
@@ -442,64 +444,181 @@
       content((xc + 0.9, row + 0.5), name, anchor: "south-west")
     }
 
-    // -- Buffer -----------------------------------------------------------
-    wire((xc, yb), (50, yb))
-    res((50, yb), (xop, yb), label: [10~kΩ])
-    opamp((xop, yb), name: [¼ OPA4189])
-    wire((xop + 14, ybp), (xo, ybp))
-    wire((xo, ybp), (xo, yb - 9), (xop - 2, yb - 9), (xop - 2, yb - 5), (xop, yb - 5))
-    dot((xo, ybp))
-
-    // -- Dividers ---------------------------------------------------------
-    // Positive sides: EXC+ divided by 25, the buffered EXC− by 2.
-    wire((37, ye), (d0, ye))
-    wire((xo, ybp), (d0, ybp))
-    for (row, top, bot) in ((ye, [240~kΩ], [10.0~kΩ]), (ybp, [10.0~kΩ], [10.0~kΩ])) {
-      res((d0, row), (d1, row), label: top)
-      wire((d1, row), (xa, row))
-      res((xp, row), (xp, row - 7), label: bot, side: "e")
-      gnd((xp, row - 7))
-      dot((xp, row))
-    }
-    // Negative sides and the reference, from the bus: shared.
-    for (row, net, top, bot) in (
-      (yen, [EXC_N], [24.0~kΩ], [1.00~kΩ]),
-      (ybn, [EXC_N], [1.00~kΩ], [1.00~kΩ]),
-      (yr, [EXC_P], [6.34~kΩ], [10.0~kΩ]),
-    ) {
-      wire((71, row), (d0, row))
-      content((71.5, row + 0.4), net, anchor: "south-west")
-      res((d0, row), (d1, row), label: top, side: "s")
-      wire((d1, row), (xa, row))
-      res((xn, row), (xn, row - 7), label: bot, side: "e")
-      gnd((xn, row - 7))
-      dot((xn, row))
-    }
-    content((71, yr - 10.5), align(left)[Bus and reference dividers\ shared by the four channels], anchor: "north-west")
-
-    // Input filter capacitors across each pair.
-    for (p, n) in ((ye, yen), (ybp, ybn)) {
-      cap((xk, p), (xk, n), label: [10~nF], side: "w")
-      dot((xk, p))
-      dot((xk, n))
+    // A buffer from its + input at `p`, with its output joined back to its
+    // − input, ending at `xo`.
+    let follower(p, name) = {
+      let (x, y) = p
+      opamp((x, y), name: name)
+      wire((x + 14, y - 2.5), (xo, y - 2.5))
+      wire((xo, y - 2.5), (xo, y - 9), (x - 2, y - 9), (x - 2, y - 5), (x, y - 5))
+      dot((xo, y - 2.5))
     }
 
-    // -- Reference block ----------------------------------------------------
-    blk((30, -24), (56, -10), [Excitation ±2.048~V\ REF5020, OPA2189,\ 2 × BUF634A])
-    for (row, name) in ((-14, [EXC_P]), (-20, [EXC_N])) {
-      wire((56, row), (59, row))
-      content((59.5, row), name, anchor: "west")
-    }
+    // -- Excitation input: EXC+ divided by 25, then buffered ----------------
+    wire((xc, ye), (d0, ye))
+    res((d0, ye), (d1, ye), label: [240~kΩ])
+    wire((d1, ye), (xop, ye))
+    res((xp, ye), (xp, ye - 8), label: [10.0~kΩ], side: "w")
+    gnd((xp, ye - 8))
+    dot((xp, ye))
+    follower((xop, ye), [½ OPA2189])
+    wire((xo, y1), (xa, y1))
 
-    // -- Converter and isolation --------------------------------------------
-    cetz.draw.rect((xa, -15), (xa + 22, 56), stroke: _s, fill: white)
-    content((xa + 12, 29), [ADS131M08])
-    for (row, name) in ((ye, [AIN0P]), (yen, [AIN0N]), (ybp, [AIN1P]), (ybn, [AIN1N]), (yr, [REFIN])) {
-      content((xa + 1, row), name, anchor: "west")
+    // -- Return input: EXC− buffered through 10 kΩ, then divided by 2 -------
+    wire((xc, yb), (40, yb))
+    res((40, yb), (54, yb), label: [10~kΩ])
+    wire((54, yb), (xop, yb))
+    follower((xop, yb), [½ OPA2189])
+    wire((xo, y2), (e0, y2))
+    res((e0, y2), (e1, y2), label: [1.00~kΩ])
+    wire((e1, y2), (xa, y2))
+    res((xq, y2), (xq, y2 - 8), label: [1.00~kΩ], side: "e")
+    gnd((xq, y2 - 8))
+    dot((xq, y2))
+
+    // -- Bus input: the positive side of the bus divided by 4 ---------------
+    blk((30, -24), (56, -10), [Excitation ±2.048~V\ REF5020, OPA2189])
+    wire((56, y3), (e0, y3))
+    content((57.5, y3 + 0.4), [EXC_P], anchor: "south-west")
+    res((e0, y3), (e1, y3), label: [3.01~kΩ])
+    wire((e1, y3), (xa, y3))
+    res((xq, y3), (xq, y3 - 8), label: [1.00~kΩ], side: "e")
+    gnd((xq, y3 - 8))
+    dot((xq, y3))
+    wire((56, -20), (59, -20))
+    content((59.5, -20), [EXC_N], anchor: "west")
+
+    // -- Converter, its negative inputs on the channel common ---------------
+    cetz.draw.rect((xa, -26), (xa + 22, 60), stroke: _s, fill: white)
+    content((xa + 11, 56), [ADS127L14])
+    for (row, k) in ((y1, 1), (y2, 2), (y3, 3)) {
+      content((xa + 1, row), [AINP#k], anchor: "west")
+      content((xa + 1, row - 6), [AINN#k], anchor: "west")
+      wire((xa, row - 6), (xa - 7, row - 6))
+      gnd((xa - 7, row - 6), label: [COM])
     }
-    line((xa + 22, 21), (144, 21), stroke: _bus, mark: _arrow)
-    blk((144, 16), (154, 26), [Isolator])
-    line((154, 21), (159, 21), stroke: _bus, mark: _arrow)
-    content((159.8, 21), align(left)[ECU MCU\ board], anchor: "west")
+  }))
+}
+
+// -- BOARD ARCHITECTURE ------------------------------------------------------
+
+// The board's functional layout: one isolated channel, with three more
+// stacked behind it, its barrier, the stack side and the two connectors.
+// Heavy lines carry power, dashed lines digital data and thin lines analog
+// signals.
+#let board-arch() = {
+  let pw = (paint: ink.rule, thickness: rule.thick)
+  let both = (start: ">", end: ">", fill: ink.rule, length: 1.6mm, width: 1.2mm)
+  // Power, toward the load.
+  let power(..pts) = cetz.draw.line(..pts, stroke: pw, mark: _arrow)
+  // Digital data, one way or both.
+  let data(two: false, ..pts) = cetz.draw.line(
+    ..pts,
+    stroke: _bus,
+    mark: if two { both } else { _arrow },
+  )
+  // Analog signal, toward its destination.
+  let signal(..pts) = cetz.draw.line(..pts, stroke: _s, mark: _arrow)
+  // A connector: a tall block, its name running up it.
+  let conn(a, b, body) = {
+    cetz.draw.rect(a, b, stroke: _s, fill: white)
+    cetz.draw.content(_mid(a, b), body, angle: 90deg)
+  }
+
+  // The channel's outline, and the step between it and each channel stacked
+  // behind it.
+  let (c0, c1, step) = ((14, -1), (114, 80), 1.6)
+
+  set text(font: fonts.display, size: size.tiny, tracking: track.label)
+  _fit(cetz.canvas(length: 1mm, {
+    import cetz.draw: content, rect
+
+    // -- Channels -----------------------------------------------------------
+    for k in (3, 2, 1) {
+      let d = k * step
+      rect(
+        (c0.at(0) + d, c0.at(1) + d),
+        (c1.at(0) + d, c1.at(1) + d),
+        stroke: _zone,
+        fill: white,
+      )
+    }
+    rect(c0, c1, stroke: _zone, fill: white)
+    content(
+      (c0.at(0) + 1.5, c1.at(1) - 1.5),
+      text(fill: ink.mute, upper[General-purpose channel, isolated, ×4]),
+      anchor: "north-west",
+    )
+
+    conn((0, 22), (8, 62), [Sensor connector])
+
+    blk((20, 62), (44, 72), [Current source\ LT3092])
+    blk((52, 62), (76, 72), [Sensor supply\ 24~V])
+    blk((20, 28), (44, 56), [Protection,\ configuration\ switches])
+    blk((52, 42), (68, 54), [Buffers\ OPA2189])
+    blk((52, 29), (68, 36), [Code decoder])
+    blk((78, 26), (96, 56), [ADS127L14\ \ Signal,\ monitor])
+    blk((52, 6), (76, 18), [Excitation\ ±2.048~V])
+    blk((84, 0), (100, 9), [Rectifier,\ regulators])
+
+    // Sensor lines, sensor supply and excitation.
+    cetz.draw.line((8, 42), (20, 42), stroke: _s)
+    signal((32, 62), (32, 56))
+    _text((33, 59), [EXC+], anchor: "west")
+    signal((44, 48), (52, 48))
+    _text((48, 48.6), [SIG±], anchor: "south")
+    signal((68, 48), (78, 48))
+    wire((52, 14), (32, 14), (32, 28))
+    _text((42, 14.6), [Bus], anchor: "south")
+    wire((76, 14), (87, 14), (87, 26))
+    _text((88, 19), [Reference], anchor: "west")
+
+    // Configuration code.
+    data((78, 32.5), (68, 32.5))
+    _text((73, 33.1), [GPIO], anchor: "south")
+    data((52, 32.5), (44, 32.5))
+
+    // -- Barrier -------------------------------------------------------------
+    blk((106, 36), (122, 50), [Isolators])
+    blk((106, 0), (122, 9), [Transformer])
+    data((96, 43), (106, 43), two: true)
+    data((122, 43), (130, 43), two: true)
+
+    // -- Stack side ----------------------------------------------------------
+    domain((125, -1), (180, 76), [Stack side])
+    blk((130, 24), (152, 58), [FPGA\ LCMXO2-4000HC])
+    blk((130, 64), (149, 73), [Golden image\ flash])
+    blk((160, 60), (178, 70), [Reload\ timer])
+    blk((160, 48), (178, 56), [CS select])
+    blk((160, 25), (178, 44), [Bus buffer\ \ SPI, clock,\ start])
+    blk((128, 0), (142, 9), [SN6505B])
+    blk((146, 0), (160, 9), [Channel\ limit])
+    blk((164, 0), (178, 9), [Input\ limits])
+
+    data((139.5, 64), (139.5, 58), two: true)
+    data((160, 66), (151, 66), (151, 58))
+    data((169, 56), (169, 60))
+    data((169, 48), (169, 44))
+    data((152, 39), (160, 39), two: true)
+    data((135, 24), (135, 9))
+    _text((136, 16.5), [Sync], anchor: "west")
+
+    conn((184, -1), (192, 76), [ASRP-PCB-INTERCONNECT-2])
+    data((178, 39), (184, 39), two: true)
+    data((184, 52), (178, 52))
+    data((184, 29), (178, 29))
+    data((160, 29), (152, 29))
+
+    // -- Power ---------------------------------------------------------------
+    power((184, 4.5), (178, 4.5))
+    power((164, 4.5), (160, 4.5))
+    power((146, 4.5), (142, 4.5))
+    power((128, 4.5), (122, 4.5))
+    power((106, 4.5), (100, 4.5))
+    power((98, 9), (98, 67), (76, 67))
+    power((52, 67), (44, 67))
+    power((171, 9), (171, 20), (143, 20), (143, 24))
+    _text((157, 20.6), [3.3~V], anchor: "south")
+    _text((182.1, 5.1), [5~V], anchor: "south")
   }))
 }
