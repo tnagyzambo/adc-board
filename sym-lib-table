@@ -1,4 +1,4 @@
 (sym_lib_table
 	(version 7)
-	(lib (name "e003") (type "KiCad") (uri "${KIPRJMOD}/e003-adc-board.kicad_sym") (options "") (descr "e003 placeholders: parts with no plm record yet, and PWR_FLAG"))
+	(lib (name "e003") (type "KiCad") (uri "${KIPRJMOD}/e003-adc-board.kicad_sym") (options "") (descr "e003 board-specific symbols: power flags, local rails and the two connectors"))
 )

@@ -502,8 +502,8 @@
 
 // -- BOARD ARCHITECTURE ------------------------------------------------------
 
-// The board's functional layout: one isolated channel, with three more
-// stacked behind it, its barrier, the stack side and the two connectors.
+// The board's functional layout: one channel, with the second stacked behind
+// it, the FPGA and the two connectors, all on the stack's ground.
 // Heavy lines carry power, dashed lines digital data and thin lines analog
 // signals.
 #let board-arch() = {
@@ -527,14 +527,14 @@
 
   // The channel's outline, and the step between it and each channel stacked
   // behind it.
-  let (c0, c1, step) = ((14, -1), (114, 80), 1.6)
+  let (c0, c1, step) = ((14, 14), (96, 68), 1.6)
 
   set text(font: fonts.display, size: size.tiny, tracking: track.label)
   _fit(cetz.canvas(length: 1mm, {
     import cetz.draw: content, rect
 
-    // -- Channels -----------------------------------------------------------
-    for k in (3, 2, 1) {
+    // -- The channels -------------------------------------------------------
+    for k in (1,) {
       let d = k * step
       rect(
         (c0.at(0) + d, c0.at(1) + d),
@@ -546,79 +546,70 @@
     rect(c0, c1, stroke: _zone, fill: white)
     content(
       (c0.at(0) + 1.5, c1.at(1) - 1.5),
-      text(fill: ink.mute, upper[General-purpose channel, isolated, ×4]),
+      text(fill: ink.mute, upper[General-purpose channel ×2]),
       anchor: "north-west",
     )
 
-    conn((0, 22), (8, 62), [Sensor connector])
+    conn((0, 30), (8, 70), [Sensor connector])
 
-    blk((20, 62), (44, 72), [Current source\ LT3092])
-    blk((52, 62), (76, 72), [Sensor supply\ 24~V])
-    blk((20, 28), (44, 56), [Protection,\ configuration\ switches])
-    blk((52, 42), (68, 54), [Buffers\ OPA2189])
-    blk((52, 29), (68, 36), [Code decoder])
-    blk((78, 26), (96, 56), [ADS127L14\ \ Signal,\ monitor])
-    blk((52, 6), (76, 18), [Excitation\ ±2.048~V])
-    blk((84, 0), (100, 9), [Rectifier,\ regulators])
+    blk((20, 36), (44, 62), [Protection,\ configuration\ switches])
+    blk((20, 17), (39, 27), [Current source\ LT3092])
+    blk((54, 46), (68, 58), [Buffers\ OPA2189])
+    blk((76, 32), (94, 60), [ADS127L14\ \ Signal,\ monitor])
+    blk((54, 17), (70, 29), [Reference,\ excitation\ ±2.048~V])
+    blk((76, 0), (94, 9), [Inverter,\ regulators])
 
     // Sensor lines, sensor supply and excitation.
-    cetz.draw.line((8, 42), (20, 42), stroke: _s)
-    signal((32, 62), (32, 56))
-    _text((33, 59), [EXC+], anchor: "west")
-    signal((44, 48), (52, 48))
-    _text((48, 48.6), [SIG±], anchor: "south")
-    signal((68, 48), (78, 48))
-    wire((52, 14), (32, 14), (32, 28))
-    _text((42, 14.6), [Bus], anchor: "south")
-    wire((76, 14), (87, 14), (87, 26))
-    _text((88, 19), [Reference], anchor: "west")
+    cetz.draw.line((8, 49), (20, 49), stroke: _s)
+    signal((29.5, 27), (29.5, 36))
+    _text((30.5, 31.5), [EXC+], anchor: "west")
+    signal((44, 52), (54, 52))
+    _text((48.5, 52.8), [SIG±], anchor: "south")
+    signal((68, 52), (76, 52))
+    wire((54, 23), (41.5, 23), (41.5, 36))
+    _text((47.75, 23.6), [Bus], anchor: "south")
+    wire((70, 23), (85, 23), (85, 32))
+    _text((77.5, 23.6), [Reference], anchor: "south")
 
-    // Configuration code.
-    data((78, 32.5), (68, 32.5))
-    _text((73, 33.1), [GPIO], anchor: "south")
-    data((52, 32.5), (44, 32.5))
+    // Switch enables, straight from the converter's GPIO.
+    data((76, 40), (44, 40))
+    _text((60, 40.6), [GPIO], anchor: "south")
 
-    // -- Barrier -------------------------------------------------------------
-    blk((106, 36), (122, 50), [Isolators])
-    blk((106, 0), (122, 9), [Transformer])
-    data((96, 43), (106, 43), two: true)
-    data((122, 43), (130, 43), two: true)
+    // -- The converters' lines, straight to the FPGA's 1.8 V bank ------------
+    data((94, 47), (120, 47), two: true)
+    _text((108.8, 47.6), [Clock, SPI, data], anchor: "south")
 
-    // -- Stack side ----------------------------------------------------------
-    domain((125, -1), (180, 76), [Stack side])
-    blk((130, 24), (152, 58), [FPGA\ LCMXO2-4000HC])
-    blk((130, 64), (149, 73), [Golden image\ flash])
-    blk((160, 60), (178, 70), [Reload\ timer])
-    blk((160, 48), (178, 56), [CS select])
-    blk((160, 25), (178, 44), [Bus buffer\ \ SPI, clock,\ start])
-    blk((128, 0), (142, 9), [SN6505B])
-    blk((146, 0), (160, 9), [Channel\ limit])
-    blk((164, 0), (178, 9), [Input\ limits])
+    // -- FPGA and the stack interface -----------------------------------------
+    blk((120, 24), (142, 58), [FPGA\ LCMXO2-4000HC])
+    blk((120, 64), (139, 73), [Golden image\ flash])
+    blk((150, 48), (168, 56), [CS select])
+    blk((150, 25), (168, 44), [Bus buffer\ \ SPI, clock,\ start])
+    blk((154, 0), (168, 9), [Channel\ limit])
+    blk((154, 12.5), (168, 21.5), [3.3~V\ limit])
+    blk((154, -13), (168, -4), [24~V fuse,\ suppressor])
 
-    data((139.5, 64), (139.5, 58), two: true)
-    data((160, 66), (151, 66), (151, 58))
-    data((169, 56), (169, 60))
-    data((169, 48), (169, 44))
-    data((152, 39), (160, 39), two: true)
-    data((135, 24), (135, 9))
-    _text((136, 16.5), [Sync], anchor: "west")
+    data((129.5, 64), (129.5, 58), two: true)
+    data((159, 48), (159, 44))
+    data((142, 39), (150, 39), two: true)
 
-    conn((184, -1), (192, 76), [ASRP-PCB-INTERCONNECT-2])
-    data((178, 39), (184, 39), two: true)
-    data((184, 52), (178, 52))
-    data((184, 29), (178, 29))
-    data((160, 29), (152, 29))
+    conn((174, -14), (182, 76), [ASRP-PCB-INTERCONNECT-2])
+    data((168, 39), (174, 39), two: true)
+    data((174, 52), (168, 52))
+    data((174, 29), (168, 29))
+    data((150, 29), (142, 29))
 
     // -- Power ---------------------------------------------------------------
-    power((184, 4.5), (178, 4.5))
-    power((164, 4.5), (160, 4.5))
-    power((146, 4.5), (142, 4.5))
-    power((128, 4.5), (122, 4.5))
-    power((106, 4.5), (100, 4.5))
-    power((98, 9), (98, 67), (76, 67))
-    power((52, 67), (44, 67))
-    power((171, 9), (171, 20), (143, 20), (143, 24))
-    _text((157, 20.6), [3.3~V], anchor: "south")
-    _text((182.1, 5.1), [5~V], anchor: "south")
+    power((174, 4.5), (168, 4.5))
+    power((154, 4.5), (94, 4.5))
+    // The stack's 24 V, through the board's fuse, up into every channel's
+    // current source.
+    power((174, -8.5), (168, -8.5))
+    power((154, -8.5), (29.5, -8.5), (29.5, 17))
+    power((85, 9), (85, 15.5))
+    _text((86, 12), [Rails], anchor: "west")
+    // The stack's 3.3 V, through its own limit, to the FPGA and the stack side;
+    // the 5 V feeds only the channels.
+    power((174, 17), (168, 17))
+    power((154, 17), (133, 17), (133, 24))
   }))
 }
