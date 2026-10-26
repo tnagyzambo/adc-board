@@ -2593,6 +2593,17 @@
 			(embedded_fonts no)
 		)
 	)
+	(text "S11"
+		(exclude_from_sim no)
+		(at 84.52 80.9 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "cd9e6b97-1eb5-42ac-8620-1ead0d5cf60d")
+	)
 	(text "SWITCHES"
 		(exclude_from_sim no)
 		(at 67.056 159.766 0)
@@ -6988,10 +6999,10 @@
 		(instances
 			(project "e003-adc-board"
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/4f39e4cc-6e79-45e1-ae05-5e98e639462b"
-					(page "4")
+					(page "3")
 				)
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/401b15e5-f387-464d-bc1c-f41c28e6c880"
-					(page "9")
+					(page "7")
 				)
 			)
 		)
@@ -7107,10 +7118,10 @@
 		(instances
 			(project "e003-adc-board"
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/4f39e4cc-6e79-45e1-ae05-5e98e639462b"
-					(page "7")
+					(page "5")
 				)
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/401b15e5-f387-464d-bc1c-f41c28e6c880"
-					(page "12")
+					(page "9")
 				)
 			)
 		)
@@ -7296,10 +7307,10 @@
 		(instances
 			(project "e003-adc-board"
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/4f39e4cc-6e79-45e1-ae05-5e98e639462b"
-					(page "5")
+					(page "4")
 				)
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/401b15e5-f387-464d-bc1c-f41c28e6c880"
-					(page "10")
+					(page "8")
 				)
 			)
 		)

@@ -4798,6 +4798,24 @@
 				)
 			)
 			(symbol "REF5020IDGKR_1_1"
+				(pin no_connect line
+					(at 0 -17.78 0)
+					(length 5.08)
+					(name "DNC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
 				(pin power_in line
 					(at 0 0 0)
 					(length 5.08)
@@ -4889,7 +4907,25 @@
 					)
 				)
 				(pin no_connect line
-					(at 0 -17.78 0)
+					(at 0 -12.7 0)
+					(length 5.08)
+					(name "NC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin no_connect line
+					(at 0 -15.24 0)
 					(length 5.08)
 					(name "DNC"
 						(effects
@@ -4898,7 +4934,7 @@
 							)
 						)
 					)
-					(number "[1,7,8]"
+					(number "8"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -6434,6 +6470,28 @@
 		)
 		(uuid "44b5507f-e80a-57c2-b552-0bcb1ddeb4cc")
 	)
+	(text "S1"
+		(exclude_from_sim no)
+		(at 104.1 52.96 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4d96146b-76d6-4520-884a-0a16d702a875")
+	)
+	(text "S2"
+		(exclude_from_sim no)
+		(at 171.41 52.96 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "6108d845-bdfd-4c2a-bf0e-4043d56e5c91")
+	)
 	(text "BASE 301R: 1.0 mA (PIEZORESISTIVE)"
 		(exclude_from_sim no)
 		(at 66.548 85.852 0)
@@ -6484,12 +6542,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "1c5f8333-d42e-4cb8-ae72-4de99ca6eae8")
-	)
-	(junction
-		(at 72.39 153.67)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "38e9d870-1176-43ad-92e5-637c528354a6")
 	)
 	(junction
 		(at 133.35 54.61)
@@ -6556,6 +6608,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f6894cbe-668e-466d-9154-2ee3057d0bf3")
+	)
+	(junction
+		(at 72.39 153.67)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f9373671-a8f0-4ed4-9f17-65243770c573")
 	)
 	(no_connect
 		(at 38.1 46.99)
@@ -6921,7 +6979,7 @@
 	)
 	(wire
 		(pts
-			(xy 72.39 161.29) (xy 72.39 153.67)
+			(xy 72.39 157.48) (xy 72.39 153.67)
 		)
 		(stroke
 			(width 0)
@@ -10585,7 +10643,7 @@
 	)
 	(symbol
 		(lib_id "plm:GRM21BZ71E106KE15K")
-		(at 72.39 161.29 0)
+		(at 72.39 157.48 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10595,7 +10653,7 @@
 		(dnp no)
 		(uuid "841303ca-0cd1-5674-8d8f-fd84e24c001e")
 		(property "Reference" "C14"
-			(at 73.914 165.354 0)
+			(at 74.93 161.544 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -10606,7 +10664,7 @@
 			)
 		)
 		(property "Value" "10uF"
-			(at 73.914 166.116 0)
+			(at 74.93 162.306 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -10617,7 +10675,7 @@
 			)
 		)
 		(property "Footprint" "capacitor:MURATA-0805"
-			(at 72.39 161.29 0)
+			(at 72.39 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10629,7 +10687,7 @@
 			)
 		)
 		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm21bz71e106ke15.pdf"
-			(at 72.39 161.29 0)
+			(at 72.39 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10641,7 +10699,7 @@
 			)
 		)
 		(property "Description" "Capacitor, MLCC"
-			(at 72.39 161.29 0)
+			(at 72.39 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10653,7 +10711,7 @@
 			)
 		)
 		(property "Manufacturer" "Murata"
-			(at 72.39 161.29 0)
+			(at 72.39 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10665,7 +10723,7 @@
 			)
 		)
 		(property "Dielectric" "X7R"
-			(at 72.39 161.29 0)
+			(at 72.39 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10677,7 +10735,7 @@
 			)
 		)
 		(property "DigiKey_Part" "490-GRM21BZ71E106KE15KCT-ND"
-			(at 72.39 161.29 0)
+			(at 72.39 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10689,7 +10747,7 @@
 			)
 		)
 		(property "IPN" "CE-CAP-00019"
-			(at 72.39 161.29 0)
+			(at 72.39 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10700,7 +10758,7 @@
 			)
 		)
 		(property "MPN" "GRM21BZ71E106KE15K"
-			(at 72.39 161.29 0)
+			(at 72.39 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10712,7 +10770,7 @@
 			)
 		)
 		(property "Mouser_Part" "81-GRM21BZ71E106KE5K"
-			(at 72.39 161.29 0)
+			(at 72.39 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10724,7 +10782,7 @@
 			)
 		)
 		(property "Package" "0805"
-			(at 72.39 161.29 0)
+			(at 72.39 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10736,7 +10794,7 @@
 			)
 		)
 		(property "Tolerance" "10%"
-			(at 72.39 161.29 0)
+			(at 72.39 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10748,7 +10806,7 @@
 			)
 		)
 		(property "Voltage_Rating" "25 VDC"
-			(at 72.39 161.29 0)
+			(at 72.39 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10760,7 +10818,7 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 72.39 161.29 0)
+			(at 72.39 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11909,7 +11967,7 @@
 		)
 	)
 	(symbol
-		(lib_id "plm:GRM155R71H104KE14J")
+		(lib_id "plm:GRM155Z71A105KE01D")
 		(at 199.39 127 0)
 		(unit 1)
 		(body_style 1)
@@ -11930,7 +11988,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "0.1uF"
+		(property "Value" "1uF"
 			(at 200.914 131.826 0)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11953,7 +12011,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155r71h104ke14.pdf"
+		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/murata-mlcc-cat2021.pdf"
 			(at 199.39 127 0)
 			(hide yes)
 			(show_name no)
@@ -12001,7 +12059,7 @@
 				(justify left)
 			)
 		)
-		(property "DigiKey_Part" "490-13342-2-ND"
+		(property "DigiKey_Part" "490-GRM155Z71A105KE01DCT-ND"
 			(at 199.39 127 0)
 			(hide yes)
 			(show_name no)
@@ -12013,7 +12071,7 @@
 				(justify left)
 			)
 		)
-		(property "IPN" "CE-CAP-00024"
+		(property "IPN" "CE-CAP-00016"
 			(at 199.39 127 0)
 			(hide yes)
 			(show_name no)
@@ -12024,7 +12082,7 @@
 				)
 			)
 		)
-		(property "MPN" "GRM155R71H104KE14J"
+		(property "MPN" "GRM155Z71A105KE01D"
 			(at 199.39 127 0)
 			(hide yes)
 			(show_name no)
@@ -12036,7 +12094,7 @@
 				(justify left)
 			)
 		)
-		(property "Mouser_Part" "81-GRM155R71H104KE4J"
+		(property "Mouser_Part" "81-GRM155Z71A105KE1D"
 			(at 199.39 127 0)
 			(hide yes)
 			(show_name no)
@@ -12072,7 +12130,7 @@
 				(justify left)
 			)
 		)
-		(property "Voltage_Rating" "50 VDC"
+		(property "Voltage_Rating" "10 VDC"
 			(at 199.39 127 0)
 			(hide yes)
 			(show_name no)
@@ -14839,8 +14897,14 @@
 		(pin "6"
 			(uuid "46c1f999-3892-4f6b-bcd0-246630e82fd4")
 		)
-		(pin "[1,7,8]"
+		(pin "1"
 			(uuid "802c7d90-6129-4d38-ad96-10c183659cca")
+		)
+		(pin "7"
+			(uuid "ebc1f96c-aac0-4e8e-87a1-fb3ab8e5b265")
+		)
+		(pin "8"
+			(uuid "7ce903c6-e713-40e2-813a-4434b01ff911")
 		)
 		(instances
 			(project "e003-adc-board"
@@ -15064,7 +15128,7 @@
 	)
 	(symbol
 		(lib_id "general:GND")
-		(at 72.39 170.18 0)
+		(at 72.39 166.37 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -15074,7 +15138,7 @@
 		(dnp no)
 		(uuid "f50d438f-dded-56b3-80d8-43dbd30a2d07")
 		(property "Reference" "#PWR086"
-			(at 72.39 173.99 0)
+			(at 72.39 170.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15085,7 +15149,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 72.39 175.514 0)
+			(at 72.39 171.704 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -15095,7 +15159,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 72.39 170.18 0)
+			(at 72.39 166.37 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15106,7 +15170,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 72.39 170.18 0)
+			(at 72.39 166.37 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15117,7 +15181,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 72.39 170.18 0)
+			(at 72.39 166.37 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)

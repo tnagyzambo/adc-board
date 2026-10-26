@@ -1,16 +1,15 @@
 # e003-adc-board
 
-Analog data acquisition board for the ASRP ECU stack. Four general-purpose
-channels, sampled simultaneously, configured by firmware for load cells,
-piezoresistive pressure transducers, 4-20 mA and voltage transmitters, and
-isolated from the stack. The thermocouple channels, once a second bank of this
-board, are now `e004-tc-board`. Boards stack to add channels on
-ASRP-PCB-INTERCONNECT-2, defined in the design summary, which brings them power
-from `e001-power-board` through the ECU MCU board and carries their data to it.
-The ECU MCU board logs the data. 60 x 60 mm.
+Analog data acquisition board for the ASRP ECU stack. Two general-purpose
+channels, sampled simultaneously, configured through an onboard FPGA for load
+cells, piezoresistive pressure transducers, 4-20 mA and voltage transmitters,
+and referenced to the stack's ground. The thermocouple channels are
+`e004-tc-board`. Boards stack to add channels on ASRP-PCB-INTERCONNECT-2,
+defined in the design summary, which brings them power from `e001-power-board`
+through the ECU MCU board and carries their data to it. The ECU MCU board logs
+the data. 60 x 60 mm.
 
-Not yet designed: the design summary is being written first, and the KiCad
-project will follow it.
+The schematic is drawn; the board has not yet been laid out.
 
 ## Documentation
 

@@ -1833,6 +1833,320 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "plm:CRCW0402100KFKEDC"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "R"
+				(at 1.016 -4.064 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Value" "100k"
+				(at 1.016 -4.572 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" "resistor:VISHAY-0402"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "${ECAD_LIB}/parts/resistors/datasheets/crcwce3.pdf"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Resistor, Thick Film"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "Vishay"
+				(at -0.762 8.508 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "DigiKey_Part" "541-3960-1-ND"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "IPN" "CE-RES-00002"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MPN" "CRCW0402100KFKEDC"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Mouser_Part" "71-CRCW0402100KFKEDC"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Package" "0402"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Power" "0.063W"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Tolerance" "1%"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "plm_unused_last_field" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "resistor:VISHAY-0402"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "CRCW0402100KFKEDC_1_0"
+				(polyline
+					(pts
+						(xy -0.5 -3.306) (xy 0.5 -3.806)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.5 -4.314) (xy 0.5 -3.814)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.5 -4.322) (xy 0.5 -4.822)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.5 -5.33) (xy 0.5 -4.83)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -3.048) (xy -0.508 -3.302)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -3.048) (xy 0 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -5.588) (xy -0.508 -5.334)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -6.35) (xy 0 -5.632)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at 0 -8.89 90)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 0 270)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "plm:CRCW040210K0FKEDC"
 			(pin_numbers
 				(hide yes)
@@ -3172,6 +3486,562 @@
 				)
 			)
 			(symbol "GRM155Z71A105KE01D_1_0"
+				(polyline
+					(pts
+						(xy 0 -3.81) (xy 0 -2.4766)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -6.35) (xy 0 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.905 -3.81) (xy -1.905 -3.81)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.905 -5.08) (xy -1.905 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at 0 -8.89 90)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 0 270)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "plm:GRM155Z71A225KE01J"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "C"
+				(at 2.54 -4.064 0)
+				(show_name no)
+				(do_not_autoplace yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Value" "2.2uF"
+				(at 2.54 -4.826 0)
+				(show_name no)
+				(do_not_autoplace yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" "capacitor:MURATA-0402"
+				(at 2.54 -4.318 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155z71a225ke01.pdf"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Capacitor, MLCC"
+				(at 2.54 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Manufacturer" "Murata"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Dielectric" "X7R"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "DigiKey_Part" "490-GRM155Z71A225KE01JCT-ND"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "IPN" "CE-CAP-00017"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MPN" "GRM155Z71A225KE01J"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Mouser_Part" "81-GRM155Z71A225KE1J"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Package" "0402"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Tolerance" "10%"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Voltage_Rating" "10 VDC"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "plm_unused_last_field" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "capacitor:MURATA-0402"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "GRM155Z71A225KE01J_1_0"
+				(polyline
+					(pts
+						(xy 0 -3.81) (xy 0 -2.4766)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -6.35) (xy 0 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.905 -3.81) (xy -1.905 -3.81)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.905 -5.08) (xy -1.905 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at 0 -8.89 90)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 0 270)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "plm:GRM21BZ71E106KE15K"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "C"
+				(at 2.54 -4.064 0)
+				(show_name no)
+				(do_not_autoplace yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Value" "10uF"
+				(at 2.54 -4.826 0)
+				(show_name no)
+				(do_not_autoplace yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" "capacitor:MURATA-0805"
+				(at 2.54 -4.318 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm21bz71e106ke15.pdf"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Capacitor, MLCC"
+				(at 2.54 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Manufacturer" "Murata"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Dielectric" "X7R"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "DigiKey_Part" "490-GRM21BZ71E106KE15KCT-ND"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "IPN" "CE-CAP-00019"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MPN" "GRM21BZ71E106KE15K"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Mouser_Part" "81-GRM21BZ71E106KE5K"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Package" "0805"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Tolerance" "10%"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Voltage_Rating" "25 VDC"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "plm_unused_last_field" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "capacitor:MURATA-0805"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "GRM21BZ71E106KE15K_1_0"
 				(polyline
 					(pts
 						(xy 0 -3.81) (xy 0 -2.4766)
@@ -6063,10 +6933,10 @@
 		(uuid "4e333211-a2ea-492f-89c2-ba66f9d04c8b")
 	)
 	(junction
-		(at 229.87 92.71)
+		(at 237.49 82.55)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "56f63fe2-6cda-40ad-8a75-53a1eb59b47a")
+		(uuid "4ee4ba57-3db1-499a-b2b9-bbd8c0b95996")
 	)
 	(junction
 		(at 62.23 66.04)
@@ -6111,6 +6981,12 @@
 		(uuid "87c95dbc-1448-4f5b-a3c5-2df0af9a3adc")
 	)
 	(junction
+		(at 229.87 92.71)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "904b48bc-55af-41c8-88de-84e0866d62f6")
+	)
+	(junction
 		(at 43.18 90.17)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -6133,6 +7009,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "cd8c8b5c-7500-46a4-b7e2-16c7e87b6d5c")
+	)
+	(junction
+		(at 246.38 73.66)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d4bdd3f8-3eb6-4630-9a76-012a645958b6")
 	)
 	(junction
 		(at 81.28 43.18)
@@ -6275,6 +7157,16 @@
 	)
 	(wire
 		(pts
+			(xy 218.44 90.17) (xy 252.73 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "07507f24-b395-424a-a78a-ec240f383c16")
+	)
+	(wire
+		(pts
 			(xy 140.97 58.42) (xy 140.97 151.13)
 		)
 		(stroke
@@ -6315,6 +7207,16 @@
 	)
 	(wire
 		(pts
+			(xy 246.38 106.68) (xy 246.38 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0d45b6cb-6ad5-485e-b404-996f7e06e384")
+	)
+	(wire
+		(pts
 			(xy 104.14 101.6) (xy 133.35 101.6)
 		)
 		(stroke
@@ -6332,6 +7234,16 @@
 			(type default)
 		)
 		(uuid "10423c6a-d027-449b-a41f-1af85a175c98")
+	)
+	(wire
+		(pts
+			(xy 237.49 82.55) (xy 252.73 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "15f7a463-0ace-4a66-ae6d-8e4b7d3e06e3")
 	)
 	(bus
 		(pts
@@ -6445,6 +7357,16 @@
 	)
 	(wire
 		(pts
+			(xy 218.44 76.2) (xy 252.73 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2dc9da5d-0c0b-4e50-90cd-fa93d11619c2")
+	)
+	(wire
+		(pts
 			(xy 170.18 72.39) (xy 163.83 72.39)
 		)
 		(stroke
@@ -6452,6 +7374,16 @@
 			(type default)
 		)
 		(uuid "3740f962-d735-5f52-9278-5cc070ff4511")
+	)
+	(wire
+		(pts
+			(xy 218.44 87.63) (xy 252.73 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "386f29d0-b407-4ee2-bce7-7ffe575baeed")
 	)
 	(wire
 		(pts
@@ -6475,16 +7407,6 @@
 	)
 	(wire
 		(pts
-			(xy 218.44 76.2) (xy 246.38 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "40f5aa2e-b71b-5db1-b007-dfc05dbb3121")
-	)
-	(wire
-		(pts
 			(xy 71.12 71.12) (xy 72.39 71.12)
 		)
 		(stroke
@@ -6502,6 +7424,16 @@
 			(type default)
 		)
 		(uuid "421e0aa3-26e1-5ae0-8c46-3a094f62c046")
+	)
+	(wire
+		(pts
+			(xy 273.05 142.24) (xy 273.05 144.78)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "445a8ffd-ee20-46ef-b087-79611c66b98d")
 	)
 	(wire
 		(pts
@@ -6595,13 +7527,23 @@
 	)
 	(wire
 		(pts
-			(xy 218.44 82.55) (xy 246.38 82.55)
+			(xy 218.44 82.55) (xy 237.49 82.55)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "54ed4097-8ca2-554c-a57e-8a7eddb32dce")
+	)
+	(wire
+		(pts
+			(xy 237.49 104.14) (xy 237.49 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5958a067-cc5b-4e7b-aae5-1e6168a32650")
 	)
 	(wire
 		(pts
@@ -6775,6 +7717,16 @@
 	)
 	(wire
 		(pts
+			(xy 237.49 82.55) (xy 237.49 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7a1d6ef9-61bb-482b-9bfd-2a3461013ed6")
+	)
+	(wire
+		(pts
 			(xy 223.52 41.91) (xy 223.52 45.72)
 		)
 		(stroke
@@ -6855,16 +7807,6 @@
 	)
 	(wire
 		(pts
-			(xy 229.87 92.71) (xy 246.38 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "915bcfaf-b024-4204-a39f-8953352e0325")
-	)
-	(wire
-		(pts
 			(xy 123.19 43.18) (xy 123.19 36.83)
 		)
 		(stroke
@@ -6935,16 +7877,6 @@
 	)
 	(wire
 		(pts
-			(xy 218.44 90.17) (xy 246.38 90.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9defe5b3-e7df-5559-89de-16e1d69f8cf5")
-	)
-	(wire
-		(pts
 			(xy 43.18 160.02) (xy 53.34 160.02)
 		)
 		(stroke
@@ -6995,13 +7927,23 @@
 	)
 	(wire
 		(pts
-			(xy 262.89 144.78) (xy 262.89 142.24)
+			(xy 261.62 144.78) (xy 261.62 142.24)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "a505f693-34ee-5b4a-ac6f-cc990b64685b")
+	)
+	(wire
+		(pts
+			(xy 229.87 92.71) (xy 252.73 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a5315c04-6440-4034-b071-d6edda33a527")
 	)
 	(wire
 		(pts
@@ -7125,6 +8067,16 @@
 	)
 	(wire
 		(pts
+			(xy 246.38 73.66) (xy 246.38 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bb8296b6-da5b-4285-8689-1b0033cdddf6")
+	)
+	(wire
+		(pts
 			(xy 58.42 189.23) (xy 83.82 189.23)
 		)
 		(stroke
@@ -7215,6 +8167,16 @@
 	)
 	(wire
 		(pts
+			(xy 218.44 73.66) (xy 246.38 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d20a7fd2-2e20-4de6-b22e-018e475c6fc1")
+	)
+	(wire
+		(pts
 			(xy 218.44 34.29) (xy 260.35 34.29)
 		)
 		(stroke
@@ -7272,16 +8234,6 @@
 			(type default)
 		)
 		(uuid "d74857dd-076b-5d9a-b51b-8f7e698ebd62")
-	)
-	(wire
-		(pts
-			(xy 218.44 87.63) (xy 246.38 87.63)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d9eb2fa3-38de-5192-95b4-3d1fa13a5023")
 	)
 	(wire
 		(pts
@@ -7425,13 +8377,13 @@
 	)
 	(wire
 		(pts
-			(xy 218.44 73.66) (xy 246.38 73.66)
+			(xy 246.38 73.66) (xy 252.73 73.66)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "facb6df3-ed5b-5952-8fed-7c4025567c39")
+		(uuid "f99a1230-61be-4fba-a284-7e1a1ff2a10c")
 	)
 	(wire
 		(pts
@@ -7503,16 +8455,6 @@
 		)
 		(uuid "1d7e363c-795b-5a43-8c51-c41256f021cd")
 	)
-	(label "AINN1"
-		(at 110.49 71.12 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "29643dc8-5789-4594-80cd-54e224acb496")
-	)
 	(label "CAPA"
 		(at 250.19 142.24 90)
 		(effects
@@ -7532,6 +8474,16 @@
 			(justify right bottom)
 		)
 		(uuid "2fa77973-7408-52ed-a9c3-787b2f70a1c1")
+	)
+	(label "REFN"
+		(at 273.05 142.24 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "3fb893b2-f9be-4fe4-b2b8-f51c5029ee89")
 	)
 	(label "ADC.CS"
 		(at 247.65 48.26 0)
@@ -7663,16 +8615,6 @@
 		)
 		(uuid "b2007830-5de9-4caf-ab75-9f6e34e1faa0")
 	)
-	(label "AINN2"
-		(at 110.49 101.6 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "c1deffd5-232f-4aea-a672-a3ebf890b718")
-	)
 	(label "TX_EN"
 		(at 43.18 179.07 0)
 		(effects
@@ -7704,7 +8646,7 @@
 		(uuid "e099b0ea-5118-5a9b-aca8-b7e6ca55f57d")
 	)
 	(label "CAPD"
-		(at 262.89 142.24 90)
+		(at 261.62 142.24 90)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7712,16 +8654,6 @@
 			(justify left bottom)
 		)
 		(uuid "e58c343b-1ad4-5811-b8a5-0ee2f9f282d5")
-	)
-	(label "AINN3"
-		(at 110.49 125.73 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "f99250a5-54ec-43fd-87c1-b54c3b59f3b7")
 	)
 	(label "AINN0"
 		(at 110.49 43.18 0)
@@ -7768,7 +8700,7 @@
 	)
 	(hierarchical_label "LC_EN"
 		(shape output)
-		(at 246.38 82.55 0)
+		(at 252.73 82.55 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7779,7 +8711,7 @@
 	)
 	(hierarchical_label "S9_EN"
 		(shape output)
-		(at 246.38 90.17 0)
+		(at 252.73 90.17 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7834,7 +8766,7 @@
 	)
 	(hierarchical_label "S8_EN"
 		(shape output)
-		(at 246.38 87.63 0)
+		(at 252.73 87.63 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7845,7 +8777,7 @@
 	)
 	(hierarchical_label "TX_EN"
 		(shape output)
-		(at 246.38 73.66 0)
+		(at 252.73 73.66 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7856,7 +8788,7 @@
 	)
 	(hierarchical_label "CAL_EN"
 		(shape output)
-		(at 246.38 76.2 0)
+		(at 252.73 76.2 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7878,7 +8810,7 @@
 	)
 	(hierarchical_label "SHLD_EN"
 		(shape output)
-		(at 246.38 92.71 0)
+		(at 252.73 92.71 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7969,7 +8901,7 @@
 		)
 	)
 	(symbol
-		(lib_id "plm:GRM155Z71A105KE01D")
+		(lib_id "plm:GRM155Z71A225KE01J")
 		(at 186.69 144.78 0)
 		(unit 1)
 		(body_style 1)
@@ -7990,7 +8922,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1uF"
+		(property "Value" "2.2uF"
 			(at 188.214 149.606 0)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8013,7 +8945,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/murata-mlcc-cat2021.pdf"
+		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155z71a225ke01.pdf"
 			(at 186.69 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -8061,7 +8993,7 @@
 				(justify left)
 			)
 		)
-		(property "DigiKey_Part" "490-GRM155Z71A105KE01DCT-ND"
+		(property "DigiKey_Part" "490-GRM155Z71A225KE01JCT-ND"
 			(at 186.69 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -8073,7 +9005,7 @@
 				(justify left)
 			)
 		)
-		(property "IPN" "CE-CAP-00016"
+		(property "IPN" "CE-CAP-00017"
 			(at 186.69 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -8084,7 +9016,7 @@
 				)
 			)
 		)
-		(property "MPN" "GRM155Z71A105KE01D"
+		(property "MPN" "GRM155Z71A225KE01J"
 			(at 186.69 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -8096,7 +9028,7 @@
 				(justify left)
 			)
 		)
-		(property "Mouser_Part" "81-GRM155Z71A105KE1D"
+		(property "Mouser_Part" "81-GRM155Z71A225KE1J"
 			(at 186.69 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -8982,6 +9914,378 @@
 				)
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/4f39e4cc-6e79-45e1-ae05-5e98e639462b/fa933c75-70aa-5432-ba1e-30bfcc445b30"
 					(reference "R12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "plm:CRCW0402100KFKEDC")
+		(at 237.49 95.25 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0e797ac4-26f7-4df0-925d-d67185739142")
+		(property "Reference" "R234"
+			(at 238.76 98.4249 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100k"
+			(at 238.76 100.9649 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "resistor:VISHAY-0402"
+			(at 237.49 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "${ECAD_LIB}/parts/resistors/datasheets/crcwce3.pdf"
+			(at 237.49 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor, Thick Film"
+			(at 237.49 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Vishay"
+			(at 236.728 86.742 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "DigiKey_Part" "541-3960-1-ND"
+			(at 237.49 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "IPN" "CE-RES-00002"
+			(at 237.49 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CRCW0402100KFKEDC"
+			(at 237.49 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_Part" "71-CRCW0402100KFKEDC"
+			(at 237.49 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" "0402"
+			(at 237.49 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Power" "0.063W"
+			(at 237.49 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Tolerance" "1%"
+			(at 237.49 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "plm_unused_last_field" ""
+			(at 237.49 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "08be943d-041f-4bdb-aebb-2961b262c42b")
+		)
+		(pin "1"
+			(uuid "b9245355-d545-4f0b-af90-f2f0abc204b8")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/401b15e5-f387-464d-bc1c-f41c28e6c880/fa933c75-70aa-5432-ba1e-30bfcc445b30"
+					(reference "R235")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/4f39e4cc-6e79-45e1-ae05-5e98e639462b/fa933c75-70aa-5432-ba1e-30bfcc445b30"
+					(reference "R234")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "plm:CRCW0402100KFKEDC")
+		(at 246.38 95.25 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "116bb635-b25c-4781-8363-e2b2a328c1b4")
+		(property "Reference" "R236"
+			(at 247.65 98.4249 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100k"
+			(at 247.65 100.9649 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "resistor:VISHAY-0402"
+			(at 246.38 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "${ECAD_LIB}/parts/resistors/datasheets/crcwce3.pdf"
+			(at 246.38 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor, Thick Film"
+			(at 246.38 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Vishay"
+			(at 245.618 86.742 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "DigiKey_Part" "541-3960-1-ND"
+			(at 246.38 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "IPN" "CE-RES-00002"
+			(at 246.38 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CRCW0402100KFKEDC"
+			(at 246.38 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_Part" "71-CRCW0402100KFKEDC"
+			(at 246.38 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" "0402"
+			(at 246.38 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Power" "0.063W"
+			(at 246.38 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Tolerance" "1%"
+			(at 246.38 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "plm_unused_last_field" ""
+			(at 246.38 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "6e28b4cf-873f-4afd-9124-f7ec04f4e673")
+		)
+		(pin "1"
+			(uuid "0a5d8a44-9d0c-43e7-832e-302f07ef48bf")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/401b15e5-f387-464d-bc1c-f41c28e6c880/fa933c75-70aa-5432-ba1e-30bfcc445b30"
+					(reference "R237")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/4f39e4cc-6e79-45e1-ae05-5e98e639462b/fa933c75-70aa-5432-ba1e-30bfcc445b30"
+					(reference "R236")
 					(unit 1)
 				)
 			)
@@ -9897,6 +11201,87 @@
 				)
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/4f39e4cc-6e79-45e1-ae05-5e98e639462b/fa933c75-70aa-5432-ba1e-30bfcc445b30"
 					(reference "R42")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "general:VCC")
+		(at 273.05 153.67 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "29b416d9-6739-465c-be85-67285bd427fa")
+		(property "Reference" "#PWR0801"
+			(at 273.05 149.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "-2V5_CH"
+			(at 273.05 157.734 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 273.05 153.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 273.05 153.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 273.05 153.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin ""
+			(uuid "71c52e1b-3bbd-46b3-9bdd-782a434b4c21")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/401b15e5-f387-464d-bc1c-f41c28e6c880/fa933c75-70aa-5432-ba1e-30bfcc445b30"
+					(reference "#PWR0802")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/4f39e4cc-6e79-45e1-ae05-5e98e639462b/fa933c75-70aa-5432-ba1e-30bfcc445b30"
+					(reference "#PWR0801")
 					(unit 1)
 				)
 			)
@@ -11372,7 +12757,7 @@
 		)
 	)
 	(symbol
-		(lib_id "plm:GRM155Z71A105KE01D")
+		(lib_id "plm:GRM21BZ71E106KE15K")
 		(at 96.52 166.37 0)
 		(unit 1)
 		(body_style 1)
@@ -11393,7 +12778,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1uF"
+		(property "Value" "10uF"
 			(at 99.06 171.196 0)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11404,7 +12789,7 @@
 				(justify left top)
 			)
 		)
-		(property "Footprint" "capacitor:MURATA-0402"
+		(property "Footprint" "capacitor:MURATA-0805"
 			(at 96.52 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -11416,7 +12801,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/murata-mlcc-cat2021.pdf"
+		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm21bz71e106ke15.pdf"
 			(at 96.52 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -11464,7 +12849,7 @@
 				(justify left)
 			)
 		)
-		(property "DigiKey_Part" "490-GRM155Z71A105KE01DCT-ND"
+		(property "DigiKey_Part" "490-GRM21BZ71E106KE15KCT-ND"
 			(at 96.52 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -11476,7 +12861,7 @@
 				(justify left)
 			)
 		)
-		(property "IPN" "CE-CAP-00016"
+		(property "IPN" "CE-CAP-00019"
 			(at 96.52 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -11487,7 +12872,7 @@
 				)
 			)
 		)
-		(property "MPN" "GRM155Z71A105KE01D"
+		(property "MPN" "GRM21BZ71E106KE15K"
 			(at 96.52 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -11499,7 +12884,7 @@
 				(justify left)
 			)
 		)
-		(property "Mouser_Part" "81-GRM155Z71A105KE1D"
+		(property "Mouser_Part" "81-GRM21BZ71E106KE5K"
 			(at 96.52 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -11511,7 +12896,7 @@
 				(justify left)
 			)
 		)
-		(property "Package" "0402"
+		(property "Package" "0805"
 			(at 96.52 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -11535,7 +12920,7 @@
 				(justify left)
 			)
 		)
-		(property "Voltage_Rating" "10 VDC"
+		(property "Voltage_Rating" "25 VDC"
 			(at 96.52 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -12155,7 +13540,7 @@
 		)
 	)
 	(symbol
-		(lib_id "plm:GRM155Z71A105KE01D")
+		(lib_id "plm:GRM21BZ71E106KE15K")
 		(at 250.19 144.78 0)
 		(unit 1)
 		(body_style 1)
@@ -12166,7 +13551,7 @@
 		(dnp no)
 		(uuid "5f6b2432-3f50-5ed3-91f9-7a8c0c027644")
 		(property "Reference" "C28"
-			(at 251.714 148.844 0)
+			(at 252.476 148.844 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -12176,8 +13561,8 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1uF"
-			(at 251.714 149.606 0)
+		(property "Value" "10uF"
+			(at 252.476 149.606 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -12187,7 +13572,7 @@
 				(justify left top)
 			)
 		)
-		(property "Footprint" "capacitor:MURATA-0402"
+		(property "Footprint" "capacitor:MURATA-0805"
 			(at 250.19 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -12199,7 +13584,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/murata-mlcc-cat2021.pdf"
+		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm21bz71e106ke15.pdf"
 			(at 250.19 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -12247,7 +13632,7 @@
 				(justify left)
 			)
 		)
-		(property "DigiKey_Part" "490-GRM155Z71A105KE01DCT-ND"
+		(property "DigiKey_Part" "490-GRM21BZ71E106KE15KCT-ND"
 			(at 250.19 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -12259,7 +13644,7 @@
 				(justify left)
 			)
 		)
-		(property "IPN" "CE-CAP-00016"
+		(property "IPN" "CE-CAP-00019"
 			(at 250.19 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -12270,7 +13655,7 @@
 				)
 			)
 		)
-		(property "MPN" "GRM155Z71A105KE01D"
+		(property "MPN" "GRM21BZ71E106KE15K"
 			(at 250.19 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -12282,7 +13667,7 @@
 				(justify left)
 			)
 		)
-		(property "Mouser_Part" "81-GRM155Z71A105KE1D"
+		(property "Mouser_Part" "81-GRM21BZ71E106KE5K"
 			(at 250.19 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -12294,7 +13679,7 @@
 				(justify left)
 			)
 		)
-		(property "Package" "0402"
+		(property "Package" "0805"
 			(at 250.19 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -12318,7 +13703,7 @@
 				(justify left)
 			)
 		)
-		(property "Voltage_Rating" "10 VDC"
+		(property "Voltage_Rating" "25 VDC"
 			(at 250.19 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -12438,6 +13823,87 @@
 				)
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/4f39e4cc-6e79-45e1-ae05-5e98e639462b/fa933c75-70aa-5432-ba1e-30bfcc445b30"
 					(reference "#PWR07")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "general:GND")
+		(at 237.49 106.68 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "67e2b079-f112-4945-b25d-95e9d0fb046a")
+		(property "Reference" "#PWR0803"
+			(at 237.49 102.87 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 237.49 112.014 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 237.49 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 237.49 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 237.49 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin ""
+			(uuid "e759751e-1217-4a9f-895d-4bbfc66ad6d0")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/401b15e5-f387-464d-bc1c-f41c28e6c880/fa933c75-70aa-5432-ba1e-30bfcc445b30"
+					(reference "#PWR0804")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/4f39e4cc-6e79-45e1-ae05-5e98e639462b/fa933c75-70aa-5432-ba1e-30bfcc445b30"
+					(reference "#PWR0803")
 					(unit 1)
 				)
 			)
@@ -13546,7 +15012,7 @@
 		)
 	)
 	(symbol
-		(lib_id "plm:GRM155Z71A105KE01D")
+		(lib_id "plm:GRM155Z71A225KE01J")
 		(at 161.29 144.78 0)
 		(unit 1)
 		(body_style 1)
@@ -13567,7 +15033,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1uF"
+		(property "Value" "2.2uF"
 			(at 162.814 149.606 0)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -13590,7 +15056,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/murata-mlcc-cat2021.pdf"
+		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155z71a225ke01.pdf"
 			(at 161.29 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -13638,7 +15104,7 @@
 				(justify left)
 			)
 		)
-		(property "DigiKey_Part" "490-GRM155Z71A105KE01DCT-ND"
+		(property "DigiKey_Part" "490-GRM155Z71A225KE01JCT-ND"
 			(at 161.29 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -13650,7 +15116,7 @@
 				(justify left)
 			)
 		)
-		(property "IPN" "CE-CAP-00016"
+		(property "IPN" "CE-CAP-00017"
 			(at 161.29 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -13661,7 +15127,7 @@
 				)
 			)
 		)
-		(property "MPN" "GRM155Z71A105KE01D"
+		(property "MPN" "GRM155Z71A225KE01J"
 			(at 161.29 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -13673,7 +15139,7 @@
 				(justify left)
 			)
 		)
-		(property "Mouser_Part" "81-GRM155Z71A105KE1D"
+		(property "Mouser_Part" "81-GRM155Z71A225KE1J"
 			(at 161.29 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -14222,8 +15688,8 @@
 		)
 	)
 	(symbol
-		(lib_id "plm:GRM155Z71A105KE01D")
-		(at 262.89 144.78 0)
+		(lib_id "plm:GRM155Z71A225KE01J")
+		(at 261.62 144.78 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -14233,7 +15699,7 @@
 		(dnp no)
 		(uuid "a8422093-6cac-5f99-a3fc-30a070eb4f38")
 		(property "Reference" "C29"
-			(at 264.414 148.844 0)
+			(at 263.906 148.844 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -14243,8 +15709,8 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1uF"
-			(at 264.414 149.606 0)
+		(property "Value" "2.2uF"
+			(at 263.906 149.606 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -14255,7 +15721,7 @@
 			)
 		)
 		(property "Footprint" "capacitor:MURATA-0402"
-			(at 262.89 144.78 0)
+			(at 261.62 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14266,8 +15732,8 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/murata-mlcc-cat2021.pdf"
-			(at 262.89 144.78 0)
+		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155z71a225ke01.pdf"
+			(at 261.62 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14279,7 +15745,7 @@
 			)
 		)
 		(property "Description" "Capacitor, MLCC"
-			(at 262.89 144.78 0)
+			(at 261.62 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14291,7 +15757,7 @@
 			)
 		)
 		(property "Manufacturer" "Murata"
-			(at 262.89 144.78 0)
+			(at 261.62 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14303,7 +15769,7 @@
 			)
 		)
 		(property "Dielectric" "X7R"
-			(at 262.89 144.78 0)
+			(at 261.62 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14314,8 +15780,8 @@
 				(justify left)
 			)
 		)
-		(property "DigiKey_Part" "490-GRM155Z71A105KE01DCT-ND"
-			(at 262.89 144.78 0)
+		(property "DigiKey_Part" "490-GRM155Z71A225KE01JCT-ND"
+			(at 261.62 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14326,8 +15792,8 @@
 				(justify left)
 			)
 		)
-		(property "IPN" "CE-CAP-00016"
-			(at 262.89 144.78 0)
+		(property "IPN" "CE-CAP-00017"
+			(at 261.62 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14337,8 +15803,8 @@
 				)
 			)
 		)
-		(property "MPN" "GRM155Z71A105KE01D"
-			(at 262.89 144.78 0)
+		(property "MPN" "GRM155Z71A225KE01J"
+			(at 261.62 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14349,8 +15815,8 @@
 				(justify left)
 			)
 		)
-		(property "Mouser_Part" "81-GRM155Z71A105KE1D"
-			(at 262.89 144.78 0)
+		(property "Mouser_Part" "81-GRM155Z71A225KE1J"
+			(at 261.62 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14362,7 +15828,7 @@
 			)
 		)
 		(property "Package" "0402"
-			(at 262.89 144.78 0)
+			(at 261.62 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14374,7 +15840,7 @@
 			)
 		)
 		(property "Tolerance" "10%"
-			(at 262.89 144.78 0)
+			(at 261.62 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14386,7 +15852,7 @@
 			)
 		)
 		(property "Voltage_Rating" "10 VDC"
-			(at 262.89 144.78 0)
+			(at 261.62 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14398,7 +15864,7 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 262.89 144.78 0)
+			(at 261.62 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15366,7 +16832,7 @@
 	)
 	(symbol
 		(lib_id "general:GND")
-		(at 262.89 153.67 0)
+		(at 261.62 153.67 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -15376,7 +16842,7 @@
 		(dnp no)
 		(uuid "bb04342d-4554-54b7-b0bf-70c85134a6f6")
 		(property "Reference" "#PWR0116"
-			(at 262.89 157.48 0)
+			(at 261.62 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15387,7 +16853,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 262.89 159.004 0)
+			(at 261.62 159.004 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -15397,7 +16863,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 262.89 153.67 0)
+			(at 261.62 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15408,7 +16874,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 262.89 153.67 0)
+			(at 261.62 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15419,7 +16885,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 262.89 153.67 0)
+			(at 261.62 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15855,6 +17321,87 @@
 				)
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/4f39e4cc-6e79-45e1-ae05-5e98e639462b/fa933c75-70aa-5432-ba1e-30bfcc445b30"
 					(reference "C22")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "general:GND")
+		(at 246.38 106.68 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "be0dd068-6da9-4317-a495-60c25d055013")
+		(property "Reference" "#PWR0805"
+			(at 246.38 102.87 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 246.38 112.014 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 246.38 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 246.38 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 246.38 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin ""
+			(uuid "ccde12b9-a6cb-46b7-962b-8597c2f04d9c")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/401b15e5-f387-464d-bc1c-f41c28e6c880/fa933c75-70aa-5432-ba1e-30bfcc445b30"
+					(reference "#PWR0806")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/4f39e4cc-6e79-45e1-ae05-5e98e639462b/fa933c75-70aa-5432-ba1e-30bfcc445b30"
+					(reference "#PWR0805")
 					(unit 1)
 				)
 			)
@@ -16793,7 +18340,7 @@
 		)
 	)
 	(symbol
-		(lib_id "plm:GRM155Z71A105KE01D")
+		(lib_id "plm:GRM155Z71A225KE01J")
 		(at 199.39 144.78 0)
 		(unit 1)
 		(body_style 1)
@@ -16814,7 +18361,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1uF"
+		(property "Value" "2.2uF"
 			(at 200.914 149.606 0)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16837,7 +18384,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/murata-mlcc-cat2021.pdf"
+		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155z71a225ke01.pdf"
 			(at 199.39 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -16885,7 +18432,7 @@
 				(justify left)
 			)
 		)
-		(property "DigiKey_Part" "490-GRM155Z71A105KE01DCT-ND"
+		(property "DigiKey_Part" "490-GRM155Z71A225KE01JCT-ND"
 			(at 199.39 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -16897,7 +18444,7 @@
 				(justify left)
 			)
 		)
-		(property "IPN" "CE-CAP-00016"
+		(property "IPN" "CE-CAP-00017"
 			(at 199.39 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -16908,7 +18455,7 @@
 				)
 			)
 		)
-		(property "MPN" "GRM155Z71A105KE01D"
+		(property "MPN" "GRM155Z71A225KE01J"
 			(at 199.39 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -16920,7 +18467,7 @@
 				(justify left)
 			)
 		)
-		(property "Mouser_Part" "81-GRM155Z71A105KE1D"
+		(property "Mouser_Part" "81-GRM155Z71A225KE1J"
 			(at 199.39 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -16994,6 +18541,213 @@
 				)
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/4f39e4cc-6e79-45e1-ae05-5e98e639462b/fa933c75-70aa-5432-ba1e-30bfcc445b30"
 					(reference "C24")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "plm:GRM155Z71A225KE01J")
+		(at 273.05 144.78 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "e56ecce0-0a5e-48e4-a9f9-78b8abb3a158")
+		(property "Reference" "C172"
+			(at 275.59 148.844 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "2.2uF"
+			(at 275.59 149.606 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Footprint" "capacitor:MURATA-0402"
+			(at 273.05 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155z71a225ke01.pdf"
+			(at 273.05 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" "Capacitor, MLCC"
+			(at 273.05 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Manufacturer" "Murata"
+			(at 273.05 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Dielectric" "X7R"
+			(at 273.05 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "DigiKey_Part" "490-GRM155Z71A225KE01JCT-ND"
+			(at 273.05 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "IPN" "CE-CAP-00017"
+			(at 273.05 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "GRM155Z71A225KE01J"
+			(at 273.05 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Mouser_Part" "81-GRM155Z71A225KE1J"
+			(at 273.05 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Package" "0402"
+			(at 273.05 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Tolerance" "10%"
+			(at 273.05 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Voltage_Rating" "10 VDC"
+			(at 273.05 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "plm_unused_last_field" ""
+			(at 273.05 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "19b38787-4474-41e3-9120-4c7f502ecde2")
+		)
+		(pin "2"
+			(uuid "4f976904-b0ef-4c71-bb5b-fea5873df479")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/401b15e5-f387-464d-bc1c-f41c28e6c880/fa933c75-70aa-5432-ba1e-30bfcc445b30"
+					(reference "C173")
+					(unit 1)
+				)
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/4f39e4cc-6e79-45e1-ae05-5e98e639462b/fa933c75-70aa-5432-ba1e-30bfcc445b30"
+					(reference "C172")
 					(unit 1)
 				)
 			)

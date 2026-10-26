@@ -229,6 +229,320 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "plm:CRCW0402100KFKEDC"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "R"
+				(at 1.016 -4.064 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Value" "100k"
+				(at 1.016 -4.572 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" "resistor:VISHAY-0402"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "${ECAD_LIB}/parts/resistors/datasheets/crcwce3.pdf"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Resistor, Thick Film"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "Vishay"
+				(at -0.762 8.508 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "DigiKey_Part" "541-3960-1-ND"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "IPN" "CE-RES-00002"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MPN" "CRCW0402100KFKEDC"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Mouser_Part" "71-CRCW0402100KFKEDC"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Package" "0402"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Power" "0.063W"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Tolerance" "1%"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "plm_unused_last_field" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "resistor:VISHAY-0402"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "CRCW0402100KFKEDC_1_0"
+				(polyline
+					(pts
+						(xy -0.5 -3.306) (xy 0.5 -3.806)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.5 -4.314) (xy 0.5 -3.814)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.5 -4.322) (xy 0.5 -4.822)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.5 -5.33) (xy 0.5 -4.83)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -3.048) (xy -0.508 -3.302)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -3.048) (xy 0 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -5.588) (xy -0.508 -5.334)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -6.35) (xy 0 -5.632)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at 0 -8.89 90)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 0 270)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "plm:CRCW040210K0FKEDC"
 			(pin_numbers
 				(hide yes)
@@ -4359,7 +4673,7 @@
 		)
 		(uuid "4dc3d776-735c-51bb-a6af-c74bda6f3007")
 	)
-	(text "RECONFIGURATION (GW-9): THE HOST SENDS REFRESH (0x79 00 00) TO THE SLAVE SPI\nPORT, WHICH EVERY IMAGE KEEPS ENABLED: THE HARDENED CONFIGURATION LOGIC\nRELOADS THE FPGA WHATEVER THE USER DESIGN IS DOING. PROGRAMN IS OPEN\n(WEAK PULL-UP IN A BLANK DEVICE)"
+	(text "RECONFIGURATION (GW-9): THE HOST SENDS REFRESH (0x79 00 00) TO THE SLAVE SPI\nPORT, WHICH EVERY IMAGE KEEPS ENABLED: THE HARDENED CONFIGURATION LOGIC\nRELOADS THE FPGA WHATEVER THE USER DESIGN IS DOING. PROGRAMN IS UNUSED\n(HELD HIGH BY 10k, SO NO GLITCH ON IT CAN START A RELOAD)"
 		(exclude_from_sim no)
 		(at 256.54 124.46 0)
 		(effects
@@ -4392,7 +4706,7 @@
 		)
 		(uuid "a9c90648-076c-5f91-96ba-d7a62f537c0b")
 	)
-	(text "MCLK 1k (DUAL BOOT), CSSPIN 10k, SN 10k, SI 10k\n(FPGA-TN-02155); TCK 4.7k DOWN"
+	(text "MCLK 1k (DUAL BOOT), CSSPIN 10k, SN 10k, SI 10k\n(FPGA-TN-02155); TCK 4.7k DOWN; PROGRAMN 10k UP;\nSO 100k UP, SO THE BUS BUFFER'S MISO INPUT NEVER FLOATS"
 		(exclude_from_sim no)
 		(at 256.54 101.6 0)
 		(effects
@@ -4629,10 +4943,6 @@
 		(uuid "9c2593f3-7ae9-5447-9db1-6908d0491f85")
 	)
 	(no_connect
-		(at 30.48 50.8)
-		(uuid "a33b78d3-fb88-5b87-b366-3783e72c1411")
-	)
-	(no_connect
 		(at 71.12 99.06)
 		(uuid "b5282661-4fa5-50fe-b887-9852d120fad7")
 	)
@@ -4835,15 +5145,6 @@
 		(uuid "b7305334-6299-4a4d-ab3f-51a5d2f6ced7")
 	)
 	(bus_entry
-		(at 228.6 66.04)
-		(size 2.54 2.54)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b746cfcb-896e-5262-a2e3-b93698c49177")
-	)
-	(bus_entry
 		(at 355.6 66.04)
 		(size 2.54 2.54)
 		(stroke
@@ -4878,15 +5179,6 @@
 			(type default)
 		)
 		(uuid "f427349b-91f5-4266-91a9-976ffd235fac")
-	)
-	(bus_entry
-		(at 228.6 68.58)
-		(size 2.54 2.54)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f63d7d41-e7bb-57a6-9669-c0fb29469124")
 	)
 	(bus_entry
 		(at 355.6 35.56)
@@ -4956,16 +5248,6 @@
 		)
 		(uuid "0540b772-4799-542c-858b-3131c0ff726e")
 	)
-	(bus
-		(pts
-			(xy 223.52 25.4) (xy 228.6 25.4)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0a33d585-0ef6-5952-bcc2-c0a1c03c4fa9")
-	)
 	(wire
 		(pts
 			(xy 297.18 40.64) (xy 297.18 43.18)
@@ -5005,6 +5287,16 @@
 			(type default)
 		)
 		(uuid "10ac3bfa-2130-519e-8c1f-92496068a697")
+	)
+	(wire
+		(pts
+			(xy 25.4 50.8) (xy 30.48 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "116811b3-c99d-402b-aee2-42af105418c1")
 	)
 	(wire
 		(pts
@@ -5205,6 +5497,16 @@
 			(type default)
 		)
 		(uuid "2e2d5d3e-989b-5bd3-864f-dc2a05ac2841")
+	)
+	(wire
+		(pts
+			(xy 312.42 87.63) (xy 312.42 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3064930d-dadb-4e56-aca3-20131f9aa3bf")
 	)
 	(bus
 		(pts
@@ -5428,16 +5730,6 @@
 	)
 	(wire
 		(pts
-			(xy 231.14 71.12) (xy 236.22 71.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5ffe0d0d-1001-5c70-b422-f0b1ad708894")
-	)
-	(wire
-		(pts
 			(xy 358.14 43.18) (xy 360.68 43.18)
 		)
 		(stroke
@@ -5445,16 +5737,6 @@
 			(type default)
 		)
 		(uuid "622b70e9-d8e2-4926-9c75-62a306b48ff6")
-	)
-	(wire
-		(pts
-			(xy 231.14 68.58) (xy 236.22 68.58)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "62e28eca-7c9d-552c-9ad4-b7bdd47b4dd0")
 	)
 	(wire
 		(pts
@@ -5515,6 +5797,16 @@
 			(type default)
 		)
 		(uuid "70fb1848-5d80-57be-b446-f687ba18004a")
+	)
+	(wire
+		(pts
+			(xy 322.58 87.63) (xy 322.58 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "71ea0f3f-72b4-4efa-80d8-2458e7f51d4d")
 	)
 	(wire
 		(pts
@@ -5795,16 +6087,6 @@
 			(type default)
 		)
 		(uuid "a425d124-1b2e-5624-b3af-606c97f676ad")
-	)
-	(bus
-		(pts
-			(xy 228.6 25.4) (xy 228.6 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a740be1a-2cd7-5df2-a998-7c2803f3f4d1")
 	)
 	(wire
 		(pts
@@ -6376,16 +6658,6 @@
 		)
 		(uuid "2f87e8d9-20b0-4717-9aa3-f249da7bb416")
 	)
-	(label "ADC.EN"
-		(at 25.4 104.14 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "3330bade-e51e-5f0a-afbf-8cf0adffae51")
-	)
 	(label "ADC2.CLK"
 		(at 360.68 63.5 0)
 		(effects
@@ -6506,6 +6778,16 @@
 		)
 		(uuid "5008e589-669c-57c5-9279-d2d1c68d743e")
 	)
+	(label "PROGRAMN"
+		(at 25.4 50.8 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "509bb188-f540-40b1-b45c-5080ec274c1c")
+	)
 	(label "HOST.SCLK"
 		(at 25.4 83.82 180)
 		(effects
@@ -6535,6 +6817,16 @@
 			(justify right bottom)
 		)
 		(uuid "57656348-421c-5a9a-9ec3-b8b664629f1a")
+	)
+	(label "HOST.MISO"
+		(at 322.58 90.17 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "58bde37b-11a0-489a-bbe9-1cb6adbbb18d")
 	)
 	(label "ADC2.SDO"
 		(at 360.68 76.2 0)
@@ -6606,16 +6898,6 @@
 		)
 		(uuid "71273122-8c88-5a4e-b93f-cba4ffdb427c")
 	)
-	(label "ADC.FLT"
-		(at 236.22 71.12 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "73446563-46d0-5538-a056-6c839deb9a59")
-	)
 	(label "F_CLK1"
 		(at 147.32 33.02 0)
 		(effects
@@ -6686,6 +6968,16 @@
 		)
 		(uuid "86365fbd-75f1-5b1c-9145-7baae9dbb2a0")
 	)
+	(label "PROGRAMN"
+		(at 312.42 90.17 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "864d0d24-80c9-4a23-ac5a-92b64e5010f7")
+	)
 	(label "HOST.CLK"
 		(at 45.72 134.62 0)
 		(effects
@@ -6695,16 +6987,6 @@
 			(justify left bottom)
 		)
 		(uuid "87ed11fc-9cd8-5f19-a228-63652bab7cab")
-	)
-	(label "ADC.EN"
-		(at 236.22 68.58 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "884a057e-4770-55f9-9cda-324c1f520f7d")
 	)
 	(label "TCK"
 		(at 25.4 40.64 180)
@@ -6815,16 +7097,6 @@
 			(justify left bottom)
 		)
 		(uuid "b0a738f1-dfa8-54c9-927f-634b5842f6e5")
-	)
-	(label "ADC.FLT"
-		(at 25.4 106.68 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "b128615c-e800-541e-9d92-fdf54516dc8a")
 	)
 	(label "F_START2"
 		(at 177.8 78.74 180)
@@ -7198,17 +7470,6 @@
 		)
 		(uuid "617a95df-2d6c-45a8-a60a-c7268311070d")
 	)
-	(hierarchical_label "ADC{ADC}"
-		(shape bidirectional)
-		(at 223.52 25.4 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "646f135e-5673-5360-9063-1d575d5a999a")
-	)
 	(hierarchical_label "ADC1{CONV}"
 		(shape bidirectional)
 		(at 350.52 25.4 180)
@@ -7219,6 +7480,28 @@
 			(justify right)
 		)
 		(uuid "b474fc3a-9198-43c9-a500-ab98ef26a52d")
+	)
+	(hierarchical_label "ADC_EN"
+		(shape output)
+		(at 25.4 104.14 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "c1e8ac82-2abd-4dfd-b56f-3287ffcd57a9")
+	)
+	(hierarchical_label "ADC_FLT"
+		(shape input)
+		(at 25.4 106.68 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "c7716674-355d-4e6a-afd4-5816a6a8d5cf")
 	)
 	(symbol
 		(lib_id "plm:GRM155R71H104KE14J")
@@ -9770,6 +10053,198 @@
 	)
 	(symbol
 		(lib_id "plm:CRCW040210K0FKEDC")
+		(at 312.42 78.74 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "33e8e043-b2f1-49f6-9695-fbf40d915c2d")
+		(property "Reference" "R242"
+			(at 313.944 82.804 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "10k"
+			(at 313.944 83.566 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Footprint" "resistor:VISHAY-0402"
+			(at 312.42 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "${ECAD_LIB}/parts/resistors/datasheets/crcwce3.pdf"
+			(at 312.42 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" "Resistor, Thick Film"
+			(at 312.42 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Manufacturer" "Vishay"
+			(at 312.42 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "DigiKey_Part" "541-3959-1-ND"
+			(at 312.42 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "IPN" "CE-RES-00004"
+			(at 312.42 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "MPN" "CRCW040210K0FKEDC"
+			(at 312.42 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Mouser_Part" "71-CRCW040210K0FKEDC"
+			(at 312.42 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Package" "0402"
+			(at 312.42 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Power" "0.063W"
+			(at 312.42 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Tolerance" "1%"
+			(at 312.42 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "plm_unused_last_field" ""
+			(at 312.42 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "59cd5dd0-a2ae-402f-a5aa-294fa5410865")
+		)
+		(pin "2"
+			(uuid "7fdb107b-04e6-4f88-9f74-16ac99bfc50a")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/25d81073-89b1-5d67-9c0e-0934a0b38ed7"
+					(reference "R242")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "plm:CRCW040210K0FKEDC")
 		(at 292.1 78.74 0)
 		(unit 1)
 		(body_style 1)
@@ -10085,6 +10560,197 @@
 			(project "e003-adc-board"
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/25d81073-89b1-5d67-9c0e-0934a0b38ed7"
 					(reference "TP9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "plm:CRCW0402100KFKEDC")
+		(at 322.58 78.74 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "428cb90f-2da8-4982-b47a-300c8b81b1fe")
+		(property "Reference" "R243"
+			(at 324.104 82.804 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "100k"
+			(at 324.104 83.566 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Footprint" "resistor:VISHAY-0402"
+			(at 322.58 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "${ECAD_LIB}/parts/resistors/datasheets/crcwce3.pdf"
+			(at 322.58 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" "Resistor, Thick Film"
+			(at 322.58 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Manufacturer" "Vishay"
+			(at 322.58 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "DigiKey_Part" "541-3960-1-ND"
+			(at 322.58 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "IPN" "CE-RES-00002"
+			(at 322.58 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CRCW0402100KFKEDC"
+			(at 322.58 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Mouser_Part" "71-CRCW0402100KFKEDC"
+			(at 322.58 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Package" "0402"
+			(at 322.58 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Power" "0.063W"
+			(at 322.58 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Tolerance" "1%"
+			(at 322.58 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "plm_unused_last_field" ""
+			(at 322.58 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "a9e1b2b6-cca8-4179-81cf-824b544a52f9")
+		)
+		(pin "2"
+			(uuid "9cd342de-55f4-4e66-a57e-574870702aac")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/25d81073-89b1-5d67-9c0e-0934a0b38ed7"
+					(reference "R243")
 					(unit 1)
 				)
 			)
@@ -13387,6 +14053,83 @@
 			(project "e003-adc-board"
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/25d81073-89b1-5d67-9c0e-0934a0b38ed7"
 					(reference "R207")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "general:VCC")
+		(at 322.58 78.74 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "6fd2a091-ec97-4a11-8a53-320d177daa69")
+		(property "Reference" "#PWR0808"
+			(at 322.58 74.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "3V3_LIM"
+			(at 322.58 74.93 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 322.58 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 322.58 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 322.58 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin ""
+			(uuid "2e40cbeb-c168-48c7-9c25-29123c0d4e21")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/25d81073-89b1-5d67-9c0e-0934a0b38ed7"
+					(reference "#PWR0808")
 					(unit 1)
 				)
 			)
@@ -17523,7 +18266,7 @@
 		(dnp no)
 		(uuid "e656f5f6-814c-5ec7-992f-215dd19bda28")
 		(property "Reference" "C163"
-			(at 321.564 37.084 0)
+			(at 322.326 37.084 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -17534,7 +18277,7 @@
 			)
 		)
 		(property "Value" "0.1uF"
-			(at 321.564 37.846 0)
+			(at 322.326 37.846 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -17710,6 +18453,83 @@
 			(project "e003-adc-board"
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/25d81073-89b1-5d67-9c0e-0934a0b38ed7"
 					(reference "C163")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "general:VCC")
+		(at 312.42 78.74 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "e826265a-09af-42ca-9c96-f130ec371d08")
+		(property "Reference" "#PWR0807"
+			(at 312.42 74.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "3V3_LIM"
+			(at 312.42 74.93 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 312.42 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 312.42 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 312.42 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin ""
+			(uuid "656ad8cc-7d9e-464e-9fa1-005010a54795")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/25d81073-89b1-5d67-9c0e-0934a0b38ed7"
+					(reference "#PWR0807")
 					(unit 1)
 				)
 			)

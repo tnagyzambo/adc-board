@@ -158,7 +158,7 @@ Requirements phrased "must" are mandatory, and those phrased "should" are design
     [Device should withstand, on every sensor contact, ±8~kV contact discharge to IEC~61000-4-2 and ±1~kV fast transients to IEC~61000-4-4],
     [Local],
     [REQ-15],
-    [Device must withstand a sustained fault of up to 28~V on any sensor contact],
+    [Device must withstand a sustained fault of up to +28~V relative to #ident("GND") on any sensor contact],
     [Local],
   ),
 )
@@ -354,7 +354,7 @@ The pinout places a ground contact opposite every clock line and groups the powe
 #requirement(
   "INT-2",
   [#ident("ASRP-PCB-INTERCONNECT-2") shall be capable of supplying 24~V at up to 0.3~A, 5~V at up to 4.5~A and 3.3~V at up to 0.6~A, each within ±5~% at the contacts of every board.],
-  note: [The currents are sized for the largest intended stack: four ADC boards on SPI0 with a transmitter on every channel, and four #ident("E004-TC-BOARD") on SPI1. Each ADC board draws up to 0.09~A at 3.3~V, and up to 0.06~A at 24~V for its two transmitters at their 30~mA limit. At 5~V it draws up to 0.16~A with both channels on load cells or voltage transmitters, the heaviest configurations, and both shield switches closed. This is a datasheet maximum at the converter's full clock rate, and overstates the draw at the 8.192~MHz clock in use. Each #ident("E004-TC-BOARD") draws up to 0.04~A from each of 5~V and 3.3~V. The full stack therefore draws 0.80~A at 5~V, 0.52~A at 3.3~V and 0.24~A at 24~V. The requirement of 4.5~A at 5~V dates from an earlier four-channel board that generated its own 24~V, and is retained as margin. The #ident("E001-POWER-BOARD") supplies 2~A at 5~V for the whole ECU stack, which covers this load, but it must also provide the 24~V (OI-1).],
+  note: [The currents are sized for the largest intended stack: four ADC boards on SPI0 with a transmitter on every channel, and four #ident("E004-TC-BOARD") on SPI1. Each ADC board draws up to 0.09~A at 3.3~V, and up to 0.06~A at 24~V for its two transmitters at their 30~mA limit. At 5~V it draws up to 0.21~A with both channels on load cells, the heaviest configuration, and both shield switches closed. This is a datasheet maximum at the converter's full clock rate; the draw at the 8.192~MHz clock in use is expected to be lower. Each #ident("E004-TC-BOARD") draws up to 0.04~A from each of 5~V and 3.3~V. The full stack therefore draws 1.0~A at 5~V, 0.52~A at 3.3~V and 0.24~A at 24~V. The requirement of 4.5~A at 5~V dates from an earlier four-channel board that generated its own 24~V, and is retained as margin. The #ident("E001-POWER-BOARD") supplies 2~A at 5~V for the whole ECU stack, which covers this load, but it must also provide the 24~V (OI-1).],
 )
 
 #requirement(
@@ -365,8 +365,8 @@ The pinout places a ground contact opposite every clock line and groups the powe
 
 #requirement(
   "INT-4",
-  [Logic signals shall be 3.3~V LVCMOS referenced to #ident("GND") and series-terminated at their driver. Each chip select shall idle high when no board drives it. A peripheral shall drive the MISO line of its lane only while its own chip select is low, and an unpowered board shall leave every line at high impedance.],
-  note: [A chip select that idles high keeps every peripheral deselected while the master is unpowered or in reset. A peripheral whose chip select enables its MISO driver directly, rather than through its logic, cannot hold the shared line if that logic fails.],
+  [Logic signals shall be 3.3~V LVCMOS referenced to #ident("GND") and series-terminated at their driver. Each chip select shall be driven at all times, high except while its peripheral is addressed. A peripheral shall drive the MISO line of its lane only while its own chip select is low, and an unpowered board shall leave every line at high impedance.],
+  note: [A board takes its chip select through a resistor fitted at assembly, with no pull-up of its own, so a peripheral answers on MISO only when the chip select's driver selects it. That driver must therefore hold every chip select high whenever it is not addressing that peripheral, including while it starts up or resets. A peripheral whose chip select enables its MISO driver directly, rather than through its logic, cannot hold the shared line if that logic fails.],
 )
 
 #requirement(
@@ -378,7 +378,7 @@ The pinout places a ground contact opposite every clock line and groups the powe
 #requirement(
   "INT-6",
   [#ident("SYNC_START") shall idle high and shall have exactly one driver in the stack. A start or resynchronization shall be a low pulse lasting at least one and fewer than 2048 cycles of #ident("SYNC_CLK"). Both edges of the pulse shall fall at least 30~ns from any rising edge of #ident("SYNC_CLK") at every board. Each peripheral shall sample #ident("SYNC_START") on the rising edges of #ident("SYNC_CLK") and start all of its converters on the same edge.],
-  note: [Every converter in the stack then starts on the same edge of #ident("SYNC_CLK"), so all converters sample at the same instant to within the skew of the clock across the stack, a few tens of nanoseconds or 0.01° of phase at 2~kHz. The 30~ns margin gives every board a clean sample of the pulse within the 122~ns period of #ident("SYNC_CLK"). The 2048-cycle limit protects converters such as the #ident("ADS131M06"), which reset rather than resynchronize when their SYNC/RESET input is held low for longer.],
+  note: [Every converter in the stack then starts on the same edge of #ident("SYNC_CLK"), so all converters sample at the same instant to within the skew of the clock across the stack, a few tens of nanoseconds, or about 0.02° of phase at 2~kHz. The 30~ns margin gives every board a clean sample of the pulse within the 122~ns period of #ident("SYNC_CLK"). The 2048-cycle limit protects converters such as the #ident("ADS131M06"), which reset rather than resynchronize when their SYNC/RESET input is held low for longer.],
 )
 
 #requirement(
@@ -506,8 +506,8 @@ The gateware requirements apply to the FPGA on this board and to the parts that 
 
 #requirement(
   "GW-2",
-  [The FPGA shall set each channel's switches through six GPIO pins of its #ident("ADS127L14"), in a single register write and only in the combinations of @tab-gp-code, and shall read the pins back before using the channel's data. It shall always pass through off when changing a channel's configuration. It shall raise a channel's current above 1~mA only after the excitation monitor has measured the sensor at 1~mA with the channel off. It shall set a load-cell configuration only after confirming, with the channel off, that #ident("EXC−") is held to the bus and not to #ident("GND").],
-  note: [No hardware prevents a mixture of configurations, so the gateware must (@sec-gp-switches). Passing through off lets the switches of one configuration open before those of the next close. The read-back detects a stuck line or a corrupted write at the next read, after the switches have acted on it (@sec-gp-control). The check at 1~mA identifies the sensor before it receives a current that could damage it: the 30~mA branch would destroy a piezoresistive transducer rated for 3~mA. The check before a load-cell configuration guards against a shorted S4, which would hold #ident("EXC−") at #ident("GND") and short the bus once S3 closed.],
+  [The FPGA shall set each channel's switches through six GPIO pins of its #ident("ADS127L14"), in a single register write and only in the combinations of @tab-gp-code, and shall read the pins back before using the channel's data. It shall always pass through off when changing a channel's configuration. It shall raise a channel's current above 1~mA only after the excitation monitor has measured the sensor at 1~mA in the piezoresistive configuration. It shall set a load-cell configuration only after confirming, in the piezoresistive configuration, that #ident("EXC−") is held near the bus and not at #ident("GND").],
+  note: [No hardware prevents a mixture of configurations, so the gateware must (@sec-gp-switches). Passing through off lets the switches of one configuration open before those of the next close. The read-back detects a stuck line or a corrupted write at the next read, after the switches have acted on it (@sec-gp-control). The check at 1~mA identifies the sensor before it receives a current that could damage it: the 30~mA branch would destroy a piezoresistive transducer rated for 3~mA. The check before a load-cell configuration guards against a shorted S4, which would hold #ident("EXC−") at #ident("GND") and short the bus once S3 closed. Both checks run in the piezoresistive configuration because with every switch open no switch sets REFP, so the converter has no reference. That configuration passes the same 1~mA and takes its reference across the current-sense resistor, which is valid with any sensor connected.],
 )
 
 #requirement(
@@ -549,7 +549,7 @@ The gateware requirements apply to the FPGA on this board and to the parts that 
 #requirement(
   "GW-9",
   [The board shall reconfigure its FPGA from non-volatile memory on a command from the ECU MCU board, without relying on the configuration that the FPGA is running.],
-  note: [The command is the REFRESH command of the FPGA's configuration logic, sent to the slave SPI port (GW-8). The configuration logic is hardened, and the setting that keeps the port enabled is held in the feature row in flash, so neither a hung design nor an upset can block the command or disable the port. The ECU MCU board can therefore recover a hung FPGA without power-cycling the stack or disturbing the other boards. It must leave the board deselected for the 2.4~ms that the reload takes, because an access to the port during that time aborts the reload (@sec-fpga).],
+  note: [The command is the REFRESH command of the FPGA's configuration logic, sent to the slave SPI port (GW-8). The configuration logic is hardened, and the setting that keeps the port enabled is held in the feature row in flash, so neither a hung design nor an upset can block the command or disable the port. The ECU MCU board can therefore recover a hung FPGA without power-cycling the stack or disturbing the other boards. It must leave the board deselected for the 2.4~ms that the reload takes, because an access to the port during that time aborts the reload (@sec-fpga). The reload also removes the channel supply, so both channels restart from off and must be configured again.],
 )
 
 #requirement(
@@ -579,7 +579,13 @@ The gateware requirements apply to the FPGA on this board and to the parts that 
 #requirement(
   "GW-14",
   [The FPGA shall set each channel's shield switch S11 through GPIO6 of its #ident("ADS127L14") to the termination that the ECU MCU board configures, independently of the channel's configuration. It shall read the pin back with the switch lines and report in its status a pin that reads back wrong.],
-  note: [Neither termination affects the channel's excitation or its reading, so S11 may change in any configuration, including off. GPIO6 lies in the same output register as the switch lines, so one write sets both (@sec-shields).],
+  note: [Neither termination affects the channel's excitation or its reading, so S11 may change in any configuration, including off. GPIO6 lies in the same output register as the switch lines, so one write sets both (@sec-shields). Like every write to that register, it interrupts the channel's readings while the converter resynchronizes (GW-15).],
+)
+
+#requirement(
+  "GW-15",
+  [After every write to the configuration registers of a channel's #ident("ADS127L14"), the FPGA shall resynchronize that converter with a rising edge on its START line, on the stack's sample grid. It shall mark the channel's readings invalid until the converter delivers data again, and shall not treat the gap as a fault (GW-3).],
+  note: [Any write to registers 08h to 50h of the #ident("ADS127L14") restarts all four of its converters and loses their synchronization to the original start (@sec-gp-control). The GPIO output register lies in that range, so every change of configuration, of shunt calibration or of shield termination restarts them. They then discard 68 conversions while their filters settle, so the channel's readings, the monitor's included, stop for 8.5~ms. Each #ident("ADS127L14") has its own START line, so the FPGA resynchronizes one channel without disturbing the other.],
 )
 
 #requirement(
@@ -630,10 +636,10 @@ The gateware requirements apply to the FPGA on this board and to the parts that 
     [Within ±2.0~V at the converter: ±6.3~mV from a load cell at 2~mV/V, typically 160~mV from a piezoresistive transducer, 0.4–2.0~V from a #box[4–20~mA] loop across its shunt and 0–2.0~V from a 0–10~V transmitter through a 5:1 divider],
     [@tab-channel-config],
     [General-purpose noise],
-    [2.81~µV~rms at 8~kSPS, of which the converter contributes 2.55~µV~rms],
+    [2.83~µV~rms at 8~kSPS, of which the converter contributes 2.55~µV~rms],
     [@sec-gp-budget],
     [General-purpose drift],
-    [After calibration, per 10~°C and summed as root sum square: 0.16~% of full scale for a load cell, 0.021~% for a piezoresistive transducer, 0.009~% for #box[4–20~mA] and 0.012~% for 0–10~V],
+    [After calibration, per 10~°C and summed as root sum square: 0.17~% of full scale for a load cell, 0.021~% for a piezoresistive transducer, 0.009~% for #box[4–20~mA] and 0.012~% for 0–10~V],
     [@tab-gp-budget],
     [Bridge excitation],
     [Constant current per channel: 9.0~mA for a load cell, 1.0~mA for a piezoresistive transducer],
@@ -660,7 +666,7 @@ The gateware requirements apply to the FPGA on this board and to the parts that 
     [A 28~V fault on any contact, current-limited where a configuration closes a low-impedance path (OI-5), ±8~kV contact discharge and ±1~kV fast transients],
     [REQ-14, REQ-15, @sec-protection],
     [Input power],
-    [About 0.9~W per board with both channels on, plus up to 0.3~W per load-cell channel and 0.8~W per transmitter channel, the sensors' share from 24~V, and 25~mW per closed shield switch],
+    [About 1.1~W per board with both channels on, plus up to 0.3~W per load-cell channel and 0.8~W per transmitter channel, the sensors' share from 24~V, and 25~mW per closed shield switch],
     [Estimate],
   ),
 )
@@ -698,31 +704,33 @@ The FPGA configures a channel for its sensor by closing the switches that the co
 
 === Signal Chain <sec-gp-chain>
 
-Each channel has its own #ident("ADS127L14"), which contains four simultaneously sampling converters: the first reads the sensor and the other three monitor the channel (@sec-gp-monitor). Every converter in the stack runs from the 8.192~MHz #ident("SYNC_CLK") and starts on the same edge of it, so all of them sample at the same instant (REQ-6, INT-5, INT-6). The converter runs in high-speed mode with the wideband filter at an oversampling ratio of 512, which gives 8~kSPS (@tab-adc-config). The filter is flat to 3.2~kHz and attenuates by 106~dB above 4~kHz, which covers the 2~kHz bandwidth (REQ-7). The converter's noise of 2.55~µV~rms rises to 2.81~µV~rms with the buffers and protection, or 0.044~% of full scale for a 2~mV/V load cell (@sec-gp-budget).
+Each channel has its own #ident("ADS127L14"), which contains four simultaneously sampling converters: the first reads the sensor and the other three monitor the channel (@sec-gp-monitor). Every converter in the stack runs from the 8.192~MHz #ident("SYNC_CLK") and starts on the same edge of it, so all of them sample at the same instant (REQ-6, INT-5, INT-6). The converter runs in high-speed mode with the wideband filter at an oversampling ratio of 512, which gives 8~kSPS (@tab-adc-config). The filter is flat to 3.2~kHz and attenuates by 106~dB above 4~kHz, which covers the 2~kHz bandwidth (REQ-7). The converter's noise of 2.55~µV~rms rises to 2.83~µV~rms with the buffers and protection, or 0.045~% of full scale for a 2~mV/V load cell (@sec-gp-budget).
 
 An #ident("OPA2189") buffers the two signal inputs. Without it, the converter's input precharge buffers, which draw up to ±1.5~µA at their rated clock, would produce errors of millivolts through a 350~Ω bridge and the protection resistors; the #ident("OPA2189") draws under 300~pA. Because its input range ends 2.5~V below its positive rail, it runs from the ±5~V rails rather than from the converter's ±2.5~V.
 
-Each signal input is protected by a 10~kΩ series resistor, in 0805 to dissipate the 78~mW of a 28~V fault, followed by 110~pF across the pair. Behind the resistor, the buffer's own input diodes clamp a fault to the ±5~V rails. They are rated for 10~mA, and a 28~V fault drives only 2.3~mA into them, or about 5.5~mA at the suppressor's 60~V first peak, so no external clamp is needed. The resistor on #ident("SIG+") is 0.05~%, 5~ppm/°C thin film, because it also forms the top of the voltage transmitter's divider.
+Each signal input is protected by a 10~kΩ series resistor, in 0805 to dissipate the 78~mW of a 28~V fault, and reaches its buffer through a further 1~kΩ, with 110~pF across the pair at the buffer inputs. The buffer's own input diodes clamp a fault to the ±5~V rails. They are rated for 10~mA, and a 28~V fault drives only 2.1~mA into them through the 11~kΩ, or about 5~mA at the suppressor's 60~V first peak, so no external clamp is needed. The 1~kΩ matters where a fault reaches a buffer through less than 10~kΩ: in the voltage configuration a fault on #ident("SIG−") arrives through the 2.49~kΩ divider bottom, and the 1~kΩ holds the clamp current to 7.4~mA (@sec-protection). The resistor on #ident("SIG+") is 0.05~%, 5~ppm/°C thin film, because it also forms the top of the voltage transmitter's divider.
 
-Each converter input and reference pin is fed through 237~Ω. Because the buffers and the excitation run from the ±5~V rails, they can drive these pins before the converter's ±2.5~V rails are up, and beyond those rails in a fault; the 237~Ω holds the resulting clamp current below the converter's 10~mA rating. Together with 3.3~nF across the inputs and 330~pF from each input to AVSS, the 237~Ω resistors also form the converter's anti-alias filter, with a differential pole at 97~kHz. The common-mode capacitors are a tenth of the differential capacitor, as the converter datasheet recommends; they supply the common-mode part of each sample's charge and return it to AVSS, which powers the converter's sampling switches.
+Each signal input and reference pin of the converter is fed through 237~Ω. Because the buffers and the excitation run from the ±5~V rails, they can drive these pins before the converter's ±2.5~V rails are up, and beyond those rails in a fault; the 237~Ω holds the resulting clamp current below the converter's 10~mA rating. Together with 3.3~nF across the inputs and 330~pF from each input to AVSS, the 237~Ω resistors also form the converter's anti-alias filter, with a differential pole at 97~kHz. The common-mode capacitors are a tenth of the differential capacitor, as the converter datasheet recommends; they supply the common-mode part of each sample's charge and return it to AVSS, which powers the converter's sampling switches.
 
-The converter's reference spans the excitation of the sensor. REFN comes from the negative side of the excitation bus, and REFP from one of three points selected by S5, S6 or S7: the top of a load cell, the top of a piezoresistive bridge's current-sense resistor, or the positive side of the bus for a transmitter. All four converters of the channel share this reference. A bridge's REFP stays below the 1.8~V input limit of the converter's REFP precharge buffer, but the bus does not, so a bridge channel turns the buffer on and a transmitter channel leaves it off (@tab-adc-config). Unbuffered, a reference pin with four converters behind it draws about 240~µA per volt at the 8.192~MHz clock, which lowers the reference by about 6~% through 237~Ω; buffered, REFP draws at most ±4~µA. Both are fixed gain errors that calibration removes (GW-4). The low buffered current allows a load cell's REFP to be fed through 10~kΩ rather than 237~Ω, so that a cell unplugged from a running current source drives no more than 2~mA into the converter's clamp.
+The converter's reference spans the excitation of the sensor. REFN comes from the negative side of the excitation bus, and REFP from one of three points selected by S5, S6 or S7: the top of a load cell, the top of a piezoresistive bridge's current-sense resistor, or the positive side of the bus for a transmitter. All four converters of the channel share this reference. A bridge's REFP stays below the 1.8~V input limit of the converter's REFP precharge buffer, but the bus does not, so a bridge channel turns the buffer on and a transmitter channel leaves it off (@tab-adc-config). Unbuffered, a reference pin with four converters behind it draws about 240~µA per volt at the 8.192~MHz clock, which lowers the reference by about 6~% through each 237~Ω; buffered, REFP typically draws ±4~µA, a figure for which the datasheet gives no maximum. Both are fixed gain errors that calibration removes (GW-4). The low buffered current allows a load cell's REFP to be fed through 10~kΩ rather than 237~Ω, so that a cell unplugged from a running current source drives no more than 2~mA into the converter's clamp. The reference pins are decoupled as the converter datasheet recommends, with 10~µF across REFP and REFN and 2.2~µF from REFN to AVSS. Fed through 10~kΩ, a load cell's REFP therefore settles with a time constant of 0.1~s, and to within 1~ppm about 1.4~s after the configuration is set.
 
 === Excitation and Sensor Supply <sec-gp-excitation>
 
-Each channel's #ident("REF5020") sets its own ±2.048~V excitation bus. One half of an #ident("OPA2189") follows the reference and the other half inverts it, and each half drives one side of the bus. The reference sees only the follower's input and the inverter's 10~kΩ input resistor, a load of 0.2~mA, so a fault on the bus cannot reach it, and a failed reference affects only its own channel. The bus carries at most a load cell's 9.0~mA plus the converters' reference current, and the amplifier's ±65~mA output limit bounds the current into a short.
+Each channel's #ident("REF5020") sets its own ±2.048~V excitation bus. One half of an #ident("OPA2189") follows the reference and the other half inverts it, and each half drives one side of the bus. The reference sees only the follower's input and the inverter's 10~kΩ input resistor, a load of 0.2~mA, so a fault on the bus cannot reach it, and a failed reference affects only its own channel. Its input is bypassed with 1~µF, the smallest value its datasheet recommends. The bus carries at most a load cell's 9.0~mA plus the converters' reference current, and the amplifier's ±65~mA output limit bounds the current into a short.
 
-Each amplifier drives its side of the bus without an isolating resistor, into 1~nF on the negative side, the reference capacitors behind 237~Ω and, for a load cell, the capacitance of the excitation wire through S3. Its stability with this load remains to be confirmed (OI-8).
+Each amplifier drives its side of the bus without an isolating resistor. Its load is the reference capacitors behind 237~Ω and, for a load cell, the capacitance of the excitation wire through S3, with the 10~µF on #ident("EXC+") behind the bridge. The inverter has 1~nF across its 10~kΩ feedback resistor, which rolls its gain off above 16~kHz. The bus's stability with this load remains to be confirmed (OI-8).
 
 The sensors are powered from the stack's 24~V rail (INT-2), which enters the board through a resettable fuse and a suppressor (@sec-stacking). Each channel feeds its sensor through an #ident("LT3092"), a two-terminal current source whose current is set by a single output resistor. The #ident("LT3092") passes its 10~µA set current through 30.1~kΩ and holds the resulting 0.3~V across the output resistor. A permanent 301~Ω sets 1.0~mA, which excites a piezoresistive transducer. S1 adds 37.4~Ω in parallel for 9.0~mA, which excites a load cell, and S2 adds 10.2~Ω for 30~mA, which limits the supply of a transmitter. In every configuration, a shorted sensor or cable draws no more than this setting.
 
 S1 and S2 are photorelays, whose on-resistance of up to 1.5~Ω adds to the branch resistance and can lower the currents to 8.7 and 26.7~mA. This affects no reading, because every bridge is read ratiometrically and S2 only sets a limit. For the same reason the output resistors need only 1~% tolerance.
 
+The #ident("LT3092") needs no compensation with a resistive load, but its datasheet allows capacitance across the source only below 1~nF or above 1~µF, and a sensor cable alone adds hundreds of picofarads to a few nanofarads at #ident("EXC+"). Each channel therefore carries 10~µF, 50~V, from #ident("EXC+") to #ident("GND"), which keeps the source well above that range with any cable and also absorbs discharges (@sec-protection).
+
 === Channel Supply <sec-gp-supply>
 
 The channels run from the stack's 5~V rail through a #ident("TPS25200") eFuse, set to 0.65~A, which the FPGA can switch off (@sec-stacking). The eFuse output is the channels' +5~V rail, from which an #ident("LM2776") charge pump generates the −5~V rail. From these two rails, a #ident("TPS7A39") derives the converters' ±2.5~V, with both outputs rising together, and a #ident("TPS709") derives 1.8~V for the converters' I/O and for the two FPGA banks that face them.
 
-Because the sensors are powered from 24~V, the +5~V rail carries only the channels' own circuits, at most 0.16~A, under a quarter of the eFuse limit. Of this, up to 0.09~A passes through the charge pump: mostly the converters' modulator and analog current on the −2.5~V rail, a load cell's 9.0~mA returning through the negative side of the bus, and 5~mA for each closed photorelay LED that returns to the −5~V rail. The LED of a closed S11 returns to #ident("GND"), so its 5~mA loads the +5~V rail but not the pump (@sec-shields). The pump's 2.5~Ω output resistance then holds the −5~V rail near −4.8~V, or near −4.4~V with the stack's 5~V at its lower limit, which leaves ample headroom for the buffers and for the negative output of the #ident("TPS7A39"). At that lower limit, 5~% below nominal, the +5~V rail is about 4.65~V. This keeps the buffers' input range 0.15~V above the 2.0~V that the signals reach, and meets the 4.5~V minimum supply of the #ident("TMUX6212").
+Because the sensors are powered from 24~V, the +5~V rail carries only the channels' own circuits, at most 0.21~A, about a third of the eFuse limit. Of this, up to 0.12~A passes through the charge pump: mostly the converters' current on the −2.5~V rail, which carries both their AVDD1 and their AVDD2 current, as well as a load cell's 9.0~mA returning through the negative side of the bus, and 5~mA for each closed photorelay LED that returns to the −5~V rail. The LED of a closed S11 returns to #ident("GND"), so its 5~mA loads the +5~V rail but not the pump (@sec-shields). These are datasheet maxima at the converter's full clock rate. The pump's 2.5~Ω output resistance then holds the −5~V rail near −4.7~V, or near −4.35~V with the stack's 5~V at its lower limit, which leaves ample headroom for the buffers and for the negative output of the #ident("TPS7A39"). At that lower limit, 5~% below nominal, the +5~V rail is about 4.65~V. This keeps the buffers' input range 0.15~V above the 2.0~V that the signals reach, and meets the 4.5~V minimum supply of the #ident("TMUX6212").
 
 The converter's AVDD2 is tied to #ident("GND"), the lowest level that the #ident("ADS127L14") allows with ±2.5~V supplies, which halves the modulators' supply power and keeps their current off the +2.5~V rail. The charge pump switches at 2~MHz, a thousand times the signal bandwidth, and the supply rejection of the #ident("TPS7A39") and of the buffers keeps its ripple out of the readings.
 
@@ -753,7 +761,7 @@ The FPGA configures each #ident("ADS127L14") over a dedicated SPI bus with the s
       [8~kSPS, flat to 3.2~kHz, which covers the 2~kHz bandwidth (REQ-7).],
       [START],
       [Synchronized control mode],
-      [Every converter starts on the edge to which the FPGA retimes #ident("SYNC_START") (INT-6).],
+      [Every converter starts on the edge to which the FPGA retimes #ident("SYNC_START") (INT-6), and is resynchronized the same way after each register write (GW-15).],
       [Data port],
       [Frame-sync, one data lane, DCLK at #ident("SYNC_CLK"), 8.192~MHz],
       [Each converter sends its four packets to the FPGA on a line of its own (@sec-gp-control). At the full clock they occupy 160 of the 1024 bit periods of each sample.],
@@ -761,8 +769,8 @@ The FPGA configures each #ident("ADS127L14") over a dedicated SPI bus with the s
       [40~bits: status header, 24-bit reading and CRC],
       [The FPGA checks the status and CRC of every packet (GW-3).],
       [Input precharge buffers],
-      [On],
-      [The monitor's dividers rely on the buffered input current of about 0.5~µA at this clock (@sec-gp-monitor).],
+      [On, except the negative buffers of the three monitor inputs],
+      [The monitor's dividers rely on the buffered input current of about 0.5~µA at this clock (@sec-gp-monitor). The monitor inputs' negative pins are tied to #ident("GND") and need no buffer; turning those three off saves up to 4.8~mA per converter.],
       [REFP precharge buffer],
       [On for a bridge sensor, off for a transmitter],
       [The buffer accepts REFP only up to AVDD1 − 0.7~V, which is 1.8~V here. A transmitter's REFP is the 2.048~V bus. A load cell's REFP reaches at most 1.66~V, for a 410~Ω cell at 9.0~mA, and a piezoresistive transducer's sits near −1.05~V.],
@@ -792,11 +800,11 @@ A load cell is specified in millivolts per volt: its output is a fixed fraction 
   gp-channel("piezo"),
 ) <fig-gp-piezo>
 
-A piezoresistive transducer such as the Keller 7L is characterised and compensated for a constant current of 1~mA. Its bridge resistance rises by 1800 to 3000~ppm/°C, and under constant current that rise lifts the bridge voltage and cancels most of the fall in its sensitivity; at a fixed voltage the span would instead drift by −0.12 to −0.36~% per °C. The excitation therefore returns through a 1.00~kΩ current-sense resistor (0.1~%, 15~ppm/°C typical), and the converter takes its reference across that resistor, with REFP from its top. The converter then reads the output as a fraction of the current, so the tolerance and drift of the current cancel. At 100~bar a 7L typically gives 160~mV against the 1.0~V reference, so the channel noise of 2.81~µV~rms corresponds to about 1.8~mbar. Keller's zero-compensation resistors, and the join of the transducer's two lower bridge pins, belong at the sensor end.
+A piezoresistive transducer such as the Keller 7L is characterised and compensated for a constant current of 1~mA. Its bridge resistance rises by 1800 to 3000~ppm/°C, and under constant current that rise lifts the bridge voltage and cancels most of the fall in its sensitivity; at a fixed voltage the span would instead drift by −0.12 to −0.36~% per °C. The excitation therefore returns through a 1.00~kΩ current-sense resistor (0.1~%, 15~ppm/°C typical), and the converter takes its reference across that resistor, with REFP from its top. The converter then reads the output as a fraction of the current, so the tolerance and drift of the current cancel. At 100~bar a 7L typically gives 160~mV against the 1.0~V reference, so the channel noise of 2.83~µV~rms corresponds to about 1.8~mbar. Keller's zero-compensation resistors, and the join of the transducer's two lower bridge pins, belong at the sensor end.
 
 The current-sense resistor is fitted in every configuration. A load cell bypasses it through S3. In a transmitter channel #ident("EXC−") is held at #ident("GND"), so the resistor passes 2~mA from the bus. With no sensor connected, it holds #ident("EXC−") at the bus.
 
-Shunt calibration connects a resistor chosen for the sensor across the #ident("SIG+") to #ident("EXC−") arm of the bridge through S10 (REQ-10). The resulting step in the reading checks the gain of the whole channel, so it also serves as a built-in test. The FPGA closes S10 through the channel's #ident("CAL_EN") line when the ECU MCU board commands it (@tab-gp-code).
+Shunt calibration connects a resistor chosen for the sensor across the #ident("SIG−") to #ident("EXC−") arm of the bridge through S10 (REQ-10). The resulting step in the reading checks the gain of the whole channel, so it also serves as a built-in test. The FPGA closes S10 through the channel's #ident("CAL_EN") line when the ECU MCU board commands it (@tab-gp-code).
 
 === #box[4–20~mA] Transmitter
 
@@ -805,7 +813,7 @@ Shunt calibration connects a resistor chosen for the sensor across the #ident("S
   gp-channel("current"),
 ) <fig-gp-current>
 
-S2 sets the channel's current source to 30~mA. The source does not regulate below that limit, so the transmitter sets its own loop current while the source caps what a shorted transmitter or cable can draw. A two-wire transmitter takes its loop supply from #ident("EXC+") and returns the loop current on #ident("SIG+"). S8 connects the 100~Ω precision shunt between #ident("SIG+") and #ident("SIG−"), which converts 4–20~mA to 0.4–2.0~V. The cable links #ident("SIG−") to #ident("EXC−"), and S4 ties #ident("EXC−") to #ident("GND"), which closes the loop on the board (CBL-1). S4 lies outside the measured span, so its on-resistance does not affect the reading. S8 lies inside it, but its 27.5~mΩ maximum adds only 0.028~% to the reading, which calibration removes, and drifts by under 1.4~ppm/°C.
+S2 sets the channel's current source to 30~mA. The source does not regulate below that limit, so the transmitter sets its own loop current while the source caps what a shorted transmitter or cable can draw. A two-wire transmitter takes its loop supply from #ident("EXC+") and returns the loop current on #ident("SIG+"). S8 connects the 100~Ω precision shunt between #ident("SIG+") and #ident("SIG−"), which converts 4–20~mA to 0.4–2.0~V. The cable links #ident("SIG−") to #ident("EXC−"), and S4 ties #ident("EXC−") to #ident("GND"), which closes the loop on the board (CBL-1). S4 lies outside the measured span, so its on-resistance does not affect the reading. S8 lies inside it, but its on-resistance of about 30~mΩ adds only 0.03~% to the reading, which calibration removes, and drifts by under 1.5~ppm/°C.
 
 === Voltage Transmitter
 
@@ -814,7 +822,7 @@ S2 sets the channel's current source to 30~mA. The source does not regulate belo
   gp-channel("voltage"),
 ) <fig-gp-voltage>
 
-A voltage transmitter is supplied as in the #box[4–20~mA] configuration and returns its supply current on #ident("EXC−"), which S4 ties to #ident("GND"). S9 connects a 2.49~kΩ resistor from the input of the SIG+ buffer to #ident("SIG−") at the connector, so that the 10.0~kΩ series resistor becomes the top of a 5:1 divider for 0–10~V, which loads the transmitter with 12.5~kΩ. The SIG− buffer reads #ident("SIG−") through its own 10~kΩ, so the divider measures between the two signal contacts and keeps a three-wire transmitter's supply current in #ident("EXC−") out of the reading. The bottom resistor is a 1206 part, to dissipate the 0.2~W of a 28~V fault on #ident("SIG−") while S9 is closed; the SIG+ buffer's input clamp then carries 9~mA.
+A voltage transmitter is supplied as in the #box[4–20~mA] configuration and returns its supply current on #ident("EXC−"), which S4 ties to #ident("GND"). S9 connects a 2.49~kΩ resistor from the inner end of the 10.0~kΩ SIG+ series resistor to #ident("SIG−") at the connector, so that the series resistor becomes the top of a 5:1 divider for 0–10~V, which loads the transmitter with 12.5~kΩ. The SIG+ buffer reads the divider's tap through its 1~kΩ, which carries no current and so leaves the ratio unchanged. The SIG− buffer reads #ident("SIG−") through its own 10~kΩ and 1~kΩ, so the divider measures between the two signal contacts and keeps a three-wire transmitter's supply current in #ident("EXC−") out of the reading. The bottom resistor is a 1206 part, to dissipate up to 0.1~W in a 28~V fault on #ident("SIG−") while S9 is closed. The same fault reaches #ident("SIG+") through S8's body diode, so the SIG+ buffer's input clamp carries current from both paths, 7.4~mA in all, which its 1~kΩ holds below the 10~mA rating.
 
 A transmitter with an isolated output would float without a reference, so its cable links #ident("SIG−") to #ident("EXC−") (CBL-1). A three-wire transmitter needs no link, because its returns already meet inside it. Because the output is unipolar, a reading below zero by more than the channel's offset indicates a transmitter wired in reverse.
 
@@ -953,36 +961,36 @@ Ten switches configure a channel for its sensor (@tab-gp-switches). Each is the 
 #switch-entry(
   [S4 ties #ident("EXC−") to #ident("GND") in the transmitter configurations. It returns a transmitter's supply current, and the current of a #box[4–20~mA] loop through the cable link (CBL-1).],
   requirements: [S4 carries up to the 30~mA limit when closed. The current flows outside the measured span, so its on-resistance only lifts #ident("EXC−"). When open, S4 blocks #ident("EXC−") held on the bus, 2.05~V below #ident("GND"), and #ident("EXC−") never rises above #ident("GND") in use.],
-  type: [N-channel MOSFET, because with its source on #ident("EXC−") it blocks the only polarity it sees in use. Its body diode also clamps a positive fault on #ident("EXC−") to about 0.7~V above #ident("GND") (@sec-protection). The #ident("BSS138W") is rated 50~V and 200~mA. Its current rating also bounds the fault that its body diode survives, which makes S4 the weakest switch against a low-impedance fault (OI-5); a larger MOSFET would raise that bound at no cost to the reading.],
+  type: [N-channel MOSFET, because with its source on #ident("EXC−") it blocks the only polarity it sees in use. Its body diode also clamps a positive fault on #ident("EXC−") to about 0.7~V above #ident("GND") (@sec-protection). The #ident("BSS138W") is rated 50~V and 200~mA. Its current rating also bounds the fault that its body diode survives, which makes S4 the weakest switch against a low-impedance fault (OI-5); a larger MOSFET would raise that bound at no cost to the reading. Its gate follows #ident("TX_G") through 10~kΩ, so when S4 is open the gate sits at −5~V, 3 to 4~V below its source. Two 16~V Zener diodes in series opposition therefore protect the gate: at that bias the reverse-biased diode only leaks, typically well under a nanoampere, and together the pair clamps a fault to about 17~V in either direction.],
 )
 
 #switch-entry(
   [S5 takes REFP from #ident("EXC+") through 10~kΩ for a load cell.],
-  requirements: [S5 carries only the buffered REFP current of at most ±4~µA behind 10~kΩ, so its on-resistance is immaterial. When open, it isolates the REFP node from #ident("EXC+"), which reaches 24~V on a transmitter channel or with an open sensor, while the REFP node stays within the rails.],
+  requirements: [S5 carries only the buffered REFP current, typically ±4~µA, behind 10~kΩ, so its on-resistance is immaterial. When open, it isolates the REFP node from #ident("EXC+"), which reaches 24~V on a transmitter channel or with an open sensor, while the REFP node stays within the rails.],
   type: [N-channel MOSFET, because with its source on the REFP side it blocks the only polarity it sees.],
 )
 
 #switch-entry(
   [S6 and S7 select REFP. S6 takes it from #ident("EXC−") for a piezoresistive transducer, and S7 from the positive side of the bus for a transmitter.],
-  requirements: [Every terminal of S6 and S7 stays within the rails, because the body diodes of S3 and S4 hold #ident("EXC−") within 0.7~V of the bus or #ident("GND"). S6 carries the buffered REFP current of ±4~µA. S7 carries the unbuffered reference current of four converters, about 1~mA, and its on-resistance lies in a transmitter's reference. When open, S6 leaks into a piezoresistive transducer's #ident("EXC−"), between the bridge and its current-sense resistor.],
+  requirements: [Every terminal of S6 and S7 stays within the rails, because the body diodes of S3 and S4 hold #ident("EXC−") within 0.7~V of the bus or #ident("GND"). S6 carries the buffered REFP current, typically ±4~µA. S7 carries the unbuffered reference current of four converters, about 1~mA, and its on-resistance lies in a transmitter's reference. When open, S6 leaks into a piezoresistive transducer's #ident("EXC−"), between the bridge and its current-sense resistor.],
   type: [Analog switch, because every terminal stays within the rails. The #ident("TMUX6212") has at most 7.6~Ω up to 85~°C at ±5~V. In S7 this lowers the reference by 0.19~%, which calibration removes, and its drift of 0.015~Ω/°C is 3.7~ppm/°C of the reference. In S6 the same resistance is a fixed 30~ppm, and the leakage of at most 2~nA is 2~ppm of a piezoresistive transducer's current.],
 )
 
 #switch-entry(
   [S8 connects the 100~Ω shunt across the signal contacts for a #box[4–20~mA] transmitter.],
   requirements: [S8 lies inside the measured span: the converter reads the shunt and S8 in series, so S8's on-resistance and its drift add to the shunt's. When closed it carries up to 30~mA, and when open it must block a 0–10~V transmitter's output in the voltage configuration. Both of its terminals are on sensor contacts and must withstand a 28~V fault.],
-  type: [N-channel MOSFET, because a power MOSFET offers milliohms of on-resistance at the voltage rating that a contact needs. With its source on #ident("SIG−") it blocks the one polarity a transmitter presents. Its gate is held at #ident("EXC_N"), at least 1.6~V below #ident("SIG−"), when open, and at +5~V when closed. The #ident("DMTH6016LFDFWQ") has at most 27.5~mΩ at 4.5~V in a 2 × 2~mm package, which adds at most 0.028~% to the reading; calibration removes this. Its on-resistance rises by roughly 0.5~%/°C, so S8 drifts by under 1.4~ppm/°C and the shunt's own 5~ppm/°C remains the dominant term. Its 60~V rating matches the suppressors' clamp at the first peak of a discharge, and every part is avalanche-tested in production (@sec-protection). Its gate is rated ±20~V, so a 16~V Zener diode, as on S4, protects it against a 28~V fault on #ident("SIG−"). At the 3~V of reverse bias that the Zener sees in use, it typically leaks well under 1~nA into #ident("SIG−"), or 0.2~µV through a load cell.],
+  type: [N-channel MOSFET, because a power MOSFET offers milliohms of on-resistance at the voltage rating that a contact needs. With its source on #ident("SIG−") it blocks the one polarity a transmitter presents; a positive fault on #ident("SIG−") instead forward-biases its body diode and reaches #ident("SIG+") through the shunt (@sec-protection). When S8 is open, 100~kΩ holds its gate at its source. When it is closed, a #ident("TMUX6212") channel pulls the gate toward +5~V through 10~kΩ, which against the 100~kΩ gives about 4.5~V of drive, or 4.2~V with the stack's 5~V at its lower limit. The #ident("DMTH6016LFDFWQ") has at most 27.5~mΩ at 4.5~V in a 2 × 2~mm package, and somewhat more at the lower drive, which adds about 0.03~% to the reading; calibration removes this. Its on-resistance rises by roughly 0.5~%/°C, so S8 drifts by under 1.5~ppm/°C and the shunt's own 5~ppm/°C remains the dominant term. Its 60~V rating matches the suppressors' clamp at the first peak of a discharge, and every part is avalanche-tested in production (@sec-protection). Its gate is rated ±20~V, so a 16~V Zener diode from gate to source protects it against a 28~V fault on #ident("SIG−"). Because the pull-down holds the gate at the source, the Zener has no bias while S8 is open and draws nothing from #ident("SIG−").],
 )
 
 #switch-entry(
-  [S9 connects the 2.49~kΩ divider bottom from the SIG+ buffer's input to #ident("SIG−") for a voltage transmitter.],
-  requirements: [Open in the #box[4–20~mA] configuration, S9 has up to 2~V across it at the buffer's input. That node sits behind 10~kΩ, so the switch's leakage appears as an error. When closed, S9 carries at most 0.8~mA and its on-resistance adds to the divider's bottom. It must block both polarities, because #ident("SIG−") may lie above or below the buffer's input, and its #ident("SIG−") terminal is on a sensor contact and must withstand a 28~V fault.],
+  [S9 connects the 2.49~kΩ divider bottom from the divider's tap, ahead of the SIG+ buffer's 1~kΩ, to #ident("SIG−") for a voltage transmitter.],
+  requirements: [Open in the #box[4–20~mA] configuration, S9 has up to 2~V across it at the divider's tap. That node sits behind 10~kΩ, so the switch's leakage appears as an error. When closed, S9 carries at most 0.8~mA and its on-resistance adds to the divider's bottom. It must block both polarities, because #ident("SIG−") may lie above or below the buffer's input. It faces #ident("SIG−"), a sensor contact, through the 2.49~kΩ resistor, so when open it must also block a 28~V fault.],
   type: [Photorelay, because its back-to-back MOSFETs block both polarities and its LED drive leaves the switch floating. A #ident("TMUX6212") channel drives the LED from the +5~V rail through 680~Ω to #ident("GND"), at about 5~mA. The #ident("TLP3475S") guarantees an off-state leakage of at most 1~nA at 50~V and 25~°C, which through 10~kΩ is 10~µV, where a MOSFET's guaranteed 1~µA would give 10~mV. Its 1.5~Ω adds 0.06~% to the divider's bottom, which calibration removes, and drifts by 1.9~ppm/°C.],
 )
 
 #switch-entry(
-  [S10 places the shunt-calibration resistor across a bridge's SIG+ to #ident("EXC−") arm.],
-  requirements: [One terminal of S10 is on #ident("EXC−"), within the rails. The other sees #ident("SIG+") only through the calibration resistor of tens of kilohms, which limits a fault on #ident("SIG+") to a fraction of a milliampere. When closed, S10's on-resistance adds to the calibration resistor; when open, its leakage flows into the bridge output.],
+  [S10 places the shunt-calibration resistor across a bridge's #ident("SIG−") to #ident("EXC−") arm.],
+  requirements: [One terminal of S10 is on #ident("EXC−"), within the rails. The other meets #ident("SIG−") through the calibration resistor, so it too stays within the rails in every configuration: #ident("SIG−") sits near #ident("GND") in both transmitter configurations, while #ident("SIG+") reaches 10~V in the voltage configuration. The resistor of tens of kilohms limits a fault on #ident("SIG−") to a fraction of a milliampere. When closed, S10's on-resistance adds to the calibration resistor; when open, its leakage flows into the bridge output.],
   type: [Analog switch, because the calibration resistor keeps both terminals within the rails. The #ident("TMUX6212")'s 7.6~Ω is 0.01~% of the fitted 87.6~kΩ calibration resistor, which simulates about 1~mV/V on a 350~Ω cell. Its leakage of at most 2~nA gives less than 1~µV across the bridge, an offset that a tare removes.],
 )
 
@@ -1018,17 +1026,17 @@ Six logic lines set a channel's switches, one for each group of switches that cl
   ),
 ) <tab-gp-code>
 
-The lines are GPIO0 to GPIO5 of the channel's #ident("ADS127L14"), carrying 1.8~V logic referenced to #ident("GND") (@sec-gp-control). A single data lane leaves the converter eight GPIO pins, so no logic is needed between the converter and the switches. The two #ident("TMUX6212") provide S6, S7 and S10, and their remaining channels translate the lines to the ±5~V drive of the MOSFET gates and the photorelay LEDs. A closed channel takes its output to +5~V, and a pull-down holds it at −5~V or at #ident("EXC_N") while the channel is open. The LEDs of S1 and S2 return to the −5~V rail and that of S9 to #ident("GND"), so an open channel leaves them dark. The drives of S4 and S8 each pass through 10~kΩ, which limits the current that a fault clamped by their gate Zeners drives back into the #ident("TMUX6212").
+The lines are GPIO0 to GPIO5 of the channel's #ident("ADS127L14"), carrying 1.8~V logic referenced to #ident("GND") (@sec-gp-control). A single data lane leaves the converter eight GPIO pins, so no logic is needed between the converter and the switches. The two #ident("TMUX6212") provide S6, S7 and S10, and their remaining channels translate the lines to the ±5~V drive of the MOSFET gates and the photorelay LEDs. A closed channel takes its output to +5~V. While a channel is open, pull-downs hold #ident("LC_G") and #ident("TX_G") at −5~V and S8's gate at its source. The LEDs of S1 and S2 return to the −5~V rail and that of S9 to #ident("GND"), so an open channel leaves them dark. The drives of S4 and S8 each pass through 10~kΩ, which limits the current that a fault clamped by their gate Zeners drives back into the #ident("TMUX6212").
 
 No hardware prevents a mixture of configurations; the gateware ensures that only the combinations of @tab-gp-code are written (GW-2). Two mixtures would short the channel's bus. A load cell's S3 together with a transmitter's S4 would short the negative side of the bus to #ident("GND") through a #ident("BSS138W") rated for 200~mA, and a piezoresistive bridge's S6 together with a transmitter's S7 and S4 would short the positive side through two #ident("TMUX6212") channels rated for 160~mA at 85~°C. Either short would hold the bus amplifier at its ±65~mA limit, which is within the switches' ratings, and the channel would lose its excitation until the FPGA turned it off (GW-3). #ident("LC_EN") and #ident("TX_EN") must likewise never be set together, because that would close both current branches.
 
-When all six lines are low, every switch is open. The converter's GPIO pins are disabled at power-up and after a reset, and the internal pull-downs of the #ident("TMUX6212"), about 4~MΩ, then hold each line low. These pull-downs are limited to about 1~µA, far more than the nanoamperes that the converter's disabled pins leak in practice, although the converter's datasheet allows up to 5~µA. With every switch open, the channel delivers 1~mA through the permanent output resistor, a current that is safe for any sensor and too small to start a transmitter.
+When all six lines are low, every switch is open. The converter's GPIO pins are disabled at power-up and after a reset, and the internal pull-downs of the #ident("TMUX6212"), about 4~MΩ, then hold each line low. The converter's datasheet allows its digital pins up to 1~µA of input current, enough to lift a line past the #ident("TMUX6212")'s 1.3~V threshold, so #ident("LC_EN") and #ident("TX_EN"), the two lines that raise the current, also have 100~kΩ pull-downs. With every switch open, the channel delivers 1~mA through the permanent output resistor, a current that is safe for any sensor and too small to start a transmitter. No switch then sets REFP, so the converter has no reference and its readings carry no meaning until a configuration is set (GW-2).
 
 One register write sets all six lines together, so a channel never passes through a mixture on its way to the next configuration. The FPGA nevertheless moves a channel through off between configurations (GW-2), because the switches do not all change at the same speed: going directly from a load cell to a transmitter, S4 could close before S3 had opened and short the bus momentarily.
 
-No setting of the lines can prevent a configuration that is wrong for the connected sensor; the 30~mA branch, for example, would destroy a 7L rated for 3~mA. The FPGA therefore raises the current only after the excitation monitor has measured the sensor at 1~mA with the channel off (GW-2, @sec-gp-monitor).
+No setting of the lines can prevent a configuration that is wrong for the connected sensor; the 30~mA branch, for example, would destroy a 7L rated for 3~mA. The FPGA therefore raises the current only after the excitation monitor has measured the sensor at 1~mA in the piezoresistive configuration, whose reference, taken across the current-sense resistor, is valid with any sensor connected (GW-2, @sec-gp-monitor).
 
-Once placed, the switches and their drive occupy about 2.2~cm² per channel: two #ident("TMUX6212"), four MOSFETs, three photorelays, two Zener diodes and their resistors (@sec-physical).
+Once placed, the switches and their drive occupy about 2.4~cm² per channel: two #ident("TMUX6212"), four MOSFETs, four photorelays including the shield's S11, three Zener diodes and their resistors (@sec-physical).
 
 === Control <sec-gp-control>
 
@@ -1082,11 +1090,13 @@ The FPGA drives each converter directly, on dedicated lines (@sec-fpga). The con
   ) <tab-gp-barrier>
 ]
 
-Because the FPGA banks and the converters' I/O share one supply, they power down together when the FPGA switches the channel supply off, so neither drives the other while unpowered. The FPGA drives both converters' CLK and START from one internal clock and one retimed start (INT-6), so the two converters of a board sample together to within the skew between the FPGA's outputs, about a nanosecond. Between boards, the FPGAs' clock-to-output delays differ by a few nanoseconds, which sets how closely the boards sample together. The 62~Ω resistors damp ringing on the 8.192~MHz clock and limit the current into a converter's inputs while its supply rises.
+Because the FPGA banks and the converters' I/O share one supply, they power down together when the FPGA switches the channel supply off, so neither drives the other while unpowered. The FPGA drives both converters' CLK and START from one internal clock and one retimed start (INT-6), so the two converters of a board sample together to within the skew between the FPGA's outputs, about a nanosecond. Between boards, the FPGAs' clock-to-output delays differ by a few nanoseconds, which sets how closely the boards sample together. The 62~Ω resistors damp ringing on the 8.192~MHz clock and the other fast lines.
 
-Each converter has its own SPI bus at 4~MHz. A transfer is one 24-bit word with CRC and takes 6~µs; between transfers the converter releases SDO, and a pull-down in the FPGA's input holds the line. The converter sends the four packets of every sample on its own DOUT line, framed by its own FSYNC, at the full 8.192~MHz of #ident("SYNC_CLK"), so they occupy 160 of the 1024 bit periods in each 125~µs sample period. One line could therefore carry the four 40-bit packets at up to 51.2~kSPS, well above the 8~kSPS of GW-5. The FPGA samples DOUT with its own copy of the clock, so DCLK is not routed; the converter's output delay is a small part of each 122~ns bit. The daisy-chain input DIN0 is tied low.
+Each converter has its own SPI bus at 4~MHz. A transfer is one 24-bit word with CRC and takes 6~µs; between transfers the converter releases SDO, and a pull-down in the FPGA's input holds the line. The converter sends the four packets of every sample on its own DOUT line, framed by its own FSYNC, at the full 8.192~MHz of #ident("SYNC_CLK"), so they occupy 160 of the 1024 bit periods in each 125~µs sample period. One line could therefore carry the four 40-bit packets at up to 51.2~kSPS, well above the 8~kSPS of GW-5. The FPGA samples DOUT and FSYNC with its own copy of the clock, so DCLK is not routed. The datasheet times DOUT only against DCLK, within 7~ns of its falling edge, and does not specify the delay from CLKIN to DCLK, so the gateware oversamples DOUT and FSYNC and takes the bit timing from the FSYNC edge (OI-7). The daisy-chain input DIN0 is tied low.
 
 The FPGA writes a channel's six switch lines into the converter's GPIO output register in a single write, and reads the pins back through the GPIO read register before it uses the channel's data (GW-2). Because the read-back reflects the pins as they drive the switches, a stuck line or a corrupted write appears at the next read. The converter disables its GPIO pins at power-up and after a reset, so a channel always starts off.
+
+Every write to the converter's configuration registers, the GPIO output register among them, restarts all four of its converters and loses their synchronization with the rest of the stack. The converter then withholds its data for 68 conversions, 8.5~ms, while its filters settle. The FPGA therefore resynchronizes the converter after each write with a START edge on the stack's sample grid, which its own START line allows without disturbing the other channel, and marks the readings of the gap invalid (GW-15). A change of configuration, shunt calibration or shield termination thus costs the channel 8.5~ms of data, during which its monitor is blind as well, so the checks of GW-2 wait for the converter's data to resume.
 
 A converter that fails outright, or that holds one of its lines, affects only its own channel: the FPGA sees its packets missing or its switch lines reading back wrong and turns that channel off (GW-3), while the other channel continues. The FPGA can then reset that converter alone through its RESET line, without switching off the shared channel supply. A converter that resets spontaneously turns its channel off and reports the reset in the status header of its next packet, and the FPGA then reconfigures it (GW-3).
 
@@ -1113,7 +1123,7 @@ Calibration at test (FW-2, GW-4) and shunt calibration (REQ-10) remove the offse
       ),
     ),
     [Noise, rms: converter 2.55~µV, buffers, protection and bridge 1.2~µV],
-    [0.044],
+    [0.045],
     [0.002],
     [\<~0.001],
     [\<~0.001],
@@ -1142,8 +1152,8 @@ Calibration at test (FW-2, GW-4) and shunt calibration (REQ-10) remove the offse
     [\<~0.001],
     [\<~0.001],
     [\<~0.001],
-    [Buffer bias current through 2 × 10~kΩ and the bridge, 0.61~µV/°C],
-    [0.097],
+    [Buffer bias current through 2 × 11~kΩ and the bridge, 0.67~µV/°C],
+    [0.106],
     [0.004],
     [\<~0.001],
     [\<~0.001],
@@ -1189,33 +1199,35 @@ Calibration at test (FW-2, GW-4) and shunt calibration (REQ-10) remove the offse
     [0.006],
     table.hline(stroke: (paint: ink.rule, thickness: rule.hair)),
     [Drift, root sum square],
-    [0.16],
+    [0.17],
     [0.021],
     [0.009],
     [0.012],
     [Drift, worst-case sum],
-    [0.27],
+    [0.28],
     [0.039],
     [0.021],
     [0.026],
   ),
 ) <tab-gp-budget>
 
-The buffers and protection add 20~nV/√Hz to the converter's noise, mostly the thermal noise of the two 10~kΩ resistors. Over the wideband filter's noise bandwidth of about 3.5~kHz this amounts to 1.19~µV~rms, which raises the channel noise from 2.55 to 2.81~µV~rms.
+The buffers and protection add 20.5~nV/√Hz to the converter's noise, mostly the thermal noise of the two 11~kΩ input paths. Over the wideband filter's noise bandwidth of about 3.5~kHz this amounts to 1.22~µV~rms, which raises the channel noise from 2.55 to 2.83~µV~rms.
 
-Offset drift dominates the error for a load cell. Gain calibration cannot remove it, but a tare before each test does (FW-3). Two terms account for most of it. The first is the converter's input current through the 237~Ω pair. The datasheet gives this current and its drift only as typical values, ±1.5~µA and 5~nA/°C at the 25.6~MHz clock of high-speed mode, which the budget scales to 8.192~MHz; mid-speed mode specifies the same figures at 12.8~MHz, which would double the term (@tab-adc-config). The second term is the buffers' bias current through the 10~kΩ protection resistors. For it the budget takes the change allowed between the 0.3~nA maximum at 25~°C and the 1.5~nA maximum at 85~°C, spread over that span; the typical bias current is 70~pA at 25~°C. For a piezoresistive transducer, whose signal is more than twenty times larger, the same terms amount to about 0.01~%.
+The nonlinearity row applies the converter's 2.8~ppm of its range in full only to the transmitters, whose signals cover about a quarter of that range. A bridge's signal covers under a tenth of the range around zero, over which a smooth integral nonlinearity departs from a straight line by far less than its full-range figure, so the row is negligible for bridges.
+
+Offset drift dominates the error for a load cell. Gain calibration cannot remove it, but a tare before each test does (FW-3). Two terms account for most of it. The first is the converter's input current through the 237~Ω pair. The datasheet gives this current and its drift only as typical values, ±1.5~µA and 5~nA/°C at the 25.6~MHz clock of high-speed mode, which the budget scales to 8.192~MHz; mid-speed mode specifies the same figures at 12.8~MHz, which would double the term (@tab-adc-config). The second term is the buffers' bias current through the 10~kΩ and 1~kΩ protection resistors. For it the budget takes the change allowed between the 0.3~nA maximum at 25~°C and the 1.5~nA maximum at 85~°C, spread over that span; the typical bias current is 70~pA at 25~°C. For a piezoresistive transducer, whose signal is more than twenty times larger, the same terms amount to about 0.01~%.
 
 A bridge's reference is taken at the connector, so for a load cell the excitation wires lie inside it. A resistance of 1~Ω in each wire lowers a 350~Ω cell's reading by 0.57~%, and copper's coefficient of 0.39~%/°C turns that into 0.02~% per 10~°C. Shunt calibration removes both at the time it is applied. A piezoresistive transducer is referenced to the current through it, which its wires cannot change, so its reading does not depend on them.
 
 The excitation monitor adds no term (@sec-gp-monitor): the current its dividers draw from #ident("EXC+") leaves before the sensor, and at a piezoresistive channel's #ident("EXC−") its buffer's bias current changes the current-sense resistor's share of the current by under 0.04~ppm/°C.
 
-The configuration switches add at most 0.006~% per 10~°C (@sec-gp-switches). On-resistance drift dominates: S3's 1.4~ppm/°C in a load cell's reference, S9's 1.9~ppm/°C in the divider's bottom and S7's 3.7~ppm/°C in a transmitter's reference, which carries the reference current of four converters. The remainder is leakage from S8's gate clamp into #ident("SIG−") and from the open MOSFETs at #ident("EXC−"), at most a few nanoamperes when hot. These leakage figures are typical, because the datasheets guarantee a MOSFET's leakage only at its full rated voltage, where it can reach 1~µA.
+The configuration switches add at most 0.006~% per 10~°C (@sec-gp-switches). On-resistance drift dominates: S3's 1.4~ppm/°C in a load cell's reference, S9's 1.9~ppm/°C in the divider's bottom and S7's 3.7~ppm/°C in a transmitter's reference, which carries the reference current of four converters. The remainder is leakage at #ident("EXC−") from S4's gate clamp and the open MOSFETs, at most a few nanoamperes when hot; S8's gate clamp has no bias while S8 is open and contributes nothing. These leakage figures are typical, because the datasheets guarantee a MOSFET's leakage only at its full rated voltage, where it can reach 1~µA.
 
-A bridge's REFP precharge buffer serves all four converters. It draws up to ±4~µA, and its drift of about 13~nA/°C at this clock sets the reference term for bridge sensors: through a load cell's 10~kΩ it is 40~ppm/°C of the 3.2~V reference, and from a piezoresistive transducer's current-sense resistor 13~ppm/°C of the 1~mA.
+A bridge's REFP precharge buffer serves all four converters. It typically draws ±4~µA, and its drift of about 13~nA/°C at this clock sets the reference term for bridge sensors: through a load cell's 10~kΩ it is 40~ppm/°C of the 3.2~V reference, and from a piezoresistive transducer's current-sense resistor 13~ppm/°C of the 1~mA.
 
-Transmitters are measured against the excitation bus rather than ratiometrically, so their drift is that of the shunt or divider and of the excitation. The shunt, the divider and the inverter pair are 5~ppm/°C thin film, so no term exceeds 0.008~% per 10~°C. The #ident("REF5020") adds up to 70~ppm of thermal hysteresis after a temperature cycle and 22~ppm over its first 1000~hours, both of which recalibration removes; because each channel has its own reference, the two channels drift independently. At 20~mA the shunt dissipates 40~mW, and each 10~°C that it rises above the board adds 0.005~% at 20~mA, and less at lower currents. This self-heating bends the transfer curve in a way that a gain and offset correction cannot remove.
+Transmitters are measured against the excitation bus rather than ratiometrically, so their drift is that of the shunt or divider and of the excitation. The shunt, the divider and the inverter pair are 5~ppm/°C thin film, so no term exceeds 0.008~% per 10~°C. In its VSSOP package the #ident("REF5020") typically shows 50~ppm of thermal hysteresis after its first temperature cycle and drifts 50~ppm over its first 1000~hours, both of which recalibration removes; because each channel has its own reference, the two channels drift independently. At 20~mA the shunt dissipates 40~mW, and each 10~°C that it rises above the board adds 0.005~% at 20~mA, and less at lower currents. This self-heating bends the transfer curve in a way that a gain and offset correction cannot remove.
 
-Before calibration, the load-cell offset can reach 0.43~mV, or 7~% of full scale: the converter's ±200~µV plus its input current through the 237~Ω pair, typically ±230~µV. The bridge gains are about 7~% high by design, because the four converters' reference currents flow through the resistors in the reference path, and the converter adds up to ±0.25~% of gain error.
+Before calibration, the load-cell offset can reach 0.43~mV, or 7~% of full scale: the converter's ±200~µV plus its input current through the 237~Ω pair, typically ±230~µV. The bridge gains are about 6 to 7~% high by design, and the transmitter gains about 12~%, because the four converters' reference currents flow through the resistors in the reference path, and the converter adds up to ±0.25~% of gain error.
 
 == Excitation Monitor <sec-gp-monitor>
 
@@ -1267,7 +1279,7 @@ The fourth is to drive the interlocks. The FPGA compares every reading with limi
 
 The three monitor inputs sample together with the signal, from the same clock and against the same reference. The ratio of any two readings is therefore independent of the reference, and every reading aligns with the signal sample taken at the same instant. The FPGA passes the readings to the ECU MCU board at the full 8~kSPS (GW-5), each with the converter's 2.55~µV~rms of noise.
 
-Dividers to #ident("GND") bring every node within the converter's input range in every configuration. The narrowest case is the ±1.0~V allowed under a piezoresistive transducer's 1.0~V reference, where the excitation input sees 0.96~V when an open sensor lets its current source rise to the 24~V supply.
+Dividers to #ident("GND") bring every node within the converter's input range in every configuration. The narrowest case is the ±1.0~V allowed under a piezoresistive transducer's 1.0~V reference, where the excitation input reads 0.1~V at the top of the bridge and the return input −0.53~V. An open piezoresistive transducer passes no current through the current-sense resistor and so removes the reference itself; every reading then clips, which the FPGA treats as a fault (GW-3). Under the reference of a load cell or a transmitter, 3.2~V or more, an open sensor lets the current source rise to the 24~V supply, and the excitation input then reads at most 0.96~V.
 
 The converter's inputs draw up to about 0.5~µA at this clock and drift by 1.6~nA/°C. Through the 9.6~kΩ of the ÷25 divider this would produce 5~mV and 15~µV/°C, too much for the 600~ppm budget, so one half of a second #ident("OPA2189") buffers the divided excitation input. The return and bus dividers present under 1~kΩ to the converter, so its input current moves their readings by under 0.1~%. The bus divider loads the bus amplifier with 0.5~mA.
 
@@ -1277,7 +1289,7 @@ The converter's own errors are small compared with its readings: offset drift of
 
 == Input Protection <sec-protection>
 
-Every sensor contact leaves the board through the vehicle harness, where it can meet a fault from another circuit, an electrostatic discharge during handling, and transients coupled from the igniter and the valves. The board must survive all three. REQ-14 sets the discharge and transient levels, and REQ-15 sets the fault at 28~V, the highest voltage in the harness.
+Every sensor contact leaves the board through the vehicle harness, where it can meet a fault from another circuit, an electrostatic discharge during handling, and transients coupled from the igniter and the valves. The board must survive all three. REQ-14 sets the discharge and transient levels, and REQ-15 sets the fault at 28~V, the highest voltage in the harness. REQ-15 covers faults positive with respect to #ident("GND"), the polarity of the harness's supplies. A negative fault would put more than the 40~V that the #ident("LT3092") withstands between its input and #ident("EXC+").
 
 Each of the ten sensor contacts, the two shield contacts among them, has a bidirectional suppressor to #ident("GND") at the connector pin, a Littelfuse #ident("SD36C-01FTG") in SOD-323. Its stand-off voltage of 36~V lies above 28~V, so neither the 24~V sensor supply nor a 28~V fault makes it conduct, and the parts behind it must withstand the fault. The suppressor must be bidirectional because #ident("EXC−") and the signal contacts sit up to 2~V below #ident("GND") in use, where a unidirectional part would conduct. It is an avalanche part rated for ±30~kV contact discharge and 40~A fast transients. It breaks down at 40~V and clamps through about 0.68~Ω beyond that: at about 51~V for the 16~A that an 8~kV contact discharge delivers 30~ns into its pulse, and at about 60~V for the 30~A of the first peak, which lasts about a nanosecond.
 
@@ -1285,7 +1297,7 @@ The parts on the contacts are rated to match. S8 is rated 60~V and avalanche-tes
 
 On #ident("EXC−") the body diodes of S3 and S4 conduct before the suppressor does, S4's to #ident("GND") and S3's to the bus. They hold #ident("EXC−") within about 0.7~V of those nodes, so the current-sense resistor and the switch terminals on #ident("EXC−"), those of S6 and S10, never see more than a few volts. The two MOSFETs then carry part of a discharge, and they are to be tested at the REQ-14 levels on the first boards. If needed, a few ohms in series with S4, which carries only a transmitter's supply return, would relieve it.
 
-The #ident("LT3092") on #ident("EXC+") withstands only ±40~V between its input and its output, and a discharge reaches its output almost unattenuated through the current source's output resistor. A 100~nF capacitor from #ident("EXC+") to #ident("GND") therefore absorbs the discharge's charge first. An 8~kV discharge from the standard's 150~pF carries 1.2~µC, which moves the capacitor by about 12~V, or by about 27~V where a transmitter's 24~V supply has halved its capacitance. The suppressor then does not conduct, and the current source's input-to-output voltage stays within about 35~V. A fast transient couples far less charge per pulse, but with no sensor connected a burst could pump the capacitor until the suppressor conducts, which is to be tested on the first boards. The capacitor sits ahead of the bridge and the current-sense resistor, so its leakage changes no reading, and it delays a bridge's excitation by at most 0.35~ms at turn-on.
+The #ident("LT3092") on #ident("EXC+") withstands only ±40~V between its input and its output, and a discharge reaches its output almost unattenuated through the current source's output resistor. The 10~µF capacitor from #ident("EXC+") to #ident("GND") that keeps the source stable (@sec-gp-excitation) therefore absorbs the discharge's charge first. An 8~kV discharge from the standard's 150~pF carries 1.2~µC, which moves the capacitor by well under 1~V even where a transmitter's 24~V supply has reduced its capacitance to a few microfarads. The suppressor then does not conduct, and the current source's input-to-output voltage stays within its rating. A fast transient couples far less charge per pulse, but with no sensor connected a burst could in principle pump the capacitor toward the suppressor's breakdown, which is to be tested on the first boards. The capacitor sits ahead of the bridge and the current-sense resistor, so its leakage changes no reading. It slows the excitation instead, which settles with the time constant of the capacitor and the bridge's return path: about 45~ms for a piezoresistive transducer through its current-sense resistor and 3.5~ms for a load cell. The reading is ratiometric and barely moves meanwhile, but the monitor's checks at 1~mA wait for the excitation to settle (GW-2).
 
 A suppressor returns a discharge to #ident("GND"), the stack's ground, and the discharge leaves through the stack's own connection to the vehicle (OI-3). The board's ground must carry it past the FPGA and the interconnect without disturbing them (@sec-physical). A sustained fault from a contact to the vehicle likewise drives current through the channel's clamps into the stack's ground; the clamps and series resistors limit that current on most paths (@tab-protection).
 
@@ -1307,11 +1319,11 @@ REQ-14 does not include surge immunity to IEC~61000-4-5, because the harness is 
     [Flows into the bus through S3 where it is closed, and otherwise to #ident("GND") through S4's body diode, 0.7~V above it. The current-sense resistor then carries at most 2.8~mA.],
     [#ident("SIG+"), #ident("SIG−")],
     [±2~V; #ident("SIG+") to 10~V for a voltage transmitter],
-    [Reaches the buffers through 10~kΩ and drives 2.3~mA into their input clamps. S8 and S9, both rated 60~V, block it while open; where the configuration closes them, it flows through the shunt or the divider to #ident("GND").],
+    [Reaches the buffers through 11~kΩ and drives 2.1~mA into their input clamps. S9, rated 60~V, blocks it while open, and so does S8 for a fault on #ident("SIG+"); a fault on #ident("SIG−") passes S8's body diode and the shunt to #ident("SIG+"). Where S8 is closed, it flows through the shunt and the cable link to #ident("GND") (CBL-1). Where S9 is closed, a fault on #ident("SIG−") reaches the SIG+ buffer's clamp through the divider bottom as well, 7.4~mA in all.],
   ),
 ) <tab-protection>
 
-Most of these paths survive a fault from any source, but three are low-impedance by design: S3 into the bus in the load-cell configuration, S4's body diode, and the shunt with S8 in the #box[4–20~mA] configuration, which returns through the cable link and S4. These three survive a current-limited fault indefinitely; another channel's sensor supply at 30~mA, for example, dissipates 21~mW in S4's diode and 90~mW in the shunt. A low-impedance source such as a valve supply would destroy S4 or the shunt, and through S3 it would hold the channel's bus at its amplifier's ±65~mA limit and remove the channel's excitation while it lasted. Such a fault damages only its own channel, or both channels of the board if it trips the channel supply, but while it lasts its current returns through the stack's ground and can disturb the other boards (OI-5).
+Most of these paths survive a fault from any source, but three are low-impedance by design: S3 into the bus in the load-cell configuration, S4's body diode, and the shunt with S8 in the #box[4–20~mA] configuration, which returns through the cable link and S4. Wherever the cable links #ident("SIG−") to #ident("EXC−") (CBL-1), a fault on #ident("SIG−") is a fault on #ident("EXC−") and takes the same paths. These three survive a current-limited fault indefinitely; another channel's sensor supply at 30~mA, for example, dissipates 21~mW in S4's diode and 90~mW in the shunt. A low-impedance source such as a valve supply would destroy S4 or the shunt, and through S3 it would hold the channel's bus at its amplifier's ±65~mA limit and remove the channel's excitation while it lasted. Such a fault damages only its own channel, or both channels of the board if it trips the channel supply, but while it lasts its current returns through the stack's ground and can disturb the other boards (OI-5).
 
 == Cable Shields <sec-shields>
 
@@ -1344,7 +1356,7 @@ The far end of the shield therefore decides its termination at the board. A shie
 
 #switch-entry(
   [S11 joins a channel's shield contact directly to #ident("GND") for a cable whose shield is open at the sensor.],
-  requirements: [S11 carries the currents induced on the shield, a few milliamperes, and would carry a loop's current only if a shield were wrongly bonded at both ends. When open, it must block a 28~V fault in either polarity, because the shield runs beside every other conductor of the harness (REQ-15).],
+  requirements: [S11 carries the currents induced on the shield, a few milliamperes, and would carry a loop's current only if a shield were wrongly bonded at both ends. When open, it must block a 28~V fault (REQ-15), and it must block in both directions, so that it never rectifies the alternating currents induced on the shield into a partial bond.],
   type: [Photorelay, because its back-to-back MOSFETs block both polarities and its LED drive is isolated from the shield. The #ident("TLP3475S"), the part of S1, S2 and S9, blocks 60~V and closes with at most 1.5~Ω, which is negligible in a DC bond. A #ident("TMUX6212") channel drives its LED from the +5~V rail through 680~Ω to #ident("GND"), as for S9, under GPIO6 of the channel's #ident("ADS127L14") (GW-14). The converter's GPIO pins are disabled at power-up and after a reset, and a 10~kΩ pull-down then holds GPIO6 low, so S11 stays open until the channel is configured. The termination is therefore capacitive by default, which never bonds a shield at both ends.],
 )
 
@@ -1358,15 +1370,15 @@ In both terminations, the shield's current enters #ident("GND") at the connector
 
 The FPGA is the board's only connection to its SPI lane (@sec-interfaces). It runs from #ident("SYNC_CLK") and from the 3.3~V input, and its two banks that face the converters run from the channels' 1.8~V rail (@sec-gp-control).
 
-The FPGA configures each #ident("ADS127L14") over a dedicated SPI bus, sets each channel's switch lines, and reads both back (GW-1, GW-2). It forwards #ident("SYNC_CLK") to each converter as its clock, retimes #ident("SYNC_START") to an edge of it, and starts both converters on that edge, so that they sample at the same instant as every other converter in the stack (INT-6). It receives each converter's frame-sync data on a dedicated line and checks the status and CRC of every packet. When a channel's converter, switch read-back or excitation monitor shows a fault, the FPGA turns that channel off within one sample (GW-3). It can also switch the channel supply off and on through the enable of its eFuse, which turns off both channels, and it reads the eFuse's fault flag (@sec-gp-supply, GW-12).
+The FPGA configures each #ident("ADS127L14") over a dedicated SPI bus, sets each channel's switch lines, and reads both back (GW-1, GW-2). It forwards #ident("SYNC_CLK") to each converter as its clock, retimes #ident("SYNC_START") to an edge of it, and starts both converters on that edge, so that they sample at the same instant as every other converter in the stack (INT-6). Because any register write restarts a converter, the FPGA resynchronizes a converter the same way after writing to it (GW-15). It receives each converter's frame-sync data on a dedicated line and checks the status and CRC of every packet. When a channel's converter, switch read-back or excitation monitor shows a fault, the FPGA turns that channel off within one sample (GW-3). It can also switch the channel supply off and on through the enable of its eFuse, which turns off both channels, and it reads the eFuse's fault flag (@sec-gp-supply, GW-12).
 
 The FPGA applies each channel's calibration (GW-4) and gathers all eight readings of each sample into a frame of fixed format (GW-5). It numbers every frame from the last start, packs eight frames into a 1~ms packet with a CRC, and buffers 20~ms of packets (GW-6, INT-10). It serves the packets and its registers to the ECU MCU board as a peripheral on SPI0, reports in every read how much data it still holds (INT-10), and acts on a register write only if the write's CRC is correct (GW-7).
 
-The FPGA is a Lattice #ident("LCMXO2-4000HC-4QN84C"), with 4320 LUTs, 92~kbit of block RAM, two PLLs and 68 I/O in a 7 × 7~mm QFN-84. It is the commercial temperature grade, with a junction range of 0 to 85~°C, and the slowest speed grade, which suffices because the gateware's clocks run at 20~MHz and below. As an HC device it runs from the 3.3~V input alone, with no core regulator. #ident("SYNC_CLK") enters on a primary clock pin of bank 0, from which a PLL can take it. Banks 1 and 4 run at 1.8~V, one for each converter, and banks 0 and 2 at 3.3~V. The FPGA checks its own configuration for upsets (GW-11) and checks #ident("SYNC_CLK") against its internal oscillator (GW-10).
+The FPGA is a Lattice #ident("LCMXO2-4000HC-4QN84C"), with 4320 LUTs, 92~kbit of block RAM, two PLLs and 68 I/O in a 7 × 7~mm QFN-84. It is the commercial temperature grade, with a junction range of 0 to 85~°C, and the slowest speed grade, which suffices because the gateware's fastest clock, about 33~MHz to oversample the converters' 8.192~Mbit/s data four times, lies far below what that grade supports. As an HC device it runs from the 3.3~V input alone, with no external core regulator. #ident("SYNC_CLK") enters on a primary clock pin of bank 0, from which a PLL can take it. Banks 1 and 4 run at 1.8~V, one for each converter, and banks 0 and 2 at 3.3~V. The FPGA checks its own configuration for upsets (GW-11) and checks #ident("SYNC_CLK") against its internal oscillator (GW-10).
 
 The FPGA configures itself from its internal flash at power-up (GW-8). The ECU MCU board writes a new configuration into that flash in the background through the slave SPI port on bank 2, a hardened configuration port that every image keeps enabled and to which the bus buffer brings SPI0. If the new configuration fails to load, the FPGA falls back to a golden image held in a #ident("W25Q16JV") SPI flash beside it (FW-4), which it writes only after a separate unlock command (GW-8). The flash is on the master SPI pins, which share their clock and data with the slave port, so the bus buffer releases those pins whenever the board is deselected (@sec-stacking). Pull-ups from the configuration guide hold them: 1~kΩ on the clock, as dual boot requires, and 10~kΩ on the data input and on both chip selects.
 
-The slave SPI port also accepts the configuration logic's REFRESH command, which reloads the FPGA from its flash regardless of what the design is doing, so the ECU MCU board can recover a hung FPGA without power-cycling the stack (GW-9). Whether the port stays enabled is set in the feature row in flash, which no upset of the running configuration can change. PROGRAMN is therefore left unconnected, with its internal weak pull-up in a blank device.
+The slave SPI port also accepts the configuration logic's REFRESH command, which reloads the FPGA from its flash regardless of what the design is doing, so the ECU MCU board can recover a hung FPGA without power-cycling the stack (GW-9). Whether the port stays enabled is set in the feature row in flash, which no upset of the running configuration can change. The board therefore has no use for PROGRAMN, and a 10~kΩ pull-up holds it high, so that no glitch on it can start a reload; the FPGA's own pull-up on the pin is weak. During a reload the FPGA's outputs float, and the pull-down on the eFuse's enable then removes the channel supply, so both channels restart from off (GW-9).
 
 The gateware's own SPI interface, which carries the board's commands and data, uses the same clock and data pins through the FPGA's hardened user SPI. Its chip select is a separate input, PB7B, which the board's chip select also drives. The configuration logic therefore sees every frame and interprets its first byte as a command, so no frame of the board's own protocol may begin with a configuration command (GW-13, OI-9). JTAG is brought out to four test points, with TCK held low by 4.7~kΩ.
 
@@ -1376,19 +1388,19 @@ The FPGA, the channel supply, the current limits, the input suppressors and the 
 
 == Stacking <sec-stacking>
 
-Boards stack on #ident("ASRP-PCB-INTERCONNECT-2") together with the #ident("E004-TC-BOARD"). The ADC boards share SPI0 to the ECU MCU board. SPI1, which serves the #ident("E004-TC-BOARD"), and the CAN FD bus pass through them unused (@tab-interconnect-signals). Four solder jumpers connect each board to one of the four chip selects of SPI0. Closing one at assembly sets the board's address, so every board is built the same (INT-1), and no shunt can work loose under vibration. A 100~kΩ pull-up holds the chip select high on a board with no jumper closed.
+Boards stack on #ident("ASRP-PCB-INTERCONNECT-2") together with the #ident("E004-TC-BOARD"). The ADC boards share SPI0 to the ECU MCU board. SPI1, which serves the #ident("E004-TC-BOARD"), and the CAN FD bus pass through them unused (@tab-interconnect-signals). Four positions for a 0~Ω resistor connect each board to one of the four chip selects of SPI0. Fitting one at assembly sets the board's address, so every board shares one design (INT-1), and the soldered part cannot work loose under vibration. The board has no pull-up of its own on the chip select, because the master drives every chip select at all times (INT-4).
 
 An #ident("SN74LVC244A") octal buffer stands between the board and the interconnect. Its two groups of four buffers have separate output enables. The first group is always enabled and carries the chip select, #ident("SYNC_CLK") and #ident("SYNC_START"). The buffered chip select enables the second group, which carries the SPI clock and data inputs, each through 100~Ω, and drives #ident("SPI0_MISO") through 62~Ω of series termination, so the board drives that line only while it is selected (INT-4). Each group has one spare buffer.
 
-When the board is deselected, the second group also releases the FPGA's configuration SPI pins, so that a golden-image boot can drive them, and pull-ups hold the FPGA's SPI clock and data inputs high (@sec-fpga). If the master selects the board during such a boot, the 100~Ω resistors limit the clash. The buffer's partial-power-down protection limits the leakage into any pin of an unpowered board to 10~µA, and the chip select's pull-up adds at most 33~µA, so an unpowered board leaves every line at high impedance (INT-4). The buffer also keeps a failed FPGA input off the shared lines. #ident("SYNC_CLK") passes through the buffer to the FPGA, which forwards it to the converters (@sec-gp-control).
+When the board is deselected, the second group also releases the FPGA's configuration SPI pins, so that a golden-image boot can drive them, and pull-ups hold the FPGA's SPI clock and data inputs high (@sec-fpga). Nothing then drives the line from the FPGA's data output to the buffer either, so a 100~kΩ pull-up keeps that buffer input from floating. If the master selects the board during such a boot, the 100~Ω resistors limit the clash. The buffer's partial-power-down protection limits the leakage into any pin of an unpowered board to 10~µA, so an unpowered board leaves every line at high impedance (INT-4). The buffer also keeps a failed FPGA input off the shared lines. #ident("SYNC_CLK") passes through the buffer to the FPGA, which forwards it to the converters (@sec-gp-control).
 
-The read path passes through the buffer only. The FPGA answers within about 15~ns of an SCLK edge, and the buffer adds at most 5.9~ns on the way in and again on the way out, so #ident("SPI0_MISO") is valid at the connector within about 28~ns, including about 1~ns from the 100~Ω on SCLK. This meets the 30~ns of INT-8, so the lane runs at up to 20~MHz. The buffer enables its output within about 13~ns of the chip select falling, well inside the delay that the master leaves before its first clock edge. Each board produces about 1.6~Mbit/s, so four boards use 6.4~Mbit/s of the 15~Mbit/s that SPI0 carries (INT-9). The ECU MCU board reads the boards one at a time, in any order, and aligns their samples by number (GW-6).
+The read path passes through the buffer only. The FPGA answers within about 15~ns of an SCLK edge, an estimate, since its data sheet gives 10~ns for the configuration port and no figure for the user SPI. The buffer adds at most 5.9~ns on the way in and again on the way out, so #ident("SPI0_MISO") is valid at the connector within about 28~ns, including about 1~ns from the 100~Ω on SCLK. This meets the 30~ns of INT-8, so the lane runs at up to 20~MHz, but with a margin small enough to be measured on the first board. The buffer enables its output within about 13~ns of the chip select falling, well inside the delay that the master leaves before its first clock edge. Each board produces about 1.6~Mbit/s, so four boards use 6.4~Mbit/s of the 15~Mbit/s that SPI0 carries (INT-9). The ECU MCU board reads the boards one at a time, in any order, and aligns their samples by number (GW-6).
 
 One source drives #ident("SYNC_CLK") and #ident("SYNC_START") to every board, so all boards of both kinds sample in step (REQ-6, INT-5, INT-6). In the ECU stack that source is the ECU MCU board, on which every board already depends.
 
-Each supply input of the board is limited or fused, so that a board that fails short is held off the stack's rails. A #ident("TPS2553") current-limited switch on the 3.3~V input is set to 0.15~A. The 5~V rail feeds only the channels, so it goes directly to the channel supply's #ident("TPS25200") eFuse, which is set to 0.65~A, about four times the channels' maximum draw, and reports its faults to the FPGA (GW-12). The 24~V input passes through an #ident("MF-NSMF020X") resettable fuse, which holds 0.20~A, or 0.10~A at 85~°C, and trips at 0.40~A. The two channels draw at most 60~mA from it, so a short on the board's 24~V trips the fuse rather than loading the stack's rail.
+Each supply input of the board is limited or fused, so that a board that fails short is held off the stack's rails. A #ident("TPS2553") current-limited switch on the 3.3~V input is set to 0.15~A. Its fault flag goes to a test point, pulled up to the 3.3~V input so that it still reads once the limit has tripped. The 5~V rail feeds only the channels, so it goes directly to the channel supply's #ident("TPS25200") eFuse, which is set to 0.65~A, about three times the channels' maximum draw, and reports its faults to the FPGA (GW-12). The 24~V input passes through an #ident("MF-NSMF020X") resettable fuse, which holds 0.20~A, or 0.10~A at 85~°C, and trips at 0.40~A. The two channels draw at most 60~mA from it, so a short on the board's 24~V trips the fuse rather than loading the stack's rail.
 
-A suppressor on each input clamps transients from the stack's rails. On 5~V, a #ident("TVS0500") breaks down at 7.5 to 8.4~V and clamps at 9.2~V at 43~A. No suppressor that leaves a 5~V rail undisturbed can clamp below the 7~V absolute maximum of an ordinary current-limited switch such as the #ident("TPS2553"), which is why the 5~V input uses an eFuse: its input withstands 20~V. The eFuse also turns off while its input exceeds 7.6~V and clamps its output at 5.4~V, so neither a transient nor a sustained overvoltage on the stack's 5~V reaches the channels. On 3.3~V, an #ident("SD03C") breaks down above 4.0~V and clamps at 5.0~V at 1~A and 5.7~V at 10~A, within the 7~V absolute maximum of the #ident("TPS2553"). No suppressor that leaves 3.3~V undisturbed can clamp below the FPGA's 3.75~V absolute maximum, so the FPGA relies on the limit and the capacitance on its rail for what passes the suppressor. On 24~V, a #ident("TVS2700") clamps a transient below 34~V, under the 40~V rating of the #ident("LT3092").
+A suppressor on each input clamps transients from the stack's rails. On 5~V, a #ident("TVS0500") breaks down at 7.5 to 8.4~V and clamps at no more than 9.5~V at 43~A. No suppressor that leaves a 5~V rail undisturbed can clamp below the 7~V absolute maximum of an ordinary current-limited switch such as the #ident("TPS2553"), which is why the 5~V input uses an eFuse: its input withstands 20~V. The eFuse also turns off while its input exceeds 7.6~V and clamps its output at 5.4~V, so neither a transient nor a sustained overvoltage on the stack's 5~V reaches the channels. On 3.3~V, an #ident("SD03C") breaks down above 4.0~V and clamps at 5.0~V at 1~A and 5.7~V at 10~A, within the 7~V absolute maximum of the #ident("TPS2553"). No suppressor that leaves 3.3~V undisturbed can clamp below the FPGA's 3.75~V absolute maximum, so the FPGA relies on the limit and the capacitance on its rail for what passes the suppressor. On 24~V, a #ident("TVS2700") clamps a transient at no more than 35~V, under the 40~V rating of the #ident("LT3092"). The stand-off voltages of the #ident("TVS0500") and the #ident("SD03C"), 5~V and 3.3~V, lie just below the 5.25~V and 3.47~V that INT-2 allows, but both parts break down well above them, so they leak only slightly more at the top of the tolerance.
 
 == Component Selection
 
@@ -1418,7 +1430,7 @@ A suppressor on each input clamps transients from the stack's rails. On 5~V, a #
       [Vishay Dale thin film, 1.00~kΩ, 0.1~%, 1~W, 1206. ±25~ppm/°C maximum and ±15~ppm/°C typical; the error budget uses the typical value. The reference of a piezoresistive bridge (@sec-gp-budget).],
       [Negative rail],
       [#ident("LM2776")],
-      [Switched-capacitor inverter, 2.7 to 5.5~V in, 200~mA, 2.5~Ω output resistance, 2~MHz, SOT-23-6. Inverts the channels' +5~V for their −5~V rail, about −4.8~V at their 0.09~A.],
+      [Switched-capacitor inverter, 2.7 to 5.5~V in, 200~mA, 2.5~Ω output resistance, 2~MHz, SOT-23-6. Inverts the channels' +5~V for their −5~V rail, about −4.7~V at their 0.12~A.],
       [Channel regulators],
       [#ident("TPS7A39"), #ident("TPS709")],
       [Dual positive and negative LDO for ±2.5~V: 150~mA each, ±3.3 to ±33~V in, outputs track at start-up, 21~µV~rms. 150~mA LDO for 1.8~V (#ident("TPS70918")), 30~V maximum input, 2 × 2~mm WSON: the two converters' I/O and the FPGA's two banks that face them.],
@@ -1427,7 +1439,7 @@ A suppressor on each input clamps transients from the stack's rails. On 5~V, a #
       [Shunt clamp on the channels' +2.5~V rail at about 2.7~V, sinking up to 35~mA, enough for the four signal buffers of both channels driven beyond their input range at once: a 0.5~% shunt reference, set by 118~kΩ over 100~kΩ, driving a 40~V, 200~mA PNP transistor in SOT-323. Draws nothing in normal operation (@sec-gp-supply).],
       [Sensor supply protection],
       [#ident("MF-NSMF020X"), #ident("TVS2700")],
-      [Resettable fuse, 0.20~A hold (0.10~A at 85~°C), 0.40~A trip, 30~V, 1206, AEC-Q200, ahead of a flat-clamp suppressor: 27~V working, 29.3 to 33.9~V breakdown, 33.9~V at 40~A, 2 × 2~mm WSON. On the board's 24~V input (@sec-stacking).],
+      [Resettable fuse, 0.20~A hold (0.10~A at 85~°C), 0.40~A trip, 30~V, 1206, AEC-Q200, ahead of a flat-clamp suppressor: 27~V working, 29.3 to 33.9~V breakdown, 34.1~V maximum at 40~A, 2 × 2~mm WSON. On the board's 24~V input (@sec-stacking).],
       [Sensor current sources],
       [2 × #ident("LT3092")],
       [2-terminal current source, 0.5 to 200~mA, 1.2 to 40~V, thermal limit, set by its output resistor, which S1 and S2 switch: 1.0~mA for a piezoresistive transducer, 9.0~mA for a load cell, 30~mA for a transmitter. 3 × 3~mm DFN.],
@@ -1442,7 +1454,7 @@ A suppressor on each input clamps transients from the stack's rails. On 5~V, a #
       [Bidirectional avalanche, 36~V stand-off, 40~V at 1~mA, 50~V at 1~A and 60~V at 4~A (8/20~µs), 0.68~Ω dynamic resistance, ±30~kV contact discharge, 40~A fast transients, 1~µA at 36~V, 30~pF, AEC-Q101. One per sensor contact, the shield contacts included (@sec-protection, @sec-shields). SOD-323 (OI-4).],
       [Configuration switches within the rails],
       [4 × #ident("TMUX6212")],
-      [Four SPST channels, each closed by logic high, with internal pull-downs so that all open by default. ±4.5 to ±18~V supply, 1.8~V logic. At ±5~V, 7.6~Ω and 2~nA leakage maximum to 85~°C, 0.015~Ω/°C drift. S6, S7 and S10, and the ±5~V drive of the MOSFETs' gates and of the photorelays' LEDs; two per channel. 4 × 4~mm WQFN.],
+      [Four SPST channels, each closed by logic high, with internal pull-downs so that all open by default. 4.5 to 36~V across its supplies with VDD at least 4.5~V, 1.8~V logic. At ±5~V, 7.6~Ω and 2~nA leakage maximum to 85~°C, 0.015~Ω/°C drift. S6, S7 and S10, and the ±5~V drive of the MOSFETs' gates and of the photorelays' LEDs; two per channel. 4 × 4~mm WQFN.],
       [Load-cell return switch],
       [2 × #ident("DMN6075S")],
       [N-channel, 60~V, ±20~V gate. 85~mΩ at 10~V, 120~mΩ at 4.5~V. S3. SOT-23.],
@@ -1456,20 +1468,26 @@ A suppressor on each input clamps transients from the stack's rails. On 5~V, a #
       [8 × #ident("TLP3475S")],
       [60~V, 0.4~A, 1.5~Ω. Off-state leakage 1~nA maximum at 50~V, 25~°C. 500~V~rms input to output. S1, S2, S9 and S11. 2.0 × 1.45~mm.],
       [Gate clamps],
-      [#ident("MMSZ5246BS")],
-      [Zener, 16~V, for S4 and S8. Leakage 0.1~µA maximum at 12~V. SOD-323.],
+      [6 × #ident("MMSZ5246BS")],
+      [Zener, 16~V. One from S8's gate to its source, which S8's pull-down holds at zero bias, and two in series opposition on S4, whose gate sits 3 to 4~V below its source when open. Leakage 0.1~µA maximum at 12~V. SOD-323.],
       [Bus buffer],
       [#ident("SN74LVC244ARKSR")],
       [Octal 3-state buffer in two groups of four with separate enables. 5.9~ns maximum at 3.3~V, 7.6~ns to enable, partial-power-down protection with 10~µA maximum leakage while unpowered, 4~pF input. One group takes the chip select, #ident("SYNC_CLK") and #ident("SYNC_START"). The other, enabled by the chip select, takes the SPI clock and data in and drives #ident("SPI0_MISO"), with one buffer spare in each group (@sec-stacking). 4.5 × 2.5~mm VQFN-20.],
       [Converter line termination],
       [10 × 62~Ω],
       [0402, at the FPGA's CLK, START, SCLK, SDI and chip-select outputs to each converter; the same value as the #ident("SPI0_MISO") termination (@sec-gp-control).],
-      [Chip-select jumpers],
-      [4 solder jumpers],
-      [Two pads each, closed with solder at assembly. Each picks one of the chip selects of SPI0.],
+      [Buffer input resistors],
+      [4 × 1~kΩ],
+      [0402, between each signal input's 10~kΩ protection resistor and its buffer, ahead of the 110~pF. They hold a fault's current into the buffer's input clamp under its 10~mA rating (@sec-gp-chain).],
+      [Chip-select resistors],
+      [4 × 0~Ω, one fitted],
+      [0402, one position for each chip select of SPI0. The one fitted at assembly sets the board's address (@sec-stacking).],
       [Shield capacitors],
       [2 × #ident("GRM21BR72E103KW03L")],
       [10~nF, X7R, 250~V, 0805. One per channel's shield contact, in parallel with S11 (@sec-shields).],
+      [Excitation capacitors],
+      [2 × #ident("GRJ32ER71H106KE11")],
+      [10~µF, X7R, 50~V, 1210. One per channel from #ident("EXC+") to #ident("GND"): keeps the #ident("LT3092") stable with any cable and absorbs discharges (@sec-gp-excitation, @sec-protection).],
       [Sensor connector],
       ident("M80-5001242"),
       [Harwin Datamate J-Tek, 12-way, 2~mm pitch, vertical through-hole, M2 jackscrews, −55 to 125~°C. 800~V working between contacts.],
@@ -1478,7 +1496,7 @@ A suppressor on each input clamps transients from the stack's rails. On 5~V, a #
       [#ident("ASRP-PCB-INTERCONNECT-2"), 34-way, pass-through (INT-1, INT-3).],
       [Input suppressors],
       [#ident("TVS0500"), #ident("SD03C")],
-      [On the board's 5~V, ahead of the channels' supply limit, a flat-clamp suppressor: 5~V working, 7.5 to 8.4~V breakdown, 9.2~V at 43~A, within the limit's 20~V input rating, 2 × 2~mm WSON. On its 3.3~V, ahead of that input's limit, a bidirectional avalanche suppressor: 3.3~V stand-off, 4.0~V minimum breakdown, 5.0~V at 1~A, 5.7~V at 10~A and 11~V at 55~A (8/20~µs), 1~µA at 3.3~V, SOD-323.],
+      [On the board's 5~V, ahead of the channels' supply limit, a flat-clamp suppressor: 5~V working, 7.5 to 8.4~V breakdown, 9.5~V maximum at 43~A, within the limit's 20~V input rating, 2 × 2~mm WSON. On its 3.3~V, ahead of that input's limit, a bidirectional avalanche suppressor: 3.3~V stand-off, 4.0~V minimum breakdown, 5.0~V at 1~A, 5.7~V at 10~A and 11~V at 55~A (8/20~µs), 1~µA at 3.3~V, SOD-323.],
       [Current limits],
       [#ident("TPS2553"), #ident("TPS25200")],
       [On the board's 3.3~V, a current-limited switch, 2.5 to 6.5~V, set to 0.15~A. On the channels' supply, which takes the stack's 5~V directly, a 5~V eFuse in the same 2 × 2~mm WSON and pinout: input rated to 20~V, output clamped at 5.25 to 5.55~V, off while its input is above 6.8 to 8.45~V, 90~mΩ maximum, set by 150~kΩ to 0.59 to 0.71~A.],
@@ -1496,10 +1514,10 @@ Appendix A draws the board as this summary describes it: two instances of the ch
   ("Revision", [—]),
   ("Board Area", [60 × 60~mm, 72~cm² on two sides]),
   ("Stack-up", [TBD]),
-  ("Placement Area", [20~cm²]),
+  ("Placement Area", [21~cm²]),
   ("Sensor Connector", [#ident("M80-5001242")]),
   ("Stack Connector", [TBD, 34-way]),
-  ("Input Power", [0.9 to 2.6~W, estimated]),
+  ("Input Power", [1.1 to 2.8~W, estimated]),
 )
 
 The estimate sums the courtyards of the footprints in the schematic and allows 1.6 times that area for placement, which leaves about 40~% of the area under the parts for vias, routing and test access. The outline provides 72~cm² over its two sides (REQ-2), of which the connectors, the four M3 mounting holes and the board edge take a part. The parts must fit in what remains (@tab-area).
@@ -1511,30 +1529,30 @@ The estimate sums the courtyards of the footprints in the schematic and allows 1
     align: (left, right),
     header: ("Item", "Area"),
     [Two channels: front ends, current sources and switches],
-    [8.4~cm²],
+    [9.2~cm²],
     [Channel supply: limit, negative rail, regulators and clamp],
     [1.9~cm²],
     [Two channels: converters and monitors],
-    [3.8~cm²],
+    [4.3~cm²],
     [Two channels: references and excitation buses],
     [2.2~cm²],
     [Stack side: FPGA, flash, buffer, input protection and current limit],
-    [3.6~cm²],
+    [3.7~cm²],
     table.hline(stroke: (paint: ink.rule, thickness: rule.hair)),
     [Parts, placed],
-    [20~cm²],
+    [21~cm²],
     [Connectors, holes and edge, both sides],
     [14~cm²],
     [Left for parts, both sides],
     [58~cm²],
     [Use of what is left],
-    [34~%],
+    [36~%],
   ),
 ) <tab-area>
 
-The parts take about a third of the available area, and between placement allowances of 1.4 and 1.8 the use ranges from 30 to 39~%. A channel occupies 7.2~cm² once placed, including its reference; the shared channel supply occupies 1.9~cm², and the stack side 3.6~cm², including its input protection and the converters' series resistors. The fit is to be confirmed by the layout (OI-6).
+The parts take about a third of the available area, and between placement allowances of 1.4 and 1.8 the use ranges from 32 to 41~%. A channel occupies 7.9~cm² once placed, including its reference; the shared channel supply occupies 1.9~cm², and the stack side 3.7~cm², including its input protection and the converters' series resistors. The fit is to be confirmed by the layout (OI-6).
 
-Input power is about 0.9~W per board with both channels on, plus up to 0.3~W for each channel configured for a load cell and 0.8~W for each configured for a transmitter, the sensors' share drawn from the stack's 24~V rail. A closed shield switch adds 25~mW for its LED, for a total of 0.9 to 2.6~W.
+Input power is about 1.1~W per board with both channels on, plus up to 0.3~W for each channel configured for a load cell and 0.8~W for each configured for a transmitter, the sensors' share drawn from the stack's 24~V rail. A closed shield switch adds 25~mW for its LED, for a total of 1.1 to 2.8~W, at the converters' datasheet maxima.
 
 The layout must observe two constraints. Because the board has one ground, the channels' analog parts must sit apart from the FPGA and the interconnect, and the return path of the suppressors and the shield terminations to the stack's ground must pass neither. Each channel's contacts are grouped on the sensor connector (@tab-sensor-pinout), and each channel's front end must sit behind its own pin group.
 
@@ -1552,35 +1570,35 @@ The following issues are known at this revision and remain unresolved.
     header: ("Item", "Issue", "Disposition"),
     ident("OI-1"),
     [24~V on the stack interconnect],
-    [The board takes its sensors' 24~V from #ident("ASRP-PCB-INTERCONNECT-2") on pins 1 and 2, which were previously ground (@tab-interconnect-pinout, INT-2). A full stack then draws 0.80~A at 5~V, within the 2~A of the #ident("E001-POWER-BOARD"), and 0.24~A at 24~V. The #ident("E001-POWER-BOARD") must provide that 24~V, and the #ident("E004-TC-BOARD") must pass pins 1 and 2 through rather than tie them to ground.],
+    [The board takes its sensors' 24~V from #ident("ASRP-PCB-INTERCONNECT-2") on pins 1 and 2, which were previously ground (@tab-interconnect-pinout, INT-2). A full stack then draws 1.0~A at 5~V, within the 2~A of the #ident("E001-POWER-BOARD"), and 0.24~A at 24~V. The #ident("E001-POWER-BOARD") must provide that 24~V, and the #ident("E004-TC-BOARD") must pass pins 1 and 2 through rather than tie them to ground.],
 
     ident("OI-2"),
     [Stack connector and library additions],
-    [Every part on the board has a record in the parts library except the stack connector, which remains TBD until the 34-way part of #ident("ASRP-PCB-INTERCONNECT-2") is chosen. The sensor and stack connectors use board-specific symbols that name their contacts. The records, symbols and footprints added to the library for this board are to be checked against their datasheets, and given their distributor numbers, before the library is committed. The two rows of pads of the QFN-84 lie 0.15~mm apart, which the board's fabrication rules must allow.],
+    [Every part on the board has a record in the parts library except the stack connector, which remains TBD until the 34-way part of #ident("ASRP-PCB-INTERCONNECT-2") is chosen. The sensor and stack connectors use board-specific symbols that name their contacts. The records, symbols and footprints added to the library for this board are to be checked against their datasheets, and given their distributor numbers, before the library is committed. Neither DigiKey nor Mouser lists the #ident("W25Q16JVXGIQ") golden-image flash or the #ident("TNPU080587K6BZEN00") shunt-calibration resistor, so each awaits an available equivalent. The two rows of pads of the QFN-84 lie 0.15~mm apart, which the board's fabrication rules must allow.],
 
     ident("OI-3"),
     [Ground return through the stack],
-    [The channels share the stack's ground, so a suppressor's discharge, a fault current from a contact and the current of a direct or capacitive shield termination return to the vehicle wherever the stack's ground meets it, through the stack's power board. Where that is depends on the vehicle grounding scheme and is TBD (@sec-protection, @sec-shields, SEN-1).],
+    [The channels share the stack's ground, so a suppressor's discharge, a fault current from a contact and the current of a direct or capacitive shield termination return to the vehicle wherever the stack's ground meets it, through the stack's power board. Where that is depends on the vehicle grounding scheme and is TBD (@sec-protection, @sec-shields, SEN-1). The board also joins #ident("GND") to its four plated M3 mounting holes, so if the stack's standoffs or enclosure are bonded to the structure, every board bonds the stack's ground there as well; the holes are to be kept or isolated to suit the scheme.],
 
     ident("OI-4"),
     [Suppressor sourcing],
-    [The contact suppressor is the Littelfuse #ident("SD36C-01FTG"), an avalanche part in SOD-323. It clamps at about 60~V at the first peak of an 8~kV discharge, which is why S8 is a 60~V part and #ident("EXC+") carries 100~nF (@sec-protection). Whether S8, the photorelays and the #ident("LT3092") survive the REQ-14 levels is to be tested on the first boards. Distributors show the #ident("SD36C-01FTG") with long lead times, and one lists it as being discontinued; Bourns' #ident("CDSOD323-T36SC") is the second source, with the same stand-off voltage and package. The #ident("E004-TC-BOARD") still uses TI's #ident("TVS3301"), and its suppressors are to be brought into line.],
+    [The contact suppressor is the Littelfuse #ident("SD36C-01FTG"), an avalanche part in SOD-323. It clamps at about 60~V at the first peak of an 8~kV discharge, which is why S8 is a 60~V part and #ident("EXC+") carries 10~µF (@sec-protection). Whether S8, the photorelays and the #ident("LT3092") survive the REQ-14 levels is to be tested on the first boards. Distributors show the #ident("SD36C-01FTG") with long lead times, and one lists it as being discontinued; Bourns' #ident("CDSOD323-T36SC") is the second source, with the same stand-off voltage and package. The #ident("E004-TC-BOARD") still uses TI's #ident("TVS3301"), and its suppressors are to be brought into line.],
 
     ident("OI-5"),
     [Low-impedance faults on the excitation and current-loop paths],
-    [These paths meet REQ-15 only against a current-limited source. A low-impedance 28~V source on #ident("EXC−"), or on #ident("SIG+") in the #box[4–20~mA] configuration, can destroy S4 or the shunt, or hold the channel's bus at its amplifier's limit (@tab-protection). The damage stays within that channel, but without isolation the fault current returns through the stack's ground and can disturb the other boards while it lasts. This is acceptable if no such source in the harness can reach these contacts; otherwise those paths need a fuse or current limit, which on #ident("EXC−") would cost precision.],
+    [These paths meet REQ-15 only against a current-limited source. A low-impedance 28~V source on #ident("EXC−"), on #ident("SIG−") wherever the cable links it to #ident("EXC−") (CBL-1), or on #ident("SIG+") in the #box[4–20~mA] configuration, can destroy S4 or the shunt, or hold the channel's bus at its amplifier's limit (@tab-protection). The damage stays within that channel, but without isolation the fault current returns through the stack's ground and can disturb the other boards while it lasts. A closed S11 is a fourth such path: it joins its shield contact to #ident("GND") through 1.5~Ω and survives a fault only within its 0.4~A rating (@sec-shields). This is acceptable if no such source in the harness can reach these contacts; otherwise those paths need a fuse or current limit, which on #ident("EXC−") would cost precision.],
 
     ident("OI-6"),
     [Board area to be confirmed by layout],
-    [The parts need 20~cm² once placed, against 58~cm² available on the 60 × 60~mm outline: 34~% (@tab-area), or 39~% at a placement allowance of 1.8. The estimate rests on courtyard areas and a placement allowance, and is to be confirmed by the layout.],
+    [The parts need 21~cm² once placed, against 58~cm² available on the 60 × 60~mm outline: 36~% (@tab-area), or 41~% at a placement allowance of 1.8. The estimate rests on courtyard areas and a placement allowance, and is to be confirmed by the layout.],
 
     ident("OI-7"),
     [Gateware],
-    [The FPGA's gateware, its verification and its update procedure are to be written to GW-1 to GW-14. The gateware carries the configuration interlocks (@sec-gw).],
+    [The FPGA's gateware, its verification and its update procedure are to be written to GW-1 to GW-15. The gateware carries the configuration interlocks (@sec-gw). It must also take each converter's bit timing from FSYNC, because DCLK is not routed and the datasheet does not specify the delay from CLKIN to DCLK (@sec-gp-control).],
 
     ident("OI-8"),
-    [Stability of the excitation bus],
-    [Each half of a channel's bus amplifier drives its side of the bus without an isolating resistor. Its load is 1~nF on the negative side, the converter's reference capacitors behind 237~Ω and, in a load-cell channel, the capacitance of the excitation wire through S3 (@sec-gp-excitation). The #ident("OPA2189") datasheet characterises capacitive loading only with a typical overshoot curve, so the bus's stability is to be confirmed on the first boards with the longest harness. If the bus rings, a small resistor inside each amplifier's feedback loop will isolate the load.],
+    [Stability of the excitation bus and current source],
+    [Each half of a channel's bus amplifier drives its side of the bus without an isolating resistor. Its load is the converter's reference capacitors behind 237~Ω and, in a load-cell channel, the capacitance of the excitation wire through S3, with the 10~µF on #ident("EXC+") behind the bridge (@sec-gp-excitation). The #ident("OPA2189") datasheet characterises capacitive loading only with a typical overshoot curve, so the bus's stability is to be confirmed on the first boards with the longest harness. If the bus rings, a small resistor inside each amplifier's feedback loop will isolate the load. The #ident("LT3092")'s datasheet likewise asks for its stability to be tested in place; the 10~µF on #ident("EXC+") follows its guidance, and the source is to be checked with the same harness.],
 
     ident("OI-9"),
     [One chip select for the FPGA's configuration port and its user SPI],

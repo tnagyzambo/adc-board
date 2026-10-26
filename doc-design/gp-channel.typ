@@ -313,10 +313,12 @@
     gnd((x4, 22), label: [GND], paint: c(on.s4))
     for x in (xs, x3, xcal) { dot((x, y.en), paint: en) }
 
-    // Shunt calibration across the SIG+ to EXC− arm, for a bridge.
-    res((xcal, y.sp), (xcal, 34.5), label: [RCAL], side: "e", paint: c(bridge))
-    switch((xcal, 34.5), (xcal, y.en), label: [S10], paint: c(bridge))
-    dot((xcal, y.sp), paint: c(bridge))
+    // Shunt calibration across the SIG− to EXC− arm, for a bridge.  S3 and
+    // S4 crowd the column, so S10's label runs up its east side.
+    switch((xcal, y.en), (xcal, 21.5), paint: c(bridge))
+    content((xcal + 2.9, (y.en + 21.5) / 2), text(fill: c(bridge), [S10]), angle: 90deg)
+    res((xcal, 21.5), (xcal, y.sn), label: [RCAL], side: "w", paint: c(bridge))
+    dot((xcal, y.sn), paint: c(bridge))
 
     // -- Signal contacts ----------------------------------------------------
     // The 4–20 mA shunt across the signal contacts, closed by S8.
@@ -390,7 +392,7 @@
     _text((57.5, y.rn + 0.4), [EXC_N], anchor: "south-west")
     res((rr0, y.rn), (rr1, y.rn), label: [237~Ω], side: "s")
     wire((rr1, y.rn), (xa, y.rn))
-    cap((138, y.r2), (138, y.rn), label: [1.1~µF], side: "w")
+    cap((138, y.r2), (138, y.rn), label: [10~µF], side: "w")
     dot((138, y.r2))
     dot((138, y.rn))
 
