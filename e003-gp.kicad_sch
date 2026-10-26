@@ -249,30 +249,6 @@
 				)
 			)
 			(symbol "PCB-SOLDER-JUMPER_0_1"
-				(arc
-					(start -0.254 1.016)
-					(mid -1.27 0)
-					(end -0.254 -1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(arc
-					(start 0.254 -1.016)
-					(mid 1.27 0)
-					(end 0.254 1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
 				(polyline
 					(pts
 						(xy -0.254 1.016)
@@ -286,6 +262,18 @@
 						(type none)
 					)
 				)
+				(arc
+					(start -0.254 -1.016)
+					(mid -1.27 0)
+					(end -0.254 1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
 				(polyline
 					(pts
 						(xy 0.254 1.016)
@@ -297,6 +285,18 @@
 					)
 					(fill
 						(type none)
+					)
+				)
+				(arc
+					(start 0.254 1.016)
+					(mid 1.27 0)
+					(end 0.254 -1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
 					)
 				)
 			)

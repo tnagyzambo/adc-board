@@ -243,8 +243,8 @@
   _fit(cetz.canvas(length: 1mm, {
     import cetz.draw: line, content
 
-    domain((-2, 9), (20, 60), [Engine])
-    domain((xc, -28), (166, 75), [General-purpose channel, isolated])
+    domain((-2, 9), (20, 60), [Vehicle])
+    domain((xc, -28), (166, 75), [General-purpose channel])
 
     // -- Sensor -----------------------------------------------------------
     if bridge {
@@ -301,7 +301,7 @@
     dot((b1, y.ep), paint: c(on.s1 or on.s2))
 
     // -- EXC−: returned to the bus through the 1.00 kΩ current-sense
-    // resistor, or straight by S3; to the bank common by S4 ---------------
+    // resistor, or straight by S3; to GND by S4 -----------------------
     let en = ink.rule
     wire((xc, y.en), (x4, y.en), paint: en)
     let yr = 21.5
@@ -310,7 +310,7 @@
     wire((xs, yr), (x3, yr), paint: c(exc-n))
     _text(((xs + x3) / 2, yr - 0.4), [EXC_N], anchor: "north", paint: c(exc-n))
     switch((x4, y.en), (x4, 22), label: [S4], closed: on.s4, paint: c(on.s4))
-    gnd((x4, 22), label: [COM], paint: c(on.s4))
+    gnd((x4, 22), label: [GND], paint: c(on.s4))
     for x in (xs, x3, xcal) { dot((x, y.en), paint: en) }
 
     // Shunt calibration across the SIG+ to EXC− arm, for a bridge.
@@ -406,10 +406,10 @@
 // -- EXCITATION MONITOR ------------------------------------------------------
 
 // One channel's excitation monitor: the three other converters of its
-// ADS127L14, each reading one node against the channel common.
+// ADS127L14, each reading one node against GND.
 #let gp-monitor() = {
   // Rows: EXC+ and EXC− at the contacts; the three inputs' positive sides,
-  // each with its negative side, on the channel common, below it.
+  // each with its negative side, on GND, below it.
   let (ye, yb) = (52, 22.5)
   let (y1, y2, y3) = (ye - 2.5, yb - 2.5, -14)
   // Columns: the contacts, the divider on EXC+, the buffers and their
@@ -424,8 +424,8 @@
   _fit(cetz.canvas(length: 1mm, {
     import cetz.draw: line, content
 
-    domain((-2, 17), (20, 58), [Engine])
-    domain((xc, -28), (158, 68), [General-purpose channel, isolated])
+    domain((-2, 17), (20, 58), [Vehicle])
+    domain((xc, -28), (158, 68), [General-purpose channel])
 
     // -- Sensor -----------------------------------------------------------
     res((9, ye), (9, yb), label: [Bridge\ 3.5~kΩ], side: "e")
@@ -488,14 +488,14 @@
     wire((56, -20), (59, -20))
     content((59.5, -20), [EXC_N], anchor: "west")
 
-    // -- Converter, its negative inputs on the channel common ---------------
+    // -- Converter, its negative inputs on GND ------------------------------
     cetz.draw.rect((xa, -26), (xa + 22, 60), stroke: _s, fill: white)
     content((xa + 11, 56), [ADS127L14])
     for (row, k) in ((y1, 1), (y2, 2), (y3, 3)) {
       content((xa + 1, row), [AINP#k], anchor: "west")
       content((xa + 1, row - 6), [AINN#k], anchor: "west")
       wire((xa, row - 6), (xa - 7, row - 6))
-      gnd((xa - 7, row - 6), label: [COM])
+      gnd((xa - 7, row - 6), label: [GND])
     }
   }))
 }

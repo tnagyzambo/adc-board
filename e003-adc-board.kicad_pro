@@ -479,7 +479,7 @@
       "no_connect_dangling": "warning",
       "pin_not_connected": "error",
       "pin_not_driven": "error",
-      "pin_to_pin": "warning",
+      "pin_to_pin": "error",
       "power_pin_not_driven": "error",
       "same_local_global_label": "warning",
       "similar_label_and_power": "warning",
@@ -659,36 +659,25 @@
     },
     "bus_aliases": {
       "ADC": [
-        "CLK1",
-        "START1",
-        "SCLK1",
-        "SDI1",
-        "CS1",
-        "SDO1",
-        "DOUT1",
-        "FSYNC1",
-        "CLK2",
-        "START2",
-        "SCLK2",
-        "SDI2",
-        "CS2",
-        "SDO2",
-        "DOUT2",
-        "FSYNC2",
         "EN",
-        "FLT",
-        "RESET1",
-        "RESET2"
+        "FLT"
+      ],
+      "CONV": [
+        "CLK",
+        "START",
+        "SCLK",
+        "SDI",
+        "CS",
+        "SDO",
+        "DOUT",
+        "FSYNC",
+        "RESET"
       ],
       "GP": [
-        "EXC1+",
-        "EXC1-",
-        "SIG1+",
-        "SIG1-",
-        "EXC2+",
-        "EXC2-",
-        "SIG2+",
-        "SIG2-",
+        "EXC+",
+        "EXC-",
+        "SIG+",
+        "SIG-",
         "SHLD"
       ],
       "HOST": [
@@ -740,7 +729,7 @@
         "uuid": "ae736b08-f60a-4f90-a6d8-09d85e53d559"
       }
     ],
-    "used_designators": "T1,Z1,Z3-9,Q1-10,#FLG1-7,L1,F1,C1-59,C62,C67-70,C73-80,U1-22,TP1-5,1,R1-71,D1-15,#PWR1-226,J1-5",
+    "used_designators": "JP1,JP6,Q1-11,Q13-14,Q23,#FLG1-7,T1,Z1,Z3-9,L1,F1,C1-62,C67-71,C73-80,C82,C84-85,C87,C104-117,C146-147,C150,C166-168,U1-24,U29-30,U36-37,U44-45,U53-57,TP1-5,TP10-16,1,R1-76,R78-81,R108-112,R135-139,R142,R165-175,R224-231,D1-18,D21-23,#PWR1-233,#PWR236-238,#PWR243-247,#PWR290-292,#PWR294-296,#PWR298-300,#PWR302-303,#PWR307-321,#PWR386-387,#PWR390-392,#PWR396-399,#PWR401,#PWR403-408,#PWR458-481,#PWR483-487,#PWR556-557,#PWR653-665,#PWR686-687,#PWR757-760,J1-5",
     "variants": []
   },
   "sheets": [
@@ -749,15 +738,23 @@
       "e003-adc-board"
     ],
     [
-      "1ff66cef-5283-5bdd-b270-f66ac7e5753d",
-      "gp"
-    ],
-    [
-      "95a7257f-c510-5dc1-afd8-5496400f7d9b",
+      "4f39e4cc-6e79-45e1-ae05-5e98e639462b",
       "gp-ch1"
     ],
     [
-      "07aaaa90-2eef-5a94-9785-8e36f9a15748",
+      "ae406c26-2307-52dc-bb9a-02e757866909",
+      "front"
+    ],
+    [
+      "fa933c75-70aa-5432-ba1e-30bfcc445b30",
+      "converter"
+    ],
+    [
+      "bb98f072-df51-5685-bc70-fd4417879b73",
+      "excitation"
+    ],
+    [
+      "401b15e5-f387-464d-bc1c-f41c28e6c880",
       "gp-ch2"
     ],
     [
@@ -765,19 +762,15 @@
       "front"
     ],
     [
-      "50249aa1-92a2-57d9-8c75-404a846c62ac",
-      "switches"
+      "fa933c75-70aa-5432-ba1e-30bfcc445b30",
+      "converter"
     ],
     [
       "bb98f072-df51-5685-bc70-fd4417879b73",
       "excitation"
     ],
     [
-      "fa933c75-70aa-5432-ba1e-30bfcc445b30",
-      "converter"
-    ],
-    [
-      "f206a555-a690-56f8-bd2c-975c2daee59c",
+      "370d7634-9dfd-4832-b06b-10bec8372f65",
       "power"
     ],
     [
