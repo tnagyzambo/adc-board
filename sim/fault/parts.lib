@@ -1,0 +1,397 @@
+* DC fault models for the e003 GP channel and its supplies.
+*
+* These are behavioural models for DC operating points, built from each
+* part's datasheet: the clamp and body diodes that carry fault current, the
+* supply each part draws, and a regulator's source-only output. They are not
+* valid for transients, noise or AC. Every subcircuit's ports follow the
+* KiCad symbol's pin numbers, so gen_deck.py can instance a part from the
+* netlist without a pin map.
+*
+* A zero-volt source in series with a clamp, body diode or switch is an
+* ammeter: limits.py reads its current as v.x<ref>.<name>#branch.
+
+.func sg(x,w) {0.5*(1+tanh((x)/(2*(w))))}
+.func pos(x) {0.5*((x)+sqrt((x)*(x)+1e-14))}
+.func smin(a,b) {((a)+(b)-sqrt(((a)-(b))*((a)-(b))+1e-12))/2}
+.func clipr(x,lo,hi) {((hi)+(lo))/2 + max(((hi)-(lo))/2,0.01)*tanh(((x)-((hi)+(lo))/2)/max(((hi)-(lo))/2,0.01))}
+
+* Diodes ------------------------------------------------------------------
+* Integrated ESD/clamp diode: 0.65 V at 1 mA, 0.75 V at 10 mA.
+.model DCLAMP D(IS=1e-14 N=1 RS=5)
+* Photorelay LED (TLP3475S): about 1.3 V at 5 mA.
+.model DLED D(IS=1e-17 N=1.5 RS=2 BV=10 IBV=10u)
+* MMSZ5246B: 16 V at 7.8 mA.
+.model DZ16 D(IS=1e-14 N=1 RS=2 BV=16 IBV=7.8m)
+* Suppressors, breakdown at the typical value.
+.model DTVS40 D(IS=1e-12 N=1 RS=1 BV=42 IBV=1m)
+.model DTVS31 D(IS=1e-12 N=1 RS=0.5 BV=31.6 IBV=1m)
+.model DTVS8 D(IS=1e-12 N=1 RS=0.5 BV=7.9 IBV=1m)
+* Avalanche of the photorelay's output MOSFETs.
+.model DBV66 D(IS=1e-15 N=1 RS=1 BV=66 IBV=10u)
+* MOSFET body diodes, breakdown above the rated VDSS.
+.model DB_BSS D(IS=1e-12 N=1.1 RS=0.5 BV=75 IBV=10u)
+.model DB_DMN D(IS=1e-11 N=1.1 RS=0.05 BV=66 IBV=10u)
+.model DB_DMTH D(IS=1e-10 N=1.1 RS=0.01 BV=66 IBV=10u)
+
+* MOSFETs: level 1, fitted to VGS(th) and RDS(on). Ports G S D. The level-1
+* bulk junction has no series resistance, so it is disabled (IS=1e-40) and
+* an explicit body diode with the part's forward drop takes its place.
+* BSS138W: 1.2 V threshold, 1.4 ohm at 10 V.
+.model N_BSS NMOS(LEVEL=1 VTO=1.2 KP=0.081 LAMBDA=0.01 IS=1e-40 JS=0)
+* DMN6075S: 2.0 V threshold, 69 mohm at 10 V.
+.model N_DMN NMOS(LEVEL=1 VTO=2.0 KP=1.81 LAMBDA=0.005 IS=1e-40 JS=0)
+* DMTH6016LFDFWQ: 2.0 V threshold, 20 mohm at 4.5 V (27.5 mohm max).
+.model N_DMTH NMOS(LEVEL=1 VTO=2.0 KP=20 LAMBDA=0.005 IS=1e-40 JS=0)
+
+.subckt BSS138W g s d
+Vd d di 0
+M1 di g s s N_BSS L=1u W=1u
+Vb s sb 0
+Db sb di DB_BSS
+.ends
+
+.subckt DMN6075S g s d
+Vd d di 0
+M1 di g s s N_DMN L=1u W=1u
+Vb s sb 0
+Db sb di DB_DMN
+.ends
+
+* BSS84W: P-channel, -1.6 V threshold, 6 ohm at -5 V (10 max). Body diode
+* from drain to source.
+.model P_BSS84 PMOS(LEVEL=1 VTO=-1.6 KP=0.049 LAMBDA=0.01 IS=1e-40 JS=0)
+.model DB_BSS84 D(IS=1e-12 N=1.1 RS=0.5 BV=75 IBV=10u)
+.subckt BSS84W g s d
+Vd d di 0
+M1 di g s s P_BSS84 L=1u W=1u
+Vb di db 0
+Db db s DB_BSS84
+.ends
+
+.subckt DMTH6016LFDFWQ g s d
+Vd d di 0
+M1 di g s s N_DMTH L=1u W=1u
+Vb s sb 0
+Db sb di DB_DMTH
+.ends
+
+* MMST3906 PNP, ports B E C, with 2N3906 parameters.
+.model Q3906 PNP(IS=1.41f XTI=3 EG=1.11 VAF=18.7 BF=180.7 NE=1.5 ISE=0 IKF=80m XTB=1.5 BR=4.977 NC=2 ISC=0 IKR=0 RC=2.5 RB=10)
+.subckt MMST3906 b e c
+Vc c ci 0
+Q1 ci b e Q3906
+.ends
+
+* Diodes as parts ---------------------------------------------------------
+* MMSZ5246BS: pin 1 anode, pin 2 cathode.
+.subckt MMSZ5246BS a k
+Vz a az 0
+D1 az k DZ16
+.ends
+
+* BAT54WS: Schottky, pin 1 anode, pin 2 cathode. 0.24 V at 0.1 mA, 0.32 V at
+* 1 mA, 0.40 V at 10 mA, 1.0 V at 100 mA; 30 V.
+.model DBAT54 D(IS=9.8e-8 N=1.34 RS=5 BV=33 IBV=100u)
+.subckt BAT54WS a k
+Vs a as 0
+D1 as k DBAT54
+.ends
+
+* SD36C-01FTG: bidirectional, 36 V standoff, 40 V breakdown.
+.subckt SD36C a1 a2
+Vt a1 t 0
+D1 t m DTVS40
+D2 a2 m DTVS40
+Rm m a2 1G
+.ends
+
+* TVS2700: pins 1-3 GND, 4-6 IN, 7 pad (GND).
+.subckt TVS2700 g1 g2 g3 i4 i5 i6 pad
+Vt i4 t 0
+D1 g1 t DTVS31
+.ends
+
+* TVS0500: as TVS2700, 7.5 to 8.4 V breakdown.
+.subckt TVS0500 g1 g2 g3 i4 i5 i6 pad
+Vt i4 t 0
+D1 g1 t DTVS8
+.ends
+
+* MF-NSMF020X: 0.6 to 3.3 ohm before tripping; trip is thermal and not
+* modelled, so limits.py compares its current with the hold current.
+.subckt MFNSMF020X a b
+Vf a f 0
+R1 f b 1.5
+.ends
+
+* Photorelay ---------------------------------------------------------------
+* TLP3475S: pins 1 A, 2 K, 3-4 output. Closes above about 1.5 mA LED
+* current (IFT 3 mA max), 1.0 ohm closed (1.5 max), avalanche at 66 V.
+.subckt TLP3475S a k d1 d2
+Vled a a1 0
+Dled a1 k DLED
+Bon on 0 V = {sg(i(vled)-1.5m, 0.05m)}
+Vsw d1 w 0
+Bsw w d2 I = {v(on)*v(w,d2)/1.0 + 1e-12*v(w,d2)}
+D1 d1 m DBV66
+D2 d2 m DBV66
+Rm m d2 1G
+.ends
+
+* OPA2189 -----------------------------------------------------------------
+* One amplifier: input and output diodes to both rails (inputs rated
+* +/-10 mA), output limited to +/-65 mA and drawn from the rail it drives
+* from, 1.3 mA quiescent. It runs only above about 3 V across its rails;
+* below that its output is open. The gain stage is a transconductance into
+* 10 Mohm (gain 1e4), clamped by diodes near the rails, which converges
+* better than a clipped function; the output stage sources or sinks only
+* while the output is at least 0.1 V inside the rail it draws from.
+.subckt OPA189CH inp inn out vp vn
+Vcp inp ip 0
+Dp1 ip vp DCLAMP
+Dp2 vn ip DCLAMP
+Vcn inn in 0
+Dn1 in vp DCLAMP
+Dn2 vn in DCLAMP
+Do1 out vp DCLAMP
+Do2 vn out DCLAMP
+Bg g 0 V = {sg(v(vp,vn)-3.0, 0.15)}
+Gin 0 t inp inn 1e-3
+Rt t mid 10Meg
+Bmid mid 0 V = {(v(vp)+v(vn))/2}
+Bch ch 0 V = {v(vp)-0.6}
+Dch t ch DCLAMP
+Bcl cl 0 V = {v(vn)+0.6}
+Dcl cl t DCLAMP
+Bio io 0 V = {v(g)*65m*tanh((v(t)-v(out))/(65m*2))}
+Vsrc vp vs 0
+Bsrc vs out I = {pos(v(io))*sg(v(vs,out)-0.1,0.02)}
+Vsnk sk vn 0
+Bsnk out sk I = {pos(-v(io))*sg(v(out,sk)-0.1,0.02)}
+Bq vp vn I = {1.3m*v(g)}
+.ends
+
+* MSOP-8: 1 OUTA, 2 -INA, 3 +INA, 4 V-, 5 +INB, 6 -INB, 7 OUTB, 8 V+.
+.subckt OPA2189 outa ina_n ina_p vn inb_p inb_n outb vp
+XA ina_p ina_n outa vp vn OPA189CH
+XB inb_p inb_n outb vp vn OPA189CH
+.ends
+
+* TMUX6212 ----------------------------------------------------------------
+* RUM: 1 S1, 2 VSS, 3 GND, 4 S4, 5 D4, 6 SEL4, 7 SEL3, 8 D3, 9 S3, 10 NC,
+* 11 VDD, 12 S2, 13 D2, 14 SEL2, 15 SEL1, 16 D1. Each S and D pin is
+* clamped to both rails (+/-30 mA). A channel closes with SEL above 1.05 V
+* and a supply of at least 4 V; 5 ohm closed. SEL has a 4 Mohm pull-down.
+.subckt TMUX6212 s1 vss gnd s4 d4 sel4 sel3 d3 s3 nc vdd s2 d2 sel2 sel1 d1
+Bp p 0 V = {sg(v(vdd,vss)-4.0,0.1)*sg(v(vdd,gnd)-2.0,0.1)}
+Vw1 s1 w1 0
+B1 w1 d1 I = {v(p)*sg(v(sel1,gnd)-1.05,0.03)*v(w1,d1)/5}
+Vw2 s2 w2 0
+B2 w2 d2 I = {v(p)*sg(v(sel2,gnd)-1.05,0.03)*v(w2,d2)/5}
+Vw3 s3 w3 0
+B3 w3 d3 I = {v(p)*sg(v(sel3,gnd)-1.05,0.03)*v(w3,d3)/5}
+Vw4 s4 w4 0
+B4 w4 d4 I = {v(p)*sg(v(sel4,gnd)-1.05,0.03)*v(w4,d4)/5}
+Vks1 s1 ks1 0
+Dks1a ks1 vdd DCLAMP
+Dks1b vss ks1 DCLAMP
+Vkd1 d1 kd1 0
+Dkd1a kd1 vdd DCLAMP
+Dkd1b vss kd1 DCLAMP
+Vks2 s2 ks2 0
+Dks2a ks2 vdd DCLAMP
+Dks2b vss ks2 DCLAMP
+Vkd2 d2 kd2 0
+Dkd2a kd2 vdd DCLAMP
+Dkd2b vss kd2 DCLAMP
+Vks3 s3 ks3 0
+Dks3a ks3 vdd DCLAMP
+Dks3b vss ks3 DCLAMP
+Vkd3 d3 kd3 0
+Dkd3a kd3 vdd DCLAMP
+Dkd3b vss kd3 DCLAMP
+Vks4 s4 ks4 0
+Dks4a ks4 vdd DCLAMP
+Dks4b vss ks4 DCLAMP
+Vkd4 d4 kd4 0
+Dkd4a kd4 vdd DCLAMP
+Dkd4b vss kd4 DCLAMP
+R1 sel1 gnd 4Meg
+R2 sel2 gnd 4Meg
+R3 sel3 gnd 4Meg
+R4 sel4 gnd 4Meg
+Dl1 gnd sel1 DCLAMP
+Dl2 gnd sel2 DCLAMP
+Dl3 gnd sel3 DCLAMP
+Dl4 gnd sel4 DCLAMP
+Dv1 vss gnd DCLAMP
+Dv2 gnd vdd DCLAMP
+Dv3 vss vdd DCLAMP
+Bq vdd vss I = {40u*v(p)}
+Rnc nc gnd 1G
+.ends
+
+* ADS127L14 ---------------------------------------------------------------
+* Ports p1..p57 by pin number. Analog inputs and reference pins are
+* clamped to AVDD1 and AVSS (+/-10 mA). Supply currents are the
+* high-speed-mode typicals, drawn only while that supply is up. AVDD1 takes
+* the 5.4 mA of four converters with every buffer off, as after a reset:
+* the lowest load, and so the worst case for a fault that pumps +2.5 V. The GPIO outputs (params g0-g6) drive IOVDD
+* or 0 V through 50 ohm, and come up at 1.4 ms, once the supplies have
+* settled, as the gateware configures a channel only after power-up.
+* refbuf=0 loads REFP-REFN with the unbuffered
+* reference current of four converters, 240 uA/V.
+.subckt ADS127L14 p1 p2 p3 p4 p5 p6 p7 p8 p9 p10 p11 p12 p13 p14 p15 p16 p17 p18 p19 p20
++ p21 p22 p23 p24 p25 p26 p27 p28 p29 p30 p31 p32 p33 p34 p35 p36 p37 p38 p39 p40
++ p41 p42 p43 p44 p45 p46 p47 p48 p49 p50 p51 p52 p53 p54 p55 p56 p57
++ params: g0=0 g1=0 g2=0 g3=0 g4=0 g5=0 g6=0 refbuf=1
+Bpa pa 0 V = {sg(v(p23,p22)-4.0,0.1)}
+Bpm pm 0 V = {sg(v(p25,p22)-1.6,0.1)}
+Bpi pi 0 V = {sg(v(p18,p17)-1.3,0.05)}
+Ba1 p23 p22 I = {5.4m*v(pa)}
+Ba2 p25 p22 I = {14.4m*v(pm)}
+Bio p18 p17 I = {6.4m*v(pi)}
+Bref p49 p47 I = {(1-{refbuf})*v(pa)*v(p49,p47)/4.17k}
+Vk37 p37 k37 0
+Dk37a k37 p23 DCLAMP
+Dk37b p22 k37 DCLAMP
+Vk38 p38 k38 0
+Dk38a k38 p23 DCLAMP
+Dk38b p22 k38 DCLAMP
+Vk39 p39 k39 0
+Dk39a k39 p23 DCLAMP
+Dk39b p22 k39 DCLAMP
+Vk40 p40 k40 0
+Dk40a k40 p23 DCLAMP
+Dk40b p22 k40 DCLAMP
+Vk41 p41 k41 0
+Dk41a k41 p23 DCLAMP
+Dk41b p22 k41 DCLAMP
+Vk42 p42 k42 0
+Dk42a k42 p23 DCLAMP
+Dk42b p22 k42 DCLAMP
+Vk43 p43 k43 0
+Dk43a k43 p23 DCLAMP
+Dk43b p22 k43 DCLAMP
+Vk44 p44 k44 0
+Dk44a k44 p23 DCLAMP
+Dk44b p22 k44 DCLAMP
+Vk47 p47 k47 0
+Dk47a k47 p23 DCLAMP
+Dk47b p22 k47 DCLAMP
+Vk49 p49 k49 0
+Dk49a k49 p23 DCLAMP
+Dk49b p22 k49 DCLAMP
+Ds1 p22 p23 DCLAMP
+Ds2 p22 p17 DCLAMP
+Ds3 p17 p18 DCLAMP
+Ds4 p22 p25 DCLAMP
+Bg0 o3 0 V = {{g0}*v(p18,p17)*v(pi)*sg(time-1.4m,0.05m)}
+Rg0 o3 p3 50
+Bg1 o4 0 V = {{g1}*v(p18,p17)*v(pi)*sg(time-1.4m,0.05m)}
+Rg1 o4 p4 50
+Bg2 o8 0 V = {{g2}*v(p18,p17)*v(pi)*sg(time-1.4m,0.05m)}
+Rg2 o8 p8 50
+Bg3 o9 0 V = {{g3}*v(p18,p17)*v(pi)*sg(time-1.4m,0.05m)}
+Rg3 o9 p9 50
+Bg4 o10 0 V = {{g4}*v(p18,p17)*v(pi)*sg(time-1.4m,0.05m)}
+Rg4 o10 p10 50
+Bg5 o11 0 V = {{g5}*v(p18,p17)*v(pi)*sg(time-1.4m,0.05m)}
+Rg5 o11 p11 50
+Bg6 o12 0 V = {{g6}*v(p18,p17)*v(pi)*sg(time-1.4m,0.05m)}
+Rg6 o12 p12 50
+.ends
+
+* REF5020 -----------------------------------------------------------------
+* 2 VIN, 4 GND, 5 TRIM/NR, 6 VOUT. 2.048 V, sources and sinks 20 mA,
+* 0.8 mA quiescent, on above 2.6 V input.
+.subckt REF5020 p1 vin p3 gnd nr vout p7 p8
+Bg g 0 V = {sg(v(vin,gnd)-2.6,0.05)}
+Bio io 0 V = {v(g)*20m*tanh((2.048-v(vout,gnd))/(20m*0.05))}
+Bsrc vin vout I = {smin(pos(v(io)), pos(v(vin,vout)-0.1)/1)}
+Bsnk vout gnd I = {pos(-v(io))}
+Bq vin gnd I = {0.8m*v(g)}
+Dz gnd vout DCLAMP
+Rnr nr gnd 1G
+.ends
+
+* LT3092 ------------------------------------------------------------------
+* 1,2,9 OUT, 4 SET, 7,8 IN. 10 uA from IN to SET; the pass device holds
+* OUT at SET, sourcing only, 0.25 A limit. In dropout it is 5 ohm in
+* series with 1.0 V. Reverse current (OUT above IN) is under 1 mA,
+* typically 100 uA. SET is clamped to OUT through 1k and diodes (+/-15 mA).
+.subckt LT3092 out p2 p3 set p5 p6 in p8 p9
+Biset in set I = {10u*sg(v(in,out)-0.8,0.1)}
+Vpass in pi 0
+Bpass pi out I = {smin(0.25*pos(tanh(300*v(set,out))), pos(v(pi,out)-1.0)/5)}
+Vrev out ro 0
+Brev ro in I = {100u*pos(tanh(v(ro,in)/0.3))}
+Vsc set sc 0
+Rsc sc sc2 1k
+Dsc1 sc2 out DCLAMP
+Dsc2 out sc2 DCLAMP
+.ends
+
+* TPS25200 ----------------------------------------------------------------
+* 1 OUT, 2 ILIM, 3 FAULT, 4 EN, 5 GND, 6 IN, 7 pad. On with EN high and IN
+* above its 2.35 V UVLO: 70 mohm, 0.65 A limit, OUT clamped at 5.4 V.
+* Disabled, it blocks both ways.
+.subckt TPS25200 out ilim flt en gnd in pad
+Bon on 0 V = {sg(v(en,gnd)-1.0,0.05)*sg(v(in,gnd)-2.35,0.05)}
+Vsw in w 0
+Bsw w out I = {v(on)*0.65*tanh((min(v(w,gnd),5.4)-v(out,gnd))/(0.65*0.07))}
+Rflt flt gnd 1G
+.ends
+
+* LM2776 ------------------------------------------------------------------
+* 1 VOUT, 2 GND, 3 VIN, 4 EN, 5 C1+, 6 C1-. While on (VIN above 2.4 V), a
+* 2.5 ohm source of -VIN that conducts both ways and draws its output
+* current from VIN. Off, the output is open but for the switches' body
+* diode to GND.
+.subckt LM2776 vout gnd vin en c1p c1n
+Bon on 0 V = {sg(v(vin,gnd)-2.4,0.05)*sg(v(en,gnd)-1.0,0.05)}
+Bi io 0 V = {v(on)*0.3*tanh((v(vout,gnd)+v(vin,gnd))/(0.3*2.5))}
+Bo vout gnd I = {v(io)}
+Bn vin gnd I = {v(io)+0.5m*v(on)}
+Db vout gnd DCLAMP
+Rc1 c1p gnd 1G
+Rc2 c1n gnd 1G
+.ends
+
+* TPS7A3901 ---------------------------------------------------------------
+* 1 INP, 2 EN, 3 NR/SS, 4 GND, 5 INN, 6 OUTN, 7 FBN, 8 BUF, 9 FBP, 10 OUTP,
+* 11 pad. Outputs fixed at +/-2.5 V (the feedback pins are left open; the
+* external dividers still load the rails), source-only, 0.3 A limit. An
+* output driven beyond its input conducts into it, which the datasheet
+* rates at 0.3 V (section 7.1.11); the diodes model that path.
+.subckt TPS7A3901 inp en nr gnd inn outn fbn buf fbp outp pad
+Bonp onp 0 V = {sg(v(en,gnd)-1.0,0.05)*sg(v(inp,gnd)-2.6,0.05)}
+Bonn onn 0 V = {sg(v(en,gnd)-1.0,0.05)*sg(-v(inn,gnd)-2.6,0.05)*sg(v(inp,gnd)-2.6,0.05)}
+Vp inp pi 0
+Bp pi outp I = {v(onp)*smin(0.3*pos(tanh((2.5-v(outp,gnd))/(0.3*0.02))), pos(v(pi,outp)-0.15)/0.5)}
+Vn ni inn 0
+Bn outn ni I = {v(onn)*smin(0.3*pos(tanh((v(outn,gnd)+2.5)/(0.3*0.02))), pos(v(outn,ni)-0.15)/0.5)}
+Vrp outp rp 0
+Drp rp inp DCLAMP
+Vrn inn rn 0
+Drn rn outn DCLAMP
+Rnr nr gnd 1G
+Rfbn fbn gnd 1G
+Rbuf buf gnd 1G
+Rfbp fbp gnd 1G
+.ends
+
+* TPS70918 ----------------------------------------------------------------
+* 1 OUT, 3 GND, 4 EN, 6 IN, 7 GND. 1.8 V, source-only, blocks reverse.
+.subckt TPS70918 out nc2 gnd en nc5 in gnd7
+Bon on 0 V = {sg(v(en,gnd)-0.9,0.05)*sg(v(in,gnd)-2.6,0.05)}
+B1 in out I = {v(on)*smin(0.3*pos(tanh((1.8-v(out,gnd))/(0.3*0.02))), pos(v(in,out)-0.15)/0.5)}
+.ends
+
+* TLV431 ------------------------------------------------------------------
+* 1 REF, 2 K, 3 A. Sinks up to 20 mA once REF passes 1.24 V.
+.subckt TLV431 ref k a
+Vk k k1 0
+Bk k1 a I = {20m*pos(tanh(200*(v(ref,a)-1.24)))*tanh(pos(v(k1,a))/0.2)}
+Rref ref a 1G
+.ends

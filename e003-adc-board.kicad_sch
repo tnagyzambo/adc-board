@@ -3536,16 +3536,6 @@
 		)
 		(uuid "03d85098-f46b-424c-889e-2e1f2e6b2c71")
 	)
-	(bus
-		(pts
-			(xy 184.15 76.2) (xy 184.15 138.43)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "06a3b612-5ea4-43a9-bd55-2e7e57d3b0fc")
-	)
 	(wire
 		(pts
 			(xy 27.94 107.95) (xy 27.94 113.03)
@@ -3558,7 +3548,7 @@
 	)
 	(wire
 		(pts
-			(xy 203.2 34.29) (xy 226.06 34.29)
+			(xy 223.52 34.29) (xy 238.76 34.29)
 		)
 		(stroke
 			(width 0)
@@ -3618,7 +3608,7 @@
 	)
 	(bus
 		(pts
-			(xy 80.01 52.07) (xy 118.11 52.07)
+			(xy 80.01 52.07) (xy 120.65 52.07)
 		)
 		(stroke
 			(width 0)
@@ -3858,7 +3848,7 @@
 	)
 	(bus
 		(pts
-			(xy 146.05 52.07) (xy 175.26 52.07)
+			(xy 148.59 52.07) (xy 195.58 52.07)
 		)
 		(stroke
 			(width 0)
@@ -3958,7 +3948,7 @@
 	)
 	(bus
 		(pts
-			(xy 80.01 34.29) (xy 118.11 34.29)
+			(xy 80.01 34.29) (xy 120.65 34.29)
 		)
 		(stroke
 			(width 0)
@@ -4138,7 +4128,7 @@
 	)
 	(bus
 		(pts
-			(xy 165.1 55.88) (xy 175.26 55.88)
+			(xy 184.15 55.88) (xy 195.58 55.88)
 		)
 		(stroke
 			(width 0)
@@ -4208,7 +4198,7 @@
 	)
 	(bus
 		(pts
-			(xy 165.1 76.2) (xy 165.1 55.88)
+			(xy 184.15 55.88) (xy 184.15 138.43)
 		)
 		(stroke
 			(width 0)
@@ -4218,7 +4208,7 @@
 	)
 	(wire
 		(pts
-			(xy 203.2 36.83) (xy 226.06 36.83)
+			(xy 223.52 36.83) (xy 238.76 36.83)
 		)
 		(stroke
 			(width 0)
@@ -4338,7 +4328,7 @@
 	)
 	(bus
 		(pts
-			(xy 146.05 34.29) (xy 175.26 34.29)
+			(xy 148.59 34.29) (xy 195.58 34.29)
 		)
 		(stroke
 			(width 0)
@@ -4415,16 +4405,6 @@
 			(type default)
 		)
 		(uuid "f69d6a7c-957f-4fb0-9965-a19c79ac6d9d")
-	)
-	(bus
-		(pts
-			(xy 184.15 76.2) (xy 165.1 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f7c6b6f3-371d-4642-a6a1-8eb249a303cc")
 	)
 	(wire
 		(pts
@@ -8297,7 +8277,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "${ECAD_LIB}/parts/connectors/datasheets/harwin-datamate.pdf"
 			(at 64.77 36.83 0)
 			(hide yes)
 			(show_name no)
@@ -8309,7 +8289,7 @@
 				(justify left)
 			)
 		)
-		(property "Description" "Harwin Datamate J-Tek 12-way vertical, jackscrews"
+		(property "Description" "6+6 Pos. Male Plug DIL Straight 3.3mm THT Connector, Jackscrews, Gold+Tin"
 			(at 64.77 36.83 0)
 			(hide yes)
 			(show_name no)
@@ -8321,7 +8301,67 @@
 				(justify left)
 			)
 		)
-		(property "Placeholder" "Library record CE-CON (M80-5001242); symbol named for the two channels"
+		(property "Manufacturer" "Harwin"
+			(at 64.77 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "DigiKey_Part" "952-1980-ND"
+			(at 64.77 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "IPN" "CE-CON-00008"
+			(at 64.77 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "MPN" "M80-5001242"
+			(at 64.77 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Mouser_Part" "855-M80-5001242"
+			(at 64.77 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Placeholder" "Library record CE-CON-00008 (M80-5001242); symbol named for the two channels"
 			(at 64.77 36.83 0)
 			(hide yes)
 			(show_name no)
@@ -9255,7 +9295,7 @@
 		)
 	)
 	(sheet
-		(at 175.26 31.115)
+		(at 195.58 31.115)
 		(size 27.94 27.94)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9271,7 +9311,7 @@
 		)
 		(uuid "25d81073-89b1-5d67-9c0e-0934a0b38ed7")
 		(property "Sheetname" "fpga"
-			(at 175.26 30.4034 0)
+			(at 195.58 30.4034 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9282,7 +9322,7 @@
 			)
 		)
 		(property "Sheetfile" "e003-fpga.kicad_sch"
-			(at 175.26 59.6396 0)
+			(at 195.58 59.6396 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9293,7 +9333,7 @@
 			)
 		)
 		(pin "HOST{HOST}" bidirectional
-			(at 175.26 55.88 180)
+			(at 195.58 55.88 180)
 			(uuid "e48f5580-a93a-5ede-bff2-2796bd0a0da6")
 			(effects
 				(font
@@ -9303,7 +9343,7 @@
 			)
 		)
 		(pin "ADC1{CONV}" bidirectional
-			(at 175.26 34.29 180)
+			(at 195.58 34.29 180)
 			(uuid "4abb8af9-b88d-4843-bb9c-c5e9e016fce2")
 			(effects
 				(font
@@ -9313,7 +9353,7 @@
 			)
 		)
 		(pin "ADC2{CONV}" bidirectional
-			(at 175.26 52.07 180)
+			(at 195.58 52.07 180)
 			(uuid "d04dfe4e-e4e6-4bd8-b693-97765d79ffef")
 			(effects
 				(font
@@ -9323,7 +9363,7 @@
 			)
 		)
 		(pin "ADC_FLT" input
-			(at 203.2 36.83 0)
+			(at 223.52 36.83 0)
 			(uuid "87f3f9ed-761e-4cad-96ca-2d5f56e8aefa")
 			(effects
 				(font
@@ -9333,7 +9373,7 @@
 			)
 		)
 		(pin "ADC_EN" output
-			(at 203.2 34.29 0)
+			(at 223.52 34.29 0)
 			(uuid "8c3afc9f-27dc-492e-9d68-9cc1f86f5b4f")
 			(effects
 				(font
@@ -9351,7 +9391,7 @@
 		)
 	)
 	(sheet
-		(at 226.06 31.115)
+		(at 238.76 31.115)
 		(size 27.305 19.05)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9367,7 +9407,7 @@
 		)
 		(uuid "370d7634-9dfd-4832-b06b-10bec8372f65")
 		(property "Sheetname" "power"
-			(at 226.06 30.4034 0)
+			(at 238.76 30.4034 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9378,7 +9418,7 @@
 			)
 		)
 		(property "Sheetfile" "e003-gp-power.kicad_sch"
-			(at 226.06 50.7496 0)
+			(at 238.76 50.7496 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9389,7 +9429,7 @@
 			)
 		)
 		(pin "EN" input
-			(at 226.06 34.29 180)
+			(at 238.76 34.29 180)
 			(uuid "9a7a6c07-7a11-4ae2-897b-3cd5f78ab345")
 			(effects
 				(font
@@ -9399,7 +9439,7 @@
 			)
 		)
 		(pin "FLT" output
-			(at 226.06 36.83 180)
+			(at 238.76 36.83 180)
 			(uuid "e0c5ac07-ea90-43c7-a7c0-f0fb9a495494")
 			(effects
 				(font
@@ -9417,7 +9457,7 @@
 		)
 	)
 	(sheet
-		(at 118.11 49.53)
+		(at 120.65 49.53)
 		(size 27.94 5.08)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9433,7 +9473,7 @@
 		)
 		(uuid "401b15e5-f387-464d-bc1c-f41c28e6c880")
 		(property "Sheetname" "gp-ch2"
-			(at 118.11 48.8184 0)
+			(at 120.65 48.8184 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9444,7 +9484,7 @@
 			)
 		)
 		(property "Sheetfile" "e003-gp-channel.kicad_sch"
-			(at 118.11 55.1946 0)
+			(at 120.65 55.1946 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9455,7 +9495,7 @@
 			)
 		)
 		(pin "GP{GP}" input
-			(at 118.11 52.07 180)
+			(at 120.65 52.07 180)
 			(uuid "aba695e1-bd08-4421-989c-97f2745d739f")
 			(effects
 				(font
@@ -9465,7 +9505,7 @@
 			)
 		)
 		(pin "ADC{CONV}" bidirectional
-			(at 146.05 52.07 0)
+			(at 148.59 52.07 0)
 			(uuid "3173ae58-cc69-44d0-acfe-5cdfa9ef3635")
 			(effects
 				(font
@@ -9483,7 +9523,7 @@
 		)
 	)
 	(sheet
-		(at 118.11 31.75)
+		(at 120.65 31.75)
 		(size 27.94 5.08)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9499,7 +9539,7 @@
 		)
 		(uuid "4f39e4cc-6e79-45e1-ae05-5e98e639462b")
 		(property "Sheetname" "gp-ch1"
-			(at 118.11 31.0384 0)
+			(at 120.65 31.0384 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9510,7 +9550,7 @@
 			)
 		)
 		(property "Sheetfile" "e003-gp-channel.kicad_sch"
-			(at 118.11 37.4146 0)
+			(at 120.65 37.4146 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9521,7 +9561,7 @@
 			)
 		)
 		(pin "GP{GP}" input
-			(at 118.11 34.29 180)
+			(at 120.65 34.29 180)
 			(uuid "b03a3f22-959d-4240-ac5b-197b9ccbc13b")
 			(effects
 				(font
@@ -9531,7 +9571,7 @@
 			)
 		)
 		(pin "ADC{CONV}" bidirectional
-			(at 146.05 34.29 0)
+			(at 148.59 34.29 0)
 			(uuid "ee03bb00-3ebe-4a8a-a4ee-667fb3deb245")
 			(effects
 				(font
