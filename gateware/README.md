@@ -85,6 +85,7 @@ gateware/
 │   ├── Dockerfile            the build image: Diamond and GHDL
 │   ├── entrypoint.sh         puts Diamond on the PATH
 │   ├── install-diamond.sh    installs Diamond from a .run or .rpm, at image build
+│   ├── carve-7z.py           cuts the component archives out of a Qt installer
 │   ├── run                   runs a command in the container
 │   ├── installer/            put the Diamond for Linux installer here (not in git)
 │   └── license/              put the Diamond licence here (not in git)
@@ -170,11 +171,16 @@ can print nothing for minutes at a time; `docker stats` in another terminal
 shows whether it is still busy. The full output is saved in
 `build/image.log`. The installer is mounted for
 the build only, so it does not end up as a layer of the image.
-`docker/install-diamond.sh` unpacks an `.rpm` without running its scripts,
-and runs a `.run` unattended with the options of the tool that packaged it,
-which it recognises from the file (makeself, InstallBuilder, the Qt Installer
-Framework or install4j). If it reports `Unrecognised installer`, or the
-unattended install fails, run
+`docker/install-diamond.sh` unpacks an `.rpm` without running its scripts.
+Diamond 3.14's `.run` is built with Qt Installer Framework 2.0, which cannot
+install without a display, so the script cuts the component archives out of
+the file (`docker/carve-7z.py`) and unpacks them with 7-Zip into the image,
+which is all that installer's own install step does. It leaves out the
+QuestaSim component, since simulation uses GHDL; build with
+`DIAMOND_KEEP_QUESTA=1` set in the Dockerfile's install step to keep it.
+Other `.run` installers (makeself, InstallBuilder, install4j) are run
+unattended with their own options. If it reports `Unrecognised installer`,
+or the install fails, run
 
 ```bash
 make installer-info

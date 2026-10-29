@@ -7,11 +7,16 @@
 #   install-diamond.sh --info DIR    only describe the installer
 #
 # Lattice has shipped Diamond for Linux as an .rpm (3.13 and earlier) and as a
-# self-extracting .run (3.14). An .rpm is unpacked without running its
-# scripts. A .run is identified by the packaging tool that built it and run
-# unattended with that tool's options; if it is of a kind not recognised
-# here, the script stops and prints what it found, for the options to be
-# added below.
+# .run (3.14). An .rpm is unpacked without running its scripts. A .run is
+# identified by the packaging tool that built it. Diamond 3.14's is built
+# with Qt Installer Framework 2.0, whose installer cannot run without a
+# display, so its component archives are cut out of the file and unpacked
+# directly, which is all that installer's own install step does. Other kinds
+# are run unattended with their tool's options; one not recognised here stops
+# the script, which prints what it found.
+#
+# QuestaSim, which the Diamond installer offers as a component, is left out:
+# simulation uses GHDL. Set DIAMOND_KEEP_QUESTA=1 to keep it.
 
 set -euo pipefail
 
@@ -73,76 +78,13 @@ if [ "$info_only" = 1 ]; then
   exit 0
 fi
 
-# A Qt Installer Framework control script that accepts every default:
-# install everything into $prefix, accept the licence, start nothing at the
-# end, and answer any question box with its default.
-write_ifw_script() {
-  cat > "$1" <<QS
-function Controller() {
-    installer.autoRejectMessageBoxes();
-    installer.setMessageBoxAutomaticAnswer("OverwriteTargetDirectory", QMessageBox.Yes);
-    installer.setMessageBoxAutomaticAnswer("stopProcessesForUpdates", QMessageBox.Ignore);
-    installer.installationFinished.connect(function() {
-        gui.clickButton(buttons.NextButton);
-    });
-}
-
-function clickNext() {
-    gui.clickButton(buttons.NextButton, 1000);
-}
-
-Controller.prototype.WelcomePageCallback = clickNext;
-Controller.prototype.CredentialsPageCallback = clickNext;
-Controller.prototype.IntroductionPageCallback = clickNext;
-Controller.prototype.ReadyForInstallationPageCallback = clickNext;
-Controller.prototype.StartMenuDirectoryPageCallback = clickNext;
-
-Controller.prototype.TargetDirectoryPageCallback = function() {
-    gui.currentPageWidget().TargetDirectoryLineEdit.setText("$prefix");
-    clickNext();
-};
-
-Controller.prototype.ComponentSelectionPageCallback = function() {
-    gui.currentPageWidget().selectAll();
-    clickNext();
-};
-
-Controller.prototype.LicenseAgreementPageCallback = function() {
-    var page = gui.currentPageWidget();
-    if (page.AcceptLicenseRadioButton) page.AcceptLicenseRadioButton.checked = true;
-    if (page.AcceptLicenseCheckBox) page.AcceptLicenseCheckBox.checked = true;
-    clickNext();
-};
-
-Controller.prototype.FinishedPageCallback = function() {
-    var page = gui.currentPageWidget();
-    if (page.RunItCheckBox) page.RunItCheckBox.checked = false;
-    gui.clickButton(buttons.FinishButton);
-};
-QS
-}
-
-# Waits for the installer started in the background as process $1, printing
-# once a minute how long it has run, how much it has installed and how much
-# CPU time it has used. CPU time that stops rising means the installer is
-# waiting on a page, not working. Returns the installer's exit status.
-watch_install() {
-  local pid=$1 start=$SECONDS ticks child cpu size
-  ticks=$(getconf CLK_TCK)
-  while kill -0 "$pid" 2>/dev/null; do
-    sleep 60 &
-    wait $! || true
-    kill -0 "$pid" 2>/dev/null || break
-    # $pid is timeout(1); the installer is its child.
-    child=$(cat "/proc/$pid/task/$pid/children" 2>/dev/null | cut -d' ' -f1)
-    cpu=?
-    if [ -n "$child" ] && [ -r "/proc/$child/stat" ]; then
-      cpu=$(awk -v t="$ticks" '{ printf "%d s", ($14 + $15) / t }' "/proc/$child/stat")
-    fi
-    size=$(du -sh "$prefix" 2>/dev/null | cut -f1)
-    echo "[install-diamond] $(( (SECONDS - start) / 60 )) min: ${size:-nothing} installed, installer CPU time $cpu"
-  done
-  wait "$pid"
+# True if every top-level entry of 7-Zip archive $1 is QuestaSim's, so that an
+# archive which merely mentions Questa somewhere is still unpacked.
+only_questa() {
+  7z l -ba -slt "$1" | awk '
+    /^Path = / { top = substr($0, 8); sub("/.*", "", top); n++
+                 if (tolower(top) !~ /questa/) other++ }
+    END { exit !(n > 0 && other == 0) }'
 }
 
 work=/tmp/diamond-installer
@@ -168,23 +110,20 @@ case "$kind" in
     "$work/diamond.run" --mode unattended --prefix "$prefix"
     ;;
   qtifw)
-    # Diamond 3.14's installer is built with a Qt Installer Framework too old
-    # for the unattended command-line options, so a control script clicks
-    # through its wizard instead, with no display (the "minimal" platform).
-    # --verbose logs each page; a page the script has no callback for shows
-    # as "Control script callback ... does not exist", and is where an
-    # install that stops responding has stopped. The timeout turns such a
-    # hang into a failed build.
-    cp "$installer" "$work/diamond.run" && chmod 755 "$work/diamond.run"
-    write_ifw_script "$work/unattended.qs"
-    QT_QPA_PLATFORM=minimal timeout "${DIAMOND_INSTALL_TIMEOUT:-2400}" \
-      "$work/diamond.run" --verbose --script "$work/unattended.qs" &
-    if ! watch_install $!; then
-      echo "The Diamond installer failed or stopped responding (see its log above)." >&2
-      echo "A page named in 'Control script callback ... does not exist' near the end" >&2
-      echo "needs a callback in write_ifw_script in docker/install-diamond.sh." >&2
-      exit 1
-    fi
+    python3 -I /usr/local/bin/carve-7z "$installer" "$work/parts"
+    mkdir -p "$prefix"
+    for part in "$work"/parts/*.7z; do
+      if [ "${DIAMOND_KEEP_QUESTA:-0}" != 1 ] && only_questa "$part"; then
+        echo "$(basename "$part"): QuestaSim, skipped"
+      else
+        echo "$(basename "$part"): unpacking"
+        7z x -y -bd -bb0 -o"$prefix" "$part" >/dev/null
+      fi
+      rm -f "$part"
+    done
+    # 7-Zip keeps Unix permissions only if the archive recorded them; make
+    # sure every program in Diamond's binary directories can run.
+    find "$prefix" -type f -path '*/bin/lin64/*' -exec chmod a+x {} +
     ;;
   install4j)
     cp "$installer" "$work/diamond.run" && chmod 755 "$work/diamond.run"
@@ -202,6 +141,8 @@ rm -rf "$work"
 pnmainc=$(find /usr/local /opt -path '*/bin/lin64/pnmainc' -type f 2>/dev/null | head -n 1)
 if [ -z "$pnmainc" ]; then
   echo "Installed, but no bin/lin64/pnmainc found under /usr/local or /opt." >&2
+  echo "Top of $prefix:" >&2
+  ls -la "$prefix" >&2 || true
   exit 1
 fi
 root=$(dirname "$(dirname "$(dirname "$pnmainc")")")

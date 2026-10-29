@@ -16,13 +16,13 @@ FROM ubuntu:22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-# Build tools, GHDL, the RPM extractor, and the X, font and GL libraries that
+# Build tools, GHDL, the RPM and 7-Zip extractors, and the X, font and GL libraries that
 # Diamond's binaries link against even when run without a display.
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
       ca-certificates bash make git python3 \
       ghdl \
-      rpm2cpio cpio \
+      rpm2cpio cpio p7zip-full \
       libx11-6 libxext6 libxft2 libxrender1 libxt6 libsm6 libice6 \
       libxi6 libxrandr2 libxcursor1 libxinerama1 libxkbcommon0 \
       libfontconfig1 libfreetype6 libglib2.0-0 libgl1 libglu1-mesa \
@@ -34,6 +34,7 @@ RUN apt-get update \
 # is bind-mounted for this step only, so its several GB never land in an
 # image layer. Whatever version it is, /opt/diamond points at it.
 COPY install-diamond.sh /usr/local/bin/install-diamond
+COPY carve-7z.py /usr/local/bin/carve-7z
 RUN --mount=type=bind,source=installer,target=/mnt/installer \
     bash /usr/local/bin/install-diamond /mnt/installer \
  && test -x /opt/diamond/bin/lin64/pnmainc
