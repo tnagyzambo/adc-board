@@ -84,8 +84,9 @@ gateware/
 ├── docker/
 │   ├── Dockerfile            the build image: Diamond and GHDL
 │   ├── entrypoint.sh         puts Diamond on the PATH
+│   ├── install-diamond.sh    installs Diamond from a .run or .rpm, at image build
 │   ├── run                   runs a command in the container
-│   ├── diamond/              put the Diamond for Linux .rpm here (not in git)
+│   ├── diamond/              put the Diamond for Linux installer here (not in git)
 │   └── license/              put the Diamond licence here (not in git)
 ├── rtl/
 │   ├── e003_pkg.vhd          constants (including every VERIFY item), CRC-8, hello string
@@ -119,10 +120,12 @@ it at least 4 GB of memory and 20 GB of disk; the image is several GB.
 ### 2. Lattice Diamond for Linux
 
 1. Make an account at [latticesemi.com](https://www.latticesemi.com), then
-   download **Lattice Diamond for Linux** (64-bit, the `.rpm`) from the
-   Diamond software page. Use the latest 3.x release. The Linux build is the
-   one wanted even on a Mac: it runs in the container.
-2. Put the `.rpm` in `gateware/docker/diamond/`. Git ignores it there.
+   download **Lattice Diamond for Linux** from the Diamond software page:
+   3.14 is a `.run` installer (`3.14.0.75.2_Diamond_lin.run`), earlier
+   releases an `.rpm`; either works. The Linux build is the one wanted even on
+   a Mac: it runs in the container.
+2. Put the installer, and only that one, in `gateware/docker/diamond/`. Git
+   ignores it there.
 
 ### 3. The Diamond licence
 
@@ -144,7 +147,8 @@ on any machine that builds the image.
 2. On the Lattice website, request a free Diamond licence (Licensing → Diamond
    free licence) and give those twelve digits as the host ID. Lattice emails
    `license.dat`.
-3. Save it as `gateware/docker/license/license.dat`. Git ignores it there.
+3. Save it in `gateware/docker/license/`, as `license.dat` or under any
+   name ending `.dat` or `.lic` if it is the only file there. Git ignores it.
 
 `docker/run` reads the `HOSTID=` from the licence and starts the container
 with that MAC address. To keep the licence elsewhere, set `DIAMOND_LICENSE`
@@ -158,15 +162,28 @@ From `gateware/`:
 make image
 ```
 
-This unpacks the Diamond RPM into a `linux/amd64` Ubuntu 22.04 image and adds
-GHDL. It takes ten minutes or more, mostly unpacking. The RPM is mounted for
-the build only, so it does not end up as a layer of the image. If the build
+This installs Diamond into a `linux/amd64` Ubuntu 22.04 image and adds GHDL.
+It takes ten minutes or more, mostly unpacking. The installer is mounted for
+the build only, so it does not end up as a layer of the image.
+`docker/install-diamond.sh` unpacks an `.rpm` without running its scripts,
+and runs a `.run` unattended with the options of the tool that packaged it,
+which it recognises from the file (makeself, InstallBuilder, the Qt Installer
+Framework or install4j). If it reports `Unrecognised installer`, or the
+unattended install fails, run
+
+```bash
+make installer-info
+```
+
+which describes the installer and prints its own `--help`, without
+installing anything, and send the output: the right options then go into
+`install-diamond.sh`. If the build
 prints `warning: … not found` for a library, note it: it matters only if
 `make build` later fails with "error while loading shared libraries", and
 the fix is to add the package that provides it to `docker/Dockerfile`.
 
-A new Diamond release means a new RPM in `docker/diamond/` (remove the old
-one) and `make image` again.
+A new Diamond release means its installer in `docker/diamond/` in place of
+the old one, and `make image` again.
 
 ### 5. Native tools
 
@@ -443,7 +460,8 @@ And for the build container:
 
 | Symptom | Likely cause |
 |---|---|
-| `make image`: "Put exactly one Diamond for Linux .rpm" | No `.rpm`, or more than one, in `docker/diamond/` |
+| `make image`: "Put exactly one Diamond for Linux installer" | No `.run` or `.rpm`, or more than one, in `docker/diamond/` |
+| `make image`: "Unrecognised installer", or the install step fails | Run `make installer-info` and send the output |
 | `make sim`/`build`: "image 'e003-gateware' not found" | Run `make image` first |
 | Diamond: licence or "invalid host" errors | Licence not in `docker/license/`, or its HOSTID is not the MAC the container got; check `DIAMOND_MAC` |
 | Diamond: "error while loading shared libraries" | A library missing from the image: add its Ubuntu package to `docker/Dockerfile`, `make image` |

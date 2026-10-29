@@ -5,7 +5,8 @@
 #   make build        Diamond: synthesis to bitstream, build/e003_top.{bit,jed}
 #
 # Native, on the Mac:
-#   make image        build the container image (needs the Diamond .rpm)
+#   make image        build the container image (needs the Diamond installer)
+#   make installer-info  describe the installer, if `make image` cannot use it
 #   make shell        a shell in the container
 #   make wave         open the last simulation's waveforms
 #   make detect       check that the J-Link sees the FPGA over JTAG
@@ -56,7 +57,7 @@ BIT := $(BUILD)/$(TOP).bit
 JED := $(BUILD)/$(TOP).jed
 FST := $(BUILD)/sim/tb_$(TOP).fst
 
-.PHONY: all sim build image shell wave detect prog prog-flash clean FORCE
+.PHONY: all sim build image installer-info shell wave detect prog prog-flash clean FORCE
 
 all: build
 
@@ -116,6 +117,11 @@ endif
 
 image:
 	docker build --platform linux/amd64 -t $(IMAGE) docker
+
+# Describe the Diamond installer in docker/diamond/ without installing it.
+installer-info:
+	docker run --rm --platform linux/amd64 -v "$(abspath docker):/d:ro" ubuntu:22.04 \
+	  bash /d/install-diamond.sh --info /d/diamond
 
 shell:
 	./docker/run bash

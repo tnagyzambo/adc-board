@@ -20,6 +20,13 @@ here=$(cd "$(dirname "$0")" && pwd)
 repo=$(git -C "$here" rev-parse --show-toplevel)
 image=${E003_IMAGE:-e003-gateware}
 license=${DIAMOND_LICENSE:-$here/license/license.dat}
+if [ -z "${DIAMOND_LICENSE:-}" ] && [ ! -f "$license" ]; then
+  # Accept the licence under whatever name Lattice's email gave it.
+  shopt -s nullglob
+  found=("$here"/license/*.dat "$here"/license/*.lic)
+  shopt -u nullglob
+  [ "${#found[@]}" -eq 1 ] && license=${found[0]}
+fi
 
 case "$PWD/" in
   "$repo"/*) rel=${PWD#"$repo"} ;;
@@ -45,6 +52,7 @@ if [ -f "$license" ]; then
   fi
   args+=(-v "$license:/license/license.dat:ro" -e LM_LICENSE_FILE=/license/license.dat)
   if [ -n "$mac" ]; then
+    echo "docker/run: Diamond licence $(basename "$license"), container MAC $mac" >&2
     args+=(--mac-address "$mac")
   else
     echo "docker/run: no HOSTID in $license and DIAMOND_MAC unset; Diamond will refuse the licence" >&2

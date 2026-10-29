@@ -9,7 +9,8 @@
 # copy of the installer and must never be pushed to a public registry.
 #
 # Build it with `make image` from gateware/, after placing the Diamond for
-# Linux .rpm in gateware/docker/diamond/ (see gateware/README.md).
+# Linux installer (.run or .rpm) in gateware/docker/diamond/ (see
+# gateware/README.md).
 
 FROM --platform=linux/amd64 ubuntu:22.04
 
@@ -28,21 +29,14 @@ RUN apt-get update \
       libncurses5 libtinfo5 libusb-0.1-4 libusb-1.0-0 \
  && rm -rf /var/lib/apt/lists/*
 
-# Diamond itself, unpacked from its RPM without running the RPM's scripts.
-# The RPM is bind-mounted for this step only, so its several GB never land in
-# an image layer. Whatever version it is, /opt/diamond points at it.
+# Diamond itself, from the installer in gateware/docker/diamond/: the .run of
+# 3.14 or the .rpm of earlier releases (see install-diamond.sh). The installer
+# is bind-mounted for this step only, so its several GB never land in an
+# image layer. Whatever version it is, /opt/diamond points at it.
+COPY install-diamond.sh /usr/local/bin/install-diamond
 RUN --mount=type=bind,source=diamond,target=/mnt/diamond \
-    set -eu; \
-    set -- /mnt/diamond/*.rpm; \
-    if [ ! -f "$1" ] || [ "$#" -ne 1 ]; then \
-      echo "Put exactly one Diamond for Linux .rpm in gateware/docker/diamond/" >&2; \
-      exit 1; \
-    fi; \
-    echo "Unpacking $(basename "$1")"; \
-    cd / && rpm2cpio "$1" | cpio -idm --quiet; \
-    dir=$(ls -d /usr/local/diamond/*/ | head -n 1); \
-    ln -s "${dir%/}" /opt/diamond; \
-    test -x /opt/diamond/bin/lin64/pnmainc
+    bash /usr/local/bin/install-diamond /mnt/diamond \
+ && test -x /opt/diamond/bin/lin64/pnmainc
 
 # FlexLM, which Diamond uses for its licence check, keeps state in /usr/tmp
 # and some of its binaries ask for the LSB loader name.
