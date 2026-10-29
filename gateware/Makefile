@@ -27,6 +27,9 @@ BUILD  := build
 SYNTH ?= lse
 
 IMAGE ?= e003-gateware
+# Docker's build output: auto (its usual display) or plain (every line, for
+# a log: make image PROGRESS=plain 2>&1 | tee build/image.log).
+PROGRESS ?= auto
 export E003_IMAGE := $(IMAGE)
 
 # Native tools
@@ -132,9 +135,7 @@ image:
 	  echo "copy or move the installer itself into docker/installer/"; \
 	  exit 1; \
 	fi
-	@mkdir -p $(BUILD)
-	set -o pipefail; docker build --progress=plain --platform linux/amd64 -t $(IMAGE) docker \
-	  2>&1 | tee $(BUILD)/image.log
+	docker build --progress=$(PROGRESS) --platform linux/amd64 -t $(IMAGE) docker
 
 # Describe the Diamond installer in docker/installer/ without installing it.
 installer-info:
