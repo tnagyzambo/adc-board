@@ -1457,7 +1457,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "https://toshiba.semicon-storage.com/info/docget.jsp?did=57852&prodName=TLP3475S"
+			(property "Datasheet" "${ECAD_LIB}/parts/ics/datasheets/tlp3475s.pdf"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1469,17 +1469,6 @@
 				)
 			)
 			(property "Description" "Photorelay, MOSFET Output, 1-Form-A, Low Off-State Leakage"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Manufacturer" "Toshiba"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1513,6 +1502,17 @@
 				)
 			)
 			(property "MPN" "TLP3475S"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "Toshiba"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1880,17 +1880,6 @@
 					)
 				)
 			)
-			(property "Manufacturer" "Texas Instruments"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
 			(property "DigiKey_Part" "296-TMUX6212RUMRCT-ND"
 				(at 0 0 0)
 				(show_name no)
@@ -1914,6 +1903,17 @@
 				)
 			)
 			(property "MPN" "TMUX6212RUMR"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "Texas Instruments"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2592,6 +2592,17 @@
 			)
 			(embedded_fonts no)
 		)
+	)
+	(text "SHIELD TERMINATION"
+		(exclude_from_sim no)
+		(at 58.42 102.87 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "56bc0b6f-81df-4104-b357-734dd4ec2558")
 	)
 	(text "S11"
 		(exclude_from_sim no)
@@ -3479,7 +3490,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "https://toshiba.semicon-storage.com/info/docget.jsp?did=57852&prodName=TLP3475S"
+		(property "Datasheet" "${ECAD_LIB}/parts/ics/datasheets/tlp3475s.pdf"
 			(at 99.06 82.55 0)
 			(hide yes)
 			(show_name no)

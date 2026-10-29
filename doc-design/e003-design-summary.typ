@@ -180,7 +180,7 @@ Because the channels are referenced to the stack's ground, a sensor whose circui
 
 Within each channel, the current source excites the sensor, and a ±2.048~V excitation bus, set by the channel's own reference, serves as the return for a bridge and as the reference for a transmitter. Ten switches configure the channel for its sensor (@sec-gp-switches). The sensor signal is buffered and digitized by the first of the four converters in the channel's #ident("ADS127L14"), while the other three monitor the excitation (@sec-gp-monitor). A transient suppressor on every sensor contact absorbs discharges and fast transients, and the parts behind it withstand a sustained 28~V fault (REQ-15, @sec-protection). A few paths from a contact into the channel are low-impedance by design, and these withstand the fault only from a current-limited source.
 
-The FPGA configures the channels and gathers their data. It checks every sample, applies the calibration and packs the data into numbered packets, which it buffers until the ECU MCU board reads them (@sec-fpga). When a channel's monitor reports a fault, or a transmitter's reading exceeds the largest it can produce, the FPGA turns that channel off within one sample.
+The FPGA configures the channels and gathers their data. It checks every sample, applies the calibration and packs the data into numbered packets, which it buffers until the ECU MCU board reads them (@sec-fpga). When a channel's monitor reports a fault, or a transmitter's reading exceeds the largest it can produce, the FPGA turns that channel off as soon as the reading arrives, 4 to 9~ms after the fault because of the converter's filter (GW-3).
 
 Boards stack to add channels and share one SPI lane to the ECU MCU board. A single clock and a single start signal reach every board, so every converter in the stack samples at the same instant (@sec-stacking). Each supply input of the board is current-limited or fused, so a failure on one board cannot pull down the rails that the stack shares.
 
@@ -512,14 +512,14 @@ The gateware requirements apply to the FPGA on this board and to the parts that 
 
 #requirement(
   "GW-3",
-  [The FPGA shall check the status and CRC of every packet and the switch read-back of every channel. It shall turn a channel off within one sample when the channel's converter reports a reset or an error, when its switch lines read back wrong, when its excitation monitor leaves the limits set for its configuration, or when a transmitter channel's signal reading exceeds the limit set for its configuration. It shall report each such event in its status (GW-6).],
-  note: [Checking at the converter's 8~kSPS lets the FPGA catch an open or shorted sensor, a collapsed bus or a current above a sensor's rating within one sample, rather than at the rate at which the ECU MCU board reads the board. A transmitter's signal reading is checked against the largest value it can produce in use: 24~mA for a #box[4–20~mA] loop and 11~V for a 0–10~V transmitter.],
+  [The FPGA shall check the status and CRC of every packet and the switch read-back of every channel. It shall turn a channel off within one sample period of receiving the data that shows a fault: when the channel's converter reports a reset or an error, when its switch lines read back wrong, when its excitation monitor leaves the limits set for its configuration, or when a transmitter channel's signal reading exceeds the limit set for its configuration. It shall report each such event in its status (GW-6).],
+  note: [Checking every reading at the converter's 8~kSPS lets the FPGA act on an open or shorted sensor, a collapsed bus or a current above a sensor's rating as soon as the converter reports it, rather than at the rate at which the ECU MCU board reads the board. The converter's filter delays every reading by 4.25~ms and settles a step after 8.5~ms (@sec-gp-chain), so the channel turns off 4 to 9~ms after the fault, depending on how far the reading passes its limit. Every fault path that the channel must survive is current-limited and survives that long (@sec-protection). A transmitter's signal reading is checked against the largest value it can produce in use: 24~mA for a #box[4–20~mA] loop and 11~V for a 0–10~V transmitter.],
 )
 
 #requirement(
   "GW-4",
-  [The FPGA shall apply to every channel the gain and offset correction stored in it by the ECU MCU board.],
-  note: [The corrections come from calibration at test (FW-2).],
+  [The FPGA shall apply to every channel the gain and offset correction that the ECU MCU board has stored in the FPGA's user flash.],
+  note: [The corrections come from calibration at test (FW-2). The user flash keeps them through power cycles, reloads and updates (FW-4), so a board applies its calibration from the moment it starts.],
 )
 
 #requirement(
@@ -543,13 +543,13 @@ The gateware requirements apply to the FPGA on this board and to the parts that 
 #requirement(
   "GW-8",
   [The board shall configure its FPGA from non-volatile memory on the board within 100~ms of power-up, without the ECU MCU board. It shall accept a new configuration over its SPI lane while the FPGA runs, shall keep a golden configuration that can be overwritten only by a two-step process, in which one command unlocks it and a second writes it, and shall fall back to the golden configuration if a new one fails to load.],
-  note: [Every channel starts off and stays off until the ECU MCU board configures it, and a channel keeps its configuration if the ECU MCU board restarts. The #ident("LCMXO2-4000HC") programs its internal flash in the background through a hardened configuration port, which every image keeps enabled, and falls back to a golden image held in an SPI flash beside it. An interrupted or faulty update therefore leaves a board that still boots and accepts another update (FW-4). Because the golden image can be overwritten only by two separate commands, no single write, faulty or not, can replace it.],
+  note: [Every channel starts off and stays off until the ECU MCU board configures it, and a channel keeps its configuration if the ECU MCU board restarts. The #ident("LCMXO2-4000HC") programs its internal flash in the background through a hardened configuration port, which every image keeps enabled, and falls back to a golden image held in an SPI flash beside it. An interrupted or faulty update therefore leaves a board that still boots and accepts another update (FW-4). The FPGA reads the golden image with a clock that starts at 2.08~MHz and changes to the frequency that the image itself sets, so the golden image sets one high enough that a fallback also completes within the 100~ms. Because the golden image can be overwritten only by two separate commands, no single write, faulty or not, can replace it.],
 )
 
 #requirement(
   "GW-9",
   [The board shall reconfigure its FPGA from non-volatile memory on a command from the ECU MCU board, without relying on the configuration that the FPGA is running.],
-  note: [The command is the REFRESH command of the FPGA's configuration logic, sent to the slave SPI port (GW-8). The configuration logic is hardened, and the setting that keeps the port enabled is held in the feature row in flash, so neither a hung design nor an upset can block the command or disable the port. The ECU MCU board can therefore recover a hung FPGA without power-cycling the stack or disturbing the other boards. It must leave the board deselected for the 2.4~ms that the reload takes, because an access to the port during that time aborts the reload (@sec-fpga). The reload also removes the channel supply, so both channels restart from off and must be configured again.],
+  note: [The board accepts two such commands. The first is the REFRESH command of the FPGA's configuration logic, sent to the slave SPI port (GW-8). The configuration logic is hardened, and the setting that keeps the port enabled is held in the feature row in flash, so neither a hung design nor an upset can block the command or disable the port. The second is to hold the board's chip select low for 1~s, which a timer on the board turns into a pulse on the FPGA's PROGRAMN input (@sec-fpga). The timer relies neither on the running configuration nor on the configuration logic accepting a command, so it still works if the configuration port has to be disabled (OI-9). Either way the ECU MCU board can recover a hung FPGA without power-cycling the stack. REFRESH leaves the other boards undisturbed, but the 1~s hold occupies SPI0, so the other ADC boards on the lane lose about a second of data. The ECU MCU board must then leave the board deselected while the FPGA reloads (FW-6). The reload also removes the channel supply, so both channels restart from off and must be configured again.],
 )
 
 #requirement(
@@ -560,8 +560,8 @@ The gateware requirements apply to the FPGA on this board and to the parts that 
 
 #requirement(
   "GW-11",
-  [The FPGA shall run its soft-error detection continuously and shall report a detected upset of its configuration in its status.],
-  note: [An upset can change any part of the gateware, including the interlocks of GW-2 and GW-3. When the FPGA reports an upset, the ECU MCU board reloads it by command (GW-9).],
+  [The FPGA shall run its soft-error detection continuously, shall check its registers against their CRCs continuously, and shall report in its status a detected upset of either.],
+  note: [An upset can change any part of the gateware, including the interlocks of GW-2 and GW-3. Soft-error detection checks only the configuration memory, which holds the logic. The registers that hold each channel's configuration, calibration and limits (GW-7) lie in block RAM and flip-flops, which it does not check, so the FPGA keeps the CRC that came with each write and checks the register against it again. When the FPGA reports an upset of its configuration, the ECU MCU board reloads it by command (GW-9), and when it reports an upset register, the ECU MCU board writes that register again.],
 )
 
 #requirement(
@@ -596,8 +596,8 @@ The gateware requirements apply to the FPGA on this board and to the parts that 
 
 #requirement(
   "FW-2",
-  [Firmware shall store each channel's gain and offset correction in the FPGA of its board.],
-  note: [The corrections come from calibration at test, and the FPGA applies them (GW-4).],
+  [Firmware shall store each channel's gain and offset correction in the user flash of its board's FPGA.],
+  note: [The corrections come from calibration at test, and the FPGA applies them (GW-4). Firmware writes them through the FPGA's registers, with their CRC (GW-7), and the FPGA writes them into its user flash. They change only when the board is calibrated.],
 )
 
 #requirement(
@@ -608,7 +608,7 @@ The gateware requirements apply to the FPGA on this board and to the parts that 
 
 #requirement(
   "FW-4",
-  [Firmware shall verify a new FPGA configuration after writing it and before making the board load it. It shall overwrite the golden configuration only on an explicit command, never as part of an update.],
+  [Firmware shall verify a new FPGA configuration after writing it and before making the board load it. It shall erase and write only the configuration flash, leaving the user flash and the calibration in it. It shall overwrite the golden configuration only on an explicit command, never as part of an update.],
   note: [If the board fails to load the new configuration, it falls back to the golden one (GW-8).],
 )
 
@@ -616,6 +616,12 @@ The gateware requirements apply to the FPGA on this board and to the parts that 
   "FW-5",
   [Firmware shall set each channel's shield termination to the one that CBL-2 calls for on the cable connected to it.],
   note: [The termination depends on the cable, not on the board, so it belongs to the configuration of each position in the harness (@sec-shields). Where a sensor's datasheet does not state whether the shield is joined to the case, the shield is to be checked for continuity to the case before the termination is chosen.],
+)
+
+#requirement(
+  "FW-6",
+  [Firmware shall leave a board deselected for at least 100~ms after the stack powers up and after each command that reloads the board's FPGA.],
+  note: [The FPGA loads its configuration within 100~ms, including a fallback to the golden image (GW-8). An access to the configuration port during a reload aborts it. During a fallback, selecting the board also enables its bus buffer, which drives the SPI clock and data against the FPGA's own reads of its flash and corrupts the load (@sec-stacking). A reload is typically 2.4~ms and at most 4.2~ms from the internal flash, but a fallback takes longer, and it is most likely right after an update (FW-4). After the 1~s hold of GW-9, the 100~ms run from the release of the chip select.],
 )
 
 == Key Parameters
@@ -632,6 +638,9 @@ The gateware requirements apply to the FPGA on this board and to the parts that 
     [General-purpose bandwidth],
     [2~kHz, sampled at 8~kSPS simultaneously across the stack and flat to 3.2~kHz],
     [#ident("ADS127L14") wideband filter],
+    [General-purpose latency],
+    [4.25~ms through the converter's filter, up to 1~ms more while the FPGA fills a packet, then the interval between the ECU MCU board's reads, up to 20~ms. The FPGA turns a faulty channel off 4 to 9~ms after the fault],
+    [@sec-gp-chain, GW-3],
     [General-purpose range],
     [Within ±2.0~V at the converter: ±6.3~mV from a load cell at 2~mV/V, typically 160~mV from a piezoresistive transducer, 0.4–2.0~V from a #box[4–20~mA] loop across its shunt and 0–2.0~V from a 0–10~V transmitter through a 5:1 divider],
     [@tab-channel-config],
@@ -704,7 +713,7 @@ The FPGA configures a channel for its sensor by closing the switches that the co
 
 === Signal Chain <sec-gp-chain>
 
-Each channel has its own #ident("ADS127L14"), which contains four simultaneously sampling converters: the first reads the sensor and the other three monitor the channel (@sec-gp-monitor). Every converter in the stack runs from the 8.192~MHz #ident("SYNC_CLK") and starts on the same edge of it, so all of them sample at the same instant (REQ-6, INT-5, INT-6). The converter runs in high-speed mode with the wideband filter at an oversampling ratio of 512, which gives 8~kSPS (@tab-adc-config). The filter is flat to 3.2~kHz and attenuates by 106~dB above 4~kHz, which covers the 2~kHz bandwidth (REQ-7). The converter's noise of 2.55~µV~rms rises to 2.83~µV~rms with the buffers and protection, or 0.045~% of full scale for a 2~mV/V load cell (@sec-gp-budget).
+Each channel has its own #ident("ADS127L14"), which contains four simultaneously sampling converters: the first reads the sensor and the other three monitor the channel (@sec-gp-monitor). Every converter in the stack runs from the 8.192~MHz #ident("SYNC_CLK") and starts on the same edge of it, so all of them sample at the same instant (REQ-6, INT-5, INT-6). The converter runs in high-speed mode with the wideband filter at an oversampling ratio of 512, which gives 8~kSPS (@tab-adc-config). The filter is flat to 3.2~kHz and attenuates by 106~dB above 4~kHz, which covers the 2~kHz bandwidth (REQ-7). It delays every reading by 34 samples, 4.25~ms, at every frequency, and a step reaches its final value after 68 samples, 8.5~ms. The FPGA holds each reading for up to 1~ms while it fills a packet (GW-6), and the ECU MCU board receives it at its next read of the board, at most 20~ms later (INT-10). A reading therefore reaches the ECU MCU board at least 4.25~ms after the instant it represents, and its sample number dates that instant exactly. The converter's noise of 2.55~µV~rms rises to 2.83~µV~rms with the buffers and protection, or 0.045~% of full scale for a 2~mV/V load cell (@sec-gp-budget).
 
 An #ident("OPA2189") buffers the two signal inputs. Without it, the converter's input precharge buffers, which draw up to ±1.5~µA at their rated clock, would produce errors of millivolts through a 350~Ω bridge and the protection resistors; the #ident("OPA2189") draws under 300~pA. Because its input range ends 2.5~V below its positive rail, it runs from the ±5~V rails rather than from the converter's ±2.5~V.
 
@@ -783,7 +792,7 @@ The FPGA configures each #ident("ADS127L14") over a dedicated SPI bus with the s
       [The low range covers 0.5 to 2.75~V and the high range 1~V to the supply. A piezoresistive transducer's reference of 1.0~V sits at the bottom of the high range. A load cell's is 3.2 to 3.7~V and a transmitter's 4.096~V.],
       [GPIO],
       [Seven pins as outputs: GPIO0 to GPIO5 drive the channel's switches and GPIO6 its shield switch],
-      [GPIO2 and GPIO3 share their pins with the unused data lanes DOUT2 and DOUT3. The FPGA reads the pins back through the GPIO read register (GW-2, @sec-gp-switches).],
+      [GPIO2 and GPIO3 share their pins with the unused data lanes DOUT2 and DOUT3. GPIO7 shares its pin with the daisy-chain input DIN0, which is tied to #ident("GND"), so it stays an input. The FPGA reads the pins back through the GPIO read register (GW-2, @sec-gp-switches).],
     ),
   ) <tab-adc-config>
 ]
@@ -1096,7 +1105,7 @@ The FPGA drives each converter directly, on dedicated lines (@sec-fpga). The con
 
 Because the FPGA banks and the converters' I/O share one supply, they power down together when the FPGA switches the channel supply off, so neither drives the other while unpowered. The FPGA drives both converters' CLK and START from one internal clock and one retimed start (INT-6), so the two converters of a board sample together to within the skew between the FPGA's outputs, about a nanosecond. Between boards, the FPGAs' clock-to-output delays differ by a few nanoseconds, which sets how closely the boards sample together. The 62~Ω resistors damp ringing on the 8.192~MHz clock and the other fast lines.
 
-Each converter has its own SPI bus at 4~MHz. A transfer is one 24-bit word with CRC and takes 6~µs; between transfers the converter releases SDO, and a pull-down in the FPGA's input holds the line. The converter sends the four packets of every sample on its own DOUT line, framed by its own FSYNC, at the full 8.192~MHz of #ident("SYNC_CLK"), so they occupy 160 of the 1024 bit periods in each 125~µs sample period. One line could therefore carry the four 40-bit packets at up to 51.2~kSPS, well above the 8~kSPS of GW-5. The FPGA samples DOUT and FSYNC with its own copy of the clock, so DCLK is not routed. The datasheet times DOUT only against DCLK, within 7~ns of its falling edge, and does not specify the delay from CLKIN to DCLK, so the gateware oversamples DOUT and FSYNC and takes the bit timing from the FSYNC edge (OI-7). The daisy-chain input DIN0 is tied low.
+Each converter has its own SPI bus at 4~MHz. A transfer is one 24-bit word with CRC and takes 6~µs; between transfers the converter releases SDO, and a pull-down in the FPGA's input holds the line. The converter sends the four packets of every sample on its own DOUT line, framed by its own FSYNC, at the full 8.192~MHz of #ident("SYNC_CLK"), so they occupy 160 of the 1024 bit periods in each 125~µs sample period. One line could therefore carry the four 40-bit packets at up to 51.2~kSPS, well above the 8~kSPS of GW-5. The FPGA samples DOUT and FSYNC with its own copy of the clock, so DCLK is not routed. The datasheet times DOUT only against DCLK, within 7~ns of its falling edge, and does not specify the delay from CLKIN to DCLK, so the gateware oversamples DOUT and FSYNC and takes the bit timing from the FSYNC edge (OI-7). The daisy-chain input DIN0 is tied low, so the FPGA never sets its other function, GPIO7, as an output.
 
 The FPGA writes a channel's six switch lines into the converter's GPIO output register in a single write, and reads the pins back through the GPIO read register before it uses the channel's data (GW-2). Because the read-back reflects the pins as they drive the switches, a stuck line or a corrupted write appears at the next read. The converter disables its GPIO pins at power-up and after a reset, so a channel always starts off.
 
@@ -1279,7 +1288,7 @@ The second is to measure the supply of a transmitter. The bus reading, fixed at 
 
 The third is to detect faults in every configuration. An open or unplugged bridge lets its current source drive #ident("EXC+") up to the sensor supply, and a shorted bridge or cable collapses the bridge voltage. A damaged cable appears as a change of a few per cent in the bridge voltage, which the bus reading expresses in volts. Detecting these faults needs an accuracy of only about 1~%.
 
-The fourth is to drive the interlocks. The FPGA compares every monitor reading, and a transmitter's signal reading, with limits set for the channel's configuration and turns the channel off within one sample when a reading crosses its limit (GW-3).
+The fourth is to drive the interlocks. The FPGA compares every monitor reading, and a transmitter's signal reading, with limits set for the channel's configuration and turns the channel off within one sample period of receiving a reading that crosses its limit (GW-3).
 
 The three monitor inputs sample together with the signal, from the same clock and against the same reference. The ratio of any two readings is therefore independent of the reference, and every reading aligns with the signal sample taken at the same instant. The FPGA passes the readings to the ECU MCU board at the full 8~kSPS (GW-5), each with the converter's 2.55~µV~rms of noise.
 
@@ -1327,7 +1336,7 @@ REQ-14 does not include surge immunity to IEC~61000-4-5, because the harness is 
   ),
 ) <tab-protection>
 
-Most of these paths survive a fault from any source, but four are low-impedance by design: S3 into the bus in the load-cell configuration, S4's body diode, the shunt with S8 in the #box[4–20~mA] configuration, which returns through the cable link and S4, and S11 where it bonds a shield directly (@sec-shields). A fault on #ident("SIG−") with a bridge connected takes a fifth, through S8's body diode and the shunt into the bridge, and dissipates up to 0.3~W in the shunt. Wherever the cable links #ident("SIG−") to #ident("EXC−") (CBL-1), a fault on #ident("SIG−") is a fault on #ident("EXC−") and takes the same paths. These paths survive a current-limited fault indefinitely; another channel's sensor supply at 30~mA, for example, dissipates 21~mW in S4's diode, and up to 0.28~W in the shunt where it adds to a transmitter's own loop current, within the shunt's 1~W rating. Such a fault also lifts a #box[4–20~mA] reading beyond 24~mA, so the FPGA turns the channel off within one sample (GW-3), which opens S8 and S4 and takes the fault's current off the shunt and the stack's ground. A low-impedance source such as a valve supply would destroy S4, S11 or the shunt, and through S3 it would hold the channel's bus at its amplifier's ±65~mA limit and remove the channel's excitation while it lasted. Such a fault, of the positive polarity that REQ-15 covers, damages only its own channel, or both channels of the board if it trips the channel supply, but while it lasts its current returns through the stack's ground and can disturb the other boards. A negative fault from a low-impedance source on #ident("EXC−"), or on a signal contact that a bridge or the cable link joins to it, reaches further: S3's body diode passes it into the bus, and the bus amplifier's output clamp passes it on into the −5~V rail that both channels share, which it drags far below both converters' ratings.
+Most of these paths survive a fault from any source, but four are low-impedance by design: S3 into the bus in the load-cell configuration, S4's body diode, the shunt with S8 in the #box[4–20~mA] configuration, which returns through the cable link and S4, and S11 where it bonds a shield directly (@sec-shields). A fault on #ident("SIG−") with a bridge connected takes a fifth, through S8's body diode and the shunt into the bridge, and dissipates up to 0.3~W in the shunt. Wherever the cable links #ident("SIG−") to #ident("EXC−") (CBL-1), a fault on #ident("SIG−") is a fault on #ident("EXC−") and takes the same paths. These paths survive a current-limited fault indefinitely; another channel's sensor supply at 30~mA, for example, dissipates 21~mW in S4's diode, and up to 0.28~W in the shunt where it adds to a transmitter's own loop current, within the shunt's 1~W rating. Such a fault also lifts a #box[4–20~mA] reading beyond 24~mA, so the FPGA turns the channel off within 9~ms (GW-3), which opens S8 and S4 and takes the fault's current off the shunt and the stack's ground. A low-impedance source such as a valve supply would destroy S4, S11 or the shunt, and through S3 it would hold the channel's bus at its amplifier's ±65~mA limit and remove the channel's excitation while it lasted. Such a fault, of the positive polarity that REQ-15 covers, damages only its own channel, or both channels of the board if it trips the channel supply, but while it lasts its current returns through the stack's ground and can disturb the other boards. A negative fault from a low-impedance source on #ident("EXC−"), or on a signal contact that a bridge or the cable link joins to it, reaches further: S3's body diode passes it into the bus, and the bus amplifier's output clamp passes it on into the −5~V rail that both channels share, which it drags far below both converters' ratings.
 
 == Cable Shields <sec-shields>
 
@@ -1374,21 +1383,21 @@ In both terminations, the shield's current enters #ident("GND") at the connector
 
 The FPGA is the board's only connection to its SPI lane (@sec-interfaces). It runs from #ident("SYNC_CLK") and from the 3.3~V input, and its two banks that face the converters run from the channels' 1.8~V rail (@sec-gp-control).
 
-The FPGA configures each #ident("ADS127L14") over a dedicated SPI bus, sets each channel's switch lines, and reads both back (GW-1, GW-2). It forwards #ident("SYNC_CLK") to each converter as its clock, retimes #ident("SYNC_START") to an edge of it, and starts both converters on that edge, so that they sample at the same instant as every other converter in the stack (INT-6). Because any register write restarts a converter, the FPGA resynchronizes a converter the same way after writing to it (GW-15). It receives each converter's frame-sync data on a dedicated line and checks the status and CRC of every packet. When a channel's converter, switch read-back or excitation monitor shows a fault, or a transmitter's reading exceeds the largest it can produce, the FPGA turns that channel off within one sample (GW-3). It can also switch the channel supply off and on through the enable of its eFuse, which turns off both channels, and it reads the eFuse's fault flag (@sec-gp-supply, GW-12).
+The FPGA configures each #ident("ADS127L14") over a dedicated SPI bus, sets each channel's switch lines, and reads both back (GW-1, GW-2). It forwards #ident("SYNC_CLK") to each converter as its clock, retimes #ident("SYNC_START") to an edge of it, and starts both converters on that edge, so that they sample at the same instant as every other converter in the stack (INT-6). Because any register write restarts a converter, the FPGA resynchronizes a converter the same way after writing to it (GW-15). It receives each converter's frame-sync data on a dedicated line and checks the status and CRC of every packet. When a channel's converter, switch read-back or excitation monitor shows a fault, or a transmitter's reading exceeds the largest it can produce, the FPGA turns that channel off within one sample period of receiving the reading (GW-3). It can also switch the channel supply off and on through the enable of its eFuse, which turns off both channels, and it reads the eFuse's fault flag (@sec-gp-supply, GW-12).
 
-The FPGA applies each channel's calibration (GW-4) and gathers all eight readings of each sample into a frame of fixed format (GW-5). It numbers every frame from the last start, packs eight frames into a 1~ms packet with a CRC, and buffers 20~ms of packets (GW-6, INT-10). It serves the packets and its registers to the ECU MCU board as a peripheral on SPI0, reports in every read how much data it still holds (INT-10), and acts on a register write only if the write's CRC is correct (GW-7).
+The FPGA applies each channel's calibration, which it keeps in its 96~kbit user flash (GW-4), and gathers all eight readings of each sample into a frame of fixed format (GW-5). It numbers every frame from the last start, packs eight frames into a 1~ms packet with a CRC, and buffers 20~ms of packets (GW-6, INT-10). It serves the packets and its registers to the ECU MCU board as a peripheral on SPI0, reports in every read how much data it still holds (INT-10), and acts on a register write only if the write's CRC is correct (GW-7).
 
 The FPGA is a Lattice #ident("LCMXO2-4000HC-4QN84C"), with 4320 LUTs, 92~kbit of block RAM, two PLLs and 68 I/O in a 7 × 7~mm QFN-84. It is the commercial temperature grade, with a junction range of 0 to 85~°C, and the slowest speed grade, which suffices because the gateware's fastest clock, about 33~MHz to oversample the converters' 8.192~Mbit/s data four times, lies far below what that grade supports. As an HC device it runs from the 3.3~V input alone, with no external core regulator. #ident("SYNC_CLK") enters on a primary clock pin of bank 0, from which a PLL can take it. Banks 1 and 4 run at 1.8~V, one for each converter, and banks 0 and 2 at 3.3~V. The FPGA checks its own configuration for upsets (GW-11) and checks #ident("SYNC_CLK") against its internal oscillator (GW-10).
 
 The FPGA configures itself from its internal flash at power-up (GW-8). The ECU MCU board writes a new configuration into that flash in the background through the slave SPI port on bank 2, a hardened configuration port that every image keeps enabled and to which the bus buffer brings SPI0. If the new configuration fails to load, the FPGA falls back to a golden image held in a #ident("W25Q16JV") SPI flash beside it (FW-4), which it writes only after a separate unlock command (GW-8). The flash is on the master SPI pins, which share their clock and data with the slave port, so the bus buffer releases those pins whenever the board is deselected (@sec-stacking). Pull-ups from the configuration guide hold them: 1~kΩ on the clock, as dual boot requires, and 10~kΩ on the data input and on both chip selects.
 
-The slave SPI port also accepts the configuration logic's REFRESH command, which reloads the FPGA from its flash regardless of what the design is doing, so the ECU MCU board can recover a hung FPGA without power-cycling the stack (GW-9). Whether the port stays enabled is set in the feature row in flash, which no upset of the running configuration can change. The board therefore has no use for PROGRAMN, and a 10~kΩ pull-up holds it high, so that no glitch on it can start a reload; the FPGA's own pull-up on the pin is weak. During a reload the FPGA's outputs float, and the pull-down on the eFuse's enable then removes the channel supply, so both channels restart from off (GW-9).
+The slave SPI port also accepts the configuration logic's REFRESH command, which reloads the FPGA from its flash regardless of what the design is doing, so the ECU MCU board can recover a hung FPGA without power-cycling the stack (GW-9). Whether the port stays enabled is set in the feature row in flash, which no upset of the running configuration can change. A timer gives a second way to reload, through PROGRAMN, which works even with the configuration port disabled (OI-9). While the board's chip select is high, it charges 4.7~µF through a #ident("1N4148W") diode and 1~kΩ; while it is low, the capacitor discharges through 100~kΩ. An #ident("SN74LVC1G17") Schmitt-trigger buffer drives PROGRAMN from the capacitor. If the ECU MCU board holds the chip select low for 1~s, the buffer pulls PROGRAMN low. When the chip select is released, the capacitor recharges within a few milliseconds, PROGRAMN rises and the FPGA reloads (GW-9). The capacitor reaches the buffer's lower threshold 0.2 to 0.9~s after the chip select falls, typically 0.4~s. That range covers the capacitor's tolerance and its voltage and temperature coefficients, the supply's tolerance, the buffer's thresholds and its guaranteed input leakage, so a 1~s hold always reloads. A read of the whole 20~ms buffer holds the chip select low for about 2~ms, which lowers the capacitor by under 1~%, and the 1~kΩ restores that within 0.1~ms of the chip select rising. The timer could fire only on a board selected more than 98~% of the time, many times its share of the lane. The 1~kΩ also holds the current that the bus buffer drives into the capacitor below 3~mA. At power-up the capacitor starts discharged, so the FPGA stays in reset until the chip select has been high for about 6~ms; the master drives it high from its own start-up (INT-4). A 10~kΩ pull-up still holds PROGRAMN high should the buffer not be fitted. During a reload the FPGA's outputs float, and the pull-down on the eFuse's enable then removes the channel supply, so both channels restart from off (GW-9).
 
-The gateware's own SPI interface, which carries the board's commands and data, uses the same clock and data pins through the FPGA's hardened user SPI. Its chip select is a separate input, PB7B, which the board's chip select also drives. The configuration logic therefore sees every frame and interprets its first byte as a command, so no frame of the board's own protocol may begin with a configuration command (GW-13, OI-9). JTAG is brought out to a Tag-Connect TC2030 pad pattern, which a TC2030-IDC-NL cable reaches without a connector on the board. Its six pads carry the 3.3~V reference for the programming cable, TMS, TDI, TCK, #ident("GND") and TDO, and TCK is held low by 4.7~kΩ.
+The gateware's own SPI interface, which carries the board's commands and data, uses the same clock and data pins through the FPGA's hardened user SPI. Its chip select is a separate input, PB7B, which the board's chip select also drives. The configuration logic therefore sees every frame and interprets its first byte as a command, so no frame of the board's own protocol may begin with a configuration command (GW-13, OI-9). The lane's clock and data lines also reach three general-purpose pins of bank 2: the clock on PB13A, a primary clock input, and the data on PB13B and PB20A. The gateware can then serve the lane with SPI logic of its own instead of the hardened block, should that block not keep up at 18.75~MHz or not share its pins with the configuration port (OI-9). Each image leaves these pins without pull resistors and drives the data output only while it uses them. JTAG is brought out to a Tag-Connect TC2030 pad pattern, which a TC2030-IDC-NL cable reaches without a connector on the board. Its six pads carry the 3.3~V reference for the programming cable, TMS, TDI, TCK, #ident("GND") and TDO, and TCK is held low by 4.7~kΩ.
 
-The FPGA uses 28 of its 68 I/O, besides its four JTAG pins. The converters take eighteen, nine each on banks 1 and 4 at 1.8~V: CLK, START, SCLK, SDI and the chip select out through 62~Ω, RESET out, and SDO, DOUT and FSYNC in. The SPI lane, #ident("SYNC_CLK") and #ident("SYNC_START") take six, the user SPI's chip select one, the channel supply's enable and fault flag two, and the flash's chip select one. The 20~ms buffer occupies about 32~kbit, 35~% of the block RAM. At 16~kSPS it would occupy about 64~kbit, which would fit, and at 32~kSPS about 125~kbit, which would not.
+The FPGA uses 31 of its 68 I/O, besides its four JTAG pins. The converters take eighteen, nine each on banks 1 and 4 at 1.8~V: CLK, START, SCLK, SDI and the chip select out through 62~Ω, RESET out, and SDO, DOUT and FSYNC in. The SPI lane, #ident("SYNC_CLK") and #ident("SYNC_START") take six, the user SPI's chip select one, the second copy of the lane's clock and data three, the channel supply's enable and fault flag two, and the flash's chip select one. The 20~ms buffer occupies about 32~kbit, 35~% of the block RAM. At 16~kSPS it would occupy about 64~kbit, which would fit, and at 32~kSPS about 125~kbit, which would not.
 
-The FPGA, the channel supply and its 24~V switch, the current limits, the input suppressors and the bus buffer are the board's single points of failure. A failed converter or reference costs only its own channel, because each serves one channel. A failed FPGA or channel supply costs both channels of the board but no other board, because the buffer isolates the board from every shared signal line and the fuse isolates it from the stack's 24~V (@sec-stacking); only a failed buffer could hold a shared line. An input suppressor that failed short would load the stack's rail ahead of the board's limit, but its rating against the rail's own current makes this unlikely. Because the board's ground is the stack's ground, a fault that drives current into it can also disturb the other boards while it lasts (@sec-protection).
+The FPGA, the channel supply and its 24~V switch, the current limits, the input suppressors, the bus buffer and the reconfiguration timer are the board's single points of failure; a timer that failed with its output low would hold the FPGA in reset. A failed converter or reference costs only its own channel, because each serves one channel. A failed FPGA or channel supply costs both channels of the board but no other board, because the buffer isolates the board from every shared signal line and the fuse isolates it from the stack's 24~V (@sec-stacking); only a failed buffer could hold a shared line. An input suppressor that failed short would load the stack's rail ahead of the board's limit, but its rating against the rail's own current makes this unlikely. Because the board's ground is the stack's ground, a fault that drives current into it can also disturb the other boards while it lasts (@sec-protection).
 
 == Stacking <sec-stacking>
 
@@ -1396,7 +1405,7 @@ Boards stack on #ident("ASRP-PCB-INTERCONNECT-2") together with the #ident("E004
 
 An #ident("SN74LVC244A") octal buffer stands between the board and the interconnect. Its two groups of four buffers have separate output enables. The first group is always enabled and carries the chip select, #ident("SYNC_CLK") and #ident("SYNC_START"). The buffered chip select enables the second group, which carries the SPI clock and data inputs, each through 100~Ω, and drives #ident("SPI0_MISO") through 62~Ω of series termination, so the board drives that line only while it is selected (INT-4). Each group has one spare buffer.
 
-When the board is deselected, the second group also releases the FPGA's configuration SPI pins, so that a golden-image boot can drive them, and pull-ups hold the FPGA's SPI clock and data inputs high (@sec-fpga). Nothing then drives the line from the FPGA's data output to the buffer either, so a 100~kΩ pull-up keeps that buffer input from floating. If the master selects the board during such a boot, the 100~Ω resistors limit the clash. The buffer's partial-power-down protection limits the leakage into any pin of an unpowered board to 10~µA, so an unpowered board leaves every line at high impedance (INT-4). The buffer also keeps a failed FPGA input off the shared lines. #ident("SYNC_CLK") passes through the buffer to the FPGA, which forwards it to the converters (@sec-gp-control).
+When the board is deselected, the second group also releases the FPGA's configuration SPI pins, so that a golden-image boot can drive them, and pull-ups hold the FPGA's SPI clock and data inputs high (@sec-fpga). Nothing then drives the line from the FPGA's data output to the buffer either, so a 100~kΩ pull-up keeps that buffer input from floating. If the master selected the board during such a boot, the 100~Ω resistors would limit the clash, but the boot would fail, so the master leaves the board deselected until it has configured (FW-6). The buffer's partial-power-down protection limits the leakage into any pin of an unpowered board to 10~µA, so an unpowered board leaves every line at high impedance (INT-4). The buffer also keeps a failed FPGA input off the shared lines. #ident("SYNC_CLK") passes through the buffer to the FPGA, which forwards it to the converters (@sec-gp-control).
 
 The read path passes through the buffer only. The FPGA answers within about 15~ns of an SCLK edge, an estimate, since its data sheet gives 10~ns for the configuration port and no figure for the user SPI. The buffer adds at most 5.9~ns on the way in and again on the way out, so #ident("SPI0_MISO") is valid at the connector within about 28~ns, including about 1~ns from the 100~Ω on SCLK. This meets the 30~ns of INT-8, so the lane runs at up to 20~MHz, but with a margin small enough to be measured on the first board. The buffer enables its output within about 13~ns of the chip select falling, well inside the delay that the master leaves before its first clock edge. Each board produces about 1.6~Mbit/s, so four boards use 6.4~Mbit/s of the 15~Mbit/s that SPI0 carries (INT-9). The ECU MCU board reads the boards one at a time, in any order, and aligns their samples by number (GW-6).
 
@@ -1458,10 +1467,13 @@ A suppressor on each input clamps transients from the stack's rails. On 5~V, a #
       [2-terminal current source, 0.5 to 200~mA, 1.2 to 40~V, thermal limit, set by its output resistor, which S1 and S2 switch: 1.0~mA for a piezoresistive transducer, 9.0~mA for a load cell, 30~mA for a transmitter. 3 × 3~mm DFN.],
       [FPGA],
       ident("LCMXO2-4000HC-4QN84C"),
-      [4320 LUTs, 92~kbit of block RAM, two PLLs from 7~MHz, 68 I/O of which 28 are used, eighteen of them on banks 1 and 4 at 1.8~V for the converters. Internal flash programmed in the background through a hardened SPI port, dual boot with a golden image in an external SPI flash, soft-error detection, single 3.3~V supply. Commercial temperature grade, junction 0 to 85~°C, and speed grade −4. 7 × 7~mm QFN-84 with two rows of pads (@sec-fpga).],
+      [4320 LUTs, 92~kbit of block RAM, 96~kbit of user flash that holds the calibration, two PLLs from 7~MHz, 68 I/O of which 31 are used, eighteen of them on banks 1 and 4 at 1.8~V for the converters. Internal flash programmed in the background through a hardened SPI port, dual boot with a golden image in an external SPI flash, soft-error detection, single 3.3~V supply. Commercial temperature grade, junction 0 to 85~°C, and speed grade −4. 7 × 7~mm QFN-84 with two rows of pads (@sec-fpga).],
       [Golden image],
       [#ident("W25Q16JVXGIQ")],
       [16~Mbit SPI NOR flash, 2.7 to 3.6~V, 4 × 4~mm XSON-8. Holds the FPGA's golden configuration on its master SPI pins (GW-8).],
+      [Reconfiguration timer],
+      [#ident("SN74LVC1G17")],
+      [Schmitt-trigger buffer, 1.65 to 5.5~V, push-pull output, SOT-23-5, with 100~kΩ, 4.7~µF X7R, a #ident("1N4148W") and 1~kΩ. Drives PROGRAMN low once the chip select has been held low for 0.2 to 0.9~s, so a 1~s hold reloads the FPGA (GW-9, @sec-fpga).],
       [Contact suppressors],
       [10 × #ident("SD36C-01FTG")],
       [Bidirectional avalanche, 36~V stand-off, 40~V at 1~mA, 50~V at 1~A and 60~V at 4~A (8/20~µs), 0.68~Ω dynamic resistance, ±30~kV contact discharge, 40~A fast transients, 1~µA at 36~V, 30~pF, AEC-Q101. One per sensor contact, the shield contacts included (@sec-protection, @sec-shields). SOD-323.],
@@ -1527,7 +1539,7 @@ Appendix A draws the board as this summary describes it: two instances of the ch
   ("Revision", [—]),
   ("Board Area", [60 × 60~mm, 72~cm² on two sides]),
   ("Stack-up", [TBD]),
-  ("Placement Area", [22~cm²]),
+  ("Placement Area", [23~cm²]),
   ("Sensor Connector", [#ident("M80-5001242")]),
   ("Stack Connector", [TBD, 34-way]),
   ("Input Power", [1.1 to 2.8~W, estimated]),
@@ -1549,21 +1561,21 @@ The estimate sums the courtyards of the footprints in the schematic and allows 1
     [4.3~cm²],
     [Two channels: references and excitation buses],
     [2.2~cm²],
-    [Stack side: FPGA, flash, buffer, input protection and current limit],
-    [3.7~cm²],
+    [Stack side: FPGA, flash, buffer, reconfiguration timer, input protection and current limit],
+    [4.2~cm²],
     table.hline(stroke: (paint: ink.rule, thickness: rule.hair)),
     [Parts, placed],
-    [22~cm²],
+    [23~cm²],
     [Connectors, holes and edge, both sides],
     [14~cm²],
     [Left for parts, both sides],
     [58~cm²],
     [Use of what is left],
-    [38~%],
+    [39~%],
   ),
 ) <tab-area>
 
-The parts take a little over a third of the available area, and between placement allowances of 1.4 and 1.8 the use ranges from 33 to 43~%. A channel occupies 7.9~cm² once placed, including its reference; the shared channel supply occupies 2.6~cm², and the stack side 3.7~cm², including its input protection and the converters' series resistors. The fit is to be confirmed by the layout.
+The parts take a little over a third of the available area, and between placement allowances of 1.4 and 1.8 the use ranges from 34 to 44~%. A channel occupies 7.9~cm² once placed, including its reference; the shared channel supply occupies 2.6~cm², and the stack side 4.2~cm², including its input protection, its reconfiguration timer and the converters' series resistors. The fit is to be confirmed by the layout.
 
 Input power is about 1.1~W per board with both channels on, plus up to 0.3~W for each channel configured for a load cell and 0.8~W for each configured for a transmitter, the sensors' share drawn from the stack's 24~V rail. A closed shield switch adds 25~mW for its LED, for a total of 1.1 to 2.8~W, at the converters' datasheet maxima.
 
@@ -1587,7 +1599,7 @@ The following issues are known at this revision and remain unresolved.
 
     ident("OI-7"),
     [Gateware],
-    [The FPGA's gateware, its verification and its update procedure are to be written to GW-1 to GW-15. The gateware carries the configuration interlocks (@sec-gw). It must also take each converter's bit timing from FSYNC, because DCLK is not routed and the datasheet does not specify the delay from CLKIN to DCLK (@sec-gp-control).],
+    [The FPGA's gateware, its verification and its update procedure are to be written to GW-1 to GW-15. The gateware carries the configuration interlocks (@sec-gw). It must also take each converter's bit timing from FSYNC, because DCLK is not routed and the datasheet does not specify the delay from CLKIN to DCLK (@sec-gp-control). Each converter takes START on a rising edge of CLKIN and needs it settled 4~ns before and held 6~ns after that edge. The FPGA drives CLK and START through matching paths, so it must change START on the falling edge of its clock, half a period from the edge that samples it.],
 
     ident("OI-8"),
     [Stability of the excitation bus and current source],
@@ -1595,7 +1607,7 @@ The following issues are known at this revision and remain unresolved.
 
     ident("OI-9"),
     [One chip select for the FPGA's configuration port and its user SPI],
-    [The board has one chip select, which drives both the SN input of the slave SPI port and the user SPI's chip select on PB7B (@sec-fpga). Lattice describes the two as separate selects on a shared clock and data bus (FPGA-TN-02162). With one select, the configuration logic sees every frame of the board's own protocol, and GW-13 keeps the first byte of each frame out of its command set. It remains to be confirmed on the first board that the configuration logic then leaves SO to the user SPI, and that background programming and REFRESH work alongside the user SPI. If they do not, the board needs a second chip select, or a timer of five parts that pulls PROGRAMN low when the chip select is held low.],
+    [The board has one chip select, which drives both the SN input of the slave SPI port and the user SPI's chip select on PB7B (@sec-fpga). Lattice describes the two as separate selects on a shared clock and data bus (FPGA-TN-02162). With one select, the configuration logic sees every frame of the board's own protocol, and GW-13 keeps the first byte of each frame out of its command set. It remains to be confirmed on the first board that the configuration logic then leaves SO to the user SPI, that the hardened user SPI keeps up at 18.75~MHz, and that background programming and REFRESH work alongside it. If they do not, neither the board nor the interconnect changes. The images leave the configuration port disabled, and the gateware serves the lane with its own SPI logic on the second copy of the lane's pins. Updates are then written through the FPGA's internal access to its flash, and the timer on the chip select replaces REFRESH (GW-9).],
 
     ident("OI-10"),
     [CAN FD on the stack interconnect],

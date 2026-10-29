@@ -9,361 +9,6 @@
 		(rev "-")
 	)
 	(lib_symbols
-		(symbol "OPA2189IDGKR_1"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "U"
-				(at -2.54 -16.256 0)
-				(show_name no)
-				(do_not_autoplace yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-				)
-			)
-			(property "Value" "OPA2189IDGKR"
-				(at -2.54 -18.288 0)
-				(show_name no)
-				(do_not_autoplace yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-				)
-			)
-			(property "Footprint" "ics:TI-VSSOP-DGK0008A"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" "${ECAD_LIB}/parts/ics/datasheets/opa2189.pdf"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Dual Zero-Drift Precision Operational Amplifier, Low Noise, 36 V"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "DigiKey_Part" "296-OPA2189IDGKRCT-ND"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "IPN" "CE-ICS-00024"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "MPN" "OPA2189IDGKR"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Manufacturer" "Texas Instruments"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Mouser_Part" "595-OPA2189IDGKR"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Package" "8-VSSOP"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "plm_unused_last_field" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_locked" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "ics:TI-VSSOP-DGK0008A"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "OPA2189IDGKR_1_1_0"
-				(polyline
-					(pts
-						(xy 5.08 2.54) (xy 15.24 -2.54) (xy 5.08 -7.62) (xy 5.08 2.54)
-					)
-					(stroke
-						(width 0.0254)
-						(type solid)
-						(color 128 0 0 1)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
-			(symbol "OPA2189IDGKR_1_1_1"
-				(pin output line
-					(at 20.32 -2.54 180)
-					(length 5.08)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 0 -5.08 0)
-					(length 5.08)
-					(name "-"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 0 0 0)
-					(length 5.08)
-					(name "+"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(symbol "OPA2189IDGKR_1_2_0"
-				(polyline
-					(pts
-						(xy 5.08 2.54) (xy 15.24 -2.54) (xy 5.08 -7.62) (xy 5.08 2.54)
-					)
-					(stroke
-						(width 0.0254)
-						(type solid)
-						(color 128 0 0 1)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
-			(symbol "OPA2189IDGKR_1_2_1"
-				(pin input line
-					(at 0 0 0)
-					(length 5.08)
-					(name "+"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 0 -5.08 0)
-					(length 5.08)
-					(name "-"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 20.32 -2.54 180)
-					(length 5.08)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(symbol "OPA2189IDGKR_1_3_0"
-				(rectangle
-					(start -2.54 -5.08)
-					(end 2.54 -15.24)
-					(stroke
-						(width 0.0254)
-						(type solid)
-						(color 128 0 0 1)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
-			(symbol "OPA2189IDGKR_1_3_1"
-				(pin power_in line
-					(at 0 -20.32 90)
-					(length 5.08)
-					(name "V-"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 0 0 270)
-					(length 5.08)
-					(name "V+"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "8"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "general:GND"
 			(power global)
 			(pin_numbers
@@ -4122,7 +3767,7 @@
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "U"
-				(at 5.08 -8.636 0)
+				(at -2.54 -16.256 0)
 				(show_name no)
 				(do_not_autoplace yes)
 				(effects
@@ -4133,7 +3778,7 @@
 				)
 			)
 			(property "Value" "OPA2189IDGKR"
-				(at 5.08 -10.668 0)
+				(at -2.54 -18.288 0)
 				(show_name no)
 				(do_not_autoplace yes)
 				(effects
@@ -4418,8 +4063,8 @@
 			)
 			(symbol "OPA2189IDGKR_3_0"
 				(rectangle
-					(start 5.08 2.54)
-					(end 12.7 -7.62)
+					(start -2.54 -5.08)
+					(end 2.54 -15.24)
 					(stroke
 						(width 0.0254)
 						(type solid)
@@ -4432,7 +4077,7 @@
 			)
 			(symbol "OPA2189IDGKR_3_1"
 				(pin power_in line
-					(at 0 -5.08 0)
+					(at 0 -20.32 90)
 					(length 5.08)
 					(name "V-"
 						(effects
@@ -4450,7 +4095,7 @@
 					)
 				)
 				(pin power_in line
-					(at 0 0 0)
+					(at 0 0 270)
 					(length 5.08)
 					(name "V+"
 						(effects
@@ -4695,17 +4340,6 @@
 					)
 				)
 			)
-			(property "Manufacturer" "Texas Instruments"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
 			(property "DigiKey_Part" "296-REF5020IDGKRCT-ND"
 				(at 0 0 0)
 				(show_name no)
@@ -4729,6 +4363,17 @@
 				)
 			)
 			(property "MPN" "REF5020IDGKR"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "Texas Instruments"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -4987,7 +4632,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "https://toshiba.semicon-storage.com/info/docget.jsp?did=57852&prodName=TLP3475S"
+			(property "Datasheet" "${ECAD_LIB}/parts/ics/datasheets/tlp3475s.pdf"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -4999,17 +4644,6 @@
 				)
 			)
 			(property "Description" "Photorelay, MOSFET Output, 1-Form-A, Low Off-State Leakage"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Manufacturer" "Toshiba"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -5043,6 +4677,17 @@
 				)
 			)
 			(property "MPN" "TLP3475S"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "Toshiba"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -5410,17 +5055,6 @@
 					)
 				)
 			)
-			(property "Manufacturer" "Texas Instruments"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
 			(property "DigiKey_Part" "296-TMUX6212RUMRCT-ND"
 				(at 0 0 0)
 				(show_name no)
@@ -5444,6 +5078,17 @@
 				)
 			)
 			(property "MPN" "TMUX6212RUMR"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "Texas Instruments"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -6503,6 +6148,17 @@
 		)
 		(uuid "788c858f-02e3-5f5b-8b2c-5f182f8e8f9a")
 	)
+	(text "SENSOR CURRENT SOURCE"
+		(exclude_from_sim no)
+		(at 43.18 32.51 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a6463ec0-db48-4f32-86ce-94fa44770652")
+	)
 	(text "S2: 10.2R IN PARALLEL, 30 mA LIMIT (TRANSMITTERS)"
 		(exclude_from_sim no)
 		(at 167.386 78.232 0)
@@ -6524,6 +6180,17 @@
 			(justify bottom)
 		)
 		(uuid "d3d598e5-2f02-592c-af77-8d4023eed11d")
+	)
+	(text "EXCITATION BUS"
+		(exclude_from_sim no)
+		(at 44.45 114.81 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d54987ae-20df-42ff-90db-38164c9f97c6")
 	)
 	(junction
 		(at 88.9 153.67)
@@ -9189,7 +8856,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "https://toshiba.semicon-storage.com/info/docget.jsp?did=57852&prodName=TLP3475S"
+		(property "Datasheet" "${ECAD_LIB}/parts/ics/datasheets/tlp3475s.pdf"
 			(at 182.88 54.61 0)
 			(hide yes)
 			(show_name no)
@@ -9679,7 +9346,6 @@
 		)
 	)
 	(symbol
-		(lib_name "OPA2189IDGKR_1")
 		(lib_id "plm:OPA2189IDGKR")
 		(at 240.03 120.65 0)
 		(unit 3)
@@ -14596,7 +14262,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "https://toshiba.semicon-storage.com/info/docget.jsp?did=57852&prodName=TLP3475S"
+		(property "Datasheet" "${ECAD_LIB}/parts/ics/datasheets/tlp3475s.pdf"
 			(at 115.57 54.61 0)
 			(hide yes)
 			(show_name no)

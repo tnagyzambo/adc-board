@@ -229,6 +229,282 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "plm:1N4148W-7-F"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "D"
+				(at 1.778 -4.064 0)
+				(show_name no)
+				(do_not_autoplace yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Value" "1N4148W-7-F"
+				(at 1.778 -4.572 0)
+				(show_name no)
+				(do_not_autoplace yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" "diode:DIODES-SOD123"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "${ECAD_LIB}/parts/diodes/datasheets/1n4148w.pdf"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Diode"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "Diodes Incorporated"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 0.9906 0.9906)
+					)
+				)
+			)
+			(property "Current_Rating" "0.15A"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "DigiKey_Part" "1N4148W-FDICT-ND"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "IPN" "CE-DIO-00001"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MPN" "1N4148W-7-F"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Mouser_Part" "621-1N4148W-F"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Package" "SOD-123"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Type" "Ultrafast"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Voltage_Rating" "100V"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "plm_unused_last_field" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "diode:DIODES-SOD123"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "1N4148W-7-F_1_0"
+				(polyline
+					(pts
+						(xy -1 -5.008) (xy 1 -5.008)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -2.54) (xy 0 -3.9746)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -5.08) (xy 0 -6.516)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1 -4.008) (xy 0 -5.008) (xy -1 -4.008) (xy 1 -4.008)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at 0 0 270)
+					(length 2.5)
+					(name "0"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -8.89 90)
+					(length 2.5)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "plm:CRCW0402100KFKEDC"
 			(pin_numbers
 				(hide yes)
@@ -2355,6 +2631,284 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "plm:GRM21BZ71E475KE15L"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "C"
+				(at 2.54 -4.064 0)
+				(show_name no)
+				(do_not_autoplace yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Value" "4.7uF"
+				(at 2.54 -4.826 0)
+				(show_name no)
+				(do_not_autoplace yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" "capacitor:MURATA-0805"
+				(at 2.54 -4.318 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/murata-mlcc-cat2021.pdf"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Capacitor, MLCC"
+				(at 2.54 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Manufacturer" "Murata"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Dielectric" "X7R"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "DigiKey_Part" "490-GRM21BZ71E475KE15LCT-ND"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "IPN" "CE-CAP-00020"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MPN" "GRM21BZ71E475KE15L"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Mouser_Part" "81-GRM21BZ71E475KE5L"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Package" "0805"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Tolerance" "10%"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Voltage_Rating" "25 VDC"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "plm_unused_last_field" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "capacitor:MURATA-0805"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "GRM21BZ71E475KE15L_1_0"
+				(polyline
+					(pts
+						(xy 0 -3.81) (xy 0 -2.4766)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -6.35) (xy 0 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.905 -3.81) (xy -1.905 -3.81)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.905 -5.08) (xy -1.905 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at 0 -8.89 90)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 0 270)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "plm:LCMXO2-4000HC-4QN84C"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -2416,17 +2970,6 @@
 					)
 				)
 			)
-			(property "Manufacturer" "Lattice Semiconductor"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
 			(property "DigiKey_Part" "LCMXO2-4000HC-4QN84C-ND"
 				(at 0 0 0)
 				(show_name no)
@@ -2450,6 +2993,17 @@
 				)
 			)
 			(property "MPN" "LCMXO2-4000HC-4QN84C"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "Lattice Semiconductor"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -4146,6 +4700,252 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "plm:SN74LVC1G17DBVR"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at 5.08 -8.636 0)
+				(show_name no)
+				(do_not_autoplace yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Value" "SN74LVC1G17DBVR"
+				(at 5.08 -10.668 0)
+				(show_name no)
+				(do_not_autoplace yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" "footprints:TI-SOT23-DBV0005A"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "${ECAD_LIB}/parts/ics/datasheets/sn74lvc1g17.pdf"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Buffer, Schmitt-Trigger Input, 1.65 to 5.5 V, Push-Pull Output"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "DigiKey_Part" "none"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "IPN" "CE-ICS-00044"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MPN" "SN74LVC1G17DBVR"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "Texas Instruments"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Package" "SOT-23-5"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "plm_unused_last_field" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "footprints:TI-SOT23-DBV0005A"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "SN74LVC1G17DBVR_1_0"
+				(rectangle
+					(start 5.08 2.54)
+					(end 12.7 -7.62)
+					(stroke
+						(width 0.0254)
+						(type solid)
+						(color 128 0 0 1)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "SN74LVC1G17DBVR_1_1"
+				(pin no_connect line
+					(at 0 -2.54 0)
+					(length 5.08)
+					(name "NC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 0 0 0)
+					(length 5.08)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -5.08 180)
+					(length 5.08)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 17.78 -2.54 180)
+					(length 5.08)
+					(name "Y"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 0 180)
+					(length 5.08)
+					(name "VCC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "plm:TC2030-IDC-NL"
 			(pin_names
 				(offset 1.016)
@@ -4454,17 +5254,6 @@
 					)
 				)
 			)
-			(property "Manufacturer" "Winbond Electronics"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
 			(property "DigiKey_Part" "none"
 				(at 0 0 0)
 				(show_name no)
@@ -4488,6 +5277,17 @@
 				)
 			)
 			(property "MPN" "W25Q16JVXGIQ"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "Winbond Electronics"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -4714,7 +5514,7 @@
 	)
 	(text "VCCIO4"
 		(exclude_from_sim no)
-		(at 142.24 168.91 0)
+		(at 128.27 168.91 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4725,7 +5525,7 @@
 	)
 	(text "VCCIO2"
 		(exclude_from_sim no)
-		(at 106.68 168.91 0)
+		(at 92.71 168.91 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4734,9 +5534,31 @@
 		)
 		(uuid "0ae52940-bb8b-5077-91c5-9a6780fbc25c")
 	)
+	(text "PROG TIMER"
+		(exclude_from_sim no)
+		(at 159.004 168.91 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify bottom)
+		)
+		(uuid "11e003de-5a2b-4a7f-8a91-d921e83cd953")
+	)
+	(text "GOLDEN IMAGE FLASH"
+		(exclude_from_sim no)
+		(at 111.76 90.93 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4806ba6b-e834-47d6-8c6d-ae2372643502")
+	)
 	(text "VCC"
 		(exclude_from_sim no)
-		(at 35.56 168.91 0)
+		(at 21.59 168.91 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4747,7 +5569,7 @@
 	)
 	(text "VCCIO1"
 		(exclude_from_sim no)
-		(at 152.4 168.91 0)
+		(at 138.43 168.91 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4756,9 +5578,31 @@
 		)
 		(uuid "a9c90648-076c-5f91-96ba-d7a62f537c0b")
 	)
+	(text "RECONFIGURATION TIMER\nCS HELD LOW FOR\n1s PULLS PROGRAMN LOW"
+		(exclude_from_sim no)
+		(at 123.19 152.4 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "ce66dd88-f732-45d3-92c9-31a696aa5106")
+	)
+	(text "JTAG"
+		(exclude_from_sim no)
+		(at 151.13 60.96 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ded70cca-a78e-4eb5-8323-ca0537414c6a")
+	)
 	(text "BULK"
 		(exclude_from_sim no)
-		(at 127 168.91 0)
+		(at 113.03 168.91 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4769,7 +5613,7 @@
 	)
 	(text "DECOUPLING: 0.1 uF AT EACH SUPPLY PIN; BANKS 1 AND 4 (VCCIO1, VCCIO4) AT 1.8 V"
 		(exclude_from_sim no)
-		(at 35.56 162.56 0)
+		(at 21.59 162.56 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4780,7 +5624,7 @@
 	)
 	(text "VCCIO0"
 		(exclude_from_sim no)
-		(at 76.2 168.91 0)
+		(at 62.23 168.91 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4802,10 +5646,22 @@
 		(uuid "1ebd48bf-28f9-52d9-98dd-42cfe45620c7")
 	)
 	(junction
-		(at 152.4 143.51)
+		(at 148.59 105.41)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2458263b-cb4c-4434-a45c-8bf6798e14e0")
+	)
+	(junction
+		(at 129.54 138.43)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "2605c408-0e2e-4191-883a-a12963f05a7e")
+	)
+	(junction
+		(at 116.84 129.54)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "34fade95-e14e-48de-b252-b10491d74fd8")
 	)
 	(junction
 		(at 46.99 133.35)
@@ -4820,7 +5676,7 @@
 		(uuid "478306ed-c3d9-4877-a117-962569487aef")
 	)
 	(junction
-		(at 152.4 135.89)
+		(at 148.59 97.79)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4a9b2704-b453-5195-8549-51df8921be78")
@@ -4874,13 +5730,19 @@
 		(uuid "8f444c06-000f-5431-b644-115e6104ff0c")
 	)
 	(junction
+		(at 116.84 138.43)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9734c01c-3fcb-4ccd-82c0-cf8a6c056de9")
+	)
+	(junction
 		(at 46.99 125.73)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a450992d-1650-5a43-81cd-16a48858886b")
 	)
 	(junction
-		(at 152.4 133.35)
+		(at 148.59 95.25)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c2c5c874-db4b-4b62-b8a9-c57f8f83fb4f")
@@ -4888,10 +5750,6 @@
 	(no_connect
 		(at 92.71 33.02)
 		(uuid "043b35eb-5fcd-5b9d-bef4-859bbdac176d")
-	)
-	(no_connect
-		(at 52.07 81.28)
-		(uuid "09370039-bc5e-5960-a7dd-825f16b447b9")
 	)
 	(no_connect
 		(at 92.71 96.52)
@@ -4932,6 +5790,10 @@
 	(no_connect
 		(at 92.71 83.82)
 		(uuid "3619b700-b6c6-59aa-9fb1-6fd4d5cff76d")
+	)
+	(no_connect
+		(at 134.62 140.97)
+		(uuid "3a862845-4dc9-4870-9eeb-2a5471ba96cc")
 	)
 	(no_connect
 		(at 52.07 83.82)
@@ -4978,10 +5840,6 @@
 		(uuid "7ebf0094-eacb-50bb-8352-5163b51d2e8a")
 	)
 	(no_connect
-		(at 52.07 93.98)
-		(uuid "998935fe-07d1-5e9f-ac51-e5578a4e2099")
-	)
-	(no_connect
 		(at 92.71 86.36)
 		(uuid "9a80d6f1-ca40-5433-8c33-621336eea3c9")
 	)
@@ -5008,10 +5866,6 @@
 	(no_connect
 		(at 212.09 58.42)
 		(uuid "e259d9b2-0d0d-54af-a320-e407de451577")
-	)
-	(no_connect
-		(at 52.07 96.52)
-		(uuid "e81e27f6-0d61-56d6-98a9-4456e5971e22")
 	)
 	(no_connect
 		(at 92.71 45.72)
@@ -5337,7 +6191,7 @@
 	)
 	(wire
 		(pts
-			(xy 152.4 140.97) (xy 152.4 143.51)
+			(xy 148.59 102.87) (xy 148.59 105.41)
 		)
 		(stroke
 			(width 0)
@@ -5367,7 +6221,7 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 138.43) (xy 152.4 138.43)
+			(xy 143.51 100.33) (xy 148.59 100.33)
 		)
 		(stroke
 			(width 0)
@@ -5384,6 +6238,16 @@
 			(type default)
 		)
 		(uuid "10ac3bfa-2130-519e-8c1f-92496068a697")
+	)
+	(wire
+		(pts
+			(xy 152.4 138.43) (xy 160.02 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "10ca54fe-0269-429f-8825-29ed733460a7")
 	)
 	(wire
 		(pts
@@ -5414,6 +6278,16 @@
 			(type default)
 		)
 		(uuid "1580f313-bec6-5995-bb8d-42adc103ed18")
+	)
+	(wire
+		(pts
+			(xy 52.07 93.98) (xy 39.37 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "17e24c6f-3928-4c11-9efe-180150899214")
 	)
 	(wire
 		(pts
@@ -5477,7 +6351,7 @@
 	)
 	(wire
 		(pts
-			(xy 124.46 140.97) (xy 114.3 140.97)
+			(xy 120.65 102.87) (xy 110.49 102.87)
 		)
 		(stroke
 			(width 0)
@@ -5507,7 +6381,7 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 133.35) (xy 152.4 133.35)
+			(xy 143.51 95.25) (xy 148.59 95.25)
 		)
 		(stroke
 			(width 0)
@@ -5557,6 +6431,16 @@
 	)
 	(wire
 		(pts
+			(xy 152.4 143.51) (xy 160.02 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2d6442d6-a4c5-41fb-85ec-27268d1f5e0c")
+	)
+	(wire
+		(pts
 			(xy 35.56 140.97) (xy 35.56 118.11)
 		)
 		(stroke
@@ -5587,7 +6471,7 @@
 	)
 	(wire
 		(pts
-			(xy 123.19 78.74) (xy 135.89 78.74)
+			(xy 123.19 63.5) (xy 135.89 63.5)
 		)
 		(stroke
 			(width 0)
@@ -5597,7 +6481,7 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 86.36) (xy 135.89 86.36)
+			(xy 111.76 71.12) (xy 135.89 71.12)
 		)
 		(stroke
 			(width 0)
@@ -5657,6 +6541,16 @@
 	)
 	(wire
 		(pts
+			(xy 116.84 129.54) (xy 119.38 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "41df77de-47ff-41ce-aa02-f20b629ef494")
+	)
+	(wire
+		(pts
 			(xy 133.35 34.29) (xy 133.35 36.83)
 		)
 		(stroke
@@ -5667,7 +6561,7 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 143.51) (xy 152.4 143.51)
+			(xy 143.51 105.41) (xy 148.59 105.41)
 		)
 		(stroke
 			(width 0)
@@ -5817,6 +6711,16 @@
 	)
 	(wire
 		(pts
+			(xy 128.27 129.54) (xy 129.54 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6250bb30-4e6d-4d5c-91ea-fa5072f8df78")
+	)
+	(wire
+		(pts
 			(xy 212.09 38.1) (xy 237.49 38.1)
 		)
 		(stroke
@@ -5827,7 +6731,7 @@
 	)
 	(wire
 		(pts
-			(xy 124.46 133.35) (xy 114.3 133.35)
+			(xy 120.65 95.25) (xy 110.49 95.25)
 		)
 		(stroke
 			(width 0)
@@ -5907,7 +6811,7 @@
 	)
 	(wire
 		(pts
-			(xy 130.81 91.44) (xy 135.89 91.44)
+			(xy 130.81 76.2) (xy 135.89 76.2)
 		)
 		(stroke
 			(width 0)
@@ -5917,7 +6821,7 @@
 	)
 	(wire
 		(pts
-			(xy 124.46 135.89) (xy 114.3 135.89)
+			(xy 120.65 97.79) (xy 110.49 97.79)
 		)
 		(stroke
 			(width 0)
@@ -5977,7 +6881,17 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 135.89) (xy 152.4 135.89)
+			(xy 160.02 138.43) (xy 160.02 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8b442c8c-b9e1-4f45-b8b9-5c0667b74211")
+	)
+	(wire
+		(pts
+			(xy 143.51 97.79) (xy 148.59 97.79)
 		)
 		(stroke
 			(width 0)
@@ -6017,6 +6931,26 @@
 	)
 	(wire
 		(pts
+			(xy 106.68 129.54) (xy 116.84 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9797bee7-38a2-4a98-9143-b233ff92abb9")
+	)
+	(wire
+		(pts
+			(xy 52.07 96.52) (xy 39.37 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9a93643b-f70c-44c1-a9bc-27cf28bf329e")
+	)
+	(wire
+		(pts
 			(xy 212.09 110.49) (xy 232.41 110.49)
 		)
 		(stroke
@@ -6037,7 +6971,7 @@
 	)
 	(wire
 		(pts
-			(xy 123.19 88.9) (xy 135.89 88.9)
+			(xy 123.19 73.66) (xy 135.89 73.66)
 		)
 		(stroke
 			(width 0)
@@ -6094,6 +7028,16 @@
 			(type default)
 		)
 		(uuid "a08fd642-8949-464c-bb5a-ea15a4efa3fc")
+	)
+	(wire
+		(pts
+			(xy 52.07 81.28) (xy 39.37 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a0af6680-9195-4d11-aaea-c3911eb8a116")
 	)
 	(wire
 		(pts
@@ -6287,7 +7231,7 @@
 	)
 	(wire
 		(pts
-			(xy 124.46 138.43) (xy 114.3 138.43)
+			(xy 120.65 100.33) (xy 110.49 100.33)
 		)
 		(stroke
 			(width 0)
@@ -6337,7 +7281,7 @@
 	)
 	(wire
 		(pts
-			(xy 152.4 133.35) (xy 152.4 135.89)
+			(xy 148.59 95.25) (xy 148.59 97.79)
 		)
 		(stroke
 			(width 0)
@@ -6357,7 +7301,7 @@
 	)
 	(wire
 		(pts
-			(xy 152.4 135.89) (xy 152.4 138.43)
+			(xy 148.59 97.79) (xy 148.59 100.33)
 		)
 		(stroke
 			(width 0)
@@ -6377,7 +7321,7 @@
 	)
 	(wire
 		(pts
-			(xy 130.81 81.28) (xy 135.89 81.28)
+			(xy 130.81 66.04) (xy 135.89 66.04)
 		)
 		(stroke
 			(width 0)
@@ -6427,7 +7371,7 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 140.97) (xy 152.4 140.97)
+			(xy 143.51 102.87) (xy 148.59 102.87)
 		)
 		(stroke
 			(width 0)
@@ -6457,7 +7401,7 @@
 	)
 	(wire
 		(pts
-			(xy 130.81 83.82) (xy 135.89 83.82)
+			(xy 130.81 68.58) (xy 135.89 68.58)
 		)
 		(stroke
 			(width 0)
@@ -6524,6 +7468,16 @@
 			(type default)
 		)
 		(uuid "ebf5977d-d583-5d41-a521-e1e49362a058")
+	)
+	(wire
+		(pts
+			(xy 160.02 143.51) (xy 160.02 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ec0df273-d0ad-4213-b2a2-9edfce1ac4e4")
 	)
 	(wire
 		(pts
@@ -6627,6 +7581,16 @@
 	)
 	(wire
 		(pts
+			(xy 152.4 140.97) (xy 163.83 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f4fe31aa-ae90-423f-b1b9-f8761a309ae2")
+	)
+	(wire
+		(pts
 			(xy 97.79 118.11) (xy 97.79 120.65)
 		)
 		(stroke
@@ -6644,6 +7608,16 @@
 			(type default)
 		)
 		(uuid "f7759b3e-3701-5338-a66e-f62ea8db6784")
+	)
+	(wire
+		(pts
+			(xy 116.84 138.43) (xy 134.62 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f84c2ccb-5c40-40de-99d0-09588134b52b")
 	)
 	(wire
 		(pts
@@ -6695,6 +7669,16 @@
 		)
 		(uuid "06adcd36-9e03-565f-a7f8-1a4658280ab8")
 	)
+	(label "HOST.MOSI"
+		(at 39.37 93.98 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "075ba58e-8393-4169-9135-aaa5571430f0")
+	)
 	(label "HOST.CS"
 		(at 106.68 76.2 180)
 		(effects
@@ -6704,6 +7688,16 @@
 			(justify right bottom)
 		)
 		(uuid "14224c57-b9ff-522c-bca8-ea9b0d43b6c6")
+	)
+	(label "HOST.CS"
+		(at 106.68 129.54 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1b6c85ad-05e0-4e4e-bb74-2265fe84ab43")
 	)
 	(label "FL_CS"
 		(at 39.37 76.2 0)
@@ -6845,6 +7839,16 @@
 		)
 		(uuid "544139d2-77b9-4863-b7ac-27904f523855")
 	)
+	(label "HOST.SCLK"
+		(at 39.37 81.28 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "5abf0e66-7655-440f-8332-26088dd1800e")
+	)
 	(label "ADC1.RESET"
 		(at 261.62 49.53 180)
 		(effects
@@ -6876,7 +7880,7 @@
 		(uuid "6d4bf1c2-5f01-5b62-9ab5-37a6d406153a")
 	)
 	(label "HOST.MISO"
-		(at 114.3 140.97 0)
+		(at 110.49 102.87 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6945,8 +7949,18 @@
 		)
 		(uuid "8d274455-71f6-4853-892c-9e44433803f7")
 	)
+	(label "PROGRAMN"
+		(at 163.83 140.97 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "8f0f0f3f-d3b0-4e48-9ca5-8658c826c379")
+	)
 	(label "TDI"
-		(at 130.81 83.82 180)
+		(at 130.81 68.58 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6956,7 +7970,7 @@
 		(uuid "938341f3-4c10-4ea3-b235-f6ccecc40040")
 	)
 	(label "HOST.MOSI"
-		(at 114.3 138.43 0)
+		(at 110.49 100.33 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6966,7 +7980,7 @@
 		(uuid "9392d185-78bc-53a3-930d-93fbbc09e3fd")
 	)
 	(label "TMS"
-		(at 130.81 81.28 180)
+		(at 130.81 66.04 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6976,7 +7990,7 @@
 		(uuid "a477055f-4c81-4de0-b972-388036602873")
 	)
 	(label "HOST.SCLK"
-		(at 114.3 135.89 0)
+		(at 110.49 97.79 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6996,7 +8010,7 @@
 		(uuid "b25eb40e-120f-49de-980a-aba4150bbf8f")
 	)
 	(label "TDO"
-		(at 130.81 91.44 180)
+		(at 130.81 76.2 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7006,7 +8020,7 @@
 		(uuid "bdb4908f-f3de-4e77-9f0c-d0c8144c12a9")
 	)
 	(label "TCK"
-		(at 130.81 86.36 180)
+		(at 130.81 71.12 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7024,6 +8038,16 @@
 			(justify left bottom)
 		)
 		(uuid "d0e4ac77-68e4-53b1-ae6d-0bc6d26903b3")
+	)
+	(label "HOST.MISO"
+		(at 39.37 96.52 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d1aa4ee7-2c5c-4022-a918-50136254c595")
 	)
 	(label "ADC1.SDI"
 		(at 261.62 60.96 180)
@@ -7086,7 +8110,7 @@
 		(uuid "f07c354c-750c-4ef6-85af-4decade9b3d1")
 	)
 	(label "FL_CS"
-		(at 114.3 133.35 0)
+		(at 110.49 95.25 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7192,7 +8216,7 @@
 	)
 	(symbol
 		(lib_id "plm:GRM155R71H104KE14J")
-		(at 116.84 175.26 0)
+		(at 102.87 175.26 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7202,7 +8226,7 @@
 		(dnp no)
 		(uuid "049d0143-fc65-546f-a091-fdbfd02efc65")
 		(property "Reference" "C159"
-			(at 118.364 179.324 0)
+			(at 104.394 179.324 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -7213,7 +8237,7 @@
 			)
 		)
 		(property "Value" "0.1uF"
-			(at 118.364 180.086 0)
+			(at 104.394 180.086 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -7224,7 +8248,7 @@
 			)
 		)
 		(property "Footprint" "capacitor:MURATA-0402"
-			(at 116.84 175.26 0)
+			(at 102.87 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7236,7 +8260,7 @@
 			)
 		)
 		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155r71h104ke14.pdf"
-			(at 116.84 175.26 0)
+			(at 102.87 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7248,7 +8272,7 @@
 			)
 		)
 		(property "Description" "Capacitor, MLCC"
-			(at 116.84 175.26 0)
+			(at 102.87 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7260,7 +8284,7 @@
 			)
 		)
 		(property "Manufacturer" "Murata"
-			(at 116.84 175.26 0)
+			(at 102.87 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7272,7 +8296,7 @@
 			)
 		)
 		(property "Dielectric" "X7R"
-			(at 116.84 175.26 0)
+			(at 102.87 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7284,7 +8308,7 @@
 			)
 		)
 		(property "DigiKey_Part" "490-13342-2-ND"
-			(at 116.84 175.26 0)
+			(at 102.87 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7296,7 +8320,7 @@
 			)
 		)
 		(property "IPN" "CE-CAP-00024"
-			(at 116.84 175.26 0)
+			(at 102.87 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7308,7 +8332,7 @@
 			)
 		)
 		(property "MPN" "GRM155R71H104KE14J"
-			(at 116.84 175.26 0)
+			(at 102.87 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7320,7 +8344,7 @@
 			)
 		)
 		(property "Mouser_Part" "81-GRM155R71H104KE4J"
-			(at 116.84 175.26 0)
+			(at 102.87 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7332,7 +8356,7 @@
 			)
 		)
 		(property "Package" "0402"
-			(at 116.84 175.26 0)
+			(at 102.87 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7344,7 +8368,7 @@
 			)
 		)
 		(property "Tolerance" "10%"
-			(at 116.84 175.26 0)
+			(at 102.87 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7356,7 +8380,7 @@
 			)
 		)
 		(property "Voltage_Rating" "50 VDC"
-			(at 116.84 175.26 0)
+			(at 102.87 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7368,7 +8392,7 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 116.84 175.26 0)
+			(at 102.87 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7396,7 +8420,7 @@
 	)
 	(symbol
 		(lib_id "general:GND")
-		(at 55.88 184.15 0)
+		(at 41.91 184.15 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7406,7 +8430,7 @@
 		(dnp no)
 		(uuid "06cb1c27-83ef-5021-aab1-293866021f02")
 		(property "Reference" "#PWR0719"
-			(at 55.88 187.96 0)
+			(at 41.91 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7417,7 +8441,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 55.88 189.484 0)
+			(at 41.91 189.484 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -7427,7 +8451,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 55.88 184.15 0)
+			(at 41.91 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7438,7 +8462,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 55.88 184.15 0)
+			(at 41.91 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7449,7 +8473,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 55.88 184.15 0)
+			(at 41.91 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7473,7 +8497,7 @@
 	)
 	(symbol
 		(lib_id "plm:GRM155R71H104KE14J")
-		(at 96.52 175.26 0)
+		(at 82.55 175.26 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7483,7 +8507,7 @@
 		(dnp no)
 		(uuid "08f50339-1dcc-50cc-b815-8d3c03cfbb42")
 		(property "Reference" "C157"
-			(at 98.044 179.324 0)
+			(at 84.074 179.324 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -7494,7 +8518,7 @@
 			)
 		)
 		(property "Value" "0.1uF"
-			(at 98.044 180.086 0)
+			(at 84.074 180.086 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -7505,7 +8529,7 @@
 			)
 		)
 		(property "Footprint" "capacitor:MURATA-0402"
-			(at 96.52 175.26 0)
+			(at 82.55 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7517,7 +8541,7 @@
 			)
 		)
 		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155r71h104ke14.pdf"
-			(at 96.52 175.26 0)
+			(at 82.55 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7529,7 +8553,7 @@
 			)
 		)
 		(property "Description" "Capacitor, MLCC"
-			(at 96.52 175.26 0)
+			(at 82.55 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7541,7 +8565,7 @@
 			)
 		)
 		(property "Manufacturer" "Murata"
-			(at 96.52 175.26 0)
+			(at 82.55 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7553,7 +8577,7 @@
 			)
 		)
 		(property "Dielectric" "X7R"
-			(at 96.52 175.26 0)
+			(at 82.55 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7565,7 +8589,7 @@
 			)
 		)
 		(property "DigiKey_Part" "490-13342-2-ND"
-			(at 96.52 175.26 0)
+			(at 82.55 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7577,7 +8601,7 @@
 			)
 		)
 		(property "IPN" "CE-CAP-00024"
-			(at 96.52 175.26 0)
+			(at 82.55 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7589,7 +8613,7 @@
 			)
 		)
 		(property "MPN" "GRM155R71H104KE14J"
-			(at 96.52 175.26 0)
+			(at 82.55 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7601,7 +8625,7 @@
 			)
 		)
 		(property "Mouser_Part" "81-GRM155R71H104KE4J"
-			(at 96.52 175.26 0)
+			(at 82.55 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7613,7 +8637,7 @@
 			)
 		)
 		(property "Package" "0402"
-			(at 96.52 175.26 0)
+			(at 82.55 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7625,7 +8649,7 @@
 			)
 		)
 		(property "Tolerance" "10%"
-			(at 96.52 175.26 0)
+			(at 82.55 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7637,7 +8661,7 @@
 			)
 		)
 		(property "Voltage_Rating" "50 VDC"
-			(at 96.52 175.26 0)
+			(at 82.55 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7649,7 +8673,7 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 96.52 175.26 0)
+			(at 82.55 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7677,7 +8701,7 @@
 	)
 	(symbol
 		(lib_id "plm:W25Q16JVXGIQ")
-		(at 124.46 133.35 0)
+		(at 120.65 95.25 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7687,7 +8711,7 @@
 		(dnp no)
 		(uuid "0a36f4b5-b09b-5e37-b656-c166b2143312")
 		(property "Reference" "U51"
-			(at 129.54 146.812 0)
+			(at 125.73 108.712 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -7698,7 +8722,7 @@
 			)
 		)
 		(property "Value" "W25Q16JVXGIQ"
-			(at 129.54 148.844 0)
+			(at 125.73 110.744 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -7709,7 +8733,7 @@
 			)
 		)
 		(property "Footprint" "ics:WINBOND-XSON8-4X4"
-			(at 124.46 133.35 0)
+			(at 120.65 95.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7721,7 +8745,7 @@
 			)
 		)
 		(property "Datasheet" "${ECAD_LIB}/parts/ics/datasheets/w25q16jv.pdf"
-			(at 124.46 133.35 0)
+			(at 120.65 95.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7733,7 +8757,7 @@
 			)
 		)
 		(property "Description" "Serial NOR Flash, 16 Mbit, SPI/Dual/Quad, 133 MHz"
-			(at 124.46 133.35 0)
+			(at 120.65 95.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7745,7 +8769,7 @@
 			)
 		)
 		(property "Manufacturer" "Winbond Electronics"
-			(at 124.46 133.35 0)
+			(at 120.65 95.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7757,7 +8781,7 @@
 			)
 		)
 		(property "DigiKey_Part" "none"
-			(at 124.46 133.35 0)
+			(at 120.65 95.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7769,7 +8793,7 @@
 			)
 		)
 		(property "IPN" "CE-ICS-00043"
-			(at 124.46 133.35 0)
+			(at 120.65 95.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7781,7 +8805,7 @@
 			)
 		)
 		(property "MPN" "W25Q16JVXGIQ"
-			(at 124.46 133.35 0)
+			(at 120.65 95.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7793,7 +8817,7 @@
 			)
 		)
 		(property "Package" "8-XFDFN Exposed Pad"
-			(at 124.46 133.35 0)
+			(at 120.65 95.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7805,7 +8829,7 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 124.46 133.35 0)
+			(at 120.65 95.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7854,7 +8878,7 @@
 	)
 	(symbol
 		(lib_id "general:GND")
-		(at 66.04 184.15 0)
+		(at 52.07 184.15 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7864,7 +8888,7 @@
 		(dnp no)
 		(uuid "0bcfea7f-effb-5684-9c55-9238c7534ba0")
 		(property "Reference" "#PWR0721"
-			(at 66.04 187.96 0)
+			(at 52.07 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7875,7 +8899,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 66.04 189.484 0)
+			(at 52.07 189.484 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -7885,7 +8909,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 66.04 184.15 0)
+			(at 52.07 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7896,7 +8920,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 66.04 184.15 0)
+			(at 52.07 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -7907,7 +8931,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 66.04 184.15 0)
+			(at 52.07 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8008,7 +9032,7 @@
 	)
 	(symbol
 		(lib_id "general:VCC")
-		(at 106.68 175.26 180)
+		(at 92.71 175.26 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8018,7 +9042,7 @@
 		(dnp no)
 		(uuid "0ee420ec-939c-5660-bb72-7ecf0305537a")
 		(property "Reference" "#PWR0728"
-			(at 106.68 171.45 0)
+			(at 92.71 171.45 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8029,7 +9053,7 @@
 			)
 		)
 		(property "Value" "3V3_LIM"
-			(at 106.68 171.45 0)
+			(at 92.71 171.45 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -8039,7 +9063,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 106.68 175.26 0)
+			(at 92.71 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8050,7 +9074,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 106.68 175.26 0)
+			(at 92.71 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8061,7 +9085,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 106.68 175.26 0)
+			(at 92.71 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8085,7 +9109,7 @@
 	)
 	(symbol
 		(lib_id "general:VCC")
-		(at 96.52 175.26 180)
+		(at 82.55 175.26 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8095,7 +9119,7 @@
 		(dnp no)
 		(uuid "0f8567ec-9265-5657-ab2a-2063e57981b1")
 		(property "Reference" "#PWR0726"
-			(at 96.52 171.45 0)
+			(at 82.55 171.45 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8106,7 +9130,7 @@
 			)
 		)
 		(property "Value" "3V3_LIM"
-			(at 96.52 171.45 0)
+			(at 82.55 171.45 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -8116,7 +9140,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 96.52 175.26 0)
+			(at 82.55 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8127,7 +9151,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 96.52 175.26 0)
+			(at 82.55 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8138,7 +9162,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 96.52 175.26 0)
+			(at 82.55 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8352,7 +9376,7 @@
 	)
 	(symbol
 		(lib_id "general:GND")
-		(at 76.2 184.15 0)
+		(at 62.23 184.15 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8362,7 +9386,7 @@
 		(dnp no)
 		(uuid "179b812b-962a-51e0-8c25-0dfc655daa65")
 		(property "Reference" "#PWR0723"
-			(at 76.2 187.96 0)
+			(at 62.23 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8373,7 +9397,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 76.2 189.484 0)
+			(at 62.23 189.484 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -8383,7 +9407,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 76.2 184.15 0)
+			(at 62.23 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8394,7 +9418,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 76.2 184.15 0)
+			(at 62.23 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8405,7 +9429,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 76.2 184.15 0)
+			(at 62.23 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8619,7 +9643,7 @@
 	)
 	(symbol
 		(lib_id "plm:GRM155R71H104KE14J")
-		(at 106.68 175.26 0)
+		(at 92.71 175.26 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8629,7 +9653,7 @@
 		(dnp no)
 		(uuid "18b5be28-563d-5fb6-b01a-4a0c59c6840e")
 		(property "Reference" "C158"
-			(at 108.204 179.324 0)
+			(at 94.234 179.324 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -8640,7 +9664,7 @@
 			)
 		)
 		(property "Value" "0.1uF"
-			(at 108.204 180.086 0)
+			(at 94.234 180.086 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -8651,7 +9675,7 @@
 			)
 		)
 		(property "Footprint" "capacitor:MURATA-0402"
-			(at 106.68 175.26 0)
+			(at 92.71 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8663,7 +9687,7 @@
 			)
 		)
 		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155r71h104ke14.pdf"
-			(at 106.68 175.26 0)
+			(at 92.71 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8675,7 +9699,7 @@
 			)
 		)
 		(property "Description" "Capacitor, MLCC"
-			(at 106.68 175.26 0)
+			(at 92.71 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8687,7 +9711,7 @@
 			)
 		)
 		(property "Manufacturer" "Murata"
-			(at 106.68 175.26 0)
+			(at 92.71 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8699,7 +9723,7 @@
 			)
 		)
 		(property "Dielectric" "X7R"
-			(at 106.68 175.26 0)
+			(at 92.71 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8711,7 +9735,7 @@
 			)
 		)
 		(property "DigiKey_Part" "490-13342-2-ND"
-			(at 106.68 175.26 0)
+			(at 92.71 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8723,7 +9747,7 @@
 			)
 		)
 		(property "IPN" "CE-CAP-00024"
-			(at 106.68 175.26 0)
+			(at 92.71 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8735,7 +9759,7 @@
 			)
 		)
 		(property "MPN" "GRM155R71H104KE14J"
-			(at 106.68 175.26 0)
+			(at 92.71 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8747,7 +9771,7 @@
 			)
 		)
 		(property "Mouser_Part" "81-GRM155R71H104KE4J"
-			(at 106.68 175.26 0)
+			(at 92.71 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8759,7 +9783,7 @@
 			)
 		)
 		(property "Package" "0402"
-			(at 106.68 175.26 0)
+			(at 92.71 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8771,7 +9795,7 @@
 			)
 		)
 		(property "Tolerance" "10%"
-			(at 106.68 175.26 0)
+			(at 92.71 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8783,7 +9807,7 @@
 			)
 		)
 		(property "Voltage_Rating" "50 VDC"
-			(at 106.68 175.26 0)
+			(at 92.71 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8795,7 +9819,7 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 106.68 175.26 0)
+			(at 92.71 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8822,8 +9846,8 @@
 		)
 	)
 	(symbol
-		(lib_id "general:GND")
-		(at 142.24 184.15 0)
+		(lib_id "general:VCC")
+		(at 153.67 175.26 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8831,9 +9855,9 @@
 		(on_board no)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "20067064-eb88-5802-8b11-d15c4c5815ee")
-		(property "Reference" "#PWR0735"
-			(at 142.24 187.96 0)
+		(uuid "1f0d1a9d-8f79-43d5-b929-0c623fe2b706")
+		(property "Reference" "#PWR0825"
+			(at 153.67 179.07 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8843,8 +9867,8 @@
 				)
 			)
 		)
-		(property "Value" "GND"
-			(at 142.24 189.484 0)
+		(property "Value" "3V3_LIM"
+			(at 153.67 171.196 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -8854,7 +9878,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 142.24 184.15 0)
+			(at 153.67 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8865,7 +9889,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 142.24 184.15 0)
+			(at 153.67 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8876,7 +9900,84 @@
 			)
 		)
 		(property "Description" ""
-			(at 142.24 184.15 0)
+			(at 153.67 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin ""
+			(uuid "86a0eef9-9c4e-45c7-ab04-ebc34c535388")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/25d81073-89b1-5d67-9c0e-0934a0b38ed7"
+					(reference "#PWR0825")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "general:GND")
+		(at 128.27 184.15 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "20067064-eb88-5802-8b11-d15c4c5815ee")
+		(property "Reference" "#PWR0735"
+			(at 128.27 187.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 128.27 189.484 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 128.27 184.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 128.27 184.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 128.27 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8900,7 +10001,7 @@
 	)
 	(symbol
 		(lib_id "general:GND")
-		(at 35.56 184.15 0)
+		(at 21.59 184.15 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8910,7 +10011,7 @@
 		(dnp no)
 		(uuid "21dd6b1f-1d1c-530a-a175-8f9901580d3b")
 		(property "Reference" "#PWR0715"
-			(at 35.56 187.96 0)
+			(at 21.59 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8921,7 +10022,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 35.56 189.484 0)
+			(at 21.59 189.484 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -8931,7 +10032,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 35.56 184.15 0)
+			(at 21.59 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8942,7 +10043,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 35.56 184.15 0)
+			(at 21.59 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8953,7 +10054,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 35.56 184.15 0)
+			(at 21.59 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8977,7 +10078,7 @@
 	)
 	(symbol
 		(lib_id "general:VCC")
-		(at 127 175.26 180)
+		(at 113.03 175.26 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8987,7 +10088,7 @@
 		(dnp no)
 		(uuid "28c4dbf4-f6c9-56b8-93e3-a30c06203c7f")
 		(property "Reference" "#PWR0732"
-			(at 127 171.45 0)
+			(at 113.03 171.45 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -8998,7 +10099,7 @@
 			)
 		)
 		(property "Value" "3V3_LIM"
-			(at 127 171.45 0)
+			(at 113.03 171.45 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -9008,7 +10109,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 127 175.26 0)
+			(at 113.03 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -9019,7 +10120,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 127 175.26 0)
+			(at 113.03 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -9030,7 +10131,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 127 175.26 0)
+			(at 113.03 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -9246,7 +10347,7 @@
 	)
 	(symbol
 		(lib_id "general:VCC")
-		(at 152.4 133.35 180)
+		(at 148.59 95.25 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9256,7 +10357,7 @@
 		(dnp no)
 		(uuid "2ac29606-7686-5c33-b43e-ba0e7e9bde44")
 		(property "Reference" "#PWR0738"
-			(at 152.4 129.54 0)
+			(at 148.59 91.44 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -9267,7 +10368,7 @@
 			)
 		)
 		(property "Value" "3V3_LIM"
-			(at 152.4 129.54 0)
+			(at 148.59 91.44 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -9277,7 +10378,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 152.4 133.35 0)
+			(at 148.59 95.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -9288,7 +10389,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 152.4 133.35 0)
+			(at 148.59 95.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -9299,7 +10400,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 152.4 133.35 0)
+			(at 148.59 95.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10695,7 +11796,7 @@
 	)
 	(symbol
 		(lib_id "plm:GRM155R71H104KE14J")
-		(at 35.56 175.26 0)
+		(at 21.59 175.26 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10705,7 +11806,7 @@
 		(dnp no)
 		(uuid "4889ddad-62d3-5bad-9643-97ae0fd0240f")
 		(property "Reference" "C151"
-			(at 37.084 179.324 0)
+			(at 23.114 179.324 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -10716,7 +11817,7 @@
 			)
 		)
 		(property "Value" "0.1uF"
-			(at 37.084 180.086 0)
+			(at 23.114 180.086 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -10727,7 +11828,7 @@
 			)
 		)
 		(property "Footprint" "capacitor:MURATA-0402"
-			(at 35.56 175.26 0)
+			(at 21.59 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10739,7 +11840,7 @@
 			)
 		)
 		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155r71h104ke14.pdf"
-			(at 35.56 175.26 0)
+			(at 21.59 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10751,7 +11852,7 @@
 			)
 		)
 		(property "Description" "Capacitor, MLCC"
-			(at 35.56 175.26 0)
+			(at 21.59 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10763,7 +11864,7 @@
 			)
 		)
 		(property "Manufacturer" "Murata"
-			(at 35.56 175.26 0)
+			(at 21.59 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10775,7 +11876,7 @@
 			)
 		)
 		(property "Dielectric" "X7R"
-			(at 35.56 175.26 0)
+			(at 21.59 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10787,7 +11888,7 @@
 			)
 		)
 		(property "DigiKey_Part" "490-13342-2-ND"
-			(at 35.56 175.26 0)
+			(at 21.59 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10799,7 +11900,7 @@
 			)
 		)
 		(property "IPN" "CE-CAP-00024"
-			(at 35.56 175.26 0)
+			(at 21.59 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10811,7 +11912,7 @@
 			)
 		)
 		(property "MPN" "GRM155R71H104KE14J"
-			(at 35.56 175.26 0)
+			(at 21.59 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10823,7 +11924,7 @@
 			)
 		)
 		(property "Mouser_Part" "81-GRM155R71H104KE4J"
-			(at 35.56 175.26 0)
+			(at 21.59 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10835,7 +11936,7 @@
 			)
 		)
 		(property "Package" "0402"
-			(at 35.56 175.26 0)
+			(at 21.59 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10847,7 +11948,7 @@
 			)
 		)
 		(property "Tolerance" "10%"
-			(at 35.56 175.26 0)
+			(at 21.59 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10859,7 +11960,7 @@
 			)
 		)
 		(property "Voltage_Rating" "50 VDC"
-			(at 35.56 175.26 0)
+			(at 21.59 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10871,7 +11972,7 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 35.56 175.26 0)
+			(at 21.59 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10892,6 +11993,197 @@
 			(project "e003-adc-board"
 				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/25d81073-89b1-5d67-9c0e-0934a0b38ed7"
 					(reference "C151")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "plm:CRCW0402100KFKEDC")
+		(at 116.84 129.54 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "4962f336-09c0-4fbe-93ab-a7a6610f9a43")
+		(property "Reference" "R212"
+			(at 118.364 133.604 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "100k"
+			(at 118.364 134.366 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Footprint" "resistor:VISHAY-0402"
+			(at 116.84 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "${ECAD_LIB}/parts/resistors/datasheets/crcwce3.pdf"
+			(at 116.84 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" "Resistor, Thick Film"
+			(at 116.84 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Manufacturer" "Vishay"
+			(at 116.84 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "DigiKey_Part" "541-3960-1-ND"
+			(at 116.84 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "IPN" "CE-RES-00002"
+			(at 116.84 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CRCW0402100KFKEDC"
+			(at 116.84 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Mouser_Part" "71-CRCW0402100KFKEDC"
+			(at 116.84 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Package" "0402"
+			(at 116.84 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Power" "0.063W"
+			(at 116.84 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Tolerance" "1%"
+			(at 116.84 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "plm_unused_last_field" ""
+			(at 116.84 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "424e0c75-bf3d-4f99-9ec5-16aee4ad92fd")
+		)
+		(pin "2"
+			(uuid "7c74d73b-4386-4b30-bac2-8e34ad67a7de")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/25d81073-89b1-5d67-9c0e-0934a0b38ed7"
+					(reference "R212")
 					(unit 1)
 				)
 			)
@@ -10976,7 +12268,7 @@
 	)
 	(symbol
 		(lib_id "general:VCC")
-		(at 76.2 175.26 180)
+		(at 62.23 175.26 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10986,7 +12278,7 @@
 		(dnp no)
 		(uuid "4d17516e-be1c-51c2-a8d3-8322c57b5f50")
 		(property "Reference" "#PWR0722"
-			(at 76.2 171.45 0)
+			(at 62.23 171.45 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -10997,7 +12289,7 @@
 			)
 		)
 		(property "Value" "3V3_LIM"
-			(at 76.2 171.45 0)
+			(at 62.23 171.45 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -11007,7 +12299,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 76.2 175.26 0)
+			(at 62.23 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11018,7 +12310,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 76.2 175.26 0)
+			(at 62.23 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11029,7 +12321,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 76.2 175.26 0)
+			(at 62.23 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11053,7 +12345,7 @@
 	)
 	(symbol
 		(lib_id "general:VCC")
-		(at 123.19 78.74 180)
+		(at 123.19 63.5 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11063,7 +12355,7 @@
 		(dnp no)
 		(uuid "51aa3f18-0f55-4833-bf7a-00b8836b6306")
 		(property "Reference" "#PWR0809"
-			(at 123.19 74.93 0)
+			(at 123.19 59.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11074,7 +12366,7 @@
 			)
 		)
 		(property "Value" "3V3_LIM"
-			(at 123.19 74.93 0)
+			(at 123.19 59.69 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -11084,7 +12376,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 123.19 78.74 0)
+			(at 123.19 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11095,7 +12387,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 123.19 78.74 0)
+			(at 123.19 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11106,7 +12398,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 123.19 78.74 0)
+			(at 123.19 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11130,7 +12422,7 @@
 	)
 	(symbol
 		(lib_id "general:VCC")
-		(at 163.83 133.35 180)
+		(at 165.1 175.26 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11140,7 +12432,7 @@
 		(dnp no)
 		(uuid "521f22cd-e2c3-5066-b44d-60ee5f3de31b")
 		(property "Reference" "#PWR0740"
-			(at 163.83 129.54 0)
+			(at 165.1 171.45 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11151,7 +12443,7 @@
 			)
 		)
 		(property "Value" "3V3_LIM"
-			(at 163.83 129.54 0)
+			(at 165.1 171.45 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -11161,7 +12453,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 163.83 133.35 0)
+			(at 165.1 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11172,7 +12464,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 163.83 133.35 0)
+			(at 165.1 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11183,7 +12475,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 163.83 133.35 0)
+			(at 165.1 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11207,7 +12499,7 @@
 	)
 	(symbol
 		(lib_id "general:GND")
-		(at 152.4 143.51 0)
+		(at 148.59 105.41 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11217,7 +12509,7 @@
 		(dnp no)
 		(uuid "53147ecc-d306-5ec7-8de0-7a79382d38ae")
 		(property "Reference" "#PWR0739"
-			(at 152.4 147.32 0)
+			(at 148.59 109.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11228,7 +12520,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 152.4 148.844 0)
+			(at 148.59 110.744 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -11238,7 +12530,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 152.4 143.51 0)
+			(at 148.59 105.41 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11249,7 +12541,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 152.4 143.51 0)
+			(at 148.59 105.41 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11260,7 +12552,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 152.4 143.51 0)
+			(at 148.59 105.41 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11284,7 +12576,7 @@
 	)
 	(symbol
 		(lib_id "plm:GRM155R71H104KE14J")
-		(at 45.72 175.26 0)
+		(at 31.75 175.26 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11294,7 +12586,7 @@
 		(dnp no)
 		(uuid "56692779-e538-5c11-801d-4268409b56ac")
 		(property "Reference" "C152"
-			(at 47.244 179.324 0)
+			(at 33.274 179.324 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -11305,7 +12597,7 @@
 			)
 		)
 		(property "Value" "0.1uF"
-			(at 47.244 180.086 0)
+			(at 33.274 180.086 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -11316,7 +12608,7 @@
 			)
 		)
 		(property "Footprint" "capacitor:MURATA-0402"
-			(at 45.72 175.26 0)
+			(at 31.75 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11328,7 +12620,7 @@
 			)
 		)
 		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155r71h104ke14.pdf"
-			(at 45.72 175.26 0)
+			(at 31.75 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11340,7 +12632,7 @@
 			)
 		)
 		(property "Description" "Capacitor, MLCC"
-			(at 45.72 175.26 0)
+			(at 31.75 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11352,7 +12644,7 @@
 			)
 		)
 		(property "Manufacturer" "Murata"
-			(at 45.72 175.26 0)
+			(at 31.75 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11364,7 +12656,7 @@
 			)
 		)
 		(property "Dielectric" "X7R"
-			(at 45.72 175.26 0)
+			(at 31.75 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11376,7 +12668,7 @@
 			)
 		)
 		(property "DigiKey_Part" "490-13342-2-ND"
-			(at 45.72 175.26 0)
+			(at 31.75 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11388,7 +12680,7 @@
 			)
 		)
 		(property "IPN" "CE-CAP-00024"
-			(at 45.72 175.26 0)
+			(at 31.75 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11400,7 +12692,7 @@
 			)
 		)
 		(property "MPN" "GRM155R71H104KE14J"
-			(at 45.72 175.26 0)
+			(at 31.75 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11412,7 +12704,7 @@
 			)
 		)
 		(property "Mouser_Part" "81-GRM155R71H104KE4J"
-			(at 45.72 175.26 0)
+			(at 31.75 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11424,7 +12716,7 @@
 			)
 		)
 		(property "Package" "0402"
-			(at 45.72 175.26 0)
+			(at 31.75 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11436,7 +12728,7 @@
 			)
 		)
 		(property "Tolerance" "10%"
-			(at 45.72 175.26 0)
+			(at 31.75 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11448,7 +12740,7 @@
 			)
 		)
 		(property "Voltage_Rating" "50 VDC"
-			(at 45.72 175.26 0)
+			(at 31.75 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11460,7 +12752,7 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 45.72 175.26 0)
+			(at 31.75 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11488,7 +12780,7 @@
 	)
 	(symbol
 		(lib_id "general:GND")
-		(at 127 184.15 0)
+		(at 113.03 184.15 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11498,7 +12790,7 @@
 		(dnp no)
 		(uuid "575ee797-0496-5e16-8818-0458e396eac9")
 		(property "Reference" "#PWR0733"
-			(at 127 187.96 0)
+			(at 113.03 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11509,7 +12801,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 127 189.484 0)
+			(at 113.03 189.484 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -11519,7 +12811,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 127 184.15 0)
+			(at 113.03 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11530,7 +12822,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 127 184.15 0)
+			(at 113.03 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -11541,7 +12833,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 127 184.15 0)
+			(at 113.03 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12249,7 +13541,7 @@
 	)
 	(symbol
 		(lib_id "plm:GRM21BZ71E106KE15K")
-		(at 127 175.26 0)
+		(at 113.03 175.26 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -12259,7 +13551,7 @@
 		(dnp no)
 		(uuid "605dcb94-8544-5a03-aa96-f75eeea8f2da")
 		(property "Reference" "C161"
-			(at 128.524 179.324 0)
+			(at 114.554 179.324 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -12270,7 +13562,7 @@
 			)
 		)
 		(property "Value" "10uF"
-			(at 128.524 180.086 0)
+			(at 114.554 180.086 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -12281,7 +13573,7 @@
 			)
 		)
 		(property "Footprint" "capacitor:MURATA-0805"
-			(at 127 175.26 0)
+			(at 113.03 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12293,7 +13585,7 @@
 			)
 		)
 		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm21bz71e106ke15.pdf"
-			(at 127 175.26 0)
+			(at 113.03 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12305,7 +13597,7 @@
 			)
 		)
 		(property "Description" "Capacitor, MLCC"
-			(at 127 175.26 0)
+			(at 113.03 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12317,7 +13609,7 @@
 			)
 		)
 		(property "Manufacturer" "Murata"
-			(at 127 175.26 0)
+			(at 113.03 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12329,7 +13621,7 @@
 			)
 		)
 		(property "Dielectric" "X7R"
-			(at 127 175.26 0)
+			(at 113.03 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12341,7 +13633,7 @@
 			)
 		)
 		(property "DigiKey_Part" "490-GRM21BZ71E106KE15KCT-ND"
-			(at 127 175.26 0)
+			(at 113.03 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12353,7 +13645,7 @@
 			)
 		)
 		(property "IPN" "CE-CAP-00019"
-			(at 127 175.26 0)
+			(at 113.03 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12365,7 +13657,7 @@
 			)
 		)
 		(property "MPN" "GRM21BZ71E106KE15K"
-			(at 127 175.26 0)
+			(at 113.03 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12377,7 +13669,7 @@
 			)
 		)
 		(property "Mouser_Part" "81-GRM21BZ71E106KE5K"
-			(at 127 175.26 0)
+			(at 113.03 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12389,7 +13681,7 @@
 			)
 		)
 		(property "Package" "0805"
-			(at 127 175.26 0)
+			(at 113.03 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12401,7 +13693,7 @@
 			)
 		)
 		(property "Tolerance" "10%"
-			(at 127 175.26 0)
+			(at 113.03 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12413,7 +13705,7 @@
 			)
 		)
 		(property "Voltage_Rating" "25 VDC"
-			(at 127 175.26 0)
+			(at 113.03 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12425,7 +13717,7 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 127 175.26 0)
+			(at 113.03 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12453,7 +13745,7 @@
 	)
 	(symbol
 		(lib_id "plm:GRM155R71H104KE14J")
-		(at 142.24 175.26 0)
+		(at 128.27 175.26 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -12463,7 +13755,7 @@
 		(dnp no)
 		(uuid "60f62bee-a5c4-5dce-bfe4-1daf5fb7d3de")
 		(property "Reference" "C160"
-			(at 143.764 179.324 0)
+			(at 129.794 179.324 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -12474,7 +13766,7 @@
 			)
 		)
 		(property "Value" "0.1uF"
-			(at 143.764 180.086 0)
+			(at 129.794 180.086 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -12485,7 +13777,7 @@
 			)
 		)
 		(property "Footprint" "capacitor:MURATA-0402"
-			(at 142.24 175.26 0)
+			(at 128.27 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12497,7 +13789,7 @@
 			)
 		)
 		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155r71h104ke14.pdf"
-			(at 142.24 175.26 0)
+			(at 128.27 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12509,7 +13801,7 @@
 			)
 		)
 		(property "Description" "Capacitor, MLCC"
-			(at 142.24 175.26 0)
+			(at 128.27 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12521,7 +13813,7 @@
 			)
 		)
 		(property "Manufacturer" "Murata"
-			(at 142.24 175.26 0)
+			(at 128.27 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12533,7 +13825,7 @@
 			)
 		)
 		(property "Dielectric" "X7R"
-			(at 142.24 175.26 0)
+			(at 128.27 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12545,7 +13837,7 @@
 			)
 		)
 		(property "DigiKey_Part" "490-13342-2-ND"
-			(at 142.24 175.26 0)
+			(at 128.27 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12557,7 +13849,7 @@
 			)
 		)
 		(property "IPN" "CE-CAP-00024"
-			(at 142.24 175.26 0)
+			(at 128.27 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12569,7 +13861,7 @@
 			)
 		)
 		(property "MPN" "GRM155R71H104KE14J"
-			(at 142.24 175.26 0)
+			(at 128.27 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12581,7 +13873,7 @@
 			)
 		)
 		(property "Mouser_Part" "81-GRM155R71H104KE4J"
-			(at 142.24 175.26 0)
+			(at 128.27 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12593,7 +13885,7 @@
 			)
 		)
 		(property "Package" "0402"
-			(at 142.24 175.26 0)
+			(at 128.27 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12605,7 +13897,7 @@
 			)
 		)
 		(property "Tolerance" "10%"
-			(at 142.24 175.26 0)
+			(at 128.27 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12617,7 +13909,7 @@
 			)
 		)
 		(property "Voltage_Rating" "50 VDC"
-			(at 142.24 175.26 0)
+			(at 128.27 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12629,7 +13921,7 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 142.24 175.26 0)
+			(at 128.27 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12656,8 +13948,8 @@
 		)
 	)
 	(symbol
-		(lib_id "plm:GRM155R71H104KE14J")
-		(at 66.04 175.26 0)
+		(lib_id "plm:CRCW04021K00FKED")
+		(at 119.38 129.54 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -12665,9 +13957,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "627bc32f-1e15-510f-83d7-2a05bff289fc")
-		(property "Reference" "C154"
-			(at 67.564 179.324 0)
+		(uuid "60f8abab-8cb5-466b-8a55-336e103fcfcb")
+		(property "Reference" "R247"
+			(at 125.857 124.46 90)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -12677,8 +13969,8 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "0.1uF"
-			(at 67.564 180.086 0)
+		(property "Value" "1k"
+			(at 123.444 128.016 90)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -12688,8 +13980,8 @@
 				(justify left top)
 			)
 		)
-		(property "Footprint" "capacitor:MURATA-0402"
-			(at 66.04 175.26 0)
+		(property "Footprint" "resistor:VISHAY-0402"
+			(at 119.38 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12700,8 +13992,8 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155r71h104ke14.pdf"
-			(at 66.04 175.26 0)
+		(property "Datasheet" "${ECAD_LIB}/parts/resistors/datasheets/dcrcwe3.pdf"
+			(at 119.38 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12712,8 +14004,8 @@
 				(justify left)
 			)
 		)
-		(property "Description" "Capacitor, MLCC"
-			(at 66.04 175.26 0)
+		(property "Description" "Resistor, Thick Film"
+			(at 119.38 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12724,8 +14016,8 @@
 				(justify left)
 			)
 		)
-		(property "Manufacturer" "Murata"
-			(at 66.04 175.26 0)
+		(property "Manufacturer" "Vishay"
+			(at 119.38 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12736,8 +14028,8 @@
 				(justify left)
 			)
 		)
-		(property "Dielectric" "X7R"
-			(at 66.04 175.26 0)
+		(property "DigiKey_Part" "541-1.00KLCT-ND"
+			(at 119.38 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12748,8 +14040,8 @@
 				(justify left)
 			)
 		)
-		(property "DigiKey_Part" "490-13342-2-ND"
-			(at 66.04 175.26 0)
+		(property "IPN" "CE-RES-00007"
+			(at 119.38 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12760,8 +14052,8 @@
 				(justify left)
 			)
 		)
-		(property "IPN" "CE-CAP-00024"
-			(at 66.04 175.26 0)
+		(property "MPN" "CRCW04021K00FKED"
+			(at 119.38 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12772,20 +14064,8 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "GRM155R71H104KE14J"
-			(at 66.04 175.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Mouser_Part" "81-GRM155R71H104KE4J"
-			(at 66.04 175.26 0)
+		(property "Mouser_Part" "71-CRCW0402-1.0K-E3"
+			(at 119.38 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12797,7 +14077,7 @@
 			)
 		)
 		(property "Package" "0402"
-			(at 66.04 175.26 0)
+			(at 119.38 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12808,8 +14088,8 @@
 				(justify left)
 			)
 		)
-		(property "Tolerance" "10%"
-			(at 66.04 175.26 0)
+		(property "Power" "0.063W"
+			(at 119.38 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12820,8 +14100,8 @@
 				(justify left)
 			)
 		)
-		(property "Voltage_Rating" "50 VDC"
-			(at 66.04 175.26 0)
+		(property "Tolerance" "1%"
+			(at 119.38 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12833,7 +14113,211 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 66.04 175.26 0)
+			(at 119.38 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "6df36c68-546d-4e2e-a2a2-d2a693af80da")
+		)
+		(pin "2"
+			(uuid "48ed9ca7-d709-42b4-a0fa-17e8b80d3a6c")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/25d81073-89b1-5d67-9c0e-0934a0b38ed7"
+					(reference "R247")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "plm:GRM155R71H104KE14J")
+		(at 52.07 175.26 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "627bc32f-1e15-510f-83d7-2a05bff289fc")
+		(property "Reference" "C154"
+			(at 53.594 179.324 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "0.1uF"
+			(at 53.594 180.086 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Footprint" "capacitor:MURATA-0402"
+			(at 52.07 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155r71h104ke14.pdf"
+			(at 52.07 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" "Capacitor, MLCC"
+			(at 52.07 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Manufacturer" "Murata"
+			(at 52.07 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Dielectric" "X7R"
+			(at 52.07 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "DigiKey_Part" "490-13342-2-ND"
+			(at 52.07 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "IPN" "CE-CAP-00024"
+			(at 52.07 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "MPN" "GRM155R71H104KE14J"
+			(at 52.07 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Mouser_Part" "81-GRM155R71H104KE4J"
+			(at 52.07 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Package" "0402"
+			(at 52.07 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Tolerance" "10%"
+			(at 52.07 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Voltage_Rating" "50 VDC"
+			(at 52.07 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "plm_unused_last_field" ""
+			(at 52.07 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12861,7 +14345,7 @@
 	)
 	(symbol
 		(lib_id "general:VCC")
-		(at 55.88 175.26 180)
+		(at 41.91 175.26 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -12871,7 +14355,7 @@
 		(dnp no)
 		(uuid "62d4e074-7f97-5ff4-b4e7-31074b644b4a")
 		(property "Reference" "#PWR0718"
-			(at 55.88 171.45 0)
+			(at 41.91 171.45 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12882,7 +14366,7 @@
 			)
 		)
 		(property "Value" "3V3_LIM"
-			(at 55.88 171.45 0)
+			(at 41.91 171.45 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -12892,7 +14376,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 55.88 175.26 0)
+			(at 41.91 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12903,7 +14387,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 55.88 175.26 0)
+			(at 41.91 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -12914,7 +14398,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 55.88 175.26 0)
+			(at 41.91 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -13354,6 +14838,287 @@
 		)
 	)
 	(symbol
+		(lib_id "plm:GRM21BZ71E475KE15L")
+		(at 116.84 138.43 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "66ac3058-c30f-4683-ac3e-64903ffeb0b5")
+		(property "Reference" "C164"
+			(at 118.364 142.494 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "4.7uF"
+			(at 118.364 143.256 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Footprint" "capacitor:MURATA-0805"
+			(at 116.84 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/murata-mlcc-cat2021.pdf"
+			(at 116.84 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" "Capacitor, MLCC"
+			(at 116.84 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Manufacturer" "Murata"
+			(at 116.84 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Dielectric" "X7R"
+			(at 116.84 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "DigiKey_Part" "490-GRM21BZ71E475KE15LCT-ND"
+			(at 116.84 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "IPN" "CE-CAP-00020"
+			(at 116.84 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "MPN" "GRM21BZ71E475KE15L"
+			(at 116.84 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Mouser_Part" "81-GRM21BZ71E475KE5L"
+			(at 116.84 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Package" "0805"
+			(at 116.84 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Tolerance" "10%"
+			(at 116.84 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Voltage_Rating" "25 VDC"
+			(at 116.84 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "plm_unused_last_field" ""
+			(at 116.84 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "9d66e44c-1776-4516-86fe-c37e8d5fca3c")
+		)
+		(pin "2"
+			(uuid "f1e8f9a5-8255-43d0-bc38-68ebfefb3e9d")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/25d81073-89b1-5d67-9c0e-0934a0b38ed7"
+					(reference "C164")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "general:GND")
+		(at 116.84 147.32 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "689b4e43-231c-410d-a893-6f255bd793dc")
+		(property "Reference" "#PWR0821"
+			(at 116.84 151.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 116.84 152.654 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 116.84 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 116.84 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 116.84 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin ""
+			(uuid "c602112e-ba4e-4569-8ed7-836d761b1ffc")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/25d81073-89b1-5d67-9c0e-0934a0b38ed7"
+					(reference "#PWR0821")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "general:GND")
 		(at 97.79 139.7 0)
 		(unit 1)
@@ -13701,7 +15466,7 @@
 	)
 	(symbol
 		(lib_id "plm:GRM155R71H104KE14J")
-		(at 76.2 175.26 0)
+		(at 62.23 175.26 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -13711,7 +15476,7 @@
 		(dnp no)
 		(uuid "7301bf94-12a4-512f-835c-be132c2071a8")
 		(property "Reference" "C155"
-			(at 77.724 179.324 0)
+			(at 63.754 179.324 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -13722,7 +15487,7 @@
 			)
 		)
 		(property "Value" "0.1uF"
-			(at 77.724 180.086 0)
+			(at 63.754 180.086 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -13733,7 +15498,7 @@
 			)
 		)
 		(property "Footprint" "capacitor:MURATA-0402"
-			(at 76.2 175.26 0)
+			(at 62.23 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -13745,7 +15510,7 @@
 			)
 		)
 		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155r71h104ke14.pdf"
-			(at 76.2 175.26 0)
+			(at 62.23 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -13757,7 +15522,7 @@
 			)
 		)
 		(property "Description" "Capacitor, MLCC"
-			(at 76.2 175.26 0)
+			(at 62.23 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -13769,7 +15534,7 @@
 			)
 		)
 		(property "Manufacturer" "Murata"
-			(at 76.2 175.26 0)
+			(at 62.23 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -13781,7 +15546,7 @@
 			)
 		)
 		(property "Dielectric" "X7R"
-			(at 76.2 175.26 0)
+			(at 62.23 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -13793,7 +15558,7 @@
 			)
 		)
 		(property "DigiKey_Part" "490-13342-2-ND"
-			(at 76.2 175.26 0)
+			(at 62.23 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -13805,7 +15570,7 @@
 			)
 		)
 		(property "IPN" "CE-CAP-00024"
-			(at 76.2 175.26 0)
+			(at 62.23 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -13817,7 +15582,7 @@
 			)
 		)
 		(property "MPN" "GRM155R71H104KE14J"
-			(at 76.2 175.26 0)
+			(at 62.23 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -13829,7 +15594,7 @@
 			)
 		)
 		(property "Mouser_Part" "81-GRM155R71H104KE4J"
-			(at 76.2 175.26 0)
+			(at 62.23 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -13841,7 +15606,7 @@
 			)
 		)
 		(property "Package" "0402"
-			(at 76.2 175.26 0)
+			(at 62.23 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -13853,7 +15618,7 @@
 			)
 		)
 		(property "Tolerance" "10%"
-			(at 76.2 175.26 0)
+			(at 62.23 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -13865,7 +15630,7 @@
 			)
 		)
 		(property "Voltage_Rating" "50 VDC"
-			(at 76.2 175.26 0)
+			(at 62.23 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -13877,7 +15642,7 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 76.2 175.26 0)
+			(at 62.23 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14095,7 +15860,7 @@
 	)
 	(symbol
 		(lib_id "general:GND")
-		(at 111.76 95.25 0)
+		(at 111.76 80.01 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -14105,7 +15870,7 @@
 		(dnp no)
 		(uuid "787c9f87-32fa-5851-94d5-a4ca118b55d3")
 		(property "Reference" "#PWR0746"
-			(at 111.76 99.06 0)
+			(at 111.76 83.82 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14116,7 +15881,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 111.76 100.584 0)
+			(at 111.76 85.344 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -14126,7 +15891,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 111.76 95.25 0)
+			(at 111.76 80.01 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14137,7 +15902,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 111.76 95.25 0)
+			(at 111.76 80.01 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14148,7 +15913,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 111.76 95.25 0)
+			(at 111.76 80.01 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14361,8 +16126,212 @@
 		)
 	)
 	(symbol
+		(lib_id "plm:1N4148W-7-F")
+		(at 129.54 129.54 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "7be74ca1-3270-4f99-a655-dfe992ea4510")
+		(property "Reference" "D46"
+			(at 133.35 136.906 90)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "1N4148W-7-F"
+			(at 134.112 136.906 90)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Footprint" "diode:DIODES-SOD123"
+			(at 129.54 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "${ECAD_LIB}/parts/diodes/datasheets/1n4148w.pdf"
+			(at 129.54 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" "Diode"
+			(at 129.54 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Manufacturer" "Diodes Incorporated"
+			(at 129.54 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Current_Rating" "0.15A"
+			(at 129.54 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "DigiKey_Part" "1N4148W-FDICT-ND"
+			(at 129.54 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "IPN" "CE-DIO-00001"
+			(at 129.54 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "MPN" "1N4148W-7-F"
+			(at 129.54 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Mouser_Part" "621-1N4148W-F"
+			(at 129.54 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Package" "SOD-123"
+			(at 129.54 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Type" "Ultrafast"
+			(at 129.54 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Voltage_Rating" "100V"
+			(at 129.54 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "plm_unused_last_field" ""
+			(at 129.54 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "52aee846-d70b-4461-affc-5238aaab7927")
+		)
+		(pin "2"
+			(uuid "813122c5-270b-4c20-9286-519b7a59d367")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/25d81073-89b1-5d67-9c0e-0934a0b38ed7"
+					(reference "D46")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "general:GND")
-		(at 96.52 184.15 0)
+		(at 82.55 184.15 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -14372,7 +16341,7 @@
 		(dnp no)
 		(uuid "8124c7dd-cbb0-5899-92ea-14ad44706c24")
 		(property "Reference" "#PWR0727"
-			(at 96.52 187.96 0)
+			(at 82.55 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14383,7 +16352,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 96.52 189.484 0)
+			(at 82.55 189.484 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -14393,7 +16362,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 96.52 184.15 0)
+			(at 82.55 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14404,7 +16373,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 96.52 184.15 0)
+			(at 82.55 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14415,7 +16384,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 96.52 184.15 0)
+			(at 82.55 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14438,8 +16407,173 @@
 		)
 	)
 	(symbol
+		(lib_id "plm:SN74LVC1G17DBVR")
+		(at 134.62 138.43 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "8791cd02-6918-4912-a826-00bf4dcdc948")
+		(property "Reference" "U52"
+			(at 139.7 146.558 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Value" "SN74LVC1G17DBVR"
+			(at 139.7 148.59 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Footprint" "footprints:TI-SOT23-DBV0005A"
+			(at 134.62 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "${ECAD_LIB}/parts/ics/datasheets/sn74lvc1g17.pdf"
+			(at 134.62 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" "Buffer, Schmitt-Trigger Input, 1.65 to 5.5 V, Push-Pull Output"
+			(at 134.62 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Manufacturer" "Texas Instruments"
+			(at 134.62 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "DigiKey_Part" "none"
+			(at 134.62 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "IPN" "CE-ICS-00044"
+			(at 134.62 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "MPN" "SN74LVC1G17DBVR"
+			(at 134.62 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Package" "SOT-23-5"
+			(at 134.62 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "plm_unused_last_field" ""
+			(at 134.62 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "bfd6e644-0b23-483e-8436-f76969f9ef3e")
+		)
+		(pin "2"
+			(uuid "ba4144cb-dee2-405b-adc8-2279432a162a")
+		)
+		(pin "3"
+			(uuid "08e27fcb-0dcd-4702-ad51-ead40dad8afe")
+		)
+		(pin "4"
+			(uuid "f5a4f2fb-0e7b-4180-bf9d-e4e459d3b395")
+		)
+		(pin "5"
+			(uuid "295a8a8c-6aa2-4a46-ba2c-56c767d8254a")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/25d81073-89b1-5d67-9c0e-0934a0b38ed7"
+					(reference "U52")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "general:VCC")
-		(at 116.84 175.26 180)
+		(at 102.87 175.26 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -14449,7 +16583,7 @@
 		(dnp no)
 		(uuid "89dd7001-b52a-573b-a3bb-6472d02f563a")
 		(property "Reference" "#PWR0730"
-			(at 116.84 171.45 0)
+			(at 102.87 171.45 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14460,7 +16594,7 @@
 			)
 		)
 		(property "Value" "3V3_LIM"
-			(at 116.84 171.45 0)
+			(at 102.87 171.45 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -14470,7 +16604,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 116.84 175.26 0)
+			(at 102.87 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14481,7 +16615,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 116.84 175.26 0)
+			(at 102.87 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14492,7 +16626,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 116.84 175.26 0)
+			(at 102.87 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14516,7 +16650,7 @@
 	)
 	(symbol
 		(lib_id "plm:CRCW04024K70FKED")
-		(at 111.76 86.36 0)
+		(at 111.76 71.12 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -14526,7 +16660,7 @@
 		(dnp no)
 		(uuid "8a29f149-7e7b-518e-a9d3-ff68306b075f")
 		(property "Reference" "R211"
-			(at 113.284 90.424 0)
+			(at 113.284 75.184 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -14537,7 +16671,7 @@
 			)
 		)
 		(property "Value" "4.7k"
-			(at 113.284 91.186 0)
+			(at 113.284 75.946 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -14548,7 +16682,7 @@
 			)
 		)
 		(property "Footprint" "resistor:VISHAY-0402"
-			(at 111.76 86.36 0)
+			(at 111.76 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14560,7 +16694,7 @@
 			)
 		)
 		(property "Datasheet" "${ECAD_LIB}/parts/resistors/datasheets/dcrcwe3.pdf"
-			(at 111.76 86.36 0)
+			(at 111.76 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14572,7 +16706,7 @@
 			)
 		)
 		(property "Description" "Resistor, Thick Film"
-			(at 111.76 86.36 0)
+			(at 111.76 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14584,7 +16718,7 @@
 			)
 		)
 		(property "Manufacturer" "Vishay"
-			(at 111.76 86.36 0)
+			(at 111.76 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14596,7 +16730,7 @@
 			)
 		)
 		(property "DigiKey_Part" "541-4.70KLCT-ND"
-			(at 111.76 86.36 0)
+			(at 111.76 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14608,7 +16742,7 @@
 			)
 		)
 		(property "IPN" "CE-RES-00013"
-			(at 111.76 86.36 0)
+			(at 111.76 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14620,7 +16754,7 @@
 			)
 		)
 		(property "MPN" "CRCW04024K70FKED"
-			(at 111.76 86.36 0)
+			(at 111.76 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14632,7 +16766,7 @@
 			)
 		)
 		(property "Mouser_Part" "71-CRCW0402-4.7K-E3"
-			(at 111.76 86.36 0)
+			(at 111.76 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14644,7 +16778,7 @@
 			)
 		)
 		(property "Package" "0402"
-			(at 111.76 86.36 0)
+			(at 111.76 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14656,7 +16790,7 @@
 			)
 		)
 		(property "Power" "0.1W"
-			(at 111.76 86.36 0)
+			(at 111.76 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14668,7 +16802,7 @@
 			)
 		)
 		(property "Tolerance" "1%"
-			(at 111.76 86.36 0)
+			(at 111.76 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -14680,7 +16814,7 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 111.76 86.36 0)
+			(at 111.76 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15125,7 +17259,7 @@
 	)
 	(symbol
 		(lib_id "general:VCC")
-		(at 152.4 175.26 180)
+		(at 138.43 175.26 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -15135,7 +17269,7 @@
 		(dnp no)
 		(uuid "94b6e6ca-0e6d-5e75-a53d-dcf11d92abf8")
 		(property "Reference" "#PWR0736"
-			(at 152.4 171.45 0)
+			(at 138.43 171.45 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15146,7 +17280,7 @@
 			)
 		)
 		(property "Value" "+1V8_CH"
-			(at 152.4 171.45 0)
+			(at 138.43 171.45 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -15156,7 +17290,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 152.4 175.26 0)
+			(at 138.43 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15167,7 +17301,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 152.4 175.26 0)
+			(at 138.43 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15178,7 +17312,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 152.4 175.26 0)
+			(at 138.43 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15468,6 +17602,83 @@
 		)
 	)
 	(symbol
+		(lib_id "general:GND")
+		(at 153.67 184.15 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "9cfa7be4-fdeb-464f-98f0-933b8028bb21")
+		(property "Reference" "#PWR0823"
+			(at 153.67 187.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 153.67 189.484 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 153.67 184.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 153.67 184.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 153.67 184.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin ""
+			(uuid "221c5751-93e7-4dc1-a94f-45f349e22dfd")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/25d81073-89b1-5d67-9c0e-0934a0b38ed7"
+					(reference "#PWR0823")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "general:VCC")
 		(at 35.56 118.11 180)
 		(unit 1)
@@ -15546,7 +17757,7 @@
 	)
 	(symbol
 		(lib_id "general:GND")
-		(at 45.72 184.15 0)
+		(at 31.75 184.15 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -15556,7 +17767,7 @@
 		(dnp no)
 		(uuid "a429c721-25a8-5a19-9929-efebfa550c1d")
 		(property "Reference" "#PWR0717"
-			(at 45.72 187.96 0)
+			(at 31.75 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15567,7 +17778,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 45.72 189.484 0)
+			(at 31.75 189.484 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -15577,7 +17788,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 45.72 184.15 0)
+			(at 31.75 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15588,7 +17799,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 45.72 184.15 0)
+			(at 31.75 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15599,7 +17810,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 45.72 184.15 0)
+			(at 31.75 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15622,8 +17833,8 @@
 		)
 	)
 	(symbol
-		(lib_id "general:GND")
-		(at 152.4 184.15 0)
+		(lib_id "general:VCC")
+		(at 160.02 132.08 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -15631,9 +17842,9 @@
 		(on_board no)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "a531ee40-be64-5ff5-8708-fba02db15da6")
-		(property "Reference" "#PWR0737"
-			(at 152.4 187.96 0)
+		(uuid "a4bfd0ab-d3e1-410c-82ab-4bd57a256c86")
+		(property "Reference" "#PWR0824"
+			(at 160.02 135.89 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15643,8 +17854,8 @@
 				)
 			)
 		)
-		(property "Value" "GND"
-			(at 152.4 189.484 0)
+		(property "Value" "3V3_LIM"
+			(at 160.02 128.27 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -15654,7 +17865,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 152.4 184.15 0)
+			(at 160.02 132.08 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15665,7 +17876,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 152.4 184.15 0)
+			(at 160.02 132.08 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15676,7 +17887,84 @@
 			)
 		)
 		(property "Description" ""
-			(at 152.4 184.15 0)
+			(at 160.02 132.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin ""
+			(uuid "70a03941-e319-4504-8db0-b46a94a259bc")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/25d81073-89b1-5d67-9c0e-0934a0b38ed7"
+					(reference "#PWR0824")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "general:GND")
+		(at 138.43 184.15 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "a531ee40-be64-5ff5-8708-fba02db15da6")
+		(property "Reference" "#PWR0737"
+			(at 138.43 187.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 138.43 189.484 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 138.43 184.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 138.43 184.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 138.43 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15699,8 +17987,8 @@
 		)
 	)
 	(symbol
-		(lib_id "general:VCC")
-		(at 45.72 175.26 180)
+		(lib_id "general:GND")
+		(at 160.02 149.86 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -15708,9 +17996,9 @@
 		(on_board no)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "b085f67b-50ac-507b-be43-80767042a6fe")
-		(property "Reference" "#PWR0716"
-			(at 45.72 171.45 0)
+		(uuid "b00efb74-a0b6-459e-8390-07a36498e224")
+		(property "Reference" "#PWR0822"
+			(at 160.02 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15720,8 +18008,8 @@
 				)
 			)
 		)
-		(property "Value" "3V3_LIM"
-			(at 45.72 171.45 0)
+		(property "Value" "GND"
+			(at 160.02 155.194 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -15731,7 +18019,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 45.72 175.26 0)
+			(at 160.02 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15742,7 +18030,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 45.72 175.26 0)
+			(at 160.02 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15753,7 +18041,84 @@
 			)
 		)
 		(property "Description" ""
-			(at 45.72 175.26 0)
+			(at 160.02 149.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin ""
+			(uuid "67b1ff5c-6837-435e-a267-342d7f664ad5")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/25d81073-89b1-5d67-9c0e-0934a0b38ed7"
+					(reference "#PWR0822")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "general:VCC")
+		(at 31.75 175.26 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "b085f67b-50ac-507b-be43-80767042a6fe")
+		(property "Reference" "#PWR0716"
+			(at 31.75 171.45 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "3V3_LIM"
+			(at 31.75 171.45 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 31.75 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 31.75 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 31.75 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15777,7 +18142,7 @@
 	)
 	(symbol
 		(lib_id "general:GND")
-		(at 163.83 142.24 0)
+		(at 165.1 184.15 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -15787,7 +18152,7 @@
 		(dnp no)
 		(uuid "b25cd377-975c-57bb-96bd-a26ef2cf62f9")
 		(property "Reference" "#PWR0741"
-			(at 163.83 146.05 0)
+			(at 165.1 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15798,7 +18163,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 163.83 147.574 0)
+			(at 165.1 189.484 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -15808,7 +18173,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 163.83 142.24 0)
+			(at 165.1 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15819,7 +18184,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 163.83 142.24 0)
+			(at 165.1 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15830,7 +18195,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 163.83 142.24 0)
+			(at 165.1 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15854,7 +18219,7 @@
 	)
 	(symbol
 		(lib_id "plm:GRM155R71H104KE14J")
-		(at 152.4 175.26 0)
+		(at 153.67 175.26 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -15862,9 +18227,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "bbdac7b9-90ec-5b6c-80e2-56f38829bba0")
-		(property "Reference" "C162"
-			(at 153.924 179.324 0)
+		(uuid "b49b8bbb-f8ae-4a07-a76b-002944a8522f")
+		(property "Reference" "C165"
+			(at 155.956 179.324 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -15875,7 +18240,7 @@
 			)
 		)
 		(property "Value" "0.1uF"
-			(at 153.924 180.086 0)
+			(at 155.956 180.086 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -15886,7 +18251,7 @@
 			)
 		)
 		(property "Footprint" "capacitor:MURATA-0402"
-			(at 152.4 175.26 0)
+			(at 153.67 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15898,7 +18263,7 @@
 			)
 		)
 		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155r71h104ke14.pdf"
-			(at 152.4 175.26 0)
+			(at 153.67 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15910,7 +18275,7 @@
 			)
 		)
 		(property "Description" "Capacitor, MLCC"
-			(at 152.4 175.26 0)
+			(at 153.67 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15922,7 +18287,7 @@
 			)
 		)
 		(property "Manufacturer" "Murata"
-			(at 152.4 175.26 0)
+			(at 153.67 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15934,7 +18299,7 @@
 			)
 		)
 		(property "Dielectric" "X7R"
-			(at 152.4 175.26 0)
+			(at 153.67 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15946,7 +18311,7 @@
 			)
 		)
 		(property "DigiKey_Part" "490-13342-2-ND"
-			(at 152.4 175.26 0)
+			(at 153.67 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15958,7 +18323,7 @@
 			)
 		)
 		(property "IPN" "CE-CAP-00024"
-			(at 152.4 175.26 0)
+			(at 153.67 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15970,7 +18335,7 @@
 			)
 		)
 		(property "MPN" "GRM155R71H104KE14J"
-			(at 152.4 175.26 0)
+			(at 153.67 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15982,7 +18347,7 @@
 			)
 		)
 		(property "Mouser_Part" "81-GRM155R71H104KE4J"
-			(at 152.4 175.26 0)
+			(at 153.67 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -15994,7 +18359,7 @@
 			)
 		)
 		(property "Package" "0402"
-			(at 152.4 175.26 0)
+			(at 153.67 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16006,7 +18371,7 @@
 			)
 		)
 		(property "Tolerance" "10%"
-			(at 152.4 175.26 0)
+			(at 153.67 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16018,7 +18383,7 @@
 			)
 		)
 		(property "Voltage_Rating" "50 VDC"
-			(at 152.4 175.26 0)
+			(at 153.67 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16030,7 +18395,211 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 152.4 175.26 0)
+			(at 153.67 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "df4b49c6-7215-4bbc-a1f1-b9479fa4d391")
+		)
+		(pin "2"
+			(uuid "dd28bdaa-4701-47ec-b714-3649acce4076")
+		)
+		(instances
+			(project "e003-adc-board"
+				(path "/ae736b08-f60a-4f90-a6d8-09d85e53d559/25d81073-89b1-5d67-9c0e-0934a0b38ed7"
+					(reference "C165")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "plm:GRM155R71H104KE14J")
+		(at 138.43 175.26 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "bbdac7b9-90ec-5b6c-80e2-56f38829bba0")
+		(property "Reference" "C162"
+			(at 139.954 179.324 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "0.1uF"
+			(at 139.954 180.086 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Footprint" "capacitor:MURATA-0402"
+			(at 138.43 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155r71h104ke14.pdf"
+			(at 138.43 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" "Capacitor, MLCC"
+			(at 138.43 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Manufacturer" "Murata"
+			(at 138.43 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Dielectric" "X7R"
+			(at 138.43 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "DigiKey_Part" "490-13342-2-ND"
+			(at 138.43 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "IPN" "CE-CAP-00024"
+			(at 138.43 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "MPN" "GRM155R71H104KE14J"
+			(at 138.43 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Mouser_Part" "81-GRM155R71H104KE4J"
+			(at 138.43 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Package" "0402"
+			(at 138.43 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Tolerance" "10%"
+			(at 138.43 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Voltage_Rating" "50 VDC"
+			(at 138.43 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "plm_unused_last_field" ""
+			(at 138.43 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16058,7 +18627,7 @@
 	)
 	(symbol
 		(lib_id "general:GND")
-		(at 106.68 184.15 0)
+		(at 92.71 184.15 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -16068,7 +18637,7 @@
 		(dnp no)
 		(uuid "be845388-c557-54a9-9a9c-4a0058dac01a")
 		(property "Reference" "#PWR0729"
-			(at 106.68 187.96 0)
+			(at 92.71 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16079,7 +18648,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 106.68 189.484 0)
+			(at 92.71 189.484 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -16089,7 +18658,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 106.68 184.15 0)
+			(at 92.71 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16100,7 +18669,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 106.68 184.15 0)
+			(at 92.71 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16111,7 +18680,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 106.68 184.15 0)
+			(at 92.71 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16515,7 +19084,7 @@
 	)
 	(symbol
 		(lib_id "general:VCC")
-		(at 142.24 175.26 180)
+		(at 128.27 175.26 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -16525,7 +19094,7 @@
 		(dnp no)
 		(uuid "c3e1baae-15e7-51ee-8dfd-d0afe82c411f")
 		(property "Reference" "#PWR0734"
-			(at 142.24 171.45 0)
+			(at 128.27 171.45 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16536,7 +19105,7 @@
 			)
 		)
 		(property "Value" "+1V8_CH"
-			(at 142.24 171.45 0)
+			(at 128.27 171.45 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -16546,7 +19115,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 142.24 175.26 0)
+			(at 128.27 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16557,7 +19126,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 142.24 175.26 0)
+			(at 128.27 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16568,7 +19137,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 142.24 175.26 0)
+			(at 128.27 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16592,7 +19161,7 @@
 	)
 	(symbol
 		(lib_id "general:GND")
-		(at 86.36 184.15 0)
+		(at 72.39 184.15 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -16602,7 +19171,7 @@
 		(dnp no)
 		(uuid "c69707b3-0c81-57ed-a071-69fe581a3bb7")
 		(property "Reference" "#PWR0725"
-			(at 86.36 187.96 0)
+			(at 72.39 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16613,7 +19182,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 86.36 189.484 0)
+			(at 72.39 189.484 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -16623,7 +19192,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 86.36 184.15 0)
+			(at 72.39 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16634,7 +19203,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 86.36 184.15 0)
+			(at 72.39 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16645,7 +19214,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 86.36 184.15 0)
+			(at 72.39 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16669,7 +19238,7 @@
 	)
 	(symbol
 		(lib_id "general:VCC")
-		(at 66.04 175.26 180)
+		(at 52.07 175.26 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -16679,7 +19248,7 @@
 		(dnp no)
 		(uuid "d499439b-3460-5793-bd9c-299b87be1ed9")
 		(property "Reference" "#PWR0720"
-			(at 66.04 171.45 0)
+			(at 52.07 171.45 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16690,7 +19259,7 @@
 			)
 		)
 		(property "Value" "3V3_LIM"
-			(at 66.04 171.45 0)
+			(at 52.07 171.45 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -16700,7 +19269,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 66.04 175.26 0)
+			(at 52.07 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16711,7 +19280,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 66.04 175.26 0)
+			(at 52.07 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16722,7 +19291,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 66.04 175.26 0)
+			(at 52.07 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16746,7 +19315,7 @@
 	)
 	(symbol
 		(lib_id "plm:GRM155R71H104KE14J")
-		(at 55.88 175.26 0)
+		(at 41.91 175.26 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -16756,7 +19325,7 @@
 		(dnp no)
 		(uuid "d8223587-b341-51a8-8fae-fe4c800a6cd0")
 		(property "Reference" "C153"
-			(at 57.404 179.324 0)
+			(at 43.434 179.324 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -16767,7 +19336,7 @@
 			)
 		)
 		(property "Value" "0.1uF"
-			(at 57.404 180.086 0)
+			(at 43.434 180.086 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -16778,7 +19347,7 @@
 			)
 		)
 		(property "Footprint" "capacitor:MURATA-0402"
-			(at 55.88 175.26 0)
+			(at 41.91 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16790,7 +19359,7 @@
 			)
 		)
 		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155r71h104ke14.pdf"
-			(at 55.88 175.26 0)
+			(at 41.91 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16802,7 +19371,7 @@
 			)
 		)
 		(property "Description" "Capacitor, MLCC"
-			(at 55.88 175.26 0)
+			(at 41.91 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16814,7 +19383,7 @@
 			)
 		)
 		(property "Manufacturer" "Murata"
-			(at 55.88 175.26 0)
+			(at 41.91 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16826,7 +19395,7 @@
 			)
 		)
 		(property "Dielectric" "X7R"
-			(at 55.88 175.26 0)
+			(at 41.91 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16838,7 +19407,7 @@
 			)
 		)
 		(property "DigiKey_Part" "490-13342-2-ND"
-			(at 55.88 175.26 0)
+			(at 41.91 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16850,7 +19419,7 @@
 			)
 		)
 		(property "IPN" "CE-CAP-00024"
-			(at 55.88 175.26 0)
+			(at 41.91 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16862,7 +19431,7 @@
 			)
 		)
 		(property "MPN" "GRM155R71H104KE14J"
-			(at 55.88 175.26 0)
+			(at 41.91 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16874,7 +19443,7 @@
 			)
 		)
 		(property "Mouser_Part" "81-GRM155R71H104KE4J"
-			(at 55.88 175.26 0)
+			(at 41.91 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16886,7 +19455,7 @@
 			)
 		)
 		(property "Package" "0402"
-			(at 55.88 175.26 0)
+			(at 41.91 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16898,7 +19467,7 @@
 			)
 		)
 		(property "Tolerance" "10%"
-			(at 55.88 175.26 0)
+			(at 41.91 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16910,7 +19479,7 @@
 			)
 		)
 		(property "Voltage_Rating" "50 VDC"
-			(at 55.88 175.26 0)
+			(at 41.91 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16922,7 +19491,7 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 55.88 175.26 0)
+			(at 41.91 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16950,7 +19519,7 @@
 	)
 	(symbol
 		(lib_id "plm:TC2030-IDC-NL")
-		(at 135.89 78.74 0)
+		(at 135.89 63.5 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -16961,7 +19530,7 @@
 		(fields_autoplaced yes)
 		(uuid "da9d5a3a-6e1b-45fe-9202-7114ffa158cb")
 		(property "Reference" "Z2"
-			(at 149.86 83.8199 0)
+			(at 149.86 68.5799 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -16972,7 +19541,7 @@
 			)
 		)
 		(property "Value" "TC2030-IDC-NL"
-			(at 149.86 86.3599 0)
+			(at 149.86 71.1199 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -16983,7 +19552,7 @@
 			)
 		)
 		(property "Footprint" "pcb:PCB-TAG-TC2030-IDC-NL"
-			(at 135.89 78.74 0)
+			(at 135.89 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16995,7 +19564,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 135.89 78.74 0)
+			(at 135.89 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17006,7 +19575,7 @@
 			)
 		)
 		(property "Description" "SWD Programming Pad Pattern, Tag-Connect"
-			(at 135.89 78.74 0)
+			(at 135.89 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17018,7 +19587,7 @@
 			)
 		)
 		(property "IPN" "CE-PCB-00002"
-			(at 135.89 78.74 0)
+			(at 135.89 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17029,7 +19598,7 @@
 			)
 		)
 		(property "MPN" "N/A"
-			(at 135.89 78.74 0)
+			(at 135.89 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17040,7 +19609,7 @@
 			)
 		)
 		(property "Manufacturer" "N/A"
-			(at 135.89 78.74 0)
+			(at 135.89 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17051,7 +19620,7 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 135.89 78.74 0)
+			(at 135.89 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17090,7 +19659,7 @@
 	)
 	(symbol
 		(lib_id "plm:GRM155R71H104KE14J")
-		(at 86.36 175.26 0)
+		(at 72.39 175.26 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -17100,7 +19669,7 @@
 		(dnp no)
 		(uuid "dfe172dc-af84-559d-8739-c76080064f1e")
 		(property "Reference" "C156"
-			(at 87.884 179.324 0)
+			(at 73.914 179.324 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -17111,7 +19680,7 @@
 			)
 		)
 		(property "Value" "0.1uF"
-			(at 87.884 180.086 0)
+			(at 73.914 180.086 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -17122,7 +19691,7 @@
 			)
 		)
 		(property "Footprint" "capacitor:MURATA-0402"
-			(at 86.36 175.26 0)
+			(at 72.39 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17134,7 +19703,7 @@
 			)
 		)
 		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155r71h104ke14.pdf"
-			(at 86.36 175.26 0)
+			(at 72.39 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17146,7 +19715,7 @@
 			)
 		)
 		(property "Description" "Capacitor, MLCC"
-			(at 86.36 175.26 0)
+			(at 72.39 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17158,7 +19727,7 @@
 			)
 		)
 		(property "Manufacturer" "Murata"
-			(at 86.36 175.26 0)
+			(at 72.39 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17170,7 +19739,7 @@
 			)
 		)
 		(property "Dielectric" "X7R"
-			(at 86.36 175.26 0)
+			(at 72.39 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17182,7 +19751,7 @@
 			)
 		)
 		(property "DigiKey_Part" "490-13342-2-ND"
-			(at 86.36 175.26 0)
+			(at 72.39 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17194,7 +19763,7 @@
 			)
 		)
 		(property "IPN" "CE-CAP-00024"
-			(at 86.36 175.26 0)
+			(at 72.39 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17206,7 +19775,7 @@
 			)
 		)
 		(property "MPN" "GRM155R71H104KE14J"
-			(at 86.36 175.26 0)
+			(at 72.39 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17218,7 +19787,7 @@
 			)
 		)
 		(property "Mouser_Part" "81-GRM155R71H104KE4J"
-			(at 86.36 175.26 0)
+			(at 72.39 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17230,7 +19799,7 @@
 			)
 		)
 		(property "Package" "0402"
-			(at 86.36 175.26 0)
+			(at 72.39 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17242,7 +19811,7 @@
 			)
 		)
 		(property "Tolerance" "10%"
-			(at 86.36 175.26 0)
+			(at 72.39 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17254,7 +19823,7 @@
 			)
 		)
 		(property "Voltage_Rating" "50 VDC"
-			(at 86.36 175.26 0)
+			(at 72.39 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17266,7 +19835,7 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 86.36 175.26 0)
+			(at 72.39 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17563,7 +20132,7 @@
 	)
 	(symbol
 		(lib_id "general:VCC")
-		(at 86.36 175.26 180)
+		(at 72.39 175.26 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -17573,7 +20142,7 @@
 		(dnp no)
 		(uuid "e3acafa9-1d89-5099-a172-88220a587502")
 		(property "Reference" "#PWR0724"
-			(at 86.36 171.45 0)
+			(at 72.39 171.45 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17584,7 +20153,7 @@
 			)
 		)
 		(property "Value" "3V3_LIM"
-			(at 86.36 171.45 0)
+			(at 72.39 171.45 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -17594,7 +20163,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 86.36 175.26 0)
+			(at 72.39 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17605,7 +20174,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 86.36 175.26 0)
+			(at 72.39 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17616,7 +20185,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 86.36 175.26 0)
+			(at 72.39 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17640,7 +20209,7 @@
 	)
 	(symbol
 		(lib_id "plm:GRM155R71H104KE14J")
-		(at 163.83 133.35 0)
+		(at 165.1 175.26 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -17650,7 +20219,7 @@
 		(dnp no)
 		(uuid "e656f5f6-814c-5ec7-992f-215dd19bda28")
 		(property "Reference" "C163"
-			(at 166.116 137.414 0)
+			(at 167.386 179.324 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -17661,7 +20230,7 @@
 			)
 		)
 		(property "Value" "0.1uF"
-			(at 166.116 138.176 0)
+			(at 167.386 180.086 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -17672,7 +20241,7 @@
 			)
 		)
 		(property "Footprint" "capacitor:MURATA-0402"
-			(at 163.83 133.35 0)
+			(at 165.1 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17684,7 +20253,7 @@
 			)
 		)
 		(property "Datasheet" "${ECAD_LIB}/parts/capacitors/datasheets/grm155r71h104ke14.pdf"
-			(at 163.83 133.35 0)
+			(at 165.1 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17696,7 +20265,7 @@
 			)
 		)
 		(property "Description" "Capacitor, MLCC"
-			(at 163.83 133.35 0)
+			(at 165.1 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17708,7 +20277,7 @@
 			)
 		)
 		(property "Manufacturer" "Murata"
-			(at 163.83 133.35 0)
+			(at 165.1 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17720,7 +20289,7 @@
 			)
 		)
 		(property "Dielectric" "X7R"
-			(at 163.83 133.35 0)
+			(at 165.1 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17732,7 +20301,7 @@
 			)
 		)
 		(property "DigiKey_Part" "490-13342-2-ND"
-			(at 163.83 133.35 0)
+			(at 165.1 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17744,7 +20313,7 @@
 			)
 		)
 		(property "IPN" "CE-CAP-00024"
-			(at 163.83 133.35 0)
+			(at 165.1 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17756,7 +20325,7 @@
 			)
 		)
 		(property "MPN" "GRM155R71H104KE14J"
-			(at 163.83 133.35 0)
+			(at 165.1 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17768,7 +20337,7 @@
 			)
 		)
 		(property "Mouser_Part" "81-GRM155R71H104KE4J"
-			(at 163.83 133.35 0)
+			(at 165.1 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17780,7 +20349,7 @@
 			)
 		)
 		(property "Package" "0402"
-			(at 163.83 133.35 0)
+			(at 165.1 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17792,7 +20361,7 @@
 			)
 		)
 		(property "Tolerance" "10%"
-			(at 163.83 133.35 0)
+			(at 165.1 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17804,7 +20373,7 @@
 			)
 		)
 		(property "Voltage_Rating" "50 VDC"
-			(at 163.83 133.35 0)
+			(at 165.1 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17816,7 +20385,7 @@
 			)
 		)
 		(property "plm_unused_last_field" ""
-			(at 163.83 133.35 0)
+			(at 165.1 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17844,7 +20413,7 @@
 	)
 	(symbol
 		(lib_id "general:GND")
-		(at 123.19 88.9 0)
+		(at 123.19 73.66 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -17854,7 +20423,7 @@
 		(dnp no)
 		(uuid "e6ab9db2-7d8e-4158-8d72-1833813a2841")
 		(property "Reference" "#PWR0810"
-			(at 123.19 92.71 0)
+			(at 123.19 77.47 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17865,7 +20434,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 123.19 94.234 0)
+			(at 123.19 78.994 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -17875,7 +20444,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 123.19 88.9 0)
+			(at 123.19 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17886,7 +20455,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 123.19 88.9 0)
+			(at 123.19 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -17897,7 +20466,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 123.19 88.9 0)
+			(at 123.19 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -18415,7 +20984,7 @@
 	)
 	(symbol
 		(lib_id "general:VCC")
-		(at 35.56 175.26 180)
+		(at 21.59 175.26 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -18425,7 +20994,7 @@
 		(dnp no)
 		(uuid "f081d19f-5004-5ff6-84dc-ac23eecd2620")
 		(property "Reference" "#PWR0714"
-			(at 35.56 171.45 0)
+			(at 21.59 171.45 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -18436,7 +21005,7 @@
 			)
 		)
 		(property "Value" "3V3_LIM"
-			(at 35.56 171.45 0)
+			(at 21.59 171.45 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -18446,7 +21015,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 35.56 175.26 0)
+			(at 21.59 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -18457,7 +21026,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 35.56 175.26 0)
+			(at 21.59 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -18468,7 +21037,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 35.56 175.26 0)
+			(at 21.59 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -18492,7 +21061,7 @@
 	)
 	(symbol
 		(lib_id "general:GND")
-		(at 116.84 184.15 0)
+		(at 102.87 184.15 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -18502,7 +21071,7 @@
 		(dnp no)
 		(uuid "f7f273a5-1d2e-59b8-84c0-15e3b9e6e51e")
 		(property "Reference" "#PWR0731"
-			(at 116.84 187.96 0)
+			(at 102.87 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -18513,7 +21082,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 116.84 189.484 0)
+			(at 102.87 189.484 0)
 			(show_name no)
 			(do_not_autoplace yes)
 			(effects
@@ -18523,7 +21092,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 116.84 184.15 0)
+			(at 102.87 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -18534,7 +21103,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 116.84 184.15 0)
+			(at 102.87 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -18545,7 +21114,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 116.84 184.15 0)
+			(at 102.87 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
