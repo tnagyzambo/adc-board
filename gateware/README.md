@@ -165,7 +165,10 @@ make image
 ```
 
 This installs Diamond into a `linux/amd64` Ubuntu 22.04 image and adds GHDL.
-It takes ten minutes or more, mostly unpacking. The installer is mounted for
+It takes ten minutes or more, mostly unpacking, during which the installer
+can print nothing for minutes at a time; `docker stats` in another terminal
+shows whether it is still busy. The full output is saved in
+`build/image.log`. The installer is mounted for
 the build only, so it does not end up as a layer of the image.
 `docker/install-diamond.sh` unpacks an `.rpm` without running its scripts,
 and runs a `.run` unattended with the options of the tool that packaged it,

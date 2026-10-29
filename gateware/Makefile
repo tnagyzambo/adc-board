@@ -132,7 +132,9 @@ image:
 	  echo "copy or move the installer itself into docker/installer/"; \
 	  exit 1; \
 	fi
-	docker build --platform linux/amd64 -t $(IMAGE) docker
+	@mkdir -p $(BUILD)
+	set -o pipefail; docker build --progress=plain --platform linux/amd64 -t $(IMAGE) docker \
+	  2>&1 | tee $(BUILD)/image.log
 
 # Describe the Diamond installer in docker/installer/ without installing it.
 installer-info:
