@@ -79,7 +79,9 @@ The pinout is not in this list: it was taken from the pad nets of U50 in
 ```
 gateware/
 ├── Makefile                  container targets (sim, build) and native ones (prog, wave, ...)
-├── constraints/e003_top.lpf  Diamond preferences: sysCONFIG, banks, timing, pins
+├── constraints/
+│   ├── e003_top.lpf          Diamond preferences: sysCONFIG, banks, timing, pins
+│   └── e003_top.ldc          clocks for LSE, which does not read the LPF
 ├── diamond/build.tcl         Diamond batch flow, run by `make build`
 ├── docker/
 │   ├── Dockerfile            the build image: Diamond and GHDL
@@ -99,7 +101,7 @@ gateware/
 ├── sim/
 │   ├── tb_e003_top.vhd       self-checking testbench (VHDL-2008)
 │   ├── adc_model.vhd         behavioural ADS127L14 register port
-│   └── osch_sim.vhd          stand-in for the MachXO2 internal oscillator
+│   └── lattice_prims.vhd     stand-ins for the MachXO2 primitives (OSCH, GSR)
 └── tools/e003_probe.py       bench probe: FT232H as SPI master, via pyftdi
 ```
 
@@ -271,9 +273,22 @@ results are:
 | `build/reports/*.twr` | Timing report: every constraint must be met |
 | `build/diamond.log` | Diamond's full output |
 
-Check in the `.twr` that there are no timing errors and that the constraints
-cover the internal oscillator (`clk`, 24.18 MHz), `sync_clk_i` and
-`host_sclk_i`. To use Synplify Pro instead of LSE:
+The build ends with a summary of the resources used and of the routed
+design's timing, both read from Diamond's reports; `Timing errors: 0 (setup),
+0 (hold)` is what to look for. The first image used 1263 of 4320 LUTs and
+met timing with 28 ns of slack.
+
+A few warnings are expected and harmless:
+
+- *The SN pin is not available for use as a general purpose I/O pin when the
+  SLAVE_SPI_PORT attribute is enabled.* The slave SPI port is enabled on
+  purpose (GW-8), and the board's chip select drives SN.
+- *Bit 0 of Register u_meter/khz_q is stuck at Zero.* The SYNC_CLK
+  measurement counts in steps of 2 kHz.
+- *The following clock signals will be routed by using generic routing
+  resource*, for `SYNC_CLK`. Only the frequency counter uses it as a clock
+  here, so skew does not matter. It will once the converters run from it
+  (OI-7). To use Synplify Pro instead of LSE:
 
 ```bash
 make build SYNTH=synplify

@@ -9,6 +9,7 @@
 #   E003_SYNTH    lse (Lattice Synthesis Engine) or synplify (Synplify Pro)
 #   E003_OUT      project directory, created afresh by the Makefile
 #   E003_LPF      preference file
+#   E003_LDC      LSE timing constraints, used when E003_SYNTH is lse
 #   E003_SOURCES  VHDL sources, space separated
 #
 # The project is recreated on every build, so nothing in it is ever edited
@@ -28,6 +29,7 @@ set synth   [env_or_die E003_SYNTH]
 set out     [env_or_die E003_OUT]
 set lpf     [env_or_die E003_LPF]
 set sources [env_or_die E003_SOURCES]
+set ldc     [env_or_die E003_LDC]
 set impl    impl1
 
 if {[catch {
@@ -36,6 +38,11 @@ if {[catch {
   prj_project new -name $top -impl $impl -dev $device -synthesis $synth -lpf $lpf
   foreach src $sources {
     prj_src add $src
+  }
+  # Without its own constraints LSE assumes 200 MHz for every clock, and
+  # its timing report then fails by the thousand.
+  if {$synth eq "lse"} {
+    prj_src add $ldc
   }
   prj_impl option top $top
   prj_project save
@@ -46,10 +53,9 @@ if {[catch {
   prj_run Translate -impl $impl
   puts "=== Map"
   prj_run Map -impl $impl
-  puts "=== Place and route"
+  # Place and route runs the timing analysis (trce) itself.
+  puts "=== Place and route, timing analysis"
   prj_run PAR -impl $impl
-  puts "=== Timing analysis"
-  prj_run PAR -impl $impl -task PARTrace
   puts "=== Bitstream and JEDEC"
   prj_run Export -impl $impl -task Bitgen
   prj_run Export -impl $impl -task Jedecgen

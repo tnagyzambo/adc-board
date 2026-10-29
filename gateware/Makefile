@@ -21,6 +21,7 @@ SHELL := /bin/bash
 TOP    := e003_top
 DEVICE := LCMXO2-4000HC-4QN84C
 LPF    := constraints/$(TOP).lpf
+LDC    := constraints/$(TOP).ldc
 BUILD  := build
 
 # Diamond's synthesis engine: lse (Lattice Synthesis Engine) or synplify.
@@ -52,7 +53,7 @@ RTL := \
 	rtl/$(TOP).vhd
 
 SIM := \
-	sim/osch_sim.vhd \
+	sim/lattice_prims.vhd \
 	sim/adc_model.vhd \
 	sim/tb_$(TOP).vhd
 
@@ -104,7 +105,7 @@ build: $(GEN_PKG)
 	mkdir -p $(BUILD)/diamond $(BUILD)/reports
 	set -o pipefail; \
 	E003_TOP=$(TOP) E003_DEVICE=$(DEVICE) E003_SYNTH=$(SYNTH) \
-	E003_OUT=$(abspath $(BUILD)/diamond) E003_LPF=$(abspath $(LPF)) \
+	E003_OUT=$(abspath $(BUILD)/diamond) E003_LPF=$(abspath $(LPF)) E003_LDC=$(abspath $(LDC)) \
 	E003_SOURCES="$(abspath $(RTL))" \
 	pnmainc diamond/build.tcl 2>&1 | tee $(BUILD)/diamond.log
 	cp $(BUILD)/diamond/impl1/*.bit $(BIT)
@@ -114,7 +115,11 @@ build: $(GEN_PKG)
 	@echo
 	@echo "Built $(BIT) and $(JED), build ID 0x$(GIT_HASH)$(if $(filter 1,$(GIT_DIRTY)), (uncommitted changes))"
 	@echo "Reports: $(BUILD)/reports/ (.mrp map and utilisation, .par placement, .twr timing)"
-	@grep -h -i -E "timing errors|constraints cover" $(BUILD)/reports/*.twr 2>/dev/null | sort -u || true
+	@echo
+	@echo "Resources (map report):"
+	@grep -h -E "Number of (LUT4s|registers|SLICEs|PIO sites used):" $(BUILD)/diamond/impl1/$(TOP)_impl1.mrp | sed 's/^ */  /' || true
+	@echo "Timing of the routed design (trce):"
+	@grep -h -E "^Timing errors: .*\(setup\)|^Constraints cover" $(BUILD)/diamond/impl1/$(TOP)_impl1.twr | sort -u | sed 's/^/  /' || true
 
 endif
 

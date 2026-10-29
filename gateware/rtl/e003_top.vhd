@@ -75,6 +75,10 @@ architecture rtl of e003_top is
     );
   end component;
 
+  component GSR is
+    port (GSR : in std_logic);  -- active low
+  end component;
+
   -- Synplify Pro takes the oscillator frequency from this attribute, LSE
   -- and simulation from the generic; they must agree.
   attribute NOM_FREQ : string;
@@ -142,6 +146,13 @@ begin
   u_osc : OSCH
     generic map (NOM_FREQ => C_OSCH_NOM_FREQ)
     port map (STDBY => '0', OSC => clk, SEDSTDBY => open);
+
+  -- The global set/reset, held inactive. Without an instance the synthesis
+  -- tool promotes the widest asynchronous reset to GSR, and here that is
+  -- the host chip select, which resets the SPI logic while it is high: the
+  -- GSR network is too slow to release before the host's first SCLK edge.
+  -- Configuration still clears every flip-flop.
+  u_gsr : GSR port map (GSR => '1');
 
   -- Configuration clears every flip-flop, so the counter starts at zero
   -- whether or not the tools keep the initial values.
