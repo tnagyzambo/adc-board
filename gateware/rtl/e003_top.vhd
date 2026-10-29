@@ -147,11 +147,9 @@ begin
     generic map (NOM_FREQ => C_OSCH_NOM_FREQ)
     port map (STDBY => '0', OSC => clk, SEDSTDBY => open);
 
-  -- The global set/reset, held inactive. Without an instance the synthesis
-  -- tool promotes the widest asynchronous reset to GSR, and here that is
-  -- the host chip select, which resets the SPI logic while it is high: the
-  -- GSR network is too slow to release before the host's first SCLK edge.
-  -- Configuration still clears every flip-flop.
+  -- The global set/reset, held inactive. Configuration still clears every
+  -- flip-flop. The design has no asynchronous reset for the tools to promote
+  -- to GSR either (see host_spi_slave).
   u_gsr : GSR port map (GSR => '1');
 
   -- Configuration clears every flip-flop, so the counter starts at zero

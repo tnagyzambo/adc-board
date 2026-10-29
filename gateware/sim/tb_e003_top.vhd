@@ -205,6 +205,28 @@ begin
     read_regs(16#0A#, 1);
     expect(rx(0), x"C3", "SCRATCH");
 
+    -- Frame boundaries without an asynchronous reset: a frame abandoned
+    -- after three bits, then a chip-select pulse with no clock at all, must
+    -- leave the next frame starting cleanly.
+    cs_n <= '0';
+    wait for C_SPI_HALF;
+    for i in 0 to 2 loop
+      mosi <= '1';
+      wait for C_SPI_HALF;
+      sclk <= '1';
+      wait for C_SPI_HALF;
+      sclk <= '0';
+    end loop;
+    wait for C_SPI_HALF;
+    cs_n <= '1';
+    wait for 1 us;
+    cs_n <= '0';
+    wait for 1 us;
+    cs_n <= '1';
+    wait for 1 us;
+    read_regs(16#0A#, 1);
+    expect(rx(0), x"C3", "SCRATCH after an abandoned and an empty frame");
+
     -- Channel supply is off after configuration
     assert adc_en = '0' report "ADC_EN high at start" severity failure;
     read_regs(16#10#, 1);

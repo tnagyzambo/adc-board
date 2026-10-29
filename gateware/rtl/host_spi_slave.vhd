@@ -1,9 +1,8 @@
 -- Host SPI peripheral: the board's register interface on SPI0.
 --
 -- SPI mode 0: SCLK idles low, both sides sample on the rising edge and
--- change on the falling edge. The logic runs on SCLK itself, held in reset
--- while the chip select is high, so it keeps up with any SCLK the pins
--- allow and needs no oversampling.
+-- change on the falling edge. The logic runs on SCLK itself, so it keeps up
+-- with any SCLK the pins allow and needs no oversampling.
 --
 --   Read:  CS low, C_HOST_CMD_READ,  address, one dummy byte, then data
 --          from address, address + 1, ... for as long as SCLK runs.
@@ -11,6 +10,16 @@
 --          address, address + 1, ...
 --
 -- MISO carries zeros during the command, address and dummy bytes.
+--
+-- Nothing here has an asynchronous reset. Resetting the SCLK logic from the
+-- chip select would make it the design's widest asynchronous reset, which
+-- Diamond's synthesis and map then promote to the global set/reset, and GSR
+-- releases too slowly for the host's first SCLK edge. Instead a counter
+-- clocked by the rising chip select counts frames, and the first SCLK edge
+-- that sees the count changed starts from the reset state. The count has
+-- long settled by then: the chip select stays high, and then low, for a
+-- while before the next SCLK edge. Only sixteen frames in a row with no SCLK
+-- edge at all could hide a frame boundary.
 --
 -- The register file lives in the system clock domain. Reads are taken
 -- straight from it a full byte before they are shifted out; every register
@@ -46,16 +55,20 @@ end entity;
 
 architecture rtl of host_spi_slave is
 
-  -- SCLK domain
-  signal bit_cnt  : unsigned(2 downto 0) := (others => '0');
-  signal byte_idx : unsigned(1 downto 0) := (others => '0');  -- saturates at 3
-  signal shift_in : std_logic_vector(6 downto 0) := (others => '0');
-  signal cmd      : byte_t := (others => '0');
-  signal ptr      : unsigned(7 downto 0) := (others => '0');
-  signal tx_shift : byte_t := (others => '0');
-  signal miso_q   : std_logic := '0';
+  -- Chip-select domain: frames finished
+  signal frames : unsigned(3 downto 0) := (others => '0');
 
-  -- Write handshake, SCLK domain, not reset by the chip select
+  -- SCLK domain
+  signal frames_seen : unsigned(3 downto 0) := (others => '0');
+  signal bit_cnt     : unsigned(2 downto 0) := (others => '0');
+  signal byte_idx    : unsigned(1 downto 0) := (others => '0');  -- saturates at 3
+  signal shift_in    : std_logic_vector(6 downto 0) := (others => '0');
+  signal cmd         : byte_t := (others => '0');
+  signal ptr         : unsigned(7 downto 0) := (others => '0');
+  signal tx_shift    : byte_t := (others => '0');
+  signal miso_q      : std_logic := '0';
+
+  -- Write handshake, SCLK domain
   signal wr_tgl    : std_logic := '0';
   signal wr_addr_s : unsigned(7 downto 0) := (others => '0');
   signal wr_data_s : byte_t := (others => '0');
@@ -69,63 +82,81 @@ begin
   miso    <= miso_q;
   miso_oe <= not cs_n;
 
-  -- Receive, address and load the transmit byte on the rising edge.
-  rx : process (sclk, cs_n)
-    variable b : byte_t;
+  frame_count : process (cs_n)
   begin
-    if cs_n = '1' then
-      bit_cnt  <= (others => '0');
-      byte_idx <= (others => '0');
-      shift_in <= (others => '0');
-      cmd      <= (others => '0');
-      ptr      <= (others => '0');
-      tx_shift <= (others => '0');
-    elsif rising_edge(sclk) then
-      b        := shift_in & mosi;
-      shift_in <= b(6 downto 0);
-      bit_cnt  <= bit_cnt + 1;
-      tx_shift <= tx_shift(6 downto 0) & '0';
-
-      if bit_cnt = 7 then
-        if byte_idx /= 3 then
-          byte_idx <= byte_idx + 1;
-        end if;
-
-        if byte_idx = 0 then
-          cmd <= b;
-        elsif byte_idx = 1 then
-          ptr <= unsigned(b);
-        elsif cmd = C_HOST_CMD_READ then
-          -- The byte just finished is the dummy byte or a data byte, and the
-          -- next byte out is the register at ptr.
-          tx_shift <= rd_data;
-          ptr      <= ptr + 1;
-        elsif cmd = C_HOST_CMD_WRITE then
-          -- The byte just finished is data for the register at ptr.
-          ptr <= ptr + 1;
-        end if;
-      end if;
+    if rising_edge(cs_n) then
+      frames <= frames + 1;
     end if;
   end process;
 
-  -- Write capture, outside the chip-select reset so the toggle survives it.
-  wr : process (sclk)
+  -- Receive, address, load the transmit byte and capture writes on the
+  -- rising edge.
+  rx : process (sclk)
+    variable bc : unsigned(2 downto 0);
+    variable bi : unsigned(1 downto 0);
+    variable si : std_logic_vector(6 downto 0);
+    variable c  : byte_t;
+    variable p  : unsigned(7 downto 0);
+    variable tx : byte_t;
+    variable b  : byte_t;
   begin
     if rising_edge(sclk) then
-      if cs_n = '0' and bit_cnt = 7 and byte_idx(1) = '1' and cmd = C_HOST_CMD_WRITE then
-        wr_addr_s <= ptr;
-        wr_data_s <= shift_in & mosi;
-        wr_tgl    <= not wr_tgl;
+      bc := bit_cnt;
+      bi := byte_idx;
+      si := shift_in;
+      c  := cmd;
+      p  := ptr;
+      tx := tx_shift;
+      -- The first edge of a frame starts from the reset state.
+      if frames /= frames_seen then
+        bc := (others => '0');
+        bi := (others => '0');
+        si := (others => '0');
+        c  := (others => '0');
+        p  := (others => '0');
+        tx := (others => '0');
+      end if;
+      frames_seen <= frames;
+
+      b        := si & mosi;
+      shift_in <= b(6 downto 0);
+      bit_cnt  <= bc + 1;
+      byte_idx <= bi;
+      cmd      <= c;
+      ptr      <= p;
+      tx_shift <= tx(6 downto 0) & '0';
+
+      if bc = 7 then
+        if bi /= 3 then
+          byte_idx <= bi + 1;
+        end if;
+
+        if bi = 0 then
+          cmd <= b;
+        elsif bi = 1 then
+          ptr <= unsigned(b);
+        elsif c = C_HOST_CMD_READ then
+          -- The byte just finished is the dummy byte or a data byte, and the
+          -- next byte out is the register at ptr.
+          tx_shift <= rd_data;
+          ptr      <= p + 1;
+        elsif c = C_HOST_CMD_WRITE then
+          -- The byte just finished is data for the register at ptr.
+          ptr       <= p + 1;
+          wr_addr_s <= p;
+          wr_data_s <= b;
+          wr_tgl    <= not wr_tgl;
+        end if;
       end if;
     end if;
   end process;
 
   -- Transmit on the falling edge, half a period ahead of the host's sample.
-  tx : process (sclk, cs_n)
+  -- Until the first rising edge of a frame this repeats the previous
+  -- frame's last bit, which falls in the command byte, where MISO is unused.
+  tx : process (sclk)
   begin
-    if cs_n = '1' then
-      miso_q <= '0';
-    elsif falling_edge(sclk) then
+    if falling_edge(sclk) then
       miso_q <= tx_shift(7);
     end if;
   end process;

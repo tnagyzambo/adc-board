@@ -276,7 +276,9 @@ results are:
 The build ends with a summary of the resources used and of the routed
 design's timing, both read from Diamond's reports; `Timing errors: 0 (setup),
 0 (hold)` is what to look for. The first image used 1263 of 4320 LUTs and
-met timing with 28 ns of slack.
+met timing with 28 ns of slack. Neither synthesis nor map should report
+using a signal as the global set/reset (GSR): the design has no asynchronous
+reset, and holds its GSR instance inactive.
 
 A few warnings are expected and harmless:
 

@@ -28,13 +28,16 @@ BANK 4 VCCIO 1.8 V;
 
 # --- Timing -----------------------------------------------------------------
 #
-# clk is the internal oscillator (OSCH). The host SPI runs on its own SCLK;
-# reads cross from the clk domain into it, writes cross back through a
-# synchroniser (see host_spi_slave.vhd), so paths between the domains are
-# not timed. Inputs are asynchronous to every clock.
+# clk is the internal oscillator (OSCH). The host SPI runs on its own SCLK,
+# with a frame counter clocked by the chip select. Reads cross from the clk
+# domain into it, writes cross back through a synchroniser, and the frame
+# count has settled long before SCLK samples it (see host_spi_slave.vhd), so
+# paths between the domains are not timed. Inputs are asynchronous to every
+# clock.
 FREQUENCY NET  "clk"         24.18 MHz;
 FREQUENCY PORT "sync_clk_i"  8.192 MHz;
 FREQUENCY PORT "host_sclk_i" 20 MHz;
+FREQUENCY PORT "host_cs_n_i" 20 MHz;
 BLOCK INTERCLOCKDOMAIN PATHS;
 BLOCK ASYNCPATHS;
 BLOCK RESETPATHS;

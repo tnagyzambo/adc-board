@@ -3,13 +3,16 @@
 # map, place and route and trce use; LSE reads only this file.
 #
 # clk is the internal oscillator, 24.18 MHz. host_sclk is the host's SPI
-# clock, up to 20 MHz. sync_clk is SYNC_CLK, 8.192 MHz. The domains meet
+# clock, up to 20 MHz. sync_clk is SYNC_CLK, 8.192 MHz. host_cs is the
+# host's chip select, which clocks the frame counter. The domains meet
 # only through synchronisers or quasi-static registers (host_spi_slave.vhd),
 # so no path between them is timed.
 
 create_clock -name clk       -period 41.356  [get_nets clk]
 create_clock -name host_sclk -period 50.000  [get_ports host_sclk_i]
 create_clock -name sync_clk  -period 122.070 [get_ports sync_clk_i]
+create_clock -name host_cs   -period 50.000  [get_ports host_cs_n_i]
 
 set_false_path -from [get_clocks clk]       -to [get_clocks host_sclk]
 set_false_path -from [get_clocks host_sclk] -to [get_clocks clk]
+set_false_path -from [get_clocks host_cs]   -to [get_clocks host_sclk]

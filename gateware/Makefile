@@ -94,7 +94,7 @@ $(GEN_PKG): FORCE
 sim: $(GEN_PKG)
 	mkdir -p $(BUILD)/sim
 	cd $(BUILD)/sim && ghdl -a --std=08 $(abspath $(RTL) $(SIM))
-	cd $(BUILD)/sim && ghdl --elab-run --std=08 tb_$(TOP) --fst=$(notdir $(FST))
+	cd $(BUILD)/sim && ghdl --elab-run --std=08 tb_$(TOP) --fst=$(notdir $(FST)) --ieee-asserts=disable-at-0
 
 # Diamond builds a fresh project in build/diamond on every run.
 build: $(GEN_PKG)
