@@ -73,8 +73,57 @@ if [ "$info_only" = 1 ]; then
   exit 0
 fi
 
+# A Qt Installer Framework control script that accepts every default:
+# install everything into $prefix, accept the licence, start nothing at the
+# end, and answer any question box with its default.
+write_ifw_script() {
+  cat > "$1" <<QS
+function Controller() {
+    installer.autoRejectMessageBoxes();
+    installer.setMessageBoxAutomaticAnswer("OverwriteTargetDirectory", QMessageBox.Yes);
+    installer.setMessageBoxAutomaticAnswer("stopProcessesForUpdates", QMessageBox.Ignore);
+    installer.installationFinished.connect(function() {
+        gui.clickButton(buttons.NextButton);
+    });
+}
+
+function clickNext() {
+    gui.clickButton(buttons.NextButton, 1000);
+}
+
+Controller.prototype.WelcomePageCallback = clickNext;
+Controller.prototype.CredentialsPageCallback = clickNext;
+Controller.prototype.IntroductionPageCallback = clickNext;
+Controller.prototype.ReadyForInstallationPageCallback = clickNext;
+Controller.prototype.StartMenuDirectoryPageCallback = clickNext;
+
+Controller.prototype.TargetDirectoryPageCallback = function() {
+    gui.currentPageWidget().TargetDirectoryLineEdit.setText("$prefix");
+    clickNext();
+};
+
+Controller.prototype.ComponentSelectionPageCallback = function() {
+    gui.currentPageWidget().selectAll();
+    clickNext();
+};
+
+Controller.prototype.LicenseAgreementPageCallback = function() {
+    var page = gui.currentPageWidget();
+    if (page.AcceptLicenseRadioButton) page.AcceptLicenseRadioButton.checked = true;
+    if (page.AcceptLicenseCheckBox) page.AcceptLicenseCheckBox.checked = true;
+    clickNext();
+};
+
+Controller.prototype.FinishedPageCallback = function() {
+    var page = gui.currentPageWidget();
+    if (page.RunItCheckBox) page.RunItCheckBox.checked = false;
+    gui.clickButton(buttons.FinishButton);
+};
+QS
+}
+
 work=/tmp/diamond-installer
-mkdir -p "$work" "$prefix"
+mkdir -p "$work"
 
 case "$kind" in
   rpm)
@@ -88,7 +137,7 @@ case "$kind" in
     if [ "${#inner[@]}" -ge 1 ]; then
       for r in "${inner[@]}"; do (cd / && rpm2cpio "$r" | cpio -idm --quiet); done
     else
-      cp -a "$work/x/." "$prefix/"
+      mkdir -p "$prefix" && cp -a "$work/x/." "$prefix/"
     fi
     ;;
   installbuilder)
@@ -96,9 +145,22 @@ case "$kind" in
     "$work/diamond.run" --mode unattended --prefix "$prefix"
     ;;
   qtifw)
+    # Diamond 3.14's installer is built with a Qt Installer Framework too old
+    # for the unattended command-line options, so a control script clicks
+    # through its wizard instead, with no display (the "minimal" platform).
+    # --verbose logs each page; a page the script has no callback for shows
+    # as "Control script callback ... does not exist", and is where an
+    # install that stops responding has stopped. The timeout turns such a
+    # hang into a failed build.
     cp "$installer" "$work/diamond.run" && chmod 755 "$work/diamond.run"
-    QT_QPA_PLATFORM=minimal "$work/diamond.run" --root "$prefix" \
-      --accept-licenses --accept-obligations --default-answer --confirm-command install
+    write_ifw_script "$work/unattended.qs"
+    if ! QT_QPA_PLATFORM=minimal timeout "${DIAMOND_INSTALL_TIMEOUT:-2400}" \
+         "$work/diamond.run" --verbose --script "$work/unattended.qs"; then
+      echo "The Diamond installer failed or stopped responding (see its log above)." >&2
+      echo "A page named in 'Control script callback ... does not exist' near the end" >&2
+      echo "needs a callback in write_ifw_script in docker/install-diamond.sh." >&2
+      exit 1
+    fi
     ;;
   install4j)
     cp "$installer" "$work/diamond.run" && chmod 755 "$work/diamond.run"
