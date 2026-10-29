@@ -115,13 +115,29 @@ endif
 
 # --- On the host --------------------------------------------------------------
 
+# The installer must be a real file in docker/installer/: the image build
+# sees only the docker/ directory, and does not follow symbolic links.
+INSTALLERS := $(wildcard docker/installer/*.run docker/installer/*.rpm)
+STRAY      := $(wildcard diamond/*.run diamond/*.rpm *.run *.rpm)
+
 image:
+	@if [ $(words $(INSTALLERS)) -ne 1 ]; then \
+	  echo "make image: need exactly one Diamond for Linux installer (.run or .rpm)"; \
+	  echo "in gateware/docker/installer/, found $(words $(INSTALLERS)): $(INSTALLERS)"; \
+	  for f in $(STRAY); do echo "  $$f is in the wrong place: mv $$f docker/installer/"; done; \
+	  exit 1; \
+	fi
+	@if [ -L "$(INSTALLERS)" ]; then \
+	  echo "make image: $(INSTALLERS) is a symbolic link, which the image build cannot follow;"; \
+	  echo "copy or move the installer itself into docker/installer/"; \
+	  exit 1; \
+	fi
 	docker build --platform linux/amd64 -t $(IMAGE) docker
 
-# Describe the Diamond installer in docker/diamond/ without installing it.
+# Describe the Diamond installer in docker/installer/ without installing it.
 installer-info:
 	docker run --rm --platform linux/amd64 -v "$(abspath docker):/d:ro" ubuntu:22.04 \
-	  bash /d/install-diamond.sh --info /d/diamond
+	  bash /d/install-diamond.sh --info /d/installer
 
 shell:
 	./docker/run bash

@@ -9,10 +9,10 @@
 # copy of the installer and must never be pushed to a public registry.
 #
 # Build it with `make image` from gateware/, after placing the Diamond for
-# Linux installer (.run or .rpm) in gateware/docker/diamond/ (see
+# Linux installer (.run or .rpm) in gateware/docker/installer/ (see
 # gateware/README.md).
 
-FROM --platform=linux/amd64 ubuntu:22.04
+FROM ubuntu:22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -29,13 +29,13 @@ RUN apt-get update \
       libncurses5 libtinfo5 libusb-0.1-4 libusb-1.0-0 \
  && rm -rf /var/lib/apt/lists/*
 
-# Diamond itself, from the installer in gateware/docker/diamond/: the .run of
+# Diamond itself, from the installer in gateware/docker/installer/: the .run of
 # 3.14 or the .rpm of earlier releases (see install-diamond.sh). The installer
 # is bind-mounted for this step only, so its several GB never land in an
 # image layer. Whatever version it is, /opt/diamond points at it.
 COPY install-diamond.sh /usr/local/bin/install-diamond
-RUN --mount=type=bind,source=diamond,target=/mnt/diamond \
-    bash /usr/local/bin/install-diamond /mnt/diamond \
+RUN --mount=type=bind,source=installer,target=/mnt/installer \
+    bash /usr/local/bin/install-diamond /mnt/installer \
  && test -x /opt/diamond/bin/lin64/pnmainc
 
 # FlexLM, which Diamond uses for its licence check, keeps state in /usr/tmp

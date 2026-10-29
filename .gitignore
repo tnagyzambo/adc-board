@@ -30,3 +30,9 @@ fabrication/
 # Gateware build outputs and Python caches
 gateware/build/
 __pycache__/
+
+# Lattice Diamond installers and licences: never commit them, wherever they are
+*.run
+*.rpm
+gateware/docker/license/*
+!gateware/docker/license/.gitignore

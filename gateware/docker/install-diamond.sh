@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Installs Lattice Diamond for Linux into the image from whichever installer
-# is in the directory given (gateware/docker/diamond/ on the host), then
+# is in the directory given (gateware/docker/installer/ on the host), then
 # points /opt/diamond at the installation.
 #
 #   install-diamond.sh DIR           install
@@ -26,7 +26,7 @@ prefix=/usr/local/diamond/install
 shopt -s nullglob globstar
 installers=("$src"/*.rpm "$src"/*.run)
 if [ "${#installers[@]}" -ne 1 ]; then
-  echo "Put exactly one Diamond for Linux installer (.run or .rpm) in gateware/docker/diamond/;" >&2
+  echo "Put exactly one Diamond for Linux installer (.run or .rpm) in gateware/docker/installer/;" >&2
   echo "found ${#installers[@]}." >&2
   exit 1
 fi

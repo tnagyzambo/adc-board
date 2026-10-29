@@ -86,7 +86,7 @@ gateware/
 │   ├── entrypoint.sh         puts Diamond on the PATH
 │   ├── install-diamond.sh    installs Diamond from a .run or .rpm, at image build
 │   ├── run                   runs a command in the container
-│   ├── diamond/              put the Diamond for Linux installer here (not in git)
+│   ├── installer/            put the Diamond for Linux installer here (not in git)
 │   └── license/              put the Diamond licence here (not in git)
 ├── rtl/
 │   ├── e003_pkg.vhd          constants (including every VERIFY item), CRC-8, hello string
@@ -124,8 +124,10 @@ it at least 4 GB of memory and 20 GB of disk; the image is several GB.
    3.14 is a `.run` installer (`3.14.0.75.2_Diamond_lin.run`), earlier
    releases an `.rpm`; either works. The Linux build is the one wanted even on
    a Mac: it runs in the container.
-2. Put the installer, and only that one, in `gateware/docker/diamond/`. Git
-   ignores it there.
+2. Put the installer, and only that one, in `gateware/docker/installer/`, as
+   the file itself rather than a symbolic link. Not `gateware/diamond/`,
+   which holds the build script. Git ignores installers anywhere in the
+   repository.
 
 ### 3. The Diamond licence
 
@@ -182,7 +184,7 @@ prints `warning: … not found` for a library, note it: it matters only if
 `make build` later fails with "error while loading shared libraries", and
 the fix is to add the package that provides it to `docker/Dockerfile`.
 
-A new Diamond release means its installer in `docker/diamond/` in place of
+A new Diamond release means its installer in `docker/installer/` in place of
 the old one, and `make image` again.
 
 ### 5. Native tools
@@ -460,7 +462,7 @@ And for the build container:
 
 | Symptom | Likely cause |
 |---|---|
-| `make image`: "Put exactly one Diamond for Linux installer" | No `.run` or `.rpm`, or more than one, in `docker/diamond/` |
+| `make image`: "Put exactly one Diamond for Linux installer" | No `.run` or `.rpm`, or more than one, in `docker/installer/`; `make image` names any it finds elsewhere |
 | `make image`: "Unrecognised installer", or the install step fails | Run `make installer-info` and send the output |
 | `make sim`/`build`: "image 'e003-gateware' not found" | Run `make image` first |
 | Diamond: licence or "invalid host" errors | Licence not in `docker/license/`, or its HOSTID is not the MAC the container got; check `DIAMOND_MAC` |
