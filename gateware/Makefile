@@ -97,7 +97,9 @@ sim: $(GEN_PKG)
 
 # Diamond builds a fresh project in build/diamond on every run.
 build: $(GEN_PKG)
-	@test -n "$$LM_LICENSE_FILE" || { echo "No Diamond licence: see README.md, Diamond licence"; exit 1; }
+	@test -n "$$LM_LICENSE_FILE" && test -r "$$LM_LICENSE_FILE" || { \
+	  echo "No Diamond licence in the container: put it in gateware/docker/license/ (README.md, The Diamond licence)"; \
+	  exit 1; }
 	rm -rf $(BUILD)/diamond
 	mkdir -p $(BUILD)/diamond $(BUILD)/reports
 	set -o pipefail; \

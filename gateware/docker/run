@@ -57,6 +57,9 @@ if [ -f "$license" ]; then
   else
     echo "docker/run: no HOSTID in $license and DIAMOND_MAC unset; Diamond will refuse the licence" >&2
   fi
+else
+  echo "docker/run: no Diamond licence ($license, or one .dat or .lic in $here/license/);" >&2
+  echo "            simulation works, Diamond builds will not" >&2
 fi
 
 # On a Linux host, write files as the calling user rather than root. Docker
