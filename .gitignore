@@ -26,3 +26,7 @@ doc-*/*.pdf
 
 # Fabrication outputs, replotted from the board when an order is placed.
 fabrication/
+
+# Gateware build outputs and Python caches
+gateware/build/
+__pycache__/

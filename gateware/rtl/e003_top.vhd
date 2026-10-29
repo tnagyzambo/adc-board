@@ -1,0 +1,349 @@
+-- e003-adc-board bring-up gateware, top level, for the LCMXO2-4000HC-4QN84C.
+--
+-- Enough to show that the FPGA, its clocks, the host SPI lane and both
+-- converters are alive:
+--   * a register file on the host SPI lane, with an identifier, a version,
+--     the build's git hash and a hello-world string;
+--   * the frequency of SYNC_CLK, measured against the internal oscillator;
+--   * on the host's command, the channel supply switched on, both ADS127L14s
+--     released from reset and their ID registers read;
+--   * raw frames to either converter, so that the converter's protocol can
+--     be checked on hardware without rebuilding.
+--
+-- It does not configure the converters, start conversions, set the channel
+-- switches or touch the configuration port, the golden-image flash or the
+-- user flash. Port names follow the schematic nets; the pins are in
+-- constraints/e003_top.lpf.
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+use work.e003_pkg.all;
+
+entity e003_top is
+  generic (
+    G_BUILD_ID          : natural  := 0;  -- git short hash, set by the Makefile
+    G_POWER_WAIT_US     : positive := 20_000;
+    G_RESET_WAIT_US     : positive := 10_000;
+    G_METER_GATE_CYCLES : positive := C_SYS_CLK_HZ / 1000;
+    G_FORWARD_SYNC_CLK  : boolean  := true
+  );
+  port (
+    -- Stack interconnect, through the bus buffer
+    sync_clk_i     : in  std_logic;  -- HOST.CLK,   8.192 MHz
+    sync_start_i   : in  std_logic;  -- HOST.START, idles high
+    host_cs_n_i    : in  std_logic;  -- HOST.CS,    PB7B
+    host_sclk_i    : in  std_logic;  -- HOST.SCLK,  PB13A (PCLKT2_0)
+    host_mosi_i    : in  std_logic;  -- HOST.MOSI,  PB13B
+    host_miso_o    : out std_logic;  -- HOST.MISO,  PB20A, driven only while selected
+    -- Channel supply eFuse
+    adc_en_o       : out std_logic;  -- ADC_EN, pulled down on the board
+    adc_flt_n_i    : in  std_logic;  -- ADC_FLT, open drain, low on a fault
+    -- ADC1, bank 1, 1.8 V
+    adc1_clk_o     : out std_logic;
+    adc1_start_o   : out std_logic;
+    adc1_sclk_o    : out std_logic;
+    adc1_sdi_o     : out std_logic;
+    adc1_cs_n_o    : out std_logic;
+    adc1_sdo_i     : in  std_logic;
+    adc1_dout_i    : in  std_logic;
+    adc1_fsync_i   : in  std_logic;
+    adc1_reset_n_o : out std_logic;
+    -- ADC2, bank 4, 1.8 V
+    adc2_clk_o     : out std_logic;
+    adc2_start_o   : out std_logic;
+    adc2_sclk_o    : out std_logic;
+    adc2_sdi_o     : out std_logic;
+    adc2_cs_n_o    : out std_logic;
+    adc2_sdo_i     : in  std_logic;
+    adc2_dout_i    : in  std_logic;
+    adc2_fsync_i   : in  std_logic;
+    adc2_reset_n_o : out std_logic
+  );
+end entity;
+
+architecture rtl of e003_top is
+
+  component OSCH is
+    generic (NOM_FREQ : string := "2.08");
+    port (
+      STDBY    : in  std_logic;
+      OSC      : out std_logic;
+      SEDSTDBY : out std_logic
+    );
+  end component;
+
+  constant C_CYCLES_PER_MS : natural := C_SYS_CLK_HZ / 1000;
+  constant C_BUILD_ID      : std_logic_vector(31 downto 0) :=
+    std_logic_vector(to_unsigned(G_BUILD_ID, 32));
+  constant C_HELLO_ROM     : byte_array_t(0 to 63) := hello_rom;
+
+  -- SYNC_CLK within +-10 % of 8.192 MHz (GW-10)
+  constant C_SYNC_KHZ_MIN : natural := 7373;
+  constant C_SYNC_KHZ_MAX : natural := 9011;
+
+  signal clk     : std_logic;
+  signal por_cnt : unsigned(3 downto 0) := (others => '0');
+  signal rst     : std_logic := '1';
+
+  -- Host SPI
+  signal miso, miso_oe : std_logic;
+  signal rd_addr       : unsigned(7 downto 0);
+  signal rd_data       : byte_t;
+  signal wr_stb        : std_logic;
+  signal wr_addr       : unsigned(7 downto 0);
+  signal wr_data       : byte_t;
+
+  -- Registers written by the host
+  signal ctrl_supply : std_logic := '0';
+  signal ctrl_crc    : std_logic := '0';
+  signal scratch     : byte_t := x"00";
+  signal raw_sel     : std_logic := '0';
+  signal raw_len     : unsigned(4 downto 0) := to_unsigned(24, 5);
+  signal raw_tx      : std_logic_vector(23 downto 0) := (others => '0');
+  signal id_req      : std_logic := '0';
+  signal raw_go      : std_logic := '0';
+
+  -- Status
+  signal flt_sticky : std_logic := '0';
+  signal pins_meta  : byte_t := (others => '0');
+  signal pins       : byte_t := (others => '0');
+  signal sync_khz   : unsigned(15 downto 0);
+  signal sync_ok    : std_logic;
+  signal status     : byte_t;
+
+  -- Converters
+  signal supply_en   : std_logic;
+  signal adc_reset_n : std_logic;
+  signal adc_sclk    : std_logic_vector(1 downto 0);
+  signal adc_sdi     : std_logic_vector(1 downto 0);
+  signal adc_cs_n    : std_logic_vector(1 downto 0);
+  signal raw_rx      : std_logic_vector(23 downto 0);
+  signal raw_busy    : std_logic;
+  signal raw_done    : std_logic;
+  signal id_valid    : std_logic;
+  signal adc_ready   : std_logic;
+  signal adc_state   : byte_t;
+  signal id_resp     : byte_array_t(0 to 17);
+
+begin
+
+  ---------------------------------------------------------------------------
+  -- Clock and reset
+  ---------------------------------------------------------------------------
+
+  u_osc : OSCH
+    generic map (NOM_FREQ => C_OSCH_NOM_FREQ)
+    port map (STDBY => '0', OSC => clk, SEDSTDBY => open);
+
+  -- Configuration clears every flip-flop, so the counter starts at zero
+  -- whether or not the tools keep the initial values.
+  process (clk)
+  begin
+    if rising_edge(clk) then
+      if por_cnt /= 15 then
+        por_cnt <= por_cnt + 1;
+        rst     <= '1';
+      else
+        rst <= '0';
+      end if;
+    end if;
+  end process;
+
+  ---------------------------------------------------------------------------
+  -- Host SPI
+  ---------------------------------------------------------------------------
+
+  u_host : entity work.host_spi_slave
+    port map (
+      sclk    => host_sclk_i,
+      cs_n    => host_cs_n_i,
+      mosi    => host_mosi_i,
+      miso    => miso,
+      miso_oe => miso_oe,
+      rd_addr => rd_addr,
+      rd_data => rd_data,
+      clk     => clk,
+      rst     => rst,
+      wr_stb  => wr_stb,
+      wr_addr => wr_addr,
+      wr_data => wr_data
+    );
+
+  host_miso_o <= miso when miso_oe = '1' else 'Z';
+
+  -- Register writes
+  process (clk)
+  begin
+    if rising_edge(clk) then
+      id_req <= '0';
+      raw_go <= '0';
+
+      if rst = '1' then
+        ctrl_supply <= '0';
+        ctrl_crc    <= '0';
+        scratch     <= x"00";
+        raw_sel     <= '0';
+        raw_len     <= to_unsigned(24, 5);
+        raw_tx      <= (others => '0');
+        flt_sticky  <= '0';
+      else
+        if wr_stb = '1' then
+          case to_integer(wr_addr) is
+            when 16#07# =>
+              ctrl_supply <= wr_data(0);
+              ctrl_crc    <= wr_data(1);
+              id_req      <= wr_data(2);
+              if wr_data(3) = '1' then
+                flt_sticky <= '0';
+              end if;
+            when 16#0A# => scratch               <= wr_data;
+            when 16#17# => raw_go                <= '1';
+            when 16#18# => raw_sel               <= wr_data(0);
+            when 16#19# => raw_len               <= unsigned(wr_data(4 downto 0));
+            when 16#1A# => raw_tx(23 downto 16)  <= wr_data;
+            when 16#1B# => raw_tx(15 downto 8)   <= wr_data;
+            when 16#1C# => raw_tx(7 downto 0)    <= wr_data;
+            when others => null;
+          end case;
+        end if;
+
+        -- Set after the clear, so a fault present while clearing stays set.
+        if supply_en = '1' and pins(7) = '0' then
+          flt_sticky <= '1';
+        end if;
+      end if;
+    end if;
+  end process;
+
+  -- Register reads. The address comes from the SCLK domain; see
+  -- host_spi_slave for why reading across the domains is acceptable here.
+  process (all)
+    variable a : natural range 0 to 255;
+  begin
+    a       := to_integer(rd_addr);
+    rd_data <= x"00";
+    case a is
+      when 16#00#           => rd_data <= char_byte('E');
+      when 16#01#           => rd_data <= char_byte('0');
+      when 16#02#           => rd_data <= char_byte('0');
+      when 16#03#           => rd_data <= char_byte('3');
+      when 16#04#           => rd_data <= to_byte(C_GW_VERSION_MAJOR);
+      when 16#05#           => rd_data <= to_byte(C_GW_VERSION_MINOR);
+      when 16#06#           => rd_data <= status;
+      when 16#07#           => rd_data <= "000000" & ctrl_crc & ctrl_supply;
+      when 16#08#           => rd_data <= std_logic_vector(sync_khz(15 downto 8));
+      when 16#09#           => rd_data <= std_logic_vector(sync_khz(7 downto 0));
+      when 16#0A#           => rd_data <= scratch;
+      when 16#0B#           => rd_data <= pins;
+      when 16#0C#           => rd_data <= C_BUILD_ID(31 downto 24);
+      when 16#0D#           => rd_data <= C_BUILD_ID(23 downto 16);
+      when 16#0E#           => rd_data <= C_BUILD_ID(15 downto 8);
+      when 16#0F#           => rd_data <= C_BUILD_ID(7 downto 0);
+      when 16#10#           => rd_data <= adc_state;
+      when 16#11#           => rd_data <= id_resp(0 * 9 + 1 * 3 + C_ADC_RESP_BYTE);
+      when 16#12#           => rd_data <= id_resp(0 * 9 + 2 * 3 + C_ADC_RESP_BYTE);
+      when 16#13#           => rd_data <= id_resp(1 * 9 + 1 * 3 + C_ADC_RESP_BYTE);
+      when 16#14#           => rd_data <= id_resp(1 * 9 + 2 * 3 + C_ADC_RESP_BYTE);
+      when 16#18#           => rd_data <= "0000000" & raw_sel;
+      when 16#19#           => rd_data <= "000" & std_logic_vector(raw_len);
+      when 16#1A#           => rd_data <= raw_tx(23 downto 16);
+      when 16#1B#           => rd_data <= raw_tx(15 downto 8);
+      when 16#1C#           => rd_data <= raw_tx(7 downto 0);
+      when 16#1D#           => rd_data <= raw_rx(23 downto 16);
+      when 16#1E#           => rd_data <= raw_rx(15 downto 8);
+      when 16#1F#           => rd_data <= raw_rx(7 downto 0);
+      when 16#20# to 16#28# => rd_data <= id_resp(a - 16#20#);
+      when 16#30# to 16#38# => rd_data <= id_resp(a - 16#30# + 9);
+      when 16#40# to 16#7F# => rd_data <= C_HELLO_ROM(a - 16#40#);
+      when others           => null;
+    end case;
+  end process;
+
+  ---------------------------------------------------------------------------
+  -- Status
+  ---------------------------------------------------------------------------
+
+  u_meter : entity work.clk_meter
+    generic map (G_GATE_CYCLES => G_METER_GATE_CYCLES)
+    port map (clk => clk, rst => rst, meas_clk => sync_clk_i, khz => sync_khz);
+
+  sync_ok <= '1' when sync_khz >= C_SYNC_KHZ_MIN and sync_khz <= C_SYNC_KHZ_MAX else '0';
+
+  -- Live pin levels, for probing at bring-up. The converter lines toggle at
+  -- MHz rates, so a single read shows only whether a line is stuck.
+  process (clk)
+  begin
+    if rising_edge(clk) then
+      pins_meta <= adc_flt_n_i & adc2_sdo_i & adc2_dout_i & adc2_fsync_i
+                 & adc1_sdo_i & adc1_dout_i & adc1_fsync_i & sync_start_i;
+      pins      <= pins_meta;
+    end if;
+  end process;
+
+  status <= adc_ready & sync_ok & raw_done & raw_busy
+          & id_valid & flt_sticky & (supply_en and not pins(7)) & supply_en;
+
+  ---------------------------------------------------------------------------
+  -- Converters
+  ---------------------------------------------------------------------------
+
+  u_adc : entity work.adc_ctrl
+    generic map (
+      G_POWER_WAIT_CYCLES => G_POWER_WAIT_US * C_CYCLES_PER_MS / 1000,
+      G_RESET_WAIT_CYCLES => G_RESET_WAIT_US * C_CYCLES_PER_MS / 1000,
+      G_SPI_HALF_CYCLES   => C_ADC_SPI_HALF_CYCLES
+    )
+    port map (
+      clk         => clk,
+      rst         => rst,
+      supply_req  => ctrl_supply,
+      crc_en      => ctrl_crc,
+      id_req      => id_req,
+      raw_go      => raw_go,
+      raw_sel     => raw_sel,
+      raw_len     => raw_len,
+      raw_tx      => raw_tx,
+      raw_rx      => raw_rx,
+      raw_busy    => raw_busy,
+      raw_done    => raw_done,
+      id_valid    => id_valid,
+      ready       => adc_ready,
+      state_code  => adc_state,
+      id_resp     => id_resp,
+      supply_en   => supply_en,
+      adc_reset_n => adc_reset_n,
+      adc_sclk    => adc_sclk,
+      adc_sdi     => adc_sdi,
+      adc_cs_n    => adc_cs_n,
+      adc_sdo(0)  => adc1_sdo_i,
+      adc_sdo(1)  => adc2_sdo_i
+    );
+
+  adc_en_o <= supply_en;
+
+  adc1_reset_n_o <= adc_reset_n;
+  adc1_sclk_o    <= adc_sclk(0);
+  adc1_sdi_o     <= adc_sdi(0);
+  adc1_cs_n_o    <= adc_cs_n(0);
+  adc2_reset_n_o <= adc_reset_n;
+  adc2_sclk_o    <= adc_sclk(1);
+  adc2_sdi_o     <= adc_sdi(1);
+  adc2_cs_n_o    <= adc_cs_n(1);
+
+  -- The converters' clock is SYNC_CLK, forwarded (INT-5). Nothing starts a
+  -- conversion yet, so START stays low.
+  gen_clk_fwd : if G_FORWARD_SYNC_CLK generate
+    adc1_clk_o <= sync_clk_i;
+    adc2_clk_o <= sync_clk_i;
+  end generate;
+  gen_clk_low : if not G_FORWARD_SYNC_CLK generate
+    adc1_clk_o <= '0';
+    adc2_clk_o <= '0';
+  end generate;
+
+  adc1_start_o <= '0';
+  adc2_start_o <= '0';
+
+end architecture;

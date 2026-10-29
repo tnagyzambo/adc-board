@@ -1,0 +1,74 @@
+# e003-adc-board bring-up gateware: pins for the LCMXO2-4000HC-4QN84C (U50).
+#
+# Taken from the pad nets of U50 in e003-adc-board.kicad_pcb. Banks 0 and 2
+# run at 3.3 V; banks 1 (ADC1) and 4 (ADC2) at 1.8 V from the channels' rail,
+# which is off until the gateware turns on the channel supply.
+#
+# The FPGA's configuration SPI pins (SN A25, SI A26, SO B12, CCLK A16) and
+# the golden-image flash select (CSSPIN A12) are not used and not listed, so
+# this image leaves them to the configuration logic and the board's pull-ups.
+# The lane reaches the design on its second copy of the pins instead: the
+# fallback of OI-9.
+
+FREQUENCY PORT "sync_clk_i"  8.192 MHZ;
+FREQUENCY PORT "host_sclk_i" 20 MHZ;
+
+# --- Stack interconnect, through the SN74LVC244A bus buffer (bank 0, 2) ---
+LOCATE COMP "sync_clk_i"   SITE "A44";   # PT18A/PCLKT0_1  HOST.CLK
+LOCATE COMP "sync_start_i" SITE "A41";   # PT21A           HOST.START
+LOCATE COMP "host_cs_n_i"  SITE "A15";   # PB7B            HOST.CS
+LOCATE COMP "host_sclk_i"  SITE "A17";   # PB13A/PCLKT2_0  HOST.SCLK
+LOCATE COMP "host_mosi_i"  SITE "B13";   # PB13B           HOST.MOSI
+LOCATE COMP "host_miso_o"  SITE "B15";   # PB20A           HOST.MISO
+IOBUF PORT "sync_clk_i"   IO_TYPE=LVCMOS33 PULLMODE=NONE;
+IOBUF PORT "sync_start_i" IO_TYPE=LVCMOS33 PULLMODE=NONE;
+IOBUF PORT "host_cs_n_i"  IO_TYPE=LVCMOS33 PULLMODE=NONE;
+IOBUF PORT "host_sclk_i"  IO_TYPE=LVCMOS33 PULLMODE=NONE;
+IOBUF PORT "host_mosi_i"  IO_TYPE=LVCMOS33 PULLMODE=NONE;
+IOBUF PORT "host_miso_o"  IO_TYPE=LVCMOS33 PULLMODE=NONE;
+
+# --- Channel supply eFuse, TPS25200 (bank 2) ---
+LOCATE COMP "adc_en_o"    SITE "A11";    # PB3B  ADC_EN, 100k pull-down on the board
+LOCATE COMP "adc_flt_n_i" SITE "A13";    # PB4B  ADC_FLT, pull-up on the board
+IOBUF PORT "adc_en_o"    IO_TYPE=LVCMOS33;
+IOBUF PORT "adc_flt_n_i" IO_TYPE=LVCMOS33 PULLMODE=NONE;
+
+# --- ADC1, U9, bank 1 at 1.8 V; outputs through 62R at the FPGA ---
+LOCATE COMP "adc1_clk_o"     SITE "A27"; # PR10A/PCLKT1_0  via R213
+LOCATE COMP "adc1_start_o"   SITE "B20"; # PR10B           via R214
+LOCATE COMP "adc1_sclk_o"    SITE "A28"; # PR9A            via R215
+LOCATE COMP "adc1_sdi_o"     SITE "B21"; # PR9B            via R216
+LOCATE COMP "adc1_cs_n_o"    SITE "B22"; # PR8A            via R217
+LOCATE COMP "adc1_sdo_i"     SITE "A30"; # PR6A
+LOCATE COMP "adc1_dout_i"    SITE "B23"; # PR6B
+LOCATE COMP "adc1_fsync_i"   SITE "A31"; # PR3A
+LOCATE COMP "adc1_reset_n_o" SITE "A33"; # PR2A
+IOBUF PORT "adc1_clk_o"     IO_TYPE=LVCMOS18;
+IOBUF PORT "adc1_start_o"   IO_TYPE=LVCMOS18;
+IOBUF PORT "adc1_sclk_o"    IO_TYPE=LVCMOS18;
+IOBUF PORT "adc1_sdi_o"     IO_TYPE=LVCMOS18;
+IOBUF PORT "adc1_cs_n_o"    IO_TYPE=LVCMOS18;
+IOBUF PORT "adc1_sdo_i"     IO_TYPE=LVCMOS18 PULLMODE=DOWN;
+IOBUF PORT "adc1_dout_i"    IO_TYPE=LVCMOS18 PULLMODE=DOWN;
+IOBUF PORT "adc1_fsync_i"   IO_TYPE=LVCMOS18 PULLMODE=DOWN;
+IOBUF PORT "adc1_reset_n_o" IO_TYPE=LVCMOS18;
+
+# --- ADC2, U45, bank 4 at 1.8 V; outputs through 62R at the FPGA ---
+LOCATE COMP "adc2_clk_o"     SITE "A5";  # PL9A            via R218
+LOCATE COMP "adc2_start_o"   SITE "A7";  # PL10D/PCLKC4_0  via R219
+LOCATE COMP "adc2_sclk_o"    SITE "B5";  # PL10C/PCLKT4_0  via R220
+LOCATE COMP "adc2_sdi_o"     SITE "A6";  # PL10B           via R221
+LOCATE COMP "adc2_cs_n_o"    SITE "B4";  # PL10A           via R222
+LOCATE COMP "adc2_sdo_i"     SITE "A8";  # PL13A
+LOCATE COMP "adc2_dout_i"    SITE "A9";  # PL13B
+LOCATE COMP "adc2_fsync_i"   SITE "B7";  # PL14A
+LOCATE COMP "adc2_reset_n_o" SITE "B8";  # PL14B
+IOBUF PORT "adc2_clk_o"     IO_TYPE=LVCMOS18;
+IOBUF PORT "adc2_start_o"   IO_TYPE=LVCMOS18;
+IOBUF PORT "adc2_sclk_o"    IO_TYPE=LVCMOS18;
+IOBUF PORT "adc2_sdi_o"     IO_TYPE=LVCMOS18;
+IOBUF PORT "adc2_cs_n_o"    IO_TYPE=LVCMOS18;
+IOBUF PORT "adc2_sdo_i"     IO_TYPE=LVCMOS18 PULLMODE=DOWN;
+IOBUF PORT "adc2_dout_i"    IO_TYPE=LVCMOS18 PULLMODE=DOWN;
+IOBUF PORT "adc2_fsync_i"   IO_TYPE=LVCMOS18 PULLMODE=DOWN;
+IOBUF PORT "adc2_reset_n_o" IO_TYPE=LVCMOS18;
