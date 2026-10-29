@@ -31,7 +31,9 @@ set sources [env_or_die E003_SOURCES]
 set impl    impl1
 
 if {[catch {
-  prj_project new -name $top -dir $out -impl $impl -dev $device -synthesis $synth -lpf $lpf
+  # prj_project new creates the project in the current directory.
+  cd $out
+  prj_project new -name $top -impl $impl -dev $device -synthesis $synth -lpf $lpf
   foreach src $sources {
     prj_src add $src
   }
