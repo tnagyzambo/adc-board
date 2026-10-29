@@ -122,6 +122,29 @@ Controller.prototype.FinishedPageCallback = function() {
 QS
 }
 
+# Waits for the installer started in the background as process $1, printing
+# once a minute how long it has run, how much it has installed and how much
+# CPU time it has used. CPU time that stops rising means the installer is
+# waiting on a page, not working. Returns the installer's exit status.
+watch_install() {
+  local pid=$1 start=$SECONDS ticks child cpu size
+  ticks=$(getconf CLK_TCK)
+  while kill -0 "$pid" 2>/dev/null; do
+    sleep 60 &
+    wait $! || true
+    kill -0 "$pid" 2>/dev/null || break
+    # $pid is timeout(1); the installer is its child.
+    child=$(cat "/proc/$pid/task/$pid/children" 2>/dev/null | cut -d' ' -f1)
+    cpu=?
+    if [ -n "$child" ] && [ -r "/proc/$child/stat" ]; then
+      cpu=$(awk -v t="$ticks" '{ printf "%d s", ($14 + $15) / t }' "/proc/$child/stat")
+    fi
+    size=$(du -sh "$prefix" 2>/dev/null | cut -f1)
+    echo "[install-diamond] $(( (SECONDS - start) / 60 )) min: ${size:-nothing} installed, installer CPU time $cpu"
+  done
+  wait "$pid"
+}
+
 work=/tmp/diamond-installer
 mkdir -p "$work"
 
@@ -154,8 +177,9 @@ case "$kind" in
     # hang into a failed build.
     cp "$installer" "$work/diamond.run" && chmod 755 "$work/diamond.run"
     write_ifw_script "$work/unattended.qs"
-    if ! QT_QPA_PLATFORM=minimal timeout "${DIAMOND_INSTALL_TIMEOUT:-2400}" \
-         "$work/diamond.run" --verbose --script "$work/unattended.qs"; then
+    QT_QPA_PLATFORM=minimal timeout "${DIAMOND_INSTALL_TIMEOUT:-2400}" \
+      "$work/diamond.run" --verbose --script "$work/unattended.qs" &
+    if ! watch_install $!; then
       echo "The Diamond installer failed or stopped responding (see its log above)." >&2
       echo "A page named in 'Control script callback ... does not exist' near the end" >&2
       echo "needs a callback in write_ifw_script in docker/install-diamond.sh." >&2
