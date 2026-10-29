@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+# Runs a command in the gateware build container, in the current directory.
+#
+#   docker/run make sim
+#   docker/run bash
+#
+# The whole repository is mounted at /work, so git (for the build ID) and
+# relative paths work as they do on the host, and everything the container
+# writes lands in the working tree.
+#
+# Environment:
+#   E003_IMAGE       image name                  (default e003-gateware)
+#   DIAMOND_LICENSE  Diamond licence file        (default docker/license/license.dat)
+#   DIAMOND_MAC      MAC address the licence is locked to, aa:bb:cc:dd:ee:ff
+#                    (default: read from the licence's HOSTID)
+
+set -euo pipefail
+
+here=$(cd "$(dirname "$0")" && pwd)
+repo=$(git -C "$here" rev-parse --show-toplevel)
+image=${E003_IMAGE:-e003-gateware}
+license=${DIAMOND_LICENSE:-$here/license/license.dat}
+
+case "$PWD/" in
+  "$repo"/*) rel=${PWD#"$repo"} ;;
+  *) echo "docker/run: run this from inside the repository" >&2; exit 2 ;;
+esac
+
+if ! docker image inspect "$image" >/dev/null 2>&1; then
+  echo "docker/run: image '$image' not found; build it with \`make image\` in gateware/" >&2
+  exit 2
+fi
+
+args=(--rm --platform linux/amd64 -v "$repo:/work" -w "/work$rel")
+[ -t 0 ] && args+=(-i)
+[ -t 1 ] && args+=(-t)
+
+if [ -f "$license" ]; then
+  mac=${DIAMOND_MAC:-}
+  if [ -z "$mac" ]; then
+    hostid=$(grep -o -m 1 'HOSTID=[0-9A-Fa-f]\{12\}' "$license" | cut -d= -f2 || true)
+    if [ -n "$hostid" ]; then
+      mac=$(printf '%s' "$hostid" | tr 'A-F' 'a-f' | sed 's/../&:/g; s/:$//')
+    fi
+  fi
+  args+=(-v "$license:/license/license.dat:ro" -e LM_LICENSE_FILE=/license/license.dat)
+  if [ -n "$mac" ]; then
+    args+=(--mac-address "$mac")
+  else
+    echo "docker/run: no HOSTID in $license and DIAMOND_MAC unset; Diamond will refuse the licence" >&2
+  fi
+fi
+
+# On a Linux host, write files as the calling user rather than root. Docker
+# Desktop on macOS maps ownership itself.
+if [ "$(uname -s)" = Linux ]; then
+  args+=(--user "$(id -u):$(id -g)" -e HOME=/tmp)
+fi
+
+exec docker run "${args[@]}" "$image" "$@"

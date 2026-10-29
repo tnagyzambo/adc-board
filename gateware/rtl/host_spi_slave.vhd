@@ -91,22 +91,19 @@ begin
           byte_idx <= byte_idx + 1;
         end if;
 
-        case byte_idx is
-          when "00" =>
-            cmd <= b;
-          when "01" =>
-            ptr <= unsigned(b);
-          when others =>
-            -- Read: the byte just finished is the dummy byte or a data byte,
-            -- and the next byte out is the register at ptr.
-            -- Write: the byte just finished is data for the register at ptr.
-            if cmd = C_HOST_CMD_READ then
-              tx_shift <= rd_data;
-              ptr      <= ptr + 1;
-            elsif cmd = C_HOST_CMD_WRITE then
-              ptr      <= ptr + 1;
-            end if;
-        end case;
+        if byte_idx = 0 then
+          cmd <= b;
+        elsif byte_idx = 1 then
+          ptr <= unsigned(b);
+        elsif cmd = C_HOST_CMD_READ then
+          -- The byte just finished is the dummy byte or a data byte, and the
+          -- next byte out is the register at ptr.
+          tx_shift <= rd_data;
+          ptr      <= ptr + 1;
+        elsif cmd = C_HOST_CMD_WRITE then
+          -- The byte just finished is data for the register at ptr.
+          ptr <= ptr + 1;
+        end if;
       end if;
     end if;
   end process;

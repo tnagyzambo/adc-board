@@ -112,7 +112,8 @@ def cmd_info(board, _args):
     khz = int.from_bytes(ident[8:10], "big")
     print(f"magic      {magic!r}  ({'ok' if magic == 'E003' else 'WRONG: check wiring and SPI mode 0'})")
     print(f"version    {ident[4]}.{ident[5]}")
-    print(f"build      {build:07x}")
+    dirty = " (uncommitted changes)" if build >> 28 & 1 else ""
+    print(f"build      {build & 0x0FFFFFFF:07x}{dirty}")
     print(f"hello      {hello!r}")
     print(f"SYNC_CLK   {khz} kHz (nominal 8192, +-5.5 % from the FPGA's oscillator)")
     print(f"status     0x{ident[6]:02X}  {flags(ident[6], STATUS_BITS)}")

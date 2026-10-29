@@ -17,22 +17,44 @@ A first VHDL design for the board's FPGA, a Lattice LCMXO2-4000HC-4QN84C
   down on the bench without rebuilding the gateware.
 
 It does not configure the converters, start conversions, close any channel
-switch, or touch the configuration port, the golden-image flash or the user
-flash. The converters keep their reset state, in which their GPIO pins are
-off, so every channel stays off (GW-2). Those features, GW-1 to GW-15 in the
-design summary, come later.
+switch, or use the golden-image flash or the user flash. The converters keep
+their reset state, in which their GPIO pins are off, so every channel stays
+off (GW-2). Those features, GW-1 to GW-15 in the design summary, come later.
 
-The whole flow is open source, runs natively on macOS (Apple silicon and
-Intel), and programs the board through a SEGGER J-Link PLUS Compact on the
-Tag-Connect footprint (Z2).
+## Workflow
+
+Everything that builds runs in one Docker container; everything that touches
+hardware or a screen runs natively on the Mac:
+
+| Step | Tool | Where |
+|---|---|---|
+| Simulation | GHDL | Container |
+| Synthesis | Lattice Diamond: LSE, or Synplify Pro | Container |
+| Translate, map, place and route, timing | Lattice Diamond | Container |
+| Bitstream (`.bit`, SRAM) and JEDEC (`.jed`, flash and feature row) | Lattice Diamond | Container |
+| Waveform viewing | Surfer or GTKWave | Mac |
+| Programming over JTAG, J-Link on the Tag-Connect (Z2) | openFPGALoader | Mac |
+| Bench probe, FT232H as SPI master | Python and pyftdi | Mac |
+
+The container is `linux/amd64`, because Diamond is x86-64 Linux software. On
+Apple silicon, Docker Desktop runs it under Rosetta. It holds Diamond and
+GHDL (Ubuntu's package) and nothing else. The Makefile starts it for you: on
+the Mac, `make sim` and `make build` run `docker/run make ...`, which mounts
+the repository into the container, so results land in `gateware/build/` where
+the native tools pick them up. The build ID comes from git inside the
+container, so a build always names the commit it was built from.
+
+Diamond's licence does not allow redistribution, so the image is built on
+each machine from that machine's own copy of the installer, and must never
+be pushed to a public registry.
 
 ## Status: what has and has not been checked
 
-This first version was written without the toolchain or the converter's
-datasheet to hand. It has **not** yet been simulated, synthesised or placed
-and routed. Run `make sim` and `make` first (see [Building](#building)) and
-expect to fix small things. Each fact below was taken from something other
-than a primary source and is marked `VERIFY` where it sits in the code:
+This version was written without Diamond, GHDL or the converter's datasheet
+to hand, so it has **not** yet been simulated or built. Run `make sim` and
+`make build` first and expect to fix small things. Each fact below was taken
+from something other than a primary source and is marked `VERIFY` where it
+sits:
 
 | What | Assumed | Where | How to check |
 |---|---|---|---|
@@ -43,7 +65,9 @@ than a primary source and is marked `VERIFY` where it sits in the code:
 | ADS127L14 register access without CLKIN | Works, from the internal oscillator after reset | — | If IDs read as 00 or FF without `SYNC_CLK`, supply 8.192 MHz |
 | ADS127L14 SPI mode | Mode 1 (TI E2E answer for this part) | `rtl/adc_spi_master.vhd` | Datasheet, timing diagram |
 | Host command bytes 0xA5 and 0x5A | Not MachXO2 sysCONFIG commands (GW-13) | `C_HOST_CMD_*` | FPGA-TN-02155, command table |
-| `nextpnr-machxo2` supports the LCMXO2-4000HC in QFN84 | Yes; MachXO2 support is marked experimental | `Makefile` | `make`; fallback in [If place and route fails](#if-place-and-route-fails) |
+| Diamond batch commands | `prj_project new … -synthesis … -lpf …`, `prj_run Synthesis/Translate/Map/PAR/Export` | `diamond/build.tcl` | First `make build`; Diamond's Tcl reference |
+| `SYSCONFIG` and `BLOCK` keywords | As written | `constraints/e003_top.lpf` | First `make build`; Diamond's preference reference |
+| Diamond's libraries in Ubuntu 22.04 | The packages in the Dockerfile | `docker/Dockerfile` | `make image` prints any library still missing |
 | openFPGALoader drives a J-Link | Yes, as cable `jlink` | `Makefile` | `openFPGALoader --list-cables` |
 | Tag-Connect TC2030-IDC-NL | Pad *n* lands on pin *n* of its 6-pin IDC socket | [Wiring](#wiring-the-j-link-to-the-tag-connect-cable) | Continuity meter, before first use |
 
@@ -54,8 +78,15 @@ The pinout is not in this list: it was taken from the pad nets of U50 in
 
 ```
 gateware/
-├── Makefile                  sim, synth, pnr, bitstream, programming
-├── constraints/e003_top.lpf  pins and I/O standards
+├── Makefile                  container targets (sim, build) and native ones (prog, wave, ...)
+├── constraints/e003_top.lpf  Diamond preferences: sysCONFIG, banks, timing, pins
+├── diamond/build.tcl         Diamond batch flow, run by `make build`
+├── docker/
+│   ├── Dockerfile            the build image: Diamond and GHDL
+│   ├── entrypoint.sh         puts Diamond on the PATH
+│   ├── run                   runs a command in the container
+│   ├── diamond/              put the Diamond for Linux .rpm here (not in git)
+│   └── license/              put the Diamond licence here (not in git)
 ├── rtl/
 │   ├── e003_pkg.vhd          constants (including every VERIFY item), CRC-8, hello string
 │   ├── e003_top.vhd          top level and register file
@@ -64,105 +95,109 @@ gateware/
 │   ├── adc_spi_master.vhd    SPI controller for one ADS127L14, SPI mode 1
 │   └── clk_meter.vhd         SYNC_CLK frequency in kHz
 ├── sim/
-│   ├── tb_e003_top.vhd       self-checking testbench
+│   ├── tb_e003_top.vhd       self-checking testbench (VHDL-2008)
 │   ├── adc_model.vhd         behavioural ADS127L14 register port
 │   └── osch_sim.vhd          stand-in for the MachXO2 internal oscillator
 └── tools/e003_probe.py       bench probe: FT232H as SPI master, via pyftdi
 ```
 
-## Installing the tools on macOS
+The RTL keeps to VHDL-93, so both of Diamond's synthesis engines read it
+without a language switch; the testbench uses VHDL-2008, which only GHDL
+reads.
 
-Everything except the bench probe's Python package comes from the
-[OSS CAD Suite](https://github.com/YosysHQ/oss-cad-suite-build), a nightly
-bundle with macOS builds for Apple silicon (`darwin-arm64`) and Intel
-(`darwin-x64`). It contains every tool the flow uses:
+## Setting up a Mac (once)
 
-| Tool | Does |
-|---|---|
-| `ghdl` | Analyses and simulates the VHDL |
-| `yosys` with the `ghdl` plugin | Reads the VHDL through GHDL and synthesises it |
-| `nextpnr-machxo2` | Places and routes for the MachXO2 |
-| `ecppack` (Project Trellis) | Packs the bitstream |
-| `openFPGALoader` | Programs the FPGA through the J-Link |
-| `gtkwave` | Views the simulation waveforms |
+### 1. Docker Desktop
 
-1. Install the Xcode command-line tools, for `make` and `git`:
+Install [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+On Apple silicon, open Settings → General and turn on **Use Rosetta for
+x86_64/amd64 emulation on Apple Silicon**: Diamond is x86-64 software, and
+without Rosetta Docker falls back to QEMU, which is many times slower and
+not something Diamond is known to survive. Under Settings → Resources, give
+it at least 4 GB of memory and 20 GB of disk; the image is several GB.
 
-   ```bash
-   xcode-select --install
-   ```
+### 2. Lattice Diamond for Linux
 
-2. Download the latest `oss-cad-suite-darwin-arm64-YYYYMMDD.tgz` (or
-   `-darwin-x64-` on an Intel Mac) from the
-   [releases page](https://github.com/YosysHQ/oss-cad-suite-build/releases).
+1. Make an account at [latticesemi.com](https://www.latticesemi.com), then
+   download **Lattice Diamond for Linux** (64-bit, the `.rpm`) from the
+   Diamond software page. Use the latest 3.x release. The Linux build is the
+   one wanted even on a Mac: it runs in the container.
+2. Put the `.rpm` in `gateware/docker/diamond/`. Git ignores it there.
 
-3. Clear the quarantine flag **before** unpacking, otherwise macOS refuses to
-   run the hundreds of unsigned binaries inside:
+### 3. The Diamond licence
 
-   ```bash
-   cd ~/Downloads
-   ```
+Diamond's free licence is node-locked to a network MAC address. The
+container has its own network interface, so lock the licence to a MAC that
+belongs to the container rather than to the Mac: then the same licence works
+on any machine that builds the image.
 
-   ```bash
-   xattr -d com.apple.quarantine oss-cad-suite-darwin-*.tgz
-   ```
-
-4. Unpack it somewhere permanent:
+1. Make up a locally administered MAC address, which can never clash with a
+   real network card:
 
    ```bash
-   mkdir -p ~/opt && tar -xzf ~/Downloads/oss-cad-suite-darwin-*.tgz -C ~/opt
+   printf '02%s\n' "$(openssl rand -hex 5)"
    ```
 
-5. Put it on the `PATH` of the current shell. Do this in every new terminal
-   you build from, or add the line to `~/.zshrc`:
+   This prints twelve hex digits starting with `02`, for example
+   `02a3f19c0e7b`.
 
-   ```bash
-   source ~/opt/oss-cad-suite/environment
-   ```
+2. On the Lattice website, request a free Diamond licence (Licensing → Diamond
+   free licence) and give those twelve digits as the host ID. Lattice emails
+   `license.dat`.
+3. Save it as `gateware/docker/license/license.dat`. Git ignores it there.
 
-6. Check that every tool is there:
+`docker/run` reads the `HOSTID=` from the licence and starts the container
+with that MAC address. To keep the licence elsewhere, set `DIAMOND_LICENSE`
+to its path; to override the MAC, set `DIAMOND_MAC=02:a3:f1:9c:0e:7b`.
 
-   ```bash
-   ghdl --version
-   ```
+### 4. The build image
 
-   ```bash
-   yosys -m ghdl -p "help ghdl" | head -3
-   ```
+From `gateware/`:
 
-   ```bash
-   nextpnr-machxo2 --version
-   ```
+```bash
+make image
+```
 
-   ```bash
-   ecppack --help | head -3
-   ```
+This unpacks the Diamond RPM into a `linux/amd64` Ubuntu 22.04 image and adds
+GHDL. It takes ten minutes or more, mostly unpacking. The RPM is mounted for
+the build only, so it does not end up as a layer of the image. If the build
+prints `warning: … not found` for a library, note it: it matters only if
+`make build` later fails with "error while loading shared libraries", and
+the fix is to add the package that provides it to `docker/Dockerfile`.
 
-   ```bash
-   openFPGALoader --list-cables | grep -i jlink
-   ```
+A new Diamond release means a new RPM in `docker/diamond/` (remove the old
+one) and `make image` again.
 
-   The last line must list a J-Link cable. If its name is not `jlink`, pass
-   the name it shows as `CABLE=...` to every `make` programming target.
+### 5. Native tools
 
-7. For the bench probe, a Python environment with pyftdi and libusb. Use
-   [Homebrew](https://brew.sh) for libusb:
+From [Homebrew](https://brew.sh):
 
-   ```bash
-   brew install libusb
-   ```
+```bash
+brew install openfpgaloader libusb
+```
 
-   ```bash
-   python3 -m venv ~/.venvs/e003 && ~/.venvs/e003/bin/pip install pyftdi
-   ```
+For waveforms, install [Surfer](https://surfer-project.org) (the default
+`WAVE_VIEWER`) or GTKWave; both read the `.fst` files the simulation writes.
+With GTKWave, use `make wave WAVE_VIEWER=gtkwave`.
 
-OSS CAD Suite is a nightly build; record the date of the one you use, so a
-working build can be reproduced. `openFPGALoader` is also in Homebrew
-(`brew install openfpgaloader`) if you would rather keep it separate.
+For the bench probe, a Python environment with pyftdi:
+
+```bash
+python3 -m venv ~/.venvs/e003 && ~/.venvs/e003/bin/pip install pyftdi
+```
+
+Check that openFPGALoader knows the J-Link:
+
+```bash
+openFPGALoader --list-cables | grep -i jlink
+```
+
+If the cable's name is not `jlink`, pass the name it shows as `CABLE=...` to
+the programming targets.
 
 ## Building
 
-From this directory, with the OSS CAD Suite environment sourced:
+From `gateware/`. Both commands start the container themselves.
 
 ```bash
 make sim
@@ -178,54 +213,51 @@ the fault flag. It ends with:
 tb_e003_top: PASS
 ```
 
-or stops at the first failed check with what it got and what it expected. The
-waveforms are in `build/sim/tb_e003_top.ghw`:
-
-```bash
-gtkwave build/sim/tb_e003_top.ghw
-```
-
+or stops at the first failed check with what it got and what it expected.
 The model converters implement the protocol that `e003_pkg.vhd` assumes, so a
 pass shows that the gateware does what the package says, not that the
-package is right about the ADS127L14.
+package is right about the ADS127L14. View the waveforms natively:
 
 ```bash
-make
+make wave
 ```
 
-Runs the implementation flow and writes `build/e003_top.bit`:
+```bash
+make build
+```
 
-1. **Synthesis**, `build/e003_top.json`: Yosys reads the VHDL through the GHDL
-   plugin, with the short git hash passed in as `G_BUILD_ID`, and maps it to
-   MachXO2 cells. The log is `build/yosys.log`; its last pages give the cell
-   count, which should be a few hundred LUTs of the 4320.
-2. **Place and route**, `build/e003_top.config`: `nextpnr-machxo2` places the
-   design on `LCMXO2-4000HC-4QN84C` with the pins of
-   `constraints/e003_top.lpf`. In `build/nextpnr.log`, check:
-   - "Max frequency for clock" for the internal oscillator net: it must
-     exceed 24.18 MHz, and for `host_sclk_i` 20 MHz;
-   - that no warning says an I/O constraint was ignored.
-3. **Bitstream**, `build/e003_top.bit`: `ecppack` packs the routed design.
+Runs Diamond's whole flow in batch, from a project created afresh in
+`build/diamond/` by `diamond/build.tcl`: synthesis with LSE, translate, map,
+place and route, timing analysis, then the bitstream and the JEDEC file. The
+results are:
 
-`make synth` and `make pnr` stop after the first and second steps. The build
-ID changes only with a commit, so commit before building an image you intend
-to keep, and it will name that commit.
+| File | Contents |
+|---|---|
+| `build/e003_top.bit` | SRAM bitstream, for `make prog` |
+| `build/e003_top.jed` | Flash image, including the feature row, for `make prog-flash` |
+| `build/reports/*.mrp` | Map report: resources used, of 4320 LUTs |
+| `build/reports/*.par` | Place-and-route report |
+| `build/reports/*.twr` | Timing report: every constraint must be met |
+| `build/diamond.log` | Diamond's full output |
 
-### If place and route fails
+Check in the `.twr` that there are no timing errors and that the constraints
+cover the internal oscillator (`clk`, 24.18 MHz), `sync_clk_i` and
+`host_sclk_i`. To use Synplify Pro instead of LSE:
 
-MachXO2 support in nextpnr is marked experimental. If it rejects the device
-or package, or a constraint, try these in order:
+```bash
+make build SYNTH=synplify
+```
 
-1. Update the OSS CAD Suite. MachXO2 support is still being extended.
-2. If the error is about routing `sync_clk_i` to the converters' clock
-   outputs, set `G_FORWARD_SYNC_CLK` to `false` in `rtl/e003_top.vhd`: the ID
-   read does not need the converter clock.
-3. If the error is about the oscillator, change `C_OSCH_NOM_FREQ` and
-   `C_SYS_CLK_HZ` together in `rtl/e003_pkg.vhd`, for example to `"2.08"` and
-   `2_080_000`, and set `C_ADC_SPI_HALF_CYCLES` to 2.
-4. As a last resort, Lattice Diamond reads the same VHDL and nearly the same
-   LPF, and writes a `.jed` that openFPGALoader programs. Diamond runs only on
-   Windows and Linux, so on a Mac it needs a virtual machine.
+The build ID changes only with a commit, so commit before building an image
+you intend to keep. A build from uncommitted changes sets bit 28 of the build
+ID, and the probe reports it.
+
+For anything else in the container, such as Diamond's own tools or a shell to
+look around:
+
+```bash
+make shell
+```
 
 ## Programming
 
@@ -326,8 +358,12 @@ other SPI master works too: see [Host SPI protocol](#host-spi-protocol).
    make prog-flash
    ```
 
-   This erases and rewrites the configuration flash only. The golden image
-   (GW-8) and the feature row are not part of this image yet.
+   This erases and rewrites the configuration flash and the feature row,
+   which takes the `SYSCONFIG` settings of the LPF: JTAG and PROGRAMN
+   enabled, the slave SPI port enabled, the master SPI port and I2C
+   disabled. JTAG stays enabled in every image, so a bad image can always be
+   replaced over the Tag-Connect. The golden image (GW-8) is not part of this
+   yet.
 
 `make prog JTAG_HZ=6000000` and so on raises the JTAG clock once the 1 MHz
 default has proved reliable. Neither programming step needs SEGGER's own
@@ -403,6 +439,17 @@ With the design loaded and the FT232H connected, from `tools/`:
 | IDs 00 with SDO stuck low in `pins` | Converter not powered or still in reset; check `+1V8_CH` and the RESET line |
 | Design vanishes after a while | Chip select held low for ~1 s, which reloads the FPGA from flash |
 
+And for the build container:
+
+| Symptom | Likely cause |
+|---|---|
+| `make image`: "Put exactly one Diamond for Linux .rpm" | No `.rpm`, or more than one, in `docker/diamond/` |
+| `make sim`/`build`: "image 'e003-gateware' not found" | Run `make image` first |
+| Diamond: licence or "invalid host" errors | Licence not in `docker/license/`, or its HOSTID is not the MAC the container got; check `DIAMOND_MAC` |
+| Diamond: "error while loading shared libraries" | A library missing from the image: add its Ubuntu package to `docker/Dockerfile`, `make image` |
+| Very slow builds or crashes on Apple silicon | Rosetta emulation off in Docker Desktop, so QEMU is in use |
+| Diamond rejects a preference | A `SYSCONFIG` or `BLOCK` keyword this Diamond version spells differently; see its preference reference |
+
 ## Host SPI protocol
 
 The board is an SPI peripheral in **mode 0** (SCLK idles low, data sampled on
@@ -433,7 +480,7 @@ read it twice and compare.
 | 0x08–0x09 | SYNC_KHZ | R | `SYNC_CLK` in kHz, updated every 1 ms, 0 if absent |
 | 0x0A | SCRATCH | R/W | Free; for testing writes |
 | 0x0B | PINS | R | Live levels: bit 0 SYNC_START, 1 ADC1 FSYNC, 2 ADC1 DOUT, 3 ADC1 SDO, 4 ADC2 FSYNC, 5 ADC2 DOUT, 6 ADC2 SDO, 7 ADC_FLT (high = no fault) |
-| 0x0C–0x0F | BUILD_ID | R | Short git hash of the build, 0 if built outside git |
+| 0x0C–0x0F | BUILD_ID | R | Bits 27 to 0: short git hash of the build, 0 if built outside git. Bit 28: built with uncommitted changes in `gateware/` |
 | 0x10 | ADC_STATE | R | 0 off, 1 powering, 2 reset released, 3 reading IDs, 4 ready, 5 raw transfer |
 | 0x11 | ADC1_DEV_ID | R | Byte `C_ADC_RESP_BYTE` of ADC1's response to frame 1 |
 | 0x12 | ADC1_REV_ID | R | … of its response to frame 2 |
@@ -463,16 +510,17 @@ summary plans, for margin at bring-up (`C_ADC_SPI_HALF_CYCLES`).
 
 - **Host SPI pins.** The lane reaches the FPGA twice: on the configuration
   port's dedicated pins (SN, SI, SO, CCLK) and on general-purpose pins (PB7B
-  chip select, PB13A clock, PB13B MOSI, PB20A MISO). This image uses only the
-  second copy with its own SPI logic, the fallback that OI-9 describes,
-  because the open-source flow is not known to support the hardened SPI block (the EFB). It
-  drives MISO only while its chip select is low (INT-4). It leaves the
-  dedicated pins alone, so whatever the feature row sets for the
-  configuration port still applies. If the feature row leaves the slave SPI port
-  enabled, as it may on a blank device, that port also sees every frame; the command bytes 0xA5 and
-  0x5A are chosen not to be configuration commands, so it should ignore them
-  and leave SO undriven. That is one of the points OI-9 asks the first board
-  to confirm.
+  chip select, PB13A clock, PB13B MOSI, PB20A MISO). The slave SPI port stays
+  enabled, as GW-8 requires, and owns the dedicated pins; the design serves
+  the lane on the second copy with its own SPI logic, and drives MISO only
+  while its chip select is low (INT-4). The configuration port also sees
+  every frame, so the command bytes 0xA5 and 0x5A are chosen not to be
+  configuration commands (GW-13), and it should ignore them and leave SO
+  undriven. Whether it does is one of the points OI-9 asks the first board to
+  confirm. If the probe reads garbage that the design cannot explain, set
+  `SLAVE_SPI_PORT=DISABLE` in the LPF and rebuild: that is the fallback OI-9
+  describes. Moving to Diamond also makes the hardened SPI block (the EFB)
+  available for a later image.
 - **Clocks.** The design runs from OSCH at 24.18 MHz. The host SPI logic runs
   on the host's SCLK, so it needs no oversampling and keeps up at 18.75 MHz.
   `SYNC_CLK` enters on PCLKT0_1 and is forwarded to both converters' CLKIN.
@@ -482,4 +530,5 @@ summary plans, for margin at bring-up (`C_ADC_SPI_HALF_CYCLES`).
   SCLK low, RESET low) whenever the supply is off, so nothing is driven into
   a converter as it powers up.
 - **Pins left alone.** The golden-image flash's chip select (CSSPIN, held
-  high by R208), PROGRAMN, JTAGENB, INITN and DONE keep their defaults.
+  high by R208), JTAGENB, INITN and DONE are not used. PROGRAMN keeps its
+  configuration function for the reconfiguration timer (GW-9).

@@ -35,9 +35,10 @@ it names that commit, build mid-edit and it says so.
 
 `gateware/` holds the FPGA's VHDL. The current design is a bring-up image: it
 answers on SPI0 with a hello-world string, measures `SYNC_CLK`, switches the
-channel supply on command and reads both converters' ID registers. It builds
-with the open-source OSS CAD Suite on macOS and programs through a J-Link on
-the Tag-Connect footprint; `gateware/README.md` gives the full procedure.
+channel supply on command and reads both converters' ID registers. It is
+simulated with GHDL and built with Lattice Diamond, both in one Docker
+container, and programmed natively from macOS through a J-Link on the
+Tag-Connect footprint; `gateware/README.md` gives the full procedure.
 
 ## Repository
 
