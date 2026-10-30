@@ -16,6 +16,10 @@ A first VHDL design for the board's FPGA, a Lattice LCMXO2-4000HC-4QN84C
   converter and read the reply, so the converter's SPI protocol can be pinned
   down on the bench without rebuilding the gateware.
 
+[`docs/gateware-explained.md`](docs/gateware-explained.md) explains the design
+file by file, with the code inline, for an engineer who knows embedded Rust
+but not FPGAs or VHDL.
+
 It does not configure the converters, start conversions, close any channel
 switch, or use the golden-image flash or the user flash. The converters keep
 their reset state, in which their GPIO pins are off, so every channel stays
@@ -79,6 +83,7 @@ The pinout is not in this list: it was taken from the pad nets of U50 in
 ```
 gateware/
 ├── Makefile                  container targets (sim, build) and native ones (prog, wave, ...)
+├── docs/gateware-explained.md  the design explained, for engineers new to FPGAs and VHDL
 ├── constraints/
 │   ├── e003_top.lpf          Diamond preferences: sysCONFIG, banks, timing, pins
 │   └── e003_top.ldc          clocks for LSE, which does not read the LPF
